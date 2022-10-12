@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnmensajes.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+	
+	<excel recordset='query-smnmensajes.sql' sheetname='${lbl:b_messages}' filename='${lbl:b_messages}.xls'>
+		<col id='msj_asunto' label='${lbl:b_subject}' />
+		<col id='msj_texto' label='${lbl:b_text}' />
+		<col id='msj_fecha_registro' label='${lbl:b_store_date}' />
+		<col id='msj_hora' label='${lbl:s_loginhist_col2}' />
+	</excel>
+
+</config>

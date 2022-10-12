@@ -1,0 +1,11 @@
+select
+		smn_inventario.smn_rel_item_cod_impuesto.smn_rel_item_cod_impuesto_id,
+	smn_inventario.smn_caracteristica_item.cit_descripcion_tecnica as smn_caracteristica_item_id,
+	smn_base.smn_codigos_impuestos.imp_codigo ||''||smn_base.smn_codigos_impuestos.imp_descripcion as smn_codigo_impuesto_rf
+	
+from
+	smn_inventario.smn_rel_item_cod_impuesto
+	inner join smn_base.smn_codigos_impuestos on smn_base.smn_codigos_impuestos.smn_codigos_impuestos_id = smn_inventario.smn_rel_item_cod_impuesto.smn_codigo_impuesto_rf
+	inner join smn_inventario.smn_caracteristica_item on smn_inventario.smn_caracteristica_item.smn_caracteristica_item_id = 	smn_inventario.smn_rel_item_cod_impuesto.smn_caracteristica_item_id
+where
+	smn_rel_item_cod_impuesto_id = ${fld:id}

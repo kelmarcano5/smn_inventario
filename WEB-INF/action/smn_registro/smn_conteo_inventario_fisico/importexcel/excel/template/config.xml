@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnconteoinventariofisico.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_conteo_inventario_fisico}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_conteo_inventario_fisico}">
+				<col id='smn_conteo_id' label='${lbl:b_conteo}' />
+		<col id='smn_item_id' label='${lbl:b_item}' />
+		<col id='cfi_cantidad' label='${lbl:b_quantity}' />
+		<col id='smn_unidad_medida_almacenaje_id' label='${lbl:b_measurement_unit}' />
+		<col id='cfi_costo' label='${lbl:b_cost}' />
+		<col id='smn_auxiliar_1_rf' label='${lbl:b_auxiliary}' />
+		<col id='smn_auxiliar_2_rf' label='${lbl:b_auxiliary}' />
+		<col id='cfi_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

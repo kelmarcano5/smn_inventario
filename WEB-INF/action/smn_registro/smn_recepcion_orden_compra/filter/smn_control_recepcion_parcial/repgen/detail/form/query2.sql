@@ -1,0 +1,15 @@
+select
+		smn_inventario.smn_control_recepcion_parcial.smn_control_recepcion_id,
+	smn_inventario.smn_control_recepcion_parcial.smn_movimiento_cabecera_id,
+	smn_inventario.smn_control_recepcion_parcial.smn_orden_compra_rf,
+	smn_inventario.smn_control_recepcion_parcial.crp_numero_documento,
+	smn_inventario.smn_control_recepcion_parcial.smn_item_id,
+	smn_inventario.smn_control_recepcion_parcial.crp_cantidad_recibida,
+	smn_inventario.smn_control_recepcion_parcial.crp_fecha_recepcion,
+	smn_inventario.smn_control_recepcion_parcial.crp_lote,
+	smn_inventario.smn_control_recepcion_parcial.crp_fecha_vencimiento_lote,
+	smn_inventario.smn_control_recepcion_parcial.crp_fecha_registro
+from
+	smn_inventario.smn_control_recepcion_parcial 
+where
+	smn_inventario.smn_control_recepcion_parcial.smn_control_recepcion_parcial_id = ${fld:id}

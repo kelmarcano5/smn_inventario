@@ -1,0 +1,1 @@
+select smn_auxiliar_id as id, aux_codigo  ||' - '|| aux_descripcion as item from smn_base.smn_auxiliar order by smn_auxiliar_id

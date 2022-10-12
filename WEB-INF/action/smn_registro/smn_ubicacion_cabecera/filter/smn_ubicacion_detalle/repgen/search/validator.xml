@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='repgen.filter' onerror='/action/error/validation/ajax'>
+
+	<parameter id='fdesde' type='date' required='false' label='Fecha desde'/>
+	<parameter id='fhasta' type='date' required='false' label='Fecha hasta'/>
+	
+	<parameter id='smn_ubicacion_cabecera_id' type='integer' required='false' label='${lbl:b_header_location}' maxlen='10'/>
+	<parameter id='smn_divisiones_id' type='integer' required='false' label='${lbl:b_divisions}' maxlen='10'/>
+	<parameter id='smn_subdivisiones_id' type='integer' required='false' label='${lbl:b_subdivisions}' maxlen='10'/>
+	<parameter id='smn_lote_id' type='integer' required='false' label='${lbl:b_lot}' maxlen='10'/>
+	<parameter id='ubd_cantidad_inicial' type='double' required='false' label='${lbl:b_initial_amount}' maxlen='10'/>
+	<parameter id='ubd_entrada' type='double' required='false' label='${lbl:b_entry}' maxlen='10'/>
+	<parameter id='ubd_salida' type='double' required='false' label='${lbl:b_exit}' maxlen='10'/>
+	<parameter id='ubd_cantidad_final' type='double' required='false' label='${lbl:b_final_amount}' maxlen='10'/>
+
+
+
+	<custom-validator
+			classname='dinamica.validators.ArrayNotEmptyValidator'
+			on-error-label='Seleccione al menos un campo para la generación del reporte.'
+			parameter-name='field_id' 
+			id='field_id' />
+
+	<custom-validator 
+			classname='dinamica.validators.ArrayToRecordset'
+			paramName='field_id' 
+			recordsetId='fields' 
+			colName='field_id' 
+			colType='integer' />
+				
+</validator>

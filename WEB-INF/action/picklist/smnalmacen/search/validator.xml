@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/crud'>
+	<parameter id='alm_codigo' type='varchar' required='false' label='${lbl:b_code}' maxlen='16'/>
+	<parameter id='alm_nombre' type='varchar' required='false' label='${lbl:b_name}' maxlen='48'/>
+	<custom-validator classname="dinamica.validators.SQLPatternTransformer" parameter="alm_codigo" rule="contains" />
+	<custom-validator classname="dinamica.validators.SQLPatternTransformer" parameter="alm_nombre" rule="contains" />
+</validator>

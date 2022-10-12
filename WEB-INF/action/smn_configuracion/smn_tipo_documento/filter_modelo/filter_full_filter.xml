@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<model>
+	<summary>${lbl:b_document_type}</summary>
+	<filter>
+		<row field='tdc_codigo' id='tdc_codigo' label='${lbl:b_code}' required='NO' fk='' mSelection='' condiction='Igual que (=)' type='varchar' tableName='smn_tipo_documento' len='10'/>
+		<row field='tdc_nombre' id='tdc_nombre' label='${lbl:b_name}' required='NO' fk='' mSelection='' condiction='Contiene' type='varchar' tableName='smn_tipo_documento' len='100'/>
+		<row field='tdc_fecha_registro' id='tdc_fecha_registro_ini' label='${lbl:b_store_date_greather_than}' required='NO' fk='' mSelection='' condiction='Mayor o igual que (&gt;=)' type='date' tableName='smn_tipo_documento' len='10'/>
+		<row field='tdc_fecha_registro' id='tdc_fecha_registro_fin' label='${lbl:b_store_date_less_than}' required='NO' fk='' mSelection='' condiction='Menor o igual que (&lt;=)' type='date' tableName='smn_tipo_documento' len='10'/>
+	</filter>
+	<detail>SI</detail>
+	<insert>SI</insert>
+	<edit>SI</edit>
+	<delete>SI</delete>
+	<audit>Consulta</audit>
+	<grid>
+		<row field='tdc_codigo' label='${lbl:b_code}' fk='' tableName='smn_tipo_documento' len='10' type='varchar' align='left'/>
+		<row field='tdc_nombre' label='${lbl:b_name}' fk='' tableName='smn_tipo_documento' len='100' type='varchar' align='left'/>
+		<row field='tdc_naturaleza' label='${lbl:b_nature}@{EN=${lbl:b_entrada}|SA=${lbl:b_salida}|TR=${lblb_transferencia}|AJ=${lbl:b_setup}}' fk='' tableName='smn_tipo_documento' len='2' type='varchar' align='left'/>
+		<row field='tdc_vigencia' label='${lbl:b_validation_date}' fk='' tableName='smn_tipo_documento' len='10' type='date' align='center'/>
+		<row field='tdc_estatus' label='${lbl:b_status}@{AC=${lbl:b_account_type_active}|IN=${lbl:b_inactive}}' fk='' tableName='smn_tipo_documento' len='2' type='varchar' align='left'/>
+		<row field='tdc_idioma' label='${lbl:s_profile_lang}@{${def:locale}}' fk='' tableName='smn_tipo_documento' len='2' type='varchar' align='left'/>
+		<row field='tdc_usuario' label='${lbl:b_users}@{${def:user}}' fk='' tableName='smn_tipo_documento' len='10' type='varchar' align='left'/>
+		<row field='tdc_fecha_registro' label='${lbl:b_store_date}@{${def:date}}' fk='' tableName='smn_tipo_documento' len='10' type='date' align='center'/>
+		<row field='tdc_hora' label='${lbl:s_loginhist_col2}@{${def:time}}' fk='' tableName='smn_tipo_documento' len='8' type='varchar' align='left'/>
+	</grid>
+	<mobile>false</mobile>
+</model>

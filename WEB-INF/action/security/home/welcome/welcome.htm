@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+
+<head>
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+	<title>${lbl:b_security_system}.</title>
+
+	<script type="text/javascript">
+
+	//inicializacion de la pagina cuando carga
+	onload = function()
+	{
+	// 	<rows>
+	// 		showTable('${fld:rolename}');
+	// 	</rows>
+
+	// 	noDisplayTables();
+	// }
+
+	// var isGroups= false;
+	// var isCategories = false;
+	// var isAccessControl = false;
+	// var isProfessional = false;
+
+	// function showTable (rolename) {
+	// 	if (rolename == 'smn_agrupaciones')
+	// 	{
+	// 		isGroups = true;
+	// 	}
+	// 	else if (rolename == 'smn_categories')
+	// 	{
+	// 		isCategories = true;
+	// 	}
+	// 	else if (rolename == 'smn_control_acceso')
+	// 	{
+	// 		isAccessControl = true;
+	// 	}
+	// 	else if (rolename == 'smn_profesionalidades')
+	// 	{
+	// 		isProfessional = true;
+	// 	}
+	// 	else if (rolename == 'smn_admin')
+	// 	{
+	// 		isCategories = true;
+	// 		isGroups = true;
+	// 		isAccessControl = true;
+	// 		isProfessional = true;
+	// 	}
+	// }
+
+	// function noDisplayTables()
+	// {
+	// 	if (!isCategories)
+	// 	{
+	// 		document.getElementById('table1').style.display="none";
+	// 		document.getElementById('panel1').style.display="none";
+	// 	}
+	// 	if (!isGroups)
+	// 	{
+	// 		document.getElementById('table2').style.display="none";
+	// 		document.getElementById('panel2').style.display="none";
+	// 	}
+	// 	if (!isAccessControl)
+	// 	{
+	// 		document.getElementById('table3').style.display="none";
+	// 		document.getElementById('panel3').style.display="none";
+	// 	}
+	// 	if (!isProfessional)
+	// 	{
+	// 		document.getElementById('table4').style.display="none";
+	// 		document.getElementById('panel4').style.display="none";
+	// 	}
+	// }
+
+</script>
+</head>
+
+<body>
+	<div class="welcome" style="padding-right:50px; margin-top: 20px;"><br>
+	<b>${lbl:b_welcome}</b> ${fld:fname} ${fld:lname}
+	<div class="" style="width: 100%; border-bottom: solid 6px #1d61a0; border-radius: 30px; margin-top: 4px;">
+	</div>
+	</div>
+<br>
+<div class="modulo">
+		<div class="tituloModulo">
+				<div class="tittlModContenedor">
+						<div class="ttlModTop">
+								<h2>Modulo de Inventario</h2>
+								<div class="ttlModTopImg"><img src="${def:context}/images/mainFolder/talentoHumanoImg.jpg"></div><!--ttlModTopImg-->
+						</div><!--ttlModTop-->
+						<div class="ttlModBottom"><h3>Inventario</h3></div><!--ttlModTop-->
+						<div class="rightImg"><img src="${def:context}/images/mainFolder/modContAsis.png"></div><!--rightImg-->
+				</div><!--tittlModContenedor-->
+		</div><!--tituloModulo-->
+</div><!--modulo-->
+
+<br>
+
+<table id='table1' class="datagrid" width="50%">
+	<tr>
+		<th colspan="5" style="font-weight:bold; font-size:15pt;">${lbl:b_registers}</th>
+	</tr>
+</table>
+
+<!--include al menu iconografico
+${inc:${def:actionroot}/panel/categorias/view}-->
+
+<table id='table2' class="datagrid" width="50%">
+	<tr>
+		<th colspan="5" style="font-weight:bold; font-size:15pt;">${lbl:b_process}</th>
+	</tr>
+</table>
+
+<!--include al menu iconografico
+${inc:${def:actionroot}/panel/agrupaciones/view}-->
+
+<table id='table3' class="datagrid" width="50%">
+	<tr>
+		<th colspan="5" style="font-weight:bold; font-size:15pt;">${lbl:b_monitor}</th>
+	</tr>
+</table>
+
+<!--include al menu iconografico
+${inc:${def:actionroot}/panel/control_acceso/view}-->
+
+<table id='table4' class="datagrid" width="50%">
+	<tr>
+		<th colspan="5" style="font-weight:bold; font-size:15pt;">${lbl:b_configuration}</th>
+	</tr>
+</table>
+
+<!--include al menu iconografico
+${inc:${def:actionroot}/panel/profesionalidades/view}-->
+
+</body>
+
+</html>

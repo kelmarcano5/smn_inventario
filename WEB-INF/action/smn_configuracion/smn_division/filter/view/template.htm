@@ -1,0 +1,49 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='18%'/>
+	<col width='18%'/>
+	<col width='18%'/>
+	<col width='18%'/>
+	<col width='18%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="8" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick="sortBy('div_codigo','query-smndivision.sql')" >${lbl:b_code}</th>
+		<th class='sortable' onclick="sortBy('div_descripcion','query-smndivision.sql')" >${lbl:b_description}</th>
+		<th class='sortable' onclick="sortBy('div_estatus_combo','query-smndivision.sql')" >${lbl:b_status}</th>
+		<th class='sortable' onclick="sortBy('div_vigencia','query-smndivision.sql')" >${lbl:b_validation_date}</th>
+		<th class='sortable' onclick="sortBy('div_fecha_registro','query-smndivision.sql')" >${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_division_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_division_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_division_id}')" title="${lbl:b_edit_button}"></td>
+		<td align="left">${fld:div_codigo}</td>
+		<td align="left">${fld:div_descripcion}</td>
+		<td align="left">${fld:div_estatus_combo}</td>
+		<td align="center">${fld:div_vigencia@dd-MM-yyyy}</td>
+		<td align="center">${fld:div_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

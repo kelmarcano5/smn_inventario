@@ -1,0 +1,20 @@
+SELECT
+	smn_inventario.smn_movimiento_detalle.mde_monto_bruto_ml,
+	smn_inventario.smn_movimiento_detalle.mde_monto_bruto_ma,
+	smn_inventario.smn_movimiento_detalle_impuesto.smn_mov_det_impuesto_id,
+	smn_base.smn_codigos_impuestos.imp_porcentaje_base,
+	smn_base.smn_codigos_impuestos.imp_porcentaje_calculo,
+	smn_base.smn_codigos_impuestos.imp_ui_sustraendo,
+	smn_base.smn_codigos_impuestos.imp_tipo_codigo
+FROM
+	smn_inventario.smn_movimiento_detalle
+INNER JOIN
+	smn_inventario.smn_movimiento_detalle_impuesto 
+	ON
+	smn_inventario.smn_movimiento_detalle.smn_movimiento_detalle_id = smn_inventario.smn_movimiento_detalle_impuesto.smn_movimiento_detalle_id
+INNER JOIN
+	smn_base.smn_codigos_impuestos
+	ON
+	smn_base.smn_codigos_impuestos.smn_codigos_impuestos_id = smn_inventario.smn_movimiento_detalle_impuesto.smn_cod_impuesto_deduc_rf
+WHERE
+	smn_inventario.smn_movimiento_detalle.smn_movimiento_detalle_id = ${fld:smn_movimiento_detalle_id}

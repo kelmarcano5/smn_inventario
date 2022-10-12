@@ -1,0 +1,3 @@
+<rows>
+tra_fecha_registro="${fld:tra_fecha_registro}"    tra_vigencia="${fld:tra_vigencia}"    tra_estatus="${fld:tra_estatus}"    smn_proveedor_rf="${fld:smn_proveedor_rf}"    smn_activo_rf="${fld:smn_activo_rf}"    tra_tipo_transporte="${fld:tra_tipo_transporte}"    tra_descripcion_transporte="${fld:tra_descripcion_transporte}"    tra_codigo="${fld:tra_codigo}"    
+</rows>

@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+
+	
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+
+</head>
+
+<body>
+
+<!--banner-->
+<div class="bannerDialog" id="encabezado_tabla">
+	${lbl:b_header_location}
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+	${req:progress}
+</div>
+
+<!--formulario addnew/edit-->
+<form name="form1" onsubmit="return save()" style="width:500px;">
+
+	<!-- titulo -->
+	<h1 id="formTitle">${lbl:b_add_record}</h1>
+
+	<table>
+
+		<!--ancho de la columna de etiquetas-->
+		<col width="30%">
+
+		<!--campos-->
+				<tr>
+			<td>${lbl:b_detail_movement}*</td>
+			<td>
+				<select name="smn_movimiento_detalle_id" id="smn_movimiento_detalle_id" onchange="chgCombo(smn_movimiento_detalle_id.options[smn_movimiento_detalle_id.selectedIndex].text,'smn_movimiento_detalle_id_name');">
+					<option value=>[Cualquiera]</option>
+					<smn_movimiento_detalle_id_rows>
+					<option value="${fld:id}">${fld:item}</option>
+	
+					</smn_movimiento_detalle_id_rows>
+				</select> 
+				<input id="smn_movimiento_detalle_id_name" name="smn_movimiento_detalle_id_name" type="hidden">
+			</td>
+		</tr>
+	<tr>
+		<td>${lbl:b_feature_store}*</td>
+		<td>
+			<select name="smn_caracteristica_almacen_id" id="smn_caracteristica_almacen_id" onchange="chgCombo(smn_caracteristica_almacen_id.options[smn_caracteristica_almacen_id.selectedIndex].text,'smn_caracteristica_almacen_id_name');">
+				<option value=>[Cualquiera]</option>
+				<smn_caracteristica_almacen_id_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_caracteristica_almacen_id_rows>
+			</select> 
+			<input id="smn_caracteristica_almacen_id_name" name="smn_caracteristica_almacen_id_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_caracteristicas_item}*</td>
+		<td>
+			<select name="smn_caracteristica_item_id" id="smn_caracteristica_item_id" onchange="chgCombo(smn_caracteristica_item_id.options[smn_caracteristica_item_id.selectedIndex].text,'smn_caracteristica_item_id_name');">
+				<option value=>[Cualquiera]</option>
+				<smn_caracteristica_item_id_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_caracteristica_item_id_rows>
+			</select> 
+			<input id="smn_caracteristica_item_id_name" name="smn_caracteristica_item_id_name" type="hidden">
+		</td>
+	</tr>
+		<tr>
+			<td>${lbl:b_status}*</td>
+			<td>
+				<select name="ubc_estatus" id="ubc_estatus">
+				<option value="GE">${lbl:b_generated}</option>
+				<option value="AC">${lbl:b_updated}</option>
+
+				</select> 
+			</td>
+		</tr>
+
+
+	</table>
+
+	<!--botones-->
+	<input id="grabar" type="submit" value="${lbl:b_save_button}" class="button">
+	<input id="limpiar" type="button" value="${lbl:b_clean_button}" onclick="addNew()" class="button">	
+	<input id="copiar" type="button" value="${lbl:b_copy_button}" onclick="getFormValuesToCopy('form1')" class="button">
+	<input id="pegar" type="button" value="${lbl:b_paste_button}" onclick="getFormValuesToPaste('form1')" class="button">
+	<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog(); parent.search();" class="button">	
+	
+	<!-- PK-->
+<input type="hidden" name="id" value=>
+
+</form>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+	onload = function()
+	{ 
+		addNew();
+
+		if (id!="")
+			edit(id);
+	} 
+	
+	function chgCombo(text,id)
+	{
+		document.getElementById(id).value = text;
+	}
+	
+	//configurar formulario para ingresar registro nuevo
+	function addNew()
+	{
+		document.getElementById("formTitle").innerHTML = "${lbl:b_add_record}";
+		document.getElementById("grabar").disabled=false;
+		clearForm("form1");
+		setFocusOnForm("form1");
+	}
+	
+	//retorna al estado previo que corresponde
+	//al estado actual de la pagina, cada llamada Ajax
+	//se encarga de definir cual es la funcion de goBack() que aplica
+	function goBack() 
+	{
+		_goBackFn()			
+	}
+	
+	//mostrar la actualizacion de un registro
+	function insert()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/insert", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+	
+	//restaurar el formulario en caso de error
+	function retryAddnewOrEdit() {
+		document.getElementById("grabar").disabled=false;
+		setFocusOnForm("form1");		
+	}
+	
+	var id = "${fld:id}"
+	
+	//grabar el formulario
+	function save()
+	{
+		//determina si es un insert o un update
+		if (document.form1.id.value=="")
+			return insert();
+		else
+			return update();
+	}
+	
+	//editar registro en formulario
+	function edit(id)
+	{
+			clearErrorMessages();
+
+			//llamada Ajax...
+			ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/edit?id=" + id , 
+							divResponse=null, 
+							divProgress="status", 
+							formName=null, 
+							afterResponseFn=null, 
+							onErrorFn=null);	
+	}
+	
+	//actualizar registro en BD
+	function update()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/update", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+
+	
+</script>	
+</body>
+</html>

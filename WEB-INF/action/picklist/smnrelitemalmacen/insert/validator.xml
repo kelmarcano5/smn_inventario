@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF8'?>
+<validator onerror="/action/error/validation/ajax">
+
+
+	<parameter id='smn_caracteristica_item_id' type='integer' required='false' label='${lbl:b_caracteristicas_item}' maxlen='10'/>
+	<parameter id='smn_almacen_rf' type='integer' required='false' label='${lbl:b_store}' maxlen='10'/>
+
+
+
+</validator>
+
+

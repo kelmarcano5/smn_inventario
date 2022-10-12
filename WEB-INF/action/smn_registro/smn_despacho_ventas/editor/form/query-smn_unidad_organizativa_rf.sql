@@ -1,0 +1,1 @@
+select smn_estructura_organizacional_id as id, eor_codigo  ||' - '|| eor_nombre as item from smn_base.smn_estructura_organizacional order by smn_estructura_organizacional_id

@@ -1,0 +1,324 @@
+<!doctype html>
+<html>
+
+<head>
+<title>Información del Sistema</title>
+<LINK REL="stylesheet" type="text/css" href="${def:context}/dinamica.css" />
+<style>
+form table td:first-child {
+	font-weight: bold;
+	padding-right: 3px;
+}
+</style>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+		//invoca la generacion de un PDF en un popup
+		function openPDF()
+		{
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/test/pdf?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		//invoca el envio de email con mensaje de exito en un popup
+		function sendEmail()
+		{
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/test/email?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+	</script>
+</head>
+
+<body>
+
+<center>
+
+<h1 style="font-size:14pt;">Estatus del Servlet Container</h1>
+
+<form style="width:550px">
+
+<img src="${def:context}/images/email.png" onclick="sendEmail()" title="Enviar por correo" style="float:right;margin-right:5px;margin-top:5px;">
+<img src="${def:context}/images/pdf.png" onclick="openPDF()" title="Exportar a PDF" style="float:right;margin-right:5px;margin-top:5px;">
+
+<h1>Información general del proceso Java</h1>
+
+<table>
+
+	<!--column layout-->
+	<col width="35%">
+	<col width="65%">
+
+	<!--form title-->
+	<tr>
+		<th colspan="2">
+			
+		</th>
+	</tr>
+
+	<!--form fields-->
+	<tr>
+		<td class="label">Hostname</td>
+		<td>${fld:hostname} PID: ${fld:pid}</td>
+	</tr>
+	<tr>
+		<td class="label">Sistema operativo</td>
+		<td>${fld:os-version}</td>
+	</tr>
+	<tr>
+		<td class="label">Memoria física</td>
+		<td>${fld:ram@#,###,##0} MB</td>
+	</tr>	
+	<tr>
+		<td class="label">Java</td>
+		<td>${fld:java-version}</td>
+	</tr>
+	<tr>
+		<td class="label">Java Home</td>
+		<td>${fld:java-home}</td>
+	</tr>
+	<tr>
+		<td class="label">Servidor</td>
+		<td>${fld:server-engine}</td>
+	</tr>
+	<tr>
+		<td class="label">Tomcat HOME</td>
+		<td>${fld:tomcathome}</td>
+	</tr>
+	<tr>
+		<td class="label">Implementación de JAX-WS</td>
+		<td>${fld:jaxws}</td>
+	</tr>	
+	<tr>
+		<td class="label">Límite de RAM</td>
+		<td>${fld:jvmmaxram@#,###,##0} MB</td>
+	</tr>
+	<tr>
+		<td class="label">RAM reservada</td>
+		<td>${fld:jvmtotalram@#,###,##0} MB</td>
+	</tr>
+	<tr>
+		<td class="label">RAM Libre</td>
+		<td>${fld:jvmfreeram@#,###,##0} MB</td>
+	</tr>
+	<tr>
+		<td class="label">Codificación de archivos</td>
+		<td>${fld:encoding}</td>
+	</tr>
+	<tr>
+		<td class="label">País</td>
+		<td>${fld:country}</td>
+	</tr>
+	<tr>
+		<td class="label">Idioma</td>
+		<td>${fld:language}</td>
+	</tr>
+	<tr>
+		<td class="label">Fecha actual del sistema</td>
+		<td>${fld:servertime@dd-MM-yyyy HH:mm:ss}</td>
+	</tr>
+	<tr>
+		<td class="label">Arranque del servicio</td>
+		<td>${fld:starttime@dd-MM-yyyy HH:mm:ss}</td>
+	</tr>
+	<tr>
+		<td class="label">Tiempo corriendo</td>
+		<td>${fld:uptime}</td>
+	</tr>
+	<tr>
+		<td class="label">Framework Dinámica</td>
+		<td>${fld:dinamica}</td>
+	</tr>
+</table>
+</form>
+
+<br>
+
+<!--data grid-->
+<table class="datagrid" width="800px">
+
+	<!--encabezados-->
+	<tr>
+		<th colspan="7"><span style="float: left">Garbage Collectors</span></th>
+	</tr>
+	<tr>
+		<th width="70%">Nombre del Collector</th>
+		<th width="10%">Corridas</th>
+		<th width="20%">Tiempo consumido</th>
+	</tr>
+
+	<!--data-->
+	<gc>
+	<tr>
+		<td align="left">${fld:name}</td>
+		<td align="center">${fld:count@#,###,###}</td>
+		<td align="center">${fld:time@#,###,##0.00} segs.</td>
+	</tr>
+	</gc>
+
+</table>
+
+<br>
+
+<!--data grid-->
+<table class="datagrid" width="1000px">
+
+	<!--encabezados-->
+	<tr>
+		<th colspan="8"><span style="float: left">Aplicaciones corriendo en este servidor </span></th>
+	</tr>
+	<tr>
+		<th width="10%">Contexto</th>
+		<th width="15%">Arranque</th>
+		<th>Sesiones abiertas</th>
+		<th>Pico de sesiones</th>
+		<th>Errores HTTP</th>
+		<th width="20%">Tiempo consumido por Servlets (ms)</th>
+		<th width="15%">Requests atendidos</th>
+		<th>Tiempo promedio (ms)</th>
+	</tr>
+
+	<!--data-->
+	<webapp>
+	<tr>
+		<td align="left">${fld:context}</td>
+		<td align="center">${fld:starttime@dd-MM-yyyy HH:mm:ss}</td>
+		<td align="center">${fld:sessions@#,###,###}</td>
+		<td align="center">${fld:maxactive@#,###,###}</td>
+		<td align="center">${fld:errors}</td>
+		<td align="center">${fld:processingtime@#,###,###}</td>
+		<td align="center">${fld:requests@#,###,###}</td>
+		<td align="center">${fld:performance@#,###,##0.00}</td>
+	</tr>
+	</webapp>
+
+</table>
+
+<br>
+
+<!--data grid-->
+<table class="datagrid" width="1000px">
+
+	<!--encabezados-->
+	<tr>
+		<th colspan="7"><span style="float: left">Procesadores de Requests</span></th>
+	</tr>
+	<tr>
+		<th>Nombre</th>
+		<th>Tiempo último request</th>
+		<th width="20%">URI actual</th>
+		<th>Tiempo máximo</th>
+		<th width="20%">URI del tiempo max.</th>
+	</tr>
+
+	<!--data-->
+	<rp>
+	<tr>
+		<td align="center">${fld:name}</td>
+		<td align="center">${fld:lastRequestProcessingTime}</td>
+		<td align="center">${fld:currentUri}</td>
+		<td align="center">${fld:maxTime}</td>
+		<td align="center">${fld:maxRequestUri}</td>
+	</tr>
+	</rp>
+
+</table>
+
+<br>
+
+<!--data grid-->
+<table class="datagrid" width="500px">
+
+	<!--encabezados-->
+	<tr>
+		<th colspan="5">
+			Database
+		</th>
+	</tr>
+	<tr>
+		<th colspan="2">
+			Context/Connection Pool
+		</th>
+		<th colspan="3" align="center">
+			Conexiones
+		</th>
+	</tr>
+	<tr>
+		<th>Contexto</th>
+		<th>Pool</th>
+		<th>Activas</th>
+		<th>Inactivas</th>
+		<th>Máximas</th>
+	</tr>
+
+	<!--data-->
+	<pool>
+	<tr ${fld:_rowStyle}>
+		<td align="left">${fld:context}</td>
+		<td align="center">${fld:datasource}</td>
+		<td align="center">${fld:numactive}</td>
+		<td align="center">${fld:numidle}</td>
+		<td align="center">${fld:maxactive}</td>
+	</tr>
+	</pool>
+
+</table>
+
+<br>
+
+<!--data grid-->
+<table class="datagrid" width="500px">
+
+	<!--encabezados-->
+	<tr>
+		<th colspan="5">
+			<span style="float: left"> Threads de Tomcat por estatus</span>
+		</th>
+	</tr>
+	<tr>
+		<th width="20%">Runnable</th>
+		<th width="20%">Waiting</th>
+		<th width="20%">Blocked</th>
+		<th width="20%">Timed Waiting</th>
+		<th width="20%">TOTAL</th>
+	</tr>
+
+	<!--data-->
+	<thread>
+	<tr ${fld:_rowStyle}>
+		<td align="center">${fld:runnable}</td>
+		<td align="center">${fld:waiting}</td>
+		<td align="center">${fld:blocked}</td>
+		<td align="center">${fld:timedwaiting}</td>
+		<td align="center"><b>${fld:total}</b></td>
+	</tr>
+	</thread>
+
+</table>
+
+<br>
+
+<!--data grid-->
+<table class="datagrid" width="500px">
+
+	<!--encabezados-->
+	<tr>
+		<th>
+			<span style="float: left">Thread dump</span>
+		</th>
+	</tr>
+
+	<!--data-->
+	<threaddump>
+	<tr ${fld:_rowStyle}>
+		<td align="left">${fld:name} / ${fld:state}<br>
+		${fld:stacktrace}</td>
+	</tr>
+	</threaddump>
+
+</table>
+
+</center>
+
+</body>
+</html>

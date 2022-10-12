@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Envia un email con la informacion del servidor
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.SysInfoEmail</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>message.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/html</content-type>
+	</output>
+
+	<!--
+		Editar para que envie un email con un informe sobre el estatus del
+		servidor
+	-->
+	<mail enabled="true">
+		<subject>Estatus del servicio Tomcat</subject>
+		<mail-to>martin.cordova@gmail.com</mail-to>
+		<body>body.txt</body>
+	</mail>
+
+</config>

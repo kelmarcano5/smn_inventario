@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smncaracteristicaitem.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="22" cellStep="0" name="${lbl:b_caracteristicas_item}"/>
+	
+	<excel 
+		recordset='query-smncaracteristicaitem.sql' 
+		sheetname='${lbl:b_caracteristicas_item}' 
+		filename='${lbl:b_caracteristicas_item}.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='smn_item_rf' label='${lbl:b_item}' />
+		<col id='cit_codigo_barra' label='${lbl:b_codigo_barra}' />
+		<col id='cit_codigo_qr' label='${lbl:b_codigo_qr}' />
+		<col id='cit_codigo_alterno' label='${lbl:b_codigo_alterno}' />
+		<col id='cit_descripcion_tecnica' label='${lbl:b_descripcion_tecnica}' />
+		<col id='smn_unidad_medida_base_rf' label='${lbl:b_unidad_medida_base}' />
+		<col id='smn_unidad_medida_compra_rf' label='${lbl:b_unidad_medida_compra}' />
+		<col id='smn_unidad_medida_venta_rf' label='${lbl:b_unidad_medida_venta}' />
+		<col id='smn_unidad_medida_almacenamiento_rf' label='${lbl:b_unidad_almacenamiento}' />
+		<col id='smn_unidad_medida_despacho_rf' label='${lbl:b_unidad_despacho}' />
+		<col id='cit_peso' label='${lbl:b_weight}' />
+		<col id='smn_unidad_medida_peso_rf' label='${lbl:b_measurement_unit_weight}' />
+		<col id='cit_alto' label='${lbl:b_dimension_alto}' />
+		<col id='smn_unidad_medida_alto_rf' label='${lbl:b_unidad_medida_alto}' />
+		<col id='cit_ancho' label='${lbl:b_dimension_ancho}' />
+		<col id='smn_unidad_medida_ancho_rf' label='${lbl:b_unidad_medida_ancho}' />
+		<col id='cit_profundidad' label='${lbl:b_dimension_profundidad}' />
+		<col id='smn_unidad_medida_profundidad_rf' label='${lbl:b_dimension_profundidad}' />
+		<col id='cit_es_medicamento' label='${lbl:b_es_medicamento}' />
+		<col id='smn_principio_activo_rf' label='${lbl:b_principio_activo}' />
+		<col id='cit_req_control_lote' label='${lbl:b_requiere_control_lote}' />
+		<col id='cit_req_control_vencimiento' label='${lbl:b_requiere_control_vencimiento}' />
+		<col id='cit_dias_ant_vencimiento' label='${lbl:b_dias_antelacion_vencimiento}' />
+		<col id='cit_tipo_costo' label='${lbl:b_tipo_costo}' />
+		<col id='cit_valoracion_inventario' label='${lbl:b_valoracion_inventario}' />
+		<col id='cit_metodo_despacho' label='${lbl:b_metodo_despacho}' />
+		<col id='cit_es_reusable' label='${lbl:b_es_reusable}' />
+		<col id='cit_reuso_apertura' label='${lbl:b_reuso_apertura}' />
+		<col id='cit_cant_reuso' label='${lbl:b_cantidad_reuso}' />
+		<col id='cit_origen_producto' label='${lbl:b_origen_producto}' />
+		<col id='cit_descripcion_compra' label='${lbl:b_descripcion_compra}' />
+		<col id='cit_codigo_arancel' label='${lbl:b_codigo_arancel}' />
+		<col id='cit_dias_entrega' label='${lbl:b_dias_entrega}' />
+		<col id='smn_centro_costo_rf' label='${lbl:b_cost_centers}' />
+		<col id='cit_estatus' label='${lbl:b_status}' />
+		<col id='cit_vigencia' label='${lbl:b_validation_date}' />
+		<col id='cit_idioma' label='${lbl:s_profile_lang}' />
+		<col id='cit_usuario' label='${lbl:b_users}' />
+		<col id='cit_fecha_registro' label='${lbl:b_store_date}' />
+		<col id='cit_hora' label='${lbl:s_loginhist_col2}' />
+
+	</excel>
+
+</config>

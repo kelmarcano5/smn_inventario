@@ -1,0 +1,1 @@
+[LOGIN FAILED/BLOCKED ACCOUNT] ${def:context} ${req:userlogin} ${def:remoteaddr}

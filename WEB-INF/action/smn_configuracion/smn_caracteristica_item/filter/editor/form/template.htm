@@ -1,0 +1,810 @@
+<!doctype html>
+<html>
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/select2.min.css" />
+	
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="${def:context}/action/script"></script>
+	<script type="text/javascript" src="${def:context}/action/jquery"></script>
+	<script type="text/javascript" src="${def:context}/action/select2"></script>
+ 	<script type="text/javascript" src="jquery-barcode.min.js"></script>
+
+
+</head>
+
+<body>
+
+<!--banner-->
+<div class="bannerDialog" id="encabezado_tabla">
+	${lbl:b_caracteristicas_item}
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+	${req:progress} 
+</div>
+
+<!--formulario addnew/edit-->
+<form name="form1" onsubmit="return save()" style="width:500px;">
+
+	<!-- titulo -->
+	<h1 id="formTitle">${lbl:b_add_record}</h1>
+
+	<table>
+
+		<!--ancho de la columna de etiquetas-->
+		<col width="30%">
+
+		<!--campos-->
+	<tr>
+		<td>${lbl:b_item}*</td>
+		<td>
+			<select name="smn_item_rf" class="item" id="smn_item_rf" onchange="chgCombo(smn_item_rf.options[smn_item_rf.selectedIndex].text,'smn_item_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_item_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_item_rf_rows>
+			</select> 
+			<input id="smn_item_rf_name" name="smn_item_rf_name" type="hidden">
+		</td>
+		<td>
+			<img src="${def:context}/images/list-add2.png" align="left" class="button" onclick="item()" title="${lbl:b_item}" >
+		</td>
+		<td>&nbsp;&nbsp;</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_codigo_barra}</td>
+		<td>
+			<input id="cit_codigo_barra" name="cit_codigo_barra" type="text" maxlength="100" >
+		</td>
+			<!-- Incorporado manualmente para mostrar icono de inclusion de elementos al combo -->
+		<td>
+			<img src="${def:context}/images/list-add2.png" align="left" class="button" onclick="generatedCodeBar()" title="Generar Codigo de Barra" >
+		</td>
+		<td>
+			&nbsp;&nbsp;
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_codigo_qr}</td>
+		<td>
+			<input id="cit_codigo_qr" name="cit_codigo_qr" type="text" maxlength="100" >
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_codigo_alterno}</td>
+		<td>
+			<input id="cit_codigo_alterno" name="cit_codigo_alterno" type="text" maxlength="100" >
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_descripcion_tecnica}</td>
+		<td>
+			<textarea id="cit_descripcion_tecnica" name="cit_descripcion_tecnica" cols="30" rows="3"></textarea>
+		</td>
+	</tr>
+
+	<tr>
+		<td>${lbl:b_tipo_producto}*</td>
+		<td>
+			<select name="cit_tipo_producto" id="cit_tipo_producto" onchange="cambiaropcion();">
+        		<option value="0">[Cualquiera]</option>
+				<option value="FA">${lbl:b_fabricado}</option>
+				<option value="CO">${lbl:b_comprado}</option>
+				<option value="PR">${lbl:b_promocion}</option>
+			</select> 
+		</td>
+	</tr>
+	<tr style="display: none" id="oripro">
+		<td>${lbl:b_origen_producto}*</td>
+		<td>
+			<select name="cit_origen_producto" id="cit_origen_producto">
+			<option value="NA">${lbl:b_nacional}</option>
+			<option value="IM">${lbl:b_importado}</option>
+
+			</select> 
+		</td>
+	</tr>
+	<tr style="display: none">
+		<td>${lbl:b_unidad_medida_base}*</td>
+		<td>
+			<select name="smn_unidad_medida_base_rf" id="smn_unidad_medida_base_rf" onchange="chgCombo(smn_unidad_medida_base_rf.options[smn_unidad_medida_base_rf.selectedIndex].text,'smn_unidad_medida_base_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_unidad_medida_base_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_unidad_medida_base_rf_rows>
+			</select> 
+			<input id="smn_unidad_medida_base_rf_name" name="smn_unidad_medida_base_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr  style="display: none" id="undcompra">
+		<td>${lbl:b_unidad_medida_compra}*</td>
+		<td>
+			<select name="smn_unidad_medida_compra_rf" id="smn_unidad_medida_compra_rf" onchange="chgCombo(smn_unidad_medida_compra_rf.options[smn_unidad_medida_compra_rf.selectedIndex].text,'smn_unidad_medida_compra_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_unidad_medida_compra_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_unidad_medida_compra_rf_rows>
+			</select> 
+			<input id="smn_unidad_medida_compra_rf_name" name="smn_unidad_medida_compra_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_unidad_medida_venta}*</td>
+		<td>
+			<select name="smn_unidad_medida_venta_rf" id="smn_unidad_medida_venta_rf" onchange="chgCombo(smn_unidad_medida_venta_rf.options[smn_unidad_medida_venta_rf.selectedIndex].text,'smn_unidad_medida_venta_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_unidad_medida_venta_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_unidad_medida_venta_rf_rows>
+			</select> 
+			<input id="smn_unidad_medida_venta_rf_name" name="smn_unidad_medida_venta_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr style="display: none" id="undalm">
+		<td>${lbl:b_unidad_almacenamiento}*</td>
+		<td>
+			<select name="smn_unidad_medida_almacenamiento_rf" id="smn_unidad_medida_almacenamiento_rf" onchange="chgCombo(smn_unidad_medida_almacenamiento_rf.options[smn_unidad_medida_almacenamiento_rf.selectedIndex].text,'smn_unidad_medida_almacenamiento_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_unidad_medida_almacenamiento_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_unidad_medida_almacenamiento_rf_rows>
+			</select> 
+			<input id="smn_unidad_medida_almacenamiento_rf_name" name="smn_unidad_medida_almacenamiento_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr style="display: none" id="unddesp">
+		<td>${lbl:b_unidad_despacho}*</td>
+		<td>
+			<select name="smn_unidad_medida_despacho_rf" id="smn_unidad_medida_despacho_rf" onchange="chgCombo(smn_unidad_medida_despacho_rf.options[smn_unidad_medida_despacho_rf.selectedIndex].text,'smn_unidad_medida_despacho_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_unidad_medida_despacho_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_unidad_medida_despacho_rf_rows>
+			</select> 
+			<input id="smn_unidad_medida_despacho_rf_name" name="smn_unidad_medida_despacho_rf_name" type="hidden">
+		</td>
+	</tr>
+		<tr style="display: none">
+			<td>${lbl:b_weight}*</td>
+			<td>
+				<input id="cit_peso" name="cit_peso" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+	<tr  style="display: none">
+		<td>${lbl:b_measurement_unit_weight}*</td>
+		<td>
+			<select name="smn_unidad_medida_peso_rf" id="smn_unidad_medida_peso_rf" onchange="chgCombo(smn_unidad_medida_peso_rf.options[smn_unidad_medida_peso_rf.selectedIndex].text,'smn_unidad_medida_peso_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_unidad_medida_peso_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_unidad_medida_peso_rf_rows>
+			</select> 
+			<input id="smn_unidad_medida_peso_rf_name" name="smn_unidad_medida_peso_rf_name" type="hidden">
+		</td>
+	</tr>
+		<tr  style="display: none">
+			<td>${lbl:b_dimension_alto}*</td>
+			<td>
+				<input id="cit_alto" name="cit_alto" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+	<tr  style="display: none">
+		<td>${lbl:b_unidad_medida_alto}*</td>
+		<td>
+			<select name="smn_unidad_medida_alto_rf" id="smn_unidad_medida_alto_rf" onchange="chgCombo(smn_unidad_medida_alto_rf.options[smn_unidad_medida_alto_rf.selectedIndex].text,'smn_unidad_medida_alto_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_unidad_medida_alto_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_unidad_medida_alto_rf_rows>
+			</select> 
+			<input id="smn_unidad_medida_alto_rf_name" name="smn_unidad_medida_alto_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr style="display: none">
+		<td>${lbl:b_dimension_ancho}*</td>
+		<td>
+			<input id="cit_ancho" name="cit_ancho" type="text" maxlength="10" class="numeric">
+		</td>
+	</tr>
+	<tr  style="display: none">
+		<td>${lbl:b_unidad_medida_ancho}*</td>
+		<td>
+			<select name="smn_unidad_medida_ancho_rf" id="smn_unidad_medida_ancho_rf" onchange="chgCombo(smn_unidad_medida_ancho_rf.options[smn_unidad_medida_ancho_rf.selectedIndex].text,'smn_unidad_medida_ancho_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_unidad_medida_ancho_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_unidad_medida_ancho_rf_rows>
+			</select> 
+			<input id="smn_unidad_medida_ancho_rf_name" name="smn_unidad_medida_ancho_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr style="display: none">
+		<td>${lbl:b_dimension_profundidad}*</td>
+		<td>
+			<input id="cit_profundidad" name="cit_profundidad" type="text" maxlength="10" class="numeric">
+		</td>
+	</tr>
+	<tr style="display: none">
+		<td>${lbl:b_dimension_profundidad}*</td>
+		<td>
+			<select name="smn_unidad_medida_profundidad_rf" id="smn_unidad_medida_profundidad_rf" onchange="chgCombo(smn_unidad_medida_profundidad_rf.options[smn_unidad_medida_profundidad_rf.selectedIndex].text,'smn_unidad_medida_profundidad_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_unidad_medida_profundidad_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_unidad_medida_profundidad_rf_rows>
+			</select> 
+			<input id="smn_unidad_medida_profundidad_rf_name" name="smn_unidad_medida_profundidad_rf_name" type="hidden">
+		</td>
+	</tr>
+		<tr style="display: none" id="medica">
+			<td>${lbl:b_es_medicamento}*</td>
+			<td>
+				<select name="cit_es_medicamento" id="cit_es_medicamento">
+				<option value="SI">${lbl:b_yes}</option>
+				<option value="NO">${lbl:b_not}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr style="display: none" id="prinact">
+			<td>${lbl:b_principio_activo}</td>
+			<td>
+				<select name="smn_principio_activo_rf" id="smn_principio_activo_rf" onchange="chgCombo(smn_principio_activo_rf.options[smn_principio_activo_rf.selectedIndex].text,'smn_principio_activo_rf_name');">
+					<option value="">[Cualquiera]</option>
+					<smn_principio_activo_rf_rows>
+					<option value="${fld:id}">${fld:item}</option>
+			
+					</smn_principio_activo_rf_rows>
+				</select> 
+				<input id="smn_principio_activo_rf_name" name="smn_principio_activo_rf_name" type="hidden">
+			</td>
+		</tr>
+		<tr style="display: none" id="reqlote">
+			<td>${lbl:b_requiere_control_lote}*</td>
+			<td>
+				<select name="cit_req_control_lote" id="cit_req_control_lote">
+				<option value="SI">${lbl:b_yes}</option>
+				<option value="NO">${lbl:b_not}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr style="display: none" id="ctrlvenc">
+			<td>${lbl:b_requiere_control_vencimiento}*</td>
+			<td>
+				<select name="cit_req_control_vencimiento" id="cit_req_control_vencimiento">
+				<option value="SI">${lbl:b_yes}</option>
+				<option value="NO">${lbl:b_not}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr style="display: none" id="diasvenc">
+			<td>${lbl:b_dias_antelacion_vencimiento}</td>
+			<td>
+				<input id="cit_dias_ant_vencimiento" name="cit_dias_ant_vencimiento" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr style="display: none" id="tipcosto">
+			<td>${lbl:b_tipo_costo}*</td>
+			<td>
+				<select name="cit_tipo_costo" id="cit_tipo_costo">
+				<option value="FI">${lbl:b_fijo}</option>
+				<option value="PR">${lbl:b_promedio}</option>
+				<option value="UL">${lbl:b_ultimo}</option>
+				<option value="MA">Moneda Alterna</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr style="display: none" id="valinv">
+			<td>${lbl:b_valoracion_inventario}*</td>
+			<td>
+				<select name="cit_valoracion_inventario" id="cit_valoracion_inventario">
+				<option value="CP">COSTO PROMERDIO</option>
+				<option value="UC">ULTIMO COSTO</option>
+				<option value="CR">COSTO REPOSICION</option>
+				<option value="CA">COSTO MAS ALTO</option>
+				<option value="CD">COSTO PROMEDIO PONDERADO</option>
+
+				</select> 
+			</td>
+		</tr>
+
+		<tr style="display: none" id="metdesp">
+			<td>${lbl:b_metodo_despacho}*</td>
+			<td>
+				<select name="cit_metodo_despacho" id="cit_metodo_despacho">
+				<option value="FI">${lbl:b_fifo}</option>
+				<option value="LI">${lbl:lifo}</option>
+				<option value="VL">${lbl:b_vencimiento_lote}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr style="display: none" id="reusa">
+			<td>${lbl:b_es_reusable}*</td>
+			<td>
+				<select name="cit_es_reusable" id="cit_es_reusable">
+				<option value="SI">${lbl:b_yes}</option>
+				<option value="NO">${lbl:b_not}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr style="display: none" id="reuape">
+			<td>${lbl:b_reuso_apertura}</td>
+			<td>
+				<select name="cit_reuso_apertura" id="cit_reuso_apertura">
+				<option value="SI">${lbl:b_yes}</option>
+				<option value="NO">${lbl:b_not}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr style="display: none" id="cantreu">
+			<td>${lbl:b_cantidad_reuso}</td>
+			<td>
+				<input id="cit_cant_reuso" name="cit_cant_reuso" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		
+		<tr style="display: none" id="descripcomp">
+			<td>${lbl:b_descripcion_compra}</td>
+			<td>
+				<textarea id="cit_descripcion_compra" name="cit_descripcion_compra" cols="30" rows="3"></textarea>
+			</td>
+		</tr>
+		<tr style="display: none" id="arancel">
+			<td>${lbl:b_codigo_arancel}</td>
+			<td>
+				<input id="cit_codigo_arancel" name="cit_codigo_arancel" type="text" maxlength="40" >
+			</td>
+		</tr>
+		<tr style="display: none" id="diaentr">
+			<td>${lbl:b_dias_entrega}</td>
+			<td>
+				<input id="cit_dias_entrega" name="cit_dias_entrega" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr style="display: none" id="cencos">
+			<td>${lbl:b_cost_centers}*</td>
+			<td>
+				<select name="smn_centro_costo_rf" id="smn_centro_costo_rf" onchange="chgCombo(smn_centro_costo_rf.options[smn_centro_costo_rf.selectedIndex].text,'smn_centro_costo_rf_name');">
+					<option value="">[Cualquiera]</option>
+					<smn_centro_costo_rf_rows>
+					<option value="${fld:id}">${fld:item}</option>
+
+					</smn_centro_costo_rf_rows>
+				</select> 
+				<input id="smn_centro_costo_rf_name" name="smn_centro_costo_rf_name" type="hidden">
+			</td>
+		</tr>
+	<tr style="display: none" id="clasabc">
+		<td>${lbl:b_clasificacion_abc}*</td>
+		<td>
+			<select name="smn_clasificacion_abc" id="smn_clasificacion_abc" onchange="chgCombo(smn_clasificacion_abc.options[smn_clasificacion_abc.selectedIndex].text,'smn_clasificacion_abc_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_clasificacion_abc_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_clasificacion_abc_rows>
+			</select> 
+			<input id="smn_clasificacion_abc_name" name="smn_clasificacion_abc_name" type="hidden">
+		</td>
+	</tr>
+	<tr style="display: none" id="itcomp">
+		<td>${lbl:b_composed_item}*</td>
+		<td>
+			<select name="cit_item_compuesto" id="cit_item_compuesto">
+			<option value="SI">${lbl:b_yes}</option>
+			<option value="NO">${lbl:b_not}</option>
+
+			</select> 
+		</td>
+	</tr>
+	<tr style="display: none" id="proexc">
+		<td>${lbl:b_exclusive_provider}*</td>
+		<td>
+			<select name="cit_proveedor_exclusivo" id="cit_proveedor_exclusivo" onchange="chgCombo(cit_proveedor_exclusivo.options[cit_proveedor_exclusivo.selectedIndex].text,'cit_proveedor_exclusivo_name');">
+			<option value="">${lbl:b_not}</option>
+			<smn_proveedor_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+			</smn_proveedor_rf_rows>
+			</select> 
+			<input id="cit_proveedor_exclusivo_name" name="cit_proveedor_exclusivo_name" type="hidden">
+		</td>
+	</tr>
+	<tr style="display: none" id="alma">
+		<td>${lbl:b_stored}*</td>
+		<td>
+			<select name="cit_almacenado" id="cit_almacenado">
+			<option value="SI">${lbl:b_yes}</option>
+			<option value="NO">${lbl:b_not}</option>
+
+			</select> 
+		</td>
+	</tr>
+  <tr style="display: none">
+    <td>${lbl:b_referencia}</td>
+    <td>
+      <textarea id="cit_referencia" name="cit_referencia" type="text" maxlength="20"></textarea>
+    </td>
+  </tr>
+  
+	<tr style="display: none" id="stat">
+		<td>${lbl:b_status}*</td>
+		<td>
+			<select name="cit_estatus" id="cit_estatus">
+			<option value="AC">${lbl:b_account_type_active}</option>
+			<option value="IN">${lbl:b_inactive}</option>
+			<option value="CU">${lbl:b_cuarentena}</option>
+
+			</select> 
+		</td>
+	</tr>
+	<tr style="display: none" id="fvig">
+		<td>${lbl:b_validation_date}*</td>
+		<td>
+			<input id="cit_vigencia" name="cit_vigencia" type="text" class="date" maxlength="10">
+			<img src="${def:context}/images/dropdown.png" title="Desplegar calendario" onclick="calendarOpen('cit_vigencia')">
+		</td>
+	</tr>
+
+
+	</table>
+
+	<!--botones-->
+	<input id="grabar" type="submit" value="${lbl:b_save_button}" class="button">
+	<input id="limpiar" type="button" value="${lbl:b_clean_button}" onclick="addNew()" class="button">	
+	<input id="copiar" type="button" value="${lbl:b_copy_button}" onclick="getFormValuesToCopy('form1')" class="button">
+	<input id="pegar" type="button" value="${lbl:b_paste_button}" onclick="getFormValuesToPaste('form1')" class="button">
+	<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog(); parent.search();" class="button">	
+	
+	<!-- PK-->
+<input type="hidden" name="id" value="">
+
+</form>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+	onload = function()
+	{ 
+		addNew();
+
+		$('.item').select2();
+		
+		if (id!="")
+			edit(id);
+	} 
+
+	function cambiaropcion() {
+	    var opts = document.getElementById("cit_tipo_producto").value;
+
+	    if(opts == 'FA'){
+	    	document.getElementById("metdesp").style.display="";
+			document.getElementById("reuape").style.display="";
+			document.getElementById("cantreu").style.display="";
+	    	document.getElementById("prinact").style.display="";
+			document.getElementById("medica").style.display="";
+	        document.getElementById("ctrlvenc").style.display="";
+	    	document.getElementById("diasvenc").style.display="";
+			document.getElementById("undalm").style.display="";
+	        document.getElementById("unddesp").style.display="";
+	    	document.getElementById("reqlote").style.display="";
+	        document.getElementById("valinv").style.display="";
+	        document.getElementById("reusa").style.display="";
+	        document.getElementById("oripro").style.display="";
+	        document.getElementById("cencos").style.display="";
+	        document.getElementById("alma").style.display="";
+	        // document.getElementById("stat").style.display="";
+	        // document.getElementById("fvig").style.display="";
+	        document.getElementById("itcomp").style.display="";
+	        document.getElementById("clasabc").style.display="";
+	   //  alert("fabricado");
+	    }
+
+	    if(opts == 'CO'){
+	    	document.getElementById("proexc").style.display="";
+	    	document.getElementById("undcompra").style.display="";
+			document.getElementById("arancel").style.display="";
+	    	document.getElementById("tipcosto").style.display="";
+	    	document.getElementById("diaentr").style.display="";
+	      	document.getElementById("metdesp").style.display="";
+			document.getElementById("reuape").style.display="";
+			document.getElementById("cantreu").style.display="";
+	    	document.getElementById("prinact").style.display="";
+			document.getElementById("medica").style.display="";
+	        document.getElementById("ctrlvenc").style.display="";
+	    	document.getElementById("diasvenc").style.display="";
+			document.getElementById("undalm").style.display="";
+	        document.getElementById("unddesp").style.display="";
+	    	document.getElementById("reqlote").style.display="";
+	        document.getElementById("valinv").style.display="";
+	        document.getElementById("reusa").style.display="";
+	        document.getElementById("oripro").style.display="";
+	        document.getElementById("cencos").style.display="";
+	        document.getElementById("alma").style.display="";
+	        // document.getElementById("stat").style.display="";
+	        // document.getElementById("fvig").style.display="";
+	        document.getElementById("itcomp").style.display="";
+	        document.getElementById("clasabc").style.display="";
+
+	    }
+
+	    if(opts == 'PR'){
+	    	 document.getElementById("proexc").style.display="none";
+		    document.getElementById("undcompra").style.display="none";
+		    document.getElementById("arancel").style.display="none";
+		    document.getElementById("tipcosto").style.display="none";
+		    document.getElementById("diaentr").style.display="none";
+		    document.getElementById("metdesp").style.display="none";
+		    document.getElementById("reuape").style.display="none";
+		    document.getElementById("cantreu").style.display="none";
+		    document.getElementById("prinact").style.display="none";
+		    document.getElementById("medica").style.display="none";
+		    document.getElementById("ctrlvenc").style.display="none";
+		    document.getElementById("diasvenc").style.display="none";
+		    document.getElementById("undalm").style.display="none";
+		    document.getElementById("unddesp").style.display="none";
+	        document.getElementById("reqlote").style.display="";
+	        document.getElementById("valinv").style.display="";
+	        document.getElementById("reusa").style.display="";
+	        document.getElementById("oripro").style.display="";
+	        document.getElementById("cencos").style.display="";
+	        document.getElementById("alma").style.display="";
+	        document.getElementById("itcomp").style.display="";
+	        document.getElementById("clasabc").style.display="";
+	      //alert("promocion");
+	     }
+	  }
+	
+	function chgCombo(text,id)
+	{
+		document.getElementById(id).value = text;
+	}
+	
+	//configurar formulario para ingresar registro nuevo
+	function addNew()
+	{
+		document.getElementById("formTitle").innerHTML = "${lbl:b_add_record}";
+		document.getElementById("grabar").disabled=false;
+		clearForm("form1");
+		setFocusOnForm("form1");
+	}
+	
+	//retorna al estado previo que corresponde
+	//al estado actual de la pagina, cada llamada Ajax
+	//se encarga de definir cual es la funcion de goBack() que aplica
+	function goBack() 
+	{
+		_goBackFn()			
+	}
+	
+	//mostrar la actualizacion de un registro
+	function insert()
+	{	
+		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/insert", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+	
+	//restaurar el formulario en caso de error
+	function retryAddnewOrEdit() {
+		document.getElementById("grabar").disabled=false;
+		setFocusOnForm("form1");		
+	}
+	
+	var id = "${fld:id}"
+	
+	//grabar el formulario
+	function save()
+	{
+		//determina si es un insert o un update
+		if (document.form1.id.value=="")
+			return insert();
+		else
+			return update();
+
+
+	}
+	
+	//editar registro en formulario
+	function edit(id)
+	{
+			clearErrorMessages();
+
+			//llamada Ajax...
+			ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/edit?id=" + id , 
+							divResponse=null, 
+							divProgress="status", 
+							formName=null, 
+							afterResponseFn=null, 
+							onErrorFn=null);	
+	}
+	
+	//actualizar registro en BD
+	function update()
+	{		
+		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/update", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+
+
+		//Author     : SIMONE
+	//Description: Set first element as selected value
+	//Return     : None
+	function setElementFirstIndexItem(id)
+	{
+		var combo = document.getElementById(id);
+		combo.selectedIndex = 0;
+	}
+
+
+	//Author     : SIMONE
+	//Description: Add new value to combo box
+	//Return     : None
+	function addValueToComboItem(code, description, field) 
+	{
+	    var combo = document.getElementById(field);	    
+	   insertComboBoxItem(code, combo, description, field);
+	}
+	
+
+	// CODIGO NUEVOOOO VEHICULO 
+	//Author     : SIMONE
+	//Description: Insert new value into combo box
+	//Return     : None
+	function insertComboBoxItem(code, combo, description, field) {
+		var valueText = code;
+		if (description != null)
+		{
+			valueText = description;
+			//valueText = valueText + '' + description;
+		}
+       
+       //combo.options[combo.options.length] = new Option(valueText);
+		var option = document.createElement("option");
+		option.text = valueText; 
+		option.value = bdID;
+		//alert("valor: "+valueText+"id: "+bdID);
+
+		//document.getElementById('cts_auxiliar').value = bdID;
+		if (field == 'smn_item_rf')
+		{
+			//alert('Añadiendo a prospectos en llamadas')
+			document.form1.smn_item_rf.add(option, combo.options.length);
+			  $("#smn_item_rf option[value="+ bdID +"]").attr("selected",true);
+			//setElementFirstIndexVeh('cts_auxiliar');
+		}
+		
+	}
+	//Author     : SIMONE
+	//Description: Set selected index into combo box
+	//Return     : None
+	function setSelectedIndexItem(code, combo, description) 
+	{
+	    for (var i = 0; i < combo.options.length; i++) 
+	    {
+			var valueText = code;
+			if (description != null)
+			{
+				valueText = valueText + ' - ' + description;
+			}
+	        if (combo.options[i].text == valueText) 
+	        {
+	        	combo.options[i].selected = true;
+	            return;
+	        }
+	    }
+	}
+	
+	//Author     : SIMONE
+	//Description: Get text valueof selected index
+	//Return     : Text associated to index
+	function getSelectedIndexItem(combo) 
+	{
+	    for (var i = 0; i < combo.options.length; i++) 
+	    {
+	        if (combo.options[i].selected == true) 
+	        {
+	            return combo.options[i].text;
+	        }
+	    }
+	}
+
+	function getIDSelectedIndexItem(combo) 
+	{
+	    for (var i = 0; i < combo.options.length; i++) 
+	    {
+	        if (combo.options[i].selected == true) 
+	        {
+	            return combo.options[i].value;
+	        }
+	    }
+	}
+	
+
+		//Author     : SIMONE
+	//Description: Set value to combo box
+	//Parameters : code - it is code associated into each database table 
+	//             descripcion - it is description associated into each database table 
+	//             field - name combo field
+	//             id - identifier retrieved after transaction
+	//             linked - flag indicates 'true' when combos are linked and 'false' otherwise
+	//Return     : None
+	function setValueComboBoxItem(code, description, field, linked)
+	{
+		//add valur text to combo
+		addValueToComboItem(code,description,field);
+
+		//get select object 
+		var combo = document.getElementById(field);
+		//alert(combo)
+		//set element selected to field referenced
+		//setSelectedIndexVeh(code,combo, description);
+		
+		//set text value to combo field
+		var valueText = getSelectedIndexItem(combo);		
+		//alert(valueText)
+		//get hidden field in order to set any value
+		//var combo = document.getElementById(field+'_name');
+
+	//	combo.text=valueText;
+		//combo.value=bdID;
+		
+		setSelectedIndexItem(bdID, combo, valueText); 
+	}
+
+	function item(){
+		//alert ('Colocar su código aquí­.')
+			var uri = "/smn_base/action/smn_configuracion/smn_codificaciones/smn_item/editor/form?reference=true&source=item";	
+			openDialog("editor20", uri, 650, 580);
+	}
+
+	function generatedCodeBar() {
+		// var codeItem = $('#smn_item_rf').val();
+		// $("#barcode").barcode(
+		// 	"12345670", // Valor del codigo de barras
+		// 	"code128" // tipo (cadena)
+		// );
+	}
+
+
+	
+</script>	
+</body>
+</html>

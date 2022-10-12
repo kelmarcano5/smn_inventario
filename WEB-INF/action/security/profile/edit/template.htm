@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+
+<head>
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica.css" />
+	<title>Sistema de Seguridad</title>
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+</head>
+
+<body>
+
+	<form name="form1" onsubmit="return update()" style="width:500px;">
+	
+		<h1>${lbl:s_profile_formtitle}</h1>
+	
+		<table>
+		
+			<!--column layout-->
+			<col width="30%">
+		
+			<!--form fields-->
+			<tr>
+				<td>${lbl:s_profile_lname}</td>
+				<td><input name="lname" id="lname" value="${fld:lname}" type="text" size="25" maxlength="25" ></td>
+			</tr>
+			<tr>
+				<td>${lbl:s_profile_fname}</td>
+				<td><input name="fname" id="fname" value="${fld:fname}" type="text" size="25" maxlength="25" ></td>
+			</tr>
+			<tr>
+				<td>${lbl:s_profile_email}</td>
+				<td><input name="email" id="email" value="${fld:email}" type="text" size="30" maxlength="80" ></td>
+			</tr>
+		
+			<tr>
+				<td>${lbl:s_profile_lang}</td>
+				<td>
+					<select name="locale" id="locale">
+						<option value="es">Español</option>
+						<option value="en">English</option>
+					</select>
+				</td>
+			</tr>
+		
+		</table>
+	
+		<input id="grabar" type="submit" value="${lbl:s_save}">
+	
+	</form>
+
+</body>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+	onload = function()
+	{ 
+		setFocusOnForm("form1");
+	} 
+	
+	//actualizar registro en BD
+	function update()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/update", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+
+	//restaurar el formulario en caso de error
+	function retryAddnewOrEdit() {
+		document.getElementById("grabar").disabled=false;
+	}
+	
+	function updateOK() {
+		setFocusOnForm("form1");
+		document.getElementById("grabar").disabled=false;
+		top.frames['sidebar'].location.reload();		
+	}
+	
+</script>
+
+</html>

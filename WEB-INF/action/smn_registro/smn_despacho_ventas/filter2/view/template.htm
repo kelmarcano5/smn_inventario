@@ -1,0 +1,60 @@
+
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+	<!-- <col width='3%'/> -->
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="12" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<!-- <th></th> -->
+		<th>GN</th>
+		<th>NE</th>
+		<th class='sortable' onclick='sortBy("numero_documento","query-smndespacho.sql")'>Numero Documento Origen</th>
+		<th class='sortable' onclick='sortBy("smn_auxiliar_rf","query-smndespacho.sql")'>${lbl:b_auxiliar_rf}</th>
+		<!-- <th class='sortable' onclick='sortBy("smn_unidad_organizativa_rf","query-smndespacho.sql")'>${lbl:b_unidad_organizativa_rf}</th> -->
+		<th class='sortable' onclick='sortBy("smn_zona_rf","query-smndespacho.sql")'>Zona</th>
+		<th class='sortable' onclick='sortBy("chofer","query-smndespacho.sql")'>Chofer</th>
+		<th class='sortable' onclick='sortBy("smn_item_rf","query-smndespacho.sql")'>Item</th>
+		<th class='sortable' onclick='sortBy("dde_cantidad_solicitada","query-smndespacho.sql")'>Cantidad</th>
+		<th class='sortable' onclick='sortBy("des_fecha_despacho","query-smndespacho.sql")'>${lbl:b_fecha_despacho}</th>
+		<th class='sortable' onclick='sortBy("des_estatus","query-smndespacho.sql")'>${lbl:b_status}</th>
+		<th>DT</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<!-- <td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_despacho_id}')" title="${lbl:b_view_detail}"></td> -->
+		<td><img src="${def:context}/images/icongrid/Generar.png"  onclick="showEditor('${fld:smn_despacho_id}')" title="${lbl:b_edit_button}"></td>
+		<td><img src="${def:context}/images/file-text.png" onclick="notadeentrega1('${fld:smn_despacho_id}')" title="nota de entrega"></td> 
+		<td>${fld:numero_documento}</td>
+		<td>${fld:smn_auxiliar_rf}</td>
+		<!-- <td>${fld:smn_unidad_organizativa_rf}</td> -->
+		<td>${fld:smn_zona_rf}</td>
+		<td>${fld:chofer}</td>
+		<td>${fld:smn_item_rf}</td>
+		<td>${fld:dde_cantidad_solicitada}</td>
+		<td>${fld:des_fecha_despacho@dd-MM-yyyy}</td>
+		<td>${fld:des_estatus_combo}</td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="relacion('${fld:smn_despacho_id}','${fld:des_descripcion}')" title="${lbl:b_office_detail}"></td> 
+		
+	</tr>
+	</rows>
+
+</table>

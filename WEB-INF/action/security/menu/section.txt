@@ -1,0 +1,11 @@
+<div class="menuContainer">
+	<div align="left" class="menuTitle" onclick="showMenu('menu_${fld:menu_id}')">
+		${fld:title}
+	</div>
+	<div id="menu_${fld:menu_id}_sub" style="display:none;">${submenu}</div>
+	<div id="menu_${fld:menu_id}" style="display:none" class="menuItems">
+		<rows>
+	      	<div class="menuItem" onclick="gotoLink('${def:context}${fld:path}')">${fld:description}</div>
+	    </rows>
+	</div>
+</div>

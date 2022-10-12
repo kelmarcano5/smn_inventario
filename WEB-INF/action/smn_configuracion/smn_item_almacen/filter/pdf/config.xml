@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnitemalmacen.sql" source="session" scope="transaction" />
+		<recordset id="filter.params" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_relacion_item_almacen}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' align="left" />
+	<pdf-file-name>${lbl:b_relacion_item_almacen}.pdf</pdf-file-name>
+
+	<pdf-report pageSize="letter" rotate="false" footer="true" header="true">
+		<record recordset='filter.params' title='${lbl:b_filter_find}' noFilterMsg='-- ${lbl:b_all_message} --' width='55' spacingBefore='15'>
+			<col name='smn_item_rf' title='${lbl:b_item}'  format='######' align='left' />
+			<col name='smn_almacen_rf' title='${lbl:b_stores}'  format='######' align='left' />
+			<col name='ria_fecha_registro_ini' title='${lbl:b_store_date_greather_than}'  format='dd-MM-yyyy' align='left' />
+			<col name='ria_fecha_registro_fin' title='${lbl:b_store_date_less_than}'  format='dd-MM-yyyy' align='left' />
+
+		</record>
+		<record recordset='query-smnitemalmacen.sql' width='100' spacingBefore='10'>
+			<col name='smn_item_rf_combo' title='${lbl:b_item}' width='12' align='left' format='######' />
+			<col name='smn_almacen_rf_combo' title='${lbl:b_stores}' width='12' align='left' format='######' />
+			<col name='ria_estatus_combo' title='${lbl:b_status}' width='12' align='left' />
+			<col name='ria_vigencia' title='${lbl:b_validation_date}' width='12' align='left' format='dd-MM-yyyy' />
+			<col name='ria_idioma' title='${lbl:s_profile_lang}' width='12' align='left' />
+			<col name='ria_usuario' title='${lbl:b_users}' width='12' align='left' />
+			<col name='ria_fecha_registro' title='${lbl:b_store_date}' width='12' align='left' format='dd-MM-yyyy' />
+			<col name='ria_hora' title='${lbl:s_loginhist_col2}' width='12' align='left' />
+
+		</record>
+
+	</pdf-report>
+</config>

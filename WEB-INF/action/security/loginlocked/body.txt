@@ -1,0 +1,26 @@
+Dear Administrator:
+
+This is an alert to notify you about a failed 
+attempt to login using a LOCKED (disabled) ACCOUNT. 
+
+These are the details of the event:
+
+* Date: ${def:date}
+* Time: ${def:time}
+* Context: ${def:context}
+* Login: ${req:userlogin}
+* Remote IP: ${def:remoteaddr}
+* Host: ${def:host}
+
+You may investigate this IP address using the
+following service:
+
+http://whois.arin.net
+
+or this click this link:
+
+http://www.iptools.com/dnstools.php?tool=ipwhois&user_data=${def:remoteaddr}
+
+For additional support please visit:
+http://www.martincordova.com
+

@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='tra_codigo' type='varchar' required='true' label='${lbl:b_code}' maxlen='10'/>
+	<parameter id='tra_descripcion_transporte' type='varchar' required='true' label='${lbl:b_description}' maxlen='100'/>
+	<parameter id='tra_tipo_transporte' type='varchar' required='true' label='${lbl:b_transport_type}' maxlen='2'/>
+	<parameter id='smn_activo_rf' type='integer' required='false' label='${lbl:b_active}' maxlen='10'/>
+	<parameter id='smn_proveedor_rf' type='integer' required='false' label='${lbl:b_providers}' maxlen='10'/>
+	<parameter id='tra_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='tra_vigencia' type='date' required='true' label='${lbl:b_validation_date}' maxlen='10'/>
+
+</validator>

@@ -1,0 +1,52 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='16%'/>
+	<col width='16%'/>
+	<col width='16%'/>
+	<col width='16%'/>
+	<col width='16%'/>
+	<col width='16%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="9" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_item_id","query-smnitemcompuestodetalle.sql")'>${lbl:b_item}</th>
+		<th class='sortable' onclick='sortBy("icd_cantidad","query-smnitemcompuestodetalle.sql")'>${lbl:b_quantity}</th>
+		<th class='sortable' onclick='sortBy("smn_unidad_medida_rf","query-smnitemcompuestodetalle.sql")'>${lbl:b_measurement_unit}</th>
+		<th class='sortable' onclick='sortBy("icd_estatus","query-smnitemcompuestodetalle.sql")'>${lbl:b_status}</th>
+		<th class='sortable' onclick='sortBy("icd_vigencia","query-smnitemcompuestodetalle.sql")'>${lbl:b_validation_date}</th>
+		<th class='sortable' onclick='sortBy("icd_fecha_registro","query-smnitemcompuestodetalle.sql")'>${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_item_compuesto_detalle_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_item_compuesto_detalle_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_item_compuesto_detalle_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:smn_item_id}</td>
+		<td align='right'>${fld:icd_cantidad@#,###,##0.00}</td>
+		<td>${fld:smn_unidad_medida_rf}</td>
+		<td align='left'>${fld:icd_estatus}</td>
+		<td>${fld:icd_vigencia@dd-MM-yyyy}</td>
+		<td>${fld:icd_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

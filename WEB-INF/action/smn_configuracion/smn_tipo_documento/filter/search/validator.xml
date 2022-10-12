@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='tdc_codigo' type='varchar' required='false' label='${lbl:b_code}' maxlen='10'/>
+	<parameter id='tdc_nombre' type='varchar' required='false' label='${lbl:b_name}' maxlen='100'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='tdc_nombre' rule='contains' />
+	<parameter id='tdc_fecha_registro_ini' type='date' required='false' label='${lbl:b_store_date_greather_than}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.DateRangeValidator' on-error-label='[${lbl:b_store_date_greather_than} mayor o igual que] no puede ser mayor que [${lbl:b_store_date_less_than} menor o igual que].' date1='tdc_fecha_registro_ini' date2='tdc_fecha_registro_fin' id='tdc_fecha_registro_ini' />
+	<parameter id='tdc_fecha_registro_fin' type='date' required='false' label='${lbl:b_store_date_less_than}' maxlen='10'/>
+</validator>

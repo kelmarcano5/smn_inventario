@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smntipoitem.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_item_type}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_item_type}">
+				<col id='tip_codigo' label='${lbl:b_code}' />
+		<col id='tip_descripcion' label='${lbl:b_description}' />
+		<col id='tip_estatus_combo' label='${lbl:b_status}' />
+		<col id='tip_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

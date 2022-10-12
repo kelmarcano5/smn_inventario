@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smncaracteristicaalmacen.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_caracteristicas_almacen}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_caracteristicas_almacen}">
+				<col id='smn_almacen_rf_combo' label='${lbl:b_stores}' />
+		<col id='cal_tipo_almacen_combo' label='${lbl:b_tipo_almacen}' />
+		<col id='cal_capacidad_almacenaje' label='${lbl:b_capacidad_almacenaje}' />
+		<col id='smn_unidad_medida_rf_combo' label='${lbl:b_unidad_medida_capacidad_almacenaje}' />
+		<col id='cal_espacio_fisico' label='${lbl:b_espacio_fisico}' />
+		<col id='smn_unidad_medida_espacio_fisico_rf_combo' label='${lbl:b_unidad_medida_espacio_fisico}' />
+		<col id='cal_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

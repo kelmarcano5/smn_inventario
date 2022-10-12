@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='smn_usuarios_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='rol_tipo' type='varchar' required='true' maxlen='2'/>
+	<parameter id='smn_corporaciones_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_entidades_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_sucursales_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_areas_servicios_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_unidades_servicios_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='rol_posicion_estructura_rf_desc_ref' type='varchar' required='false' maxlen='10'/>
+	<parameter id='rol_estatus' type='varchar' required='true' maxlen='2'/>
+	<parameter id='rol_vigencia' type='date' required='true' maxlen='10'/>
+
+	<parameter id='rol_posicion_estructura_rf_ref' type='integer' required='false' maxlen='10'/>
+
+
+	<custom-validator 
+		classname='dinamica.validators.GetColValueValidator' 
+		on-error-label='${lbl:b_field_does_not_registered}: rol_posicion_estructura_rf' 
+		parameter='rol_posicion_estructura_rf_ref' 
+		sql='rol_posicion_estructura_rf.sql' 
+		id='rol_posicion_estructura_rf_ref'/>
+
+</validator>

@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smndespacho.sql" source="session" scope="transaction" />
+		<recordset id="filter.params" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_despacho_id}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' align="left" />
+	<pdf-file-name>${lbl:b_despacho_id}.pdf</pdf-file-name>
+
+	<pdf-report pageSize="letter" rotate="false" footer="true" header="true">
+		<record recordset='filter.params' title='${lbl:b_filter_find}' noFilterMsg='-- ${lbl:b_all_message} --' width='55' spacingBefore='15'>
+			<col name='smn_modulo_rf' title='${lbl:b_modulo_rf}'  format='######' align='left' />
+			<col name='des_numero_documento_origen' title='${lbl:b_numero_documento_origen}'  format='######' align='left' />
+			<col name='smn_documento_id' title='${lbl:b_documento_id}'  format='######' align='left' />
+			<col name='des_numero_documento' title='${lbl:b_numero_documento}'  format='######' align='left' />
+			<col name='smn_entidad_rf' title='${lbl:b_entidad_rf}'  format='######' align='left' />
+			<col name='smn_almacen_rf' title='${lbl:b_almacen_rf}'  format='######' align='left' />
+			<col name='smn_clase_auxiliar_rf' title='${lbl:b_clase_auxiliar_rf}'  format='######' align='left' />
+			<col name='smn_auxiliar_rf' title='${lbl:b_auxiliar_rf}'  format='######' align='left' />
+			<col name='smn_unidad_organizativa_rf' title='${lbl:b_unidad_organizativa_rf}'  format='######' align='left' />
+			<col name='des_estatus' title='${lbl:b_status}'  align='left' />
+			<col name='des_fecha_registro_ini' title='${lbl:b_store_date}'  format='dd-MM-yyyy' align='left' />
+			<col name='des_fecha_registro_fin' title='${lbl:b_store_date}'  format='dd-MM-yyyy' align='left' />
+
+		</record>
+		<record recordset='query-smndespacho.sql' width='100' spacingBefore='10'>
+			<col name='smn_modulo_rf' title='${lbl:b_modulo_rf}' width='2' align='left' format='######' />
+			<col name='smn_documento_origen_id' title='${lbl:b_documento_origen_id}' width='2' align='left' format='######' />
+			<col name='des_numero_documento_origen' title='${lbl:b_numero_documento_origen}' width='2' align='left' format='######' />
+			<col name='smn_documento_id' title='${lbl:b_documento_id}' width='2' align='left' format='######' />
+			<col name='des_numero_documento' title='${lbl:b_numero_documento}' width='2' align='left' format='######' />
+			<col name='des_descripcion' title='${lbl:b_descripcion}' width='2' align='left' />
+			<col name='smn_entidad_rf' title='${lbl:b_entidad_rf}' width='2' align='left' format='######' />
+			<col name='smn_clase_auxiliar_rf' title='${lbl:b_clase_auxiliar_rf}' width='2' align='left' format='######' />
+			<col name='smn_auxiliar_rf' title='${lbl:b_auxiliar_rf}' width='2' align='left' format='######' />
+			<col name='smn_unidad_organizativa_rf' title='${lbl:b_unidad_organizativa_rf}' width='2' align='left' format='######' />
+			<col name='des_fecha_despacho' title='${lbl:b_fecha_despacho}' width='2' align='left' format='dd-MM-yyyy' />
+			<col name='des_estatus_combo' title='${lbl:b_status}' width='2' align='left' />
+		</record>
+
+	</pdf-report>
+</config>

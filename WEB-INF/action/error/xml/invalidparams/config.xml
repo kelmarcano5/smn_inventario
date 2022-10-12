@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Respuesta del validator de un servicio XML
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="dinamica.errors" source="request" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>template.xml</template>
+		<set-http-headers>true</set-http-headers>
+		<http-status>400</http-status>
+		<content-type>text/xml</content-type>
+		<expiration>0</expiration>
+		<print mode="table" recordset="dinamica.errors" tag="rows" />
+	</output>
+
+</config>

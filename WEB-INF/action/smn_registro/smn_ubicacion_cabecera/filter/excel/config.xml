@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnubicacioncabecera.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="4" cellStep="0" name="${lbl:b_header_location}"/>
+	
+	<excel 
+		recordset='query-smnubicacioncabecera.sql' 
+		sheetname='${lbl:b_header_location}' 
+		filename='${lbl:b_header_location}.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='smn_movimiento_detalle_id' label='${lbl:b_detail_movement}' />
+		<col id='smn_caracteristica_almacen_id' label='${lbl:b_feature_store}' />
+		<col id='smn_caracteristica_item_id' label='${lbl:b_item}' />
+		<col id='ubc_estatus' label='${lbl:b_status}' />
+		<col id='ubc_idioma' label='${lbl:s_profile_lang}' />
+		<col id='ubc_usuario' label='${lbl:b_users}' />
+		<col id='ubc_fecha_registro' label='${lbl:b_store_date}' />
+		<col id='ubc_hora' label='${lbl:s_loginhist_col2}' />
+
+	</excel>
+
+</config>

@@ -1,0 +1,2 @@
+select smn_inventario.smn_sub_division.smn_sub_division_id as id, smn_inventario.smn_sub_division.sdi_codigo||' - '|| smn_inventario.smn_sub_division.sdi_descripcion as item from smn_inventario.smn_sub_division
+where smn_inventario.smn_sub_division.smn_almacen_rf=${fld:id2}

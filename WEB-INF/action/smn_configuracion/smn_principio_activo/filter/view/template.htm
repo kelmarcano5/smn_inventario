@@ -1,0 +1,52 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='16%'/>
+	<col width='16%'/>
+	<col width='16%'/>
+	<col width='16%'/>
+	<col width='16%'/>
+	<col width='16%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="9" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("pac_codigo","query-smnprincipioactivo.sql")'>${lbl:b_code}</th>
+		<th class='sortable' onclick='sortBy("pac_descripcion","query-smnprincipioactivo.sql")'>${lbl:b_description}</th>
+		<th class='sortable' onclick='sortBy("pac_descripcion_completa","query-smnprincipioactivo.sql")'>${lbl:b_long_description}</th>
+		<th class='sortable' onclick='sortBy("pac_estatus","query-smnprincipioactivo.sql")'>${lbl:b_status}</th>
+		<th class='sortable' onclick='sortBy("pac_fecha_vigencia","query-smnprincipioactivo.sql")'>${lbl:b_validation_date}</th>
+		<th class='sortable' onclick='sortBy("pac_fecha_registro","query-smnprincipioactivo.sql")'>${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_principio_activo_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_principio_activo_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_principio_activo_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:pac_codigo}</td>
+		<td align='left'>${fld:pac_descripcion}</td>
+		<td align='left'>${fld:pac_descripcion_completa}</td>
+		<td align='left'>${fld:pac_estatus}</td>
+		<td>${fld:pac_fecha_vigencia@dd-MM-yyyy}</td>
+		<td>${fld:pac_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='repgen.filter' onerror='/action/error/validation/ajax'>
+
+	<parameter id='fdesde' type='date' required='false' label='Fecha desde'/>
+	<parameter id='fhasta' type='date' required='false' label='Fecha hasta'/>
+	
+	<parameter id='smn_entidad_rf' type='integer' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='smn_sucursal_rf' type='integer' required='false' label='${lbl:b_subsidiaries}' maxlen='10'/>
+	<parameter id='smn_caracteristica_almacen_id' type='integer' required='false' label='${lbl:b_feature_store}' maxlen='10'/>
+	<parameter id='smn_caracteristica_item_id' type='integer' required='false' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='col_lote' type='varchar' required='false' label='${lbl:b_lot}' maxlen='50'/>
+	<parameter id='col_fecha_vencimiento' type='date' required='false' label='${lbl:b_expiration_date}' maxlen='10'/>
+	<parameter id='col_cantidad_inicial' type='double' required='false' label='${lbl:b_initial_quantity}' maxlen='10'/>
+	<parameter id='col_entradas' type='double' required='false' label='${lbl:b_input}' maxlen='10'/>
+	<parameter id='col_salidas' type='double' required='false' label='${lbl:b_output}' maxlen='10'/>
+	<parameter id='col_cantidad_final' type='double' required='false' label='${lbl:b_final_quantity}' maxlen='10'/>
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='col_lote'
+		rule='contains' />
+
+
+
+	<custom-validator
+			classname='dinamica.validators.ArrayNotEmptyValidator'
+			on-error-label='Seleccione al menos un campo para la generación del reporte.'
+			parameter-name='field_id' 
+			id='field_id' />
+
+	<custom-validator 
+			classname='dinamica.validators.ArrayToRecordset'
+			paramName='field_id' 
+			recordsetId='fields' 
+			colName='field_id' 
+			colType='integer' />
+				
+</validator>

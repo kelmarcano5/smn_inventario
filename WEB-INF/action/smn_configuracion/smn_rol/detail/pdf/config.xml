@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query.sql" source="session" scope="transaction" />
+
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_rol}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' />
+	<pdf-file-name>${lbl:b_rol}.pdf</pdf-file-name>
+
+	<pdf-report pageSize="letter" rotate="false" footer="true" header="true">
+		<record recordset='query.sql' title='${lbl:b_rol}' width='60' spacingBefore='40'>
+			<col name='smn_usuarios_rf_combo' title='${lbl:b_users}' align='left'  />
+			<col name='rol_tipo_combo' title='${lbl:b_type}' align='left' />
+			<col name='smn_corporaciones_rf_combo' title='${lbl:b_corporations}' align='left'  />
+			<col name='smn_entidades_rf_combo' title='${lbl:b_entities}' align='left'  />
+			<col name='smn_sucursales_rf_combo' title='${lbl:b_subsidiaries}' align='left'  />
+			<col name='smn_areas_servicios_rf_combo' title='${lbl:b_service_areas}' align='left'  />
+			<col name='rol_fecha_registro' title='${lbl:b_store_date}' align='left' format='dd-MM-yyyy' />
+		</record>
+
+
+	</pdf-report>
+</config>

@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='repgen.filter' onerror='/action/error/validation/ajax'>
+
+	<parameter id='fdesde' type='date' required='false' label='Fecha desde'/>
+	<parameter id='fhasta' type='date' required='false' label='Fecha hasta'/>
+	
+	<parameter id='smn_almacen_rf' type='integer' required='false' label='${lbl:b_stores}' maxlen='10'/>
+	<parameter id='smn_division_id_name' type='varchar' required='false' label='${lbl:b_division}'/>
+	<parameter id='smn_division_id' type='integer' required='false' label='${lbl:b_division}' maxlen='10'/>
+	<parameter id='sdi_codigo' type='varchar' required='false' label='${lbl:b_code}' maxlen='10'/>
+	<parameter id='sdi_descripcion' type='varchar' required='false' label='${lbl:b_description}' maxlen='100'/>
+	<parameter id='sdi_es_ubicacion' type='varchar' required='false' label='${lbl:b_es_ubicacion}' maxlen='2'/>
+	<parameter id='sdi_alto' type='double' required='false' label='${lbl:b_dimension_alto}' maxlen='10'/>
+	<parameter id='smn_unidad_medida_alto_rf' type='integer' required='false' label='${lbl:b_unidad_medida_alto}' maxlen='10'/>
+	<parameter id='sdi_ancho' type='double' required='false' label='${lbl:b_dimension_ancho}' maxlen='10'/>
+	<parameter id='smn_unidad_medida_ancho_rf' type='integer' required='false' label='${lbl:b_unidad_medida_ancho}' maxlen='10'/>
+	<parameter id='sdi_profundidad' type='double' required='false' label='${lbl:b_profundidad}' maxlen='10'/>
+	<parameter id='smn_unidad_medida_prof_rf' type='integer' required='false' label='${lbl:b_unidad_medida_profundidad}' maxlen='10'/>
+	<parameter id='sdi_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='sdi_vigencia' type='date' required='false' label='${lbl:b_validation_date}' maxlen='10'/>
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='smn_division_id_name'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='sdi_codigo'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+parameter='sdi_descripcion'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='sdi_es_ubicacion'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='sdi_estatus'
+		rule='contains' />
+
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarCodigo.sql'
+			id='sdi_codigo'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarDescripcion.sql'
+			id='sdi_descripcion'/>
+
+
+	<custom-validator
+			classname='dinamica.validators.ArrayNotEmptyValidator'
+			on-error-label='Seleccione al menos un campo para la generación del reporte.'
+			parameter-name='field_id' 
+			id='field_id' />
+
+	<custom-validator 
+			classname='dinamica.validators.ArrayToRecordset'
+			paramName='field_id' 
+			recordsetId='fields' 
+			colName='field_id' 
+			colType='integer' />
+				
+</validator>

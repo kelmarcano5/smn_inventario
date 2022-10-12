@@ -1,0 +1,45 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='33%'/>
+	<col width='33%'/>
+	<col width='33%'/>
+	<!-- <col width='3%'/> -->
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="6" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_codigo_descuento_rf","query-smnmovimientodetalledescret.sql")'>${lbl:b_code_discount}</th>
+		<th class='sortable' onclick='sortBy("mdd_monto_base_ml","query-smnmovimientodetalledescret.sql")'>${lbl:b_base_amount_ml}</th>
+		<th class='sortable' onclick='sortBy("smn_porcentaje_rf","query-smnmovimientodetalledescret.sql")'>${lbl:b_percentage}</th>
+		<!-- <th>DR</th> -->
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_movimiento_detalle_desc_ret_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_movimiento_detalle_desc_ret_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_movimiento_detalle_desc_ret_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:smn_codigo_descuento_rf}</td>
+		<td align='right'>${fld:mdd_monto_base_ml@#,###,##0.00}</td>
+		<td align='right'>${fld:smn_porcentaje_rf@#,###,##0.00}</td>
+<!-- <td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="descuentoret('${fld:smn_descuento_retencion_id}')" title="${lbl:b_retention_discount}"></td> -->
+	</tr>
+	</rows>
+
+</table>

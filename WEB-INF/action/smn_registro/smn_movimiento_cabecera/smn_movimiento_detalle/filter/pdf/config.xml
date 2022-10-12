@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnmovimientodetalle.sql" source="session" scope="transaction" />
+		<recordset id="filter.params" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_movement_detail}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' align="left" />
+	<pdf-file-name>${lbl:b_movement_detail}.pdf</pdf-file-name>
+
+	<pdf-report pageSize="letter" rotate="false" footer="true" header="true">
+		<record recordset='filter.params' title='${lbl:b_filter_find}' noFilterMsg='-- ${lbl:b_all_message} --' width='55' spacingBefore='15'>
+			<col name='smn_movimiento_cabecera_id' title='${lbl:b_movement_head}'  format='######' align='left' />
+			<col name='smn_item_rf' title='${lbl:b_item}'  format='######' align='left' />
+			<col name='smn_activo_fijo_rf' title='${lbl:b_actfij}'  format='######' align='left' />
+			<col name='smn_centro_costo_rf' title='${lbl:b_cost_lefts}'  format='######' align='left' />
+			<col name='mde_es_bonificacion' title='${lbl:b_bonus}'  align='left' />
+			<col name='mde_descripcion' title='${lbl:b_description}'  align='left' />
+			<col name='mde_fecha_registro_ini' title='${lbl:b_store_date}'  format='dd-MM-yyyy' align='left' />
+			<col name='mde_fecha_registro_fin' title='${lbl:b_store_date}'  format='dd-MM-yyyy' align='left' />
+
+		</record>
+		<record recordset='query-smnmovimientodetalle.sql' width='100' spacingBefore='10'>
+			<col name='smn_movimiento_cabecera_id' title='${lbl:b_movement_head}' width='10' align='left' format='######' />
+			<col name='mde_es_bonificacion_combo' title='${lbl:b_bonus}' width='10' align='left' />
+			<col name='mde_cantidad' title='${lbl:b_quantity}' width='10' align='left' format='######' />
+			<col name='mde_lote' title='${lbl:b_lot}' width='10' align='left' format='######' />
+			<col name='mde_descripcion' title='${lbl:b_description}' width='10' align='left' />
+			<col name='smn_unidad_medida_rf_combo' title='${lbl:b_measurement_unit}' width='10' align='left' format='######' />
+			<col name='smn_precio_ml' title='${lbl:b_price}' width='10' align='left' format='#,###,##0.00' />
+			<col name='smn_precio_ma' title='${lbl:b_coins_altern_price}' width='10' align='left' format='#,###,##0.00' />
+			<col name='mde_estatus_combo' title='${lbl:b_status}' width='10' align='left' />
+			<col name='mde_fecha_registro' title='${lbl:b_store_date}' width='10' align='left' format='dd-MM-yyyy' />
+
+		</record>
+
+	</pdf-report>
+</config>

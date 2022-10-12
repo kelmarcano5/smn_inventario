@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Login into security system
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.security.Login</classname>
+		<validator>true</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+	</transaction>
+
+	<on-exit return-code="0" forward-to="/action/security/loginok" />
+	<on-exit return-code="1" forward-to="/action/security/loginfailed" />
+	<on-exit return-code="3" forward-to="/action/security/forcenewpass" />
+	<on-exit return-code="4" forward-to="/action/security/loginlocked" />
+
+	<!--invalid login policy-->
+	<!--
+		If a user in the same session executes more than XXX invalid logins,
+		then the account becomes disabled or locked (s_user.enabled = 0)
+	-->
+	<login-max-retries>10</login-max-retries>
+
+	<!--activa/desactiva traza de sesiones activas-->
+	<session-trace>true</session-trace>
+
+</config>

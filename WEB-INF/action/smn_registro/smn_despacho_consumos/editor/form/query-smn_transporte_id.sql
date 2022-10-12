@@ -1,0 +1,1 @@
+select smn_transporte_id as id, tra_codigo  ||' - '|| tra_descripcion_transporte as item from smn_inventario.smn_transporte order by smn_transporte_id

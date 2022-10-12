@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnmovimientodetalle.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="3" cellStep="0" name="${lbl:b_movement_detail}"/>
+	
+	<excel 
+		recordset='query-smnmovimientodetalle.sql' 
+		sheetname='${lbl:b_movement_detail}' 
+		filename='${lbl:b_movement_detail}.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='smn_item_rf' label='${lbl:b_item}' />
+		<col id='mde_lote' label='${lbl:b_lot}' />
+		<col id='mde_tipo_movimiento' label='${lbl:b_movement_type}' />
+		<col id='mde_cantidad_recibida' label='${lbl:b_received_amount}' />
+		<col id='mde_es_bonificacion' label='${lbl:b_bonus}' />
+		<col id='smn_unidad_medida_rf' label='${lbl:b_measurement_unit}' />
+		<col id='mde_fecha_registro' label='${lbl:b_store_date}' />
+
+	</excel>
+
+</config>

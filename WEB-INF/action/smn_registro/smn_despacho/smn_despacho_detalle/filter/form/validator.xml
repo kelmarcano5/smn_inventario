@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/alert' id='smn_relacion'>
+	<parameter id='id' type='integer' required='false' label='id' maxlen='10'/>
+	<parameter id='id2' type='integer' required='false' label='id2' maxlen='10'/>
+	<parameter id='descripcion' type='varchar' required='false' label='descripcion' maxlen='100'/>
+</validator>

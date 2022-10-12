@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_usuarios_rf' type='integer' required='true' label='${lbl:b_users}' maxlen='10'/>
+	<parameter id='rol_tipo' type='varchar' required='true' label='${lbl:b_type}' maxlen='2'/>
+	<parameter id='smn_corporaciones_rf' type='integer' required='false' label='${lbl:b_corporations}' maxlen='10'/>
+	<parameter id='smn_entidades_rf' type='integer' required='false' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='smn_sucursales_rf' type='integer' required='false' label='${lbl:b_subsidiaries}' maxlen='10'/>
+	<parameter id='smn_areas_servicios_rf' type='integer' required='false' label='${lbl:b_service_areas}' maxlen='10'/>
+	<parameter id='smn_unidades_servicios_rf' type='integer' required='false' label='${lbl:b_service_units}' maxlen='10'/>
+	<parameter id='rol_posicion_estructura_rf' type='integer' required='false' label='${lbl:b_posicion_estructura}' maxlen='10'/>
+	<parameter id='rol_estatus' type='varchar' required='true' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='rol_vigencia' type='date' required='true' label='${lbl:b_validation_date}' maxlen='10'/>
+
+
+</validator>

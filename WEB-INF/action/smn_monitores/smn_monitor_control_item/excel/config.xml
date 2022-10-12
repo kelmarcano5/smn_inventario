@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smncontrolitem.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="8" cellStep="0" name="Monitor Control Item"/>
+	
+	<excel 
+		recordset='query-smncontrolitem.sql' 
+		sheetname='Monitor Control Item' 
+		filename='Monitor Control Item.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='smn_entidad_rf' label='Entidad' />
+		<col id='smn_sucursal_rf' label='Sucursal' />
+		<col id='smn_almacen_rf' label='Almacen' />
+		<col id='smn_item_rf' label='Item' />
+		<col id='coi_fecha_registro' label='Fecha Registro' />
+		
+	</excel>
+		
+</config>

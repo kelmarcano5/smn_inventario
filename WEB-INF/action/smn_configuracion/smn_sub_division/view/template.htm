@@ -1,0 +1,55 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="10" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_almacen_rf_combo","query-smnsubdivision.sql")'>${lbl:b_stores}</th>
+		<th class='sortable' onclick='sortBy("smn_division_id_combo","query-smnsubdivision.sql")'>${lbl:b_division}</th>
+		<th class='sortable' onclick='sortBy("sdi_codigo","query-smnsubdivision.sql")'>${lbl:b_code}</th>
+		<th class='sortable' onclick='sortBy("sdi_descripcion","query-smnsubdivision.sql")'>${lbl:b_description}</th>
+		<th class='sortable' onclick='sortBy("sdi_es_ubicacion_combo","query-smnsubdivision.sql")'>${lbl:b_es_ubicacion}</th>
+		<th class='sortable' onclick='sortBy("sdi_estatus_combo","query-smnsubdivision.sql")'>${lbl:b_status}</th>
+		<th class='sortable' onclick='sortBy("sdi_fecha_registro","query-smnsubdivision.sql")'>${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_sub_division_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_sub_division_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_sub_division_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:smn_almacen_rf_combo}</td>
+		<td>${fld:smn_division_id_combo}</td>
+		<td align='left'>${fld:sdi_codigo}</td>
+		<td align='left'>${fld:sdi_descripcion}</td>
+		<td align='left'>${fld:sdi_es_ubicacion_combo}</td>
+		<td align='left'>${fld:sdi_estatus_combo}</td>
+		<td>${fld:sdi_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

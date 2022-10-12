@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smncaracteristicaalmacen.sql" source="session" scope="transaction" />
+		<recordset id="filter.params" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_caracteristicas_almacen}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' align="left" />
+	<pdf-file-name>${lbl:b_caracteristicas_almacen}.pdf</pdf-file-name>
+
+	<pdf-report pageSize="letter" rotate="false" footer="true" header="true">
+		<record recordset='filter.params' title='${lbl:b_filter_find}' noFilterMsg='-- ${lbl:b_all_message} --' width='55' spacingBefore='15'>
+			<col name='smn_almacen_rf' title='${lbl:b_stores}'  format='######' align='left' />
+			<col name='cal_tipo_almacen' title='${lbl:b_tipo_almacen}'  align='left' />
+			<col name='cal_fecha_registro_ini' title='${lbl:b_store_date_greather_than}'  format='dd-MM-yyyy' align='left' />
+			<col name='cal_fecha_registro_fin' title='${lbl:b_store_date_less_than}'  format='dd-MM-yyyy' align='left' />
+
+		</record>
+		<record recordset='query-smncaracteristicaalmacen.sql' width='100' spacingBefore='10'>
+			<col name='smn_almacen_rf_combo' title='${lbl:b_stores}' width='7' align='left' format='######' />
+			<col name='cal_tipo_almacen_combo' title='${lbl:b_tipo_almacen}' width='7' align='left' />
+			<col name='cal_capacidad_almacenaje' title='${lbl:b_capacidad_almacenaje}' width='7' align='left' format='#,###,##0.00' />
+			<col name='smn_unidad_medida_rf_combo' title='${lbl:b_unidad_medida_capacidad_almacenaje}' width='7' align='left' format='######' />
+			<col name='cal_espacio_fisico' title='${lbl:b_espacio_fisico}' width='7' align='left' format='#,###,##0.00' />
+			<col name='smn_unidad_medida_espacio_fisico_rf_combo' title='${lbl:b_unidad_medida_espacio_fisico}' width='7' align='left' format='######' />
+			<col name='cal_politica_recepcion_combo' title='${lbl:b_politica_recepcion}' width='7' align='left' />
+			<col name='cal_estatus_combo' title='${lbl:b_status}' width='7' align='left' />
+			<col name='cal_vigencia_desde' title='${lbl:b_validation_date_from}' width='7' align='left' format='dd-MM-yyyy' />
+			<col name='cal_vigencia_hasta' title='${lbl:b_validation_date_until}' width='7' align='left' format='dd-MM-yyyy' />
+			<col name='cal_idioma' title='${lbl:s_profile_lang}' width='7' align='left' />
+			<col name='cal_usuario' title='${lbl:b_users}' width='7' align='left' />
+			<col name='cal_fecha_registro' title='${lbl:b_store_date}' width='7' align='left' format='dd-MM-yyyy' />
+			<col name='cal_hora' title='${lbl:s_loginhist_col2}' width='7' align='left' />
+
+		</record>
+
+	</pdf-report>
+</config>

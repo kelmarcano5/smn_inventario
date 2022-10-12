@@ -1,0 +1,72 @@
+1) Informacion general del proceso Java
+
+* Servidor: ${fld:server-engine}
+* Tiempo corriendo: ${fld:uptime}
+* RAM Libre: ${fld:jvmfreeram@#,###,##0.00} MB
+* Limite de RAM: ${fld:jvmmaxram@#,###,##0.00} MB
+* Fecha del sistema: ${fld:servertime@dd-MM-yyyy HH:mm:ss}
+* Arranque del servidor: ${fld:starttime@dd-MM-yyyy HH:mm:ss}
+* Host: ${fld:hostname} PID: ${fld:pid}
+* Framework Dinámica: ${fld:dinamica}
+* Java: ${fld:java-version} ${fld:java-home}
+* OS: ${fld:os-version} 
+
+2) Garbage Collector
+
+<gc>
+	Collector: ${fld:name}
+	Corridas: ${fld:count@#,###,###}
+	Tiempo consumido: ${fld:time@#,###,##0.00} segs.
+</gc>
+
+3) Aplicaciones
+<webapp>
+    Contexto: ${fld:context}	
+    Inicio: ${fld:starttime@dd-MM-yyyy HH:mm:ss}	
+    Sesiones abiertas: ${fld:sessions@#,###,###}
+    Errores HTTP: ${fld:errors@#,###,###}  	
+    Pico de sesiones: ${fld:maxactive@#,###,###}	
+    Tiempo consumido (ms): ${fld:processingtime@#,###,###}
+    Requests atendidos: ${fld:requests@#,###,###}
+    Rendimiento (ms/req): ${fld:performance@#,###,##0.00}
+</webapp>
+
+4) Procesadores de Requests HTTP
+<rp>
+    Nombre: ${fld:name}	
+    Ultimo tiempo: ${fld:lastRequestProcessingTime}	
+    URI actual: ${fld:currentUri}
+    Máximo tiempo: ${fld:maxTime}  	
+    URI máximo tiempo: ${fld:maxRequestUri}	
+</rp>
+	
+5) Threads
+<thread>
+   Runnable: ${fld:runnable}
+   Waiting: ${fld:waiting}
+   Blocked: ${fld:blocked}
+   Timed Waiting: ${fld:timedwaiting}
+   Total: ${fld:total}
+</thread>
+	
+6) Database Pools
+<pool>
+   Contexto: ${fld:context}
+   Pool: ${fld:datasource}
+   Activas: ${fld:numactive}
+   Inactivas: ${fld:numidle}
+   Máximas: ${fld:maxactive}
+</pool>
+
+7) Thread Dump:
+
+<threaddump>
+${fld:name} / ${fld:state}
+${fld:stacktrace}
+
+</threaddump>
+
+---------------------------------------------------------
+Generado automáticamente por el framework Dinámica
+(c) 2004-2014 Martín Córdova y Asociados C.A.
+http://www.martincordova.com

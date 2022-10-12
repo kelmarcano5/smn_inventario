@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query.sql" source="session" scope="transaction" />
+
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_office_detail}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' />
+	<pdf-file-name>${lbl:b_office_detail}.pdf</pdf-file-name>
+
+	<pdf-report pageSize="letter" rotate="false" footer="true" header="true">
+		<record recordset='query.sql' title='${lbl:b_office_detail}' width='60' spacingBefore='40'>
+			<col name='smn_despacho_id' title='${lbl:b_office_headboard}' align='left' format='######' />
+			<col name='smn_item_rf' title='${lbl:b_item}' align='left' format='######' />
+			<col name='dde_cantidad_solicitada' title='${lbl:b_requested_amount}' align='left' format='#,###,##0.00' />
+			<col name='dde_cantidad_despachada' title='${lbl:b_delivered_amount}' align='left' format='#,###,##0.00' />
+			<col name='dde_costo_ml' title='${lbl:b_cost_ml}' align='left' format='#,###,##0.00' />
+			<col name='dde_costo_ma' title='${lbl:b_cost_ma}' align='left' format='#,###,##0.00' />
+			<col name='dde_motivo' title='${lbl:b_reason}' align='left' />
+			<col name='smn_usuario_aprobador_rf' title='${lbl:b_approving_user}' align='left' format='######' />
+			<col name='dde_fecha_aprobacion' title='${lbl:b_approval_date}' align='left' format='dd-MM-yyyy' />
+			<col name='dde_fecha_cierre' title='${lbl:b_closing_date}' align='left' format='dd-MM-yyyy' />
+			<col name='dde_estatus_transaccion' title='${lbl:b_transaction_status}' align='left' />
+			<col name='dde_idioma' title='${lbl:s_profile_lang}' align='left' />
+			<col name='dde_usuario' title='${lbl:b_users}' align='left' />
+			<col name='dde_fecha_registro' title='${lbl:b_store_date}' align='left' format='dd-MM-yyyy' />
+			<col name='dde_hora' title='${lbl:s_loginhist_col2}' align='left' />
+		</record>
+
+
+	</pdf-report>
+</config>

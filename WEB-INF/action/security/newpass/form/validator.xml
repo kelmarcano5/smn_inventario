@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator>
+	<custom-validator classname='dinamica.validators.DuplicatedKeyValidator'
+		on-error-label='Su usuario se encuentra registrado en el directorio LDAP, por lo tanto no puede cambiar la contraseña por este medio.'
+		sql='query.sql' />
+</validator>

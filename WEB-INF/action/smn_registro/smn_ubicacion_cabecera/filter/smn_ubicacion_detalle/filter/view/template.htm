@@ -1,0 +1,49 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='20%'/>
+	<col width='20%'/>
+	<col width='20%'/>
+	<col width='20%'/>
+	<col width='20%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="8" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_divisiones_id","query-smnubicaciondetalle.sql")'>${lbl:b_divisions}</th>
+		<th class='sortable' onclick='sortBy("smn_subdivisiones_id","query-smnubicaciondetalle.sql")'>${lbl:b_subdivisions}</th>
+		<th class='sortable' onclick='sortBy("smn_lote_id","query-smnubicaciondetalle.sql")'>${lbl:b_lot}</th>
+		<th class='sortable' onclick='sortBy("ubd_cantidad_final","query-smnubicaciondetalle.sql")'>${lbl:b_final_amount}</th>
+		<th class='sortable' onclick='sortBy("ubd_fecha_registro","query-smnubicaciondetalle.sql")'>${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_ubicacion_detalle_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_ubicacion_detalle_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_ubicacion_detalle_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:smn_divisiones_id}</td>
+		<td>${fld:smn_subdivisiones_id}</td>
+		<td>${fld:smn_lote_id}</td>
+		<td align='right'>${fld:ubd_cantidad_final@#,###,##0.00}</td>
+		<td>${fld:ubd_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

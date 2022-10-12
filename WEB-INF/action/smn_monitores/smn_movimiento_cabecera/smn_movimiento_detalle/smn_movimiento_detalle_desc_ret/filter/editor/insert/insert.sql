@@ -1,0 +1,34 @@
+INSERT INTO smn_inventario.smn_movimiento_detalle_desc_ret
+(
+	smn_movimiento_detalle_desc_ret_id,
+	smn_movimiento_detalle_id,
+	smn_codigo_descuento_rf,
+	mdd_monto_base_ml,
+	smn_porcentaje_rf,
+	mdd_monto_descuento_ml,
+	smn_moneda_rf,
+	smn_tasa_rf,
+	mdd_monto_base_ma,
+	mdd_monto_descuento_ma,
+	mdd_idioma,
+	mdd_usuario,
+	mdd_fecha_registro,
+	mdd_hora
+)
+VALUES
+(
+	${seq:currval@smn_inventario.seq_smn_movimiento_detalle_desc_ret},
+	${fld:smn_movimiento_detalle_id},
+	${fld:smn_codigo_descuento_rf},
+	${fld:mdd_monto_base_ml},
+	${fld:smn_porcentaje_rf},
+	${fld:mdd_monto_descuento_ml},
+	${fld:smn_moneda_rf},
+	${fld:smn_tasa_rf},
+	${fld:mdd_monto_base_ma},
+	${fld:mdd_monto_descuento_ma},
+	'${def:locale}',
+	'${def:user}',
+	'${def:date}',
+	'${def:time}'
+)

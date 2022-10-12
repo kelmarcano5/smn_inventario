@@ -1,0 +1,26 @@
+select
+	smn_inventario.smn_tipo_documento.smn_tipo_documento_id,
+	case
+	when smn_inventario.smn_tipo_documento.tdc_naturaleza='EN' then '${lbl:b_entrada}'
+	when smn_inventario.smn_tipo_documento.tdc_naturaleza='SA' then '${lbl:b_salida}'
+	when smn_inventario.smn_tipo_documento.tdc_naturaleza='AE' then 'Ajustes de Entradas'
+	when smn_inventario.smn_tipo_documento.tdc_naturaleza='AS' then 'Ajustes de Salidas'
+	end as tdc_naturaleza_combo,
+	case
+	when smn_inventario.smn_tipo_documento.tdc_estatus='AC' then '${lbl:b_account_type_active}'
+	when smn_inventario.smn_tipo_documento.tdc_estatus='IN' then '${lbl:b_inactive}'
+	end as tdc_estatus_combo,
+	smn_inventario.smn_tipo_documento.tdc_codigo,
+	smn_inventario.smn_tipo_documento.tdc_nombre,
+	smn_inventario.smn_tipo_documento.tdc_naturaleza,
+	smn_inventario.smn_tipo_documento.tdc_vigencia,
+	smn_inventario.smn_tipo_documento.tdc_estatus,
+	smn_inventario.smn_tipo_documento.tdc_idioma,
+	smn_inventario.smn_tipo_documento.tdc_usuario,
+	smn_inventario.smn_tipo_documento.tdc_fecha_registro,
+	smn_inventario.smn_tipo_documento.tdc_hora,
+	smn_inventario.smn_tipo_documento.smn_tipo_documento_id
+from
+	smn_inventario.smn_tipo_documento
+where
+	smn_tipo_documento_id = ${fld:id}

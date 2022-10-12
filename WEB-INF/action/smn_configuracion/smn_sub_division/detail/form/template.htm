@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/select2.min.css" />
+	
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="${def:context}/action/script"></script>
+	<script type="text/javascript" src="${def:context}/action/jquery"></script>
+	<script type="text/javascript" src="${def:context}/action/select2"></script>
+
+	<script type="text/javascript">
+		//invoca la generacion de un PDF en un popup
+		function openPDF()
+		{
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/pdf?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a excel
+		function openExcel() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/excel?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a xml
+		function openXml(id) {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/xml/search?id=" + id;
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a texto
+		function openTxt(id) {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/txt/search?id=" + id;
+			var w = window.open(url, null, features);
+		}
+		
+		//envio de emails
+		function openEmails() {
+			var uri = "${def:context}${def:actionroot}/email/form";					
+			openDialog("editor0", uri, 980, 600);	
+		}
+	</script>
+
+</head>
+
+<body>
+
+	<!--banner-->
+	<div class="bannerDialog" id="encabezado_tabla">
+		${lbl:b_sub_division}
+		<img src="${def:context}/images/pdf.png" onclick="openPDF()" title="${lbl:b_export_pdf}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/excel.png" onclick="openExcel()" title="${lbl:b_export_excel}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/file-xml4.png" onclick="openXml('${fld:smn_sub_division_id}')" title="${lbl:b_export_xml}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/file-text.png" onclick="openTxt('${fld:smn_sub_division_id}')" title="${lbl:b_export_txt}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/emails.png" onclick="openEmails()" title="${lbl:s_profile_email}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog()" title="${lbl:b_close_button}" style="float:right; cursor:pointer;"/>
+	</div>
+
+	<table class="record" style="width:500px;">
+		<tr>
+			<td width="40%">${lbl:b_stores}</td>
+			<td style="background-color: white">${fld:smn_almacen_rf_combo}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_division}</td>
+			<td style="background-color: white">${fld:smn_division_id_combo}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_code}</td>
+			<td style="background-color: white">${fld:sdi_codigo}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_description}</td>
+			<td style="background-color: white">${fld:sdi_descripcion}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_es_ubicacion}</td>
+			<td style="background-color: white">${fld:sdi_es_ubicacion_combo}</td>
+		</tr>
+		<!-- 
+		<tr>
+			<td width="40%">${lbl:b_dimension_alto}</td>
+			<td style="background-color: white">${fld:sdi_alto@#,###,##0.00}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_unidad_medida_alto}</td>
+			<td style="background-color: white">${fld:smn_unidad_medida_alto_rf_combo}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_dimension_ancho}</td>
+			<td style="background-color: white">${fld:sdi_ancho@#,###,##0.00}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_unidad_medida_ancho}</td>
+			<td style="background-color: white">${fld:smn_unidad_medida_ancho_rf_combo}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_profundidad}</td>
+			<td style="background-color: white">${fld:sdi_profundidad@#,###,##0.00}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_unidad_medida_profundidad}</td>
+			<td style="background-color: white">${fld:smn_unidad_medida_prof_rf_combo}</td>
+		</tr>
+		 -->
+		<tr>
+			<td width="40%">${lbl:b_status}</td>
+			<td style="background-color: white">${fld:sdi_estatus_combo}</td>
+		</tr>
+		<!-- 
+		<tr>
+			<td width="40%">${lbl:b_validation_date}</td>
+			<td style="background-color: white">${fld:sdi_vigencia@dd-MM-yyyy}</td>
+		</tr>
+		
+
+		<tr>
+			<td width="40%">${lbl:s_profile_lang}</td>
+			<td style="background-color: white">${fld:sdi_idioma}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_users}</td>
+			<td style="background-color: white">${fld:sdi_usuario}</td>
+		</tr>
+		 -->
+		<tr>
+			<td width="40%">${lbl:b_store_date}</td>
+			<td style="background-color: white">${fld:sdi_fecha_registro@dd-MM-yyyy}</td>
+		</tr>
+		<!-- 
+		<tr>
+			<td width="40%">${lbl:s_loginhist_col2}</td>
+			<td style="background-color: white">${fld:sdi_hora}</td>
+		</tr>
+		 -->
+
+	</table>
+
+	<br>
+	<div  align="center">
+		<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog()" class="button">
+	</div>
+
+</body>
+
+</html>

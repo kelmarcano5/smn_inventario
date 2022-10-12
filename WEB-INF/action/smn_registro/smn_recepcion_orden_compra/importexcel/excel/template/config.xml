@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnmovimientocabecera.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_movement_head_order}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_movement_head_order}">
+				<col id='smn_entidad_rf' label='${lbl:b_entity}' />
+		<col id='smn_sucursal_rf' label='${lbl:b_subsidiary}' />
+		<col id='smn_almacen_rf' label='${lbl:b_store_code}' />
+		<col id='smn_modulo_rf' label='${lbl:b_modules}' />
+		<col id='smn_documento_origen_rf' label='${lbl:b_origin_document}' />
+		<col id='mca_numero_documento_origen' label='${lbl:b_document_number_origin}' />
+		<col id='smn_documento_id' label='${lbl:b_document}' />
+		<col id='mca_numero' label='${lbl:b_number}' />
+		<col id='smn_tipo_documento_pago_id' label='${lbl:b_document_type}' />
+		<col id='smn_proveedor_rf' label='${lbl:b_providers}' />
+		<col id='smn_orden_compra_rf' label='${lbl:b_purchase_order_header}' />
+		<col id='mca_recibo' label='${lbl:b_receipt}' />
+		<col id='mca_monto_documento_ml' label='${lbl:b_document_amount_ml}' />
+		<col id='mca_monto_documento_ma' label='${lbl:b_document_amount_ma}' />
+		<col id='mca_monto_diminucion_ml' label='${lbl:b_decrease_amount_ml}' />
+		<col id='mca_monto_diminucion_ma' label='${lbl:b_decrease_amount_ma}' />
+		<col id='mca_monto_valor_agregado_ml' label='${lbl:b_agree_value_amount_ml}' />
+		<col id='mca_monto_valor_agregado_ma' label='${lbl:b_agree_value_amount_ma}' />
+		<col id='mca_monto_neto_ml' label='${lbl:b_net_document_amount_ml}' />
+		<col id='mcc_monto_neto_ma' label='${lbl:b_net_document_amount_ma}' />
+		<col id='smn_moneda_rf' label='${lbl:b_coins}' />
+		<col id='smn_tasa_rf' label='${lbl:b_exchange_rate}' />
+		<col id='mca_fecha_recibida' label='${lbl:b_date_received}' />
+		<col id='mca_estatus_proceso' label='${lbl:b_status_process}' />
+		<col id='mca_estatus_financiero' label='${lbl:b_status_financial}' />
+		<col id='mca_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

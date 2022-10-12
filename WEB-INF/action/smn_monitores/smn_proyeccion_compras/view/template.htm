@@ -1,0 +1,57 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;" id="myTable">
+
+	<!-- <col width='3%'/> -->
+
+	<!-- <col width='10%'/> -->
+	<col width='3%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<!-- <col width='10%'/> -->
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="9" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th>PR</th>
+		<th class='sortable' onclick="sortBy('itm_codigo','query-smncontrolitem.sql')">${lbl:b_code} ${lbl:b_item}</th>
+		<th class='sortable' onclick="sortBy('itm_nombre','query-smncontrolitem.sql')">${lbl:b_description} ${lbl:b_item}</th>
+		<th class='sortable' onclick="sortBy('cantidad_venta','query-smncontrolitem.sql')">Ventas</th>
+		<th class='sortable' onclick="sortBy('cantidad_pedido','query-smncontrolitem.sql')">Pedidos Registrados</th>
+		<th class='sortable' onclick="sortBy('cantidad_consumo','query-smncontrolitem.sql')">Consumos</th>
+		<th class='sortable' onclick="sortBy('cantidad_existencia','query-smncontrolitem.sql')">Existencia</th>
+		<th class='sortable' onclick="sortBy('compras_colocadas','query-smncontrolitem.sql')">Compras Colocadas</th>
+		<th class='sortable' onclick="sortBy('sugerencia','query-smncontrolitem.sql')">Sugerencia</th>
+		<!-- <th class='sortable' onclick="sortBy('decision_compras','query-smncontrolitem.sql')">Decision Compra</th> -->
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/icongrid/Generar.png"  onclick="procesar('${fld:iditem}','${fld:sugerencia}')" title="Procesar Requisicion de Compras"></td>
+		<td align="center">${fld:itm_codigo}</td>
+		<td align="center">${fld:itm_nombre}</td>
+		<td align="center">${fld:cantidad_venta@#######}</td>
+		<td align="center">${fld:cantidad_pedido@#######}</td>
+		<td align="center">${fld:cantidad_consumo@#######}</td>
+		<td align="center">${fld:cantidad_existencia@#######}</td>
+		<td align="center">${fld:compras_colocadas@#######}</td>
+		<td align="center">${fld:sugerencia@#######}</td>
+		<!-- <td align="center">${fld:decision_compras}</td> -->
+
+	</tr>
+	</rows>
+
+</table>

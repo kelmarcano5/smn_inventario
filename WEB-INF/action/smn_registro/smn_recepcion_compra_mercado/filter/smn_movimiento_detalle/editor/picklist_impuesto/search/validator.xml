@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/crud'>
+	<parameter id='smn_codigos_impuestos_id' type='integer' required='false' label='${lbl:b_taxes}' maxlen='10'/>
+</validator>

@@ -1,0 +1,52 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='16%'/>
+	<col width='16%'/>
+	<col width='16%'/>
+	<col width='16%'/>
+	<col width='16%'/>
+	<col width='16%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="9" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("tdc_codigo","query-smntipodocumento.sql")'>${lbl:b_code}</th>
+		<th class='sortable' onclick='sortBy("tdc_nombre","query-smntipodocumento.sql")'>${lbl:b_name}</th>
+		<th class='sortable' onclick='sortBy("tdc_naturaleza_combo","query-smntipodocumento.sql")'>${lbl:b_nature}</th>
+		<th class='sortable' onclick='sortBy("tdc_vigencia","query-smntipodocumento.sql")'>${lbl:b_validation_date}</th>
+		<th class='sortable' onclick='sortBy("tdc_estatus_combo","query-smntipodocumento.sql")'>${lbl:b_status}</th>
+		<th class='sortable' onclick='sortBy("tdc_fecha_registro","query-smntipodocumento.sql")'>${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_tipo_documento_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_tipo_documento_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_tipo_documento_id}')" title="${lbl:b_edit_button}"></td>
+		<td align='left'>${fld:tdc_codigo}</td>
+		<td align='left'>${fld:tdc_nombre}</td>
+		<td align='left'>${fld:tdc_naturaleza_combo}</td>
+		<td>${fld:tdc_vigencia@dd-MM-yyyy}</td>
+		<td align='left'>${fld:tdc_estatus_combo}</td>
+		<td>${fld:tdc_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

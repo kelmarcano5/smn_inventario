@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='tra_codigo' type='varchar' required='false' label='${lbl:b_code}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='tra_codigo' rule='like' />
+	<parameter id='tra_descripcion_transporte' type='varchar' required='false' label='${lbl:b_description}' maxlen='100'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='tra_descripcion_transporte' rule='like' />
+	<parameter id='tra_tipo_transporte' type='varchar' required='false' label='${lbl:b_transport_type}' maxlen='2'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='tra_tipo_transporte' rule='like' />
+	<parameter id='smn_proveedor_rf' type='integer' required='false' label='${lbl:b_providers}' maxlen='10'/>
+	<parameter id='tra_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='tra_estatus' rule='like' />
+	<parameter id='tra_fecha_registro_ini' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.DateRangeValidator' on-error-label='[${lbl:b_store_date} mayor o igual que] no puede ser mayor que [${lbl:b_store_date} menor o igual que].' date1='tra_fecha_registro_ini' date2='tra_fecha_registro_fin' id='tra_fecha_registro_ini' />
+	<parameter id='tra_fecha_registro_fin' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+</validator>

@@ -1,0 +1,3 @@
+<rows>
+ubd_fecha_registro="${fld:ubd_fecha_registro}"    ubd_cantidad_final="${fld:ubd_cantidad_final}"    ubd_salida="${fld:ubd_salida}"    ubd_entrada="${fld:ubd_entrada}"    ubd_cantidad_inicial="${fld:ubd_cantidad_inicial}"    smn_lote_id="${fld:smn_lote_id}"    smn_subdivisiones_id="${fld:smn_subdivisiones_id}"    smn_divisiones_id="${fld:smn_divisiones_id}"    smn_ubicacion_cabecera_id="${fld:smn_ubicacion_cabecera_id}"    
+</rows>

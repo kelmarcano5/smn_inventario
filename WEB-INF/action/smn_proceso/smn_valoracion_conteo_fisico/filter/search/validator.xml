@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='smn_almacen_rf' type='integer' required='false' label='${lbl:b_store_code}' maxlen='10'/>
+	<parameter id='smn_conteo_id' type='integer' required='false' label='${lbl:b_conteo}' maxlen='10'/>
+	<parameter id='vcf_numero_documento' type='integer' required='false' label='${lbl:b_number_document}' maxlen='10'/>
+	<parameter id='smn_item_id' type='integer' required='false' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='vcf_fecha_registro_ini' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.DateRangeValidator' on-error-label='[${lbl:b_store_date} mayor o igual que] no puede ser mayor que [${lbl:b_store_date} menor o igual que].' date1='vcf_fecha_registro_ini' date2='vcf_fecha_registro_fin' id='vcf_fecha_registro_ini' />
+	<parameter id='vcf_fecha_registro_fin' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+</validator>

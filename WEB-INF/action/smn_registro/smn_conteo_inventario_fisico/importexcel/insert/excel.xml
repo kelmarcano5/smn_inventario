@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='smn_conteo_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_item_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='cfi_cantidad' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_unidad_medida_almacenaje_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='cfi_costo' type='double' required='false' maxlen='10'/>
+	<parameter id='smn_auxiliar_1_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_auxiliar_2_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='cfi_estatus' type='varchar' required='true' maxlen='10'/>
+
+
+
+</validator>

@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<model>
+	<summary>${lbl:b_division}</summary>
+	<filter>
+		<row field='smn_almacen_rf' id='smn_almacen_rf' label='${lbl:b_stores}@{select smn_base.smn_almacen.smn_almacen_id as id, smn_base.smn_almacen.alm_codigo|| &apos; - &apos; || smn_base.smn_almacen.alm_nombre as item from smn_base.smn_almacen order by alm_nombre}' required='NO' fk='' mSelection='' condiction='Igual que (=)' type='integer' tableName='smn_sub_division' len='10'/>
+		<row field='smn_division_id' id='smn_division_id' label='${lbl:b_division}@{select smn_inventario.smn_division.smn_division_id as id, smn_inventario.smn_division.div_codigo|| &apos; - &apos; || smn_inventario.smn_division.div_descripcion as item from smn_inventario.smn_division order by div_descripcion}' required='NO' fk='div_codigo' mSelection='' condiction='Igual que (=)' type='integer' tableName='smn_sub_division' len='10'/>
+		<row field='sdi_codigo' id='sdi_codigo' label='${lbl:b_code}' required='NO' fk='' mSelection='' condiction='Igual que (=)' type='varchar' tableName='smn_sub_division' len='10'/>
+		<row field='sdi_descripcion' id='sdi_descripcion' label='${lbl:b_description}' required='NO' fk='' mSelection='' condiction='Contiene' type='varchar' tableName='smn_sub_division' len='100'/>
+		<row field='sdi_fecha_registro' id='sdi_fecha_registro_ini' label='${lbl:b_store_date_greather_than}' required='NO' fk='' mSelection='' condiction='Mayor o igual que (&gt;=)' type='date' tableName='smn_sub_division' len='10'/>
+		<row field='sdi_fecha_registro' id='sdi_fecha_registro_fin' label='${lbl:b_store_date_less_than}' required='NO' fk='' mSelection='' condiction='Menor o igual que (&lt;=)' type='date' tableName='smn_sub_division' len='10'/>
+	</filter>
+	<detail>SI</detail>
+	<insert>SI</insert>
+	<edit>SI</edit>
+	<delete>SI</delete>
+	<audit>Consulta</audit>
+	<grid>
+		<row field='smn_almacen_rf' label='${lbl:b_stores}@{select smn_base.smn_almacen.smn_almacen_id as id, smn_base.smn_almacen.alm_codigo|| &apos; - &apos; || smn_base.smn_almacen.alm_nombre as item from smn_base.smn_almacen order by alm_nombre}' fk='' tableName='smn_sub_division' len='10' type='integer' align='center'/>
+		<row field='smn_division_id' label='${lbl:b_division}@{select smn_inventario.smn_division.smn_division_id as id, smn_inventario.smn_division.div_codigo|| &apos; - &apos; || smn_inventario.smn_division.div_descripcion as item from smn_inventario.smn_division order by div_descripcion}' fk='div_codigo' tableName='smn_sub_division' len='10' type='integer' align='center'/>
+		<row field='sdi_codigo' label='${lbl:b_code}' fk='' tableName='smn_sub_division' len='10' type='varchar' align='left'/>
+		<row field='sdi_descripcion' label='${lbl:b_description}' fk='' tableName='smn_sub_division' len='100' type='varchar' align='left'/>
+		<row field='sdi_es_ubicacion' label='${lbl:b_es_ubicacion}@{SI=${lbl:b_yes}|NO=${lbl:b_not}}' fk='' tableName='smn_sub_division' len='2' type='varchar' align='left'/>
+		<row field='sdi_alto' label='${lbl:b_dimension_alto}' fk='' tableName='smn_sub_division' len='10' type='double' align='right'/>
+		<row field='smn_unidad_medida_alto_rf' label='${lbl:b_unidad_medida_alto}@{select smn_base.smn_unidad_medida.smn_unidad_medida_id as id, smn_base.smn_unidad_medida.unm_codigo|| &apos; - &apos; || smn_base.smn_unidad_medida.unm_descripcion as item from smn_base.smn_unidad_medida order by unm_descripcion}' fk='' tableName='smn_sub_division' len='10' type='integer' align='center'/>
+		<row field='sdi_ancho' label='${lbl:b_dimension_ancho}' fk='' tableName='smn_sub_division' len='10' type='double' align='right'/>
+		<row field='smn_unidad_medida_ancho_rf' label='${lbl:b_unidad_medida_ancho}@{select smn_base.smn_unidad_medida.smn_unidad_medida_id as id, smn_base.smn_unidad_medida.unm_codigo|| &apos; - &apos; || smn_base.smn_unidad_medida.unm_descripcion as item from smn_base.smn_unidad_medida order by unm_descripcion}' fk='' tableName='smn_sub_division' len='10' type='integer' align='center'/>
+		<row field='sdi_profundidad' label='${lbl:b_profundidad}' fk='' tableName='smn_sub_division' len='10' type='double' align='right'/>
+		<row field='smn_unidad_medida_prof_rf' label='${lbl:b_unidad_medida_profundidad}@{select smn_base.smn_unidad_medida.smn_unidad_medida_id as id, smn_base.smn_unidad_medida.unm_codigo|| &apos; - &apos; || smn_base.smn_unidad_medida.unm_descripcion as item from smn_base.smn_unidad_medida order by unm_descripcion}' fk='' tableName='smn_sub_division' len='10' type='integer' align='center'/>
+		<row field='sdi_estatus' label='${lbl:b_status}@{AC=${lbl:b_account_type_active}|IN=${lbl:b_inactive}|CU=${lbl:b_cuarentena}}' fk='' tableName='smn_sub_division' len='2' type='varchar' align='left'/>
+		<row field='sdi_vigencia' label='${lbl:b_validation_date}' fk='' tableName='smn_sub_division' len='10' type='date' align='center'/>
+		<row field='sdi_idioma' label='${lbl:s_profile_lang}@{${def:locale}}' fk='' tableName='smn_sub_division' len='2' type='varchar' align='left'/>
+		<row field='sdi_usuario' label='${lbl:b_users}@{${def:user}}' fk='' tableName='smn_sub_division' len='10' type='varchar' align='left'/>
+		<row field='sdi_fecha_registro' label='${lbl:b_store_date}@{${def:date}}' fk='' tableName='smn_sub_division' len='10' type='date' align='center'/>
+		<row field='sdi_hora' label='${lbl:s_loginhist_col2}@{${def:time}}' fk='' tableName='smn_sub_division' len='8' type='varchar' align='left'/>
+	</grid>
+	<mobile>false</mobile>
+</model>

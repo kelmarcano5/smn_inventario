@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnubicaciondetalle.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_location_detail}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_location_detail}">
+				<col id='smn_ubicacion_cabecera_id' label='${lbl:b_header_location}' />
+		<col id='smn_divisiones_id' label='${lbl:b_divisions}' />
+		<col id='smn_subdivisiones_id' label='${lbl:b_subdivisions}' />
+		<col id='smn_lote_id' label='${lbl:b_lot}' />
+		<col id='ubd_cantidad_inicial' label='${lbl:b_initial_amount}' />
+		<col id='ubd_entrada' label='${lbl:b_entry}' />
+		<col id='ubd_salida' label='${lbl:b_exit}' />
+		<col id='ubd_cantidad_final' label='${lbl:b_final_amount}' />
+		<col id='ubd_idioma' label='${lbl:s_profile_lang}' />
+		<col id='ubd_usuario' label='${lbl:b_users}' />
+		<col id='ubd_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

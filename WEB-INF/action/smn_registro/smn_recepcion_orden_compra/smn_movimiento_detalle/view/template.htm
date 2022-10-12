@@ -1,0 +1,73 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="16" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_item_rf","query-smnmovimientodetalle.sql")'>${lbl:b_item}</th>
+		<th class='sortable' onclick='sortBy("smn_unidad_medida_rf","query-smnmovimientodetalle.sql")'>${lbl:b_measurement_unit}</th>
+		<th class='sortable' onclick='sortBy("mde_lote","query-smnmovimientodetalle.sql")'>${lbl:b_lot}</th>
+		<th class='sortable' onclick='sortBy("mde_cantidad_solicitada","query-smnmovimientodetalle.sql")'>${lbl:b_requested_amount}</th>
+		<th class='sortable' onclick='sortBy("mde_cantidad_recibida","query-smnmovimientodetalle.sql")'>${lbl:b_received_amount}</th>
+		<th class='sortable' onclick='sortBy("mde_cantidad_por_recibir","query-smnmovimientodetalle.sql")'>${lbl:b_quantity} en ${lbl:b_recepcion}</th>
+		<th class='sortable' onclick='sortBy("mde_cantidad_pendiente","query-smnmovimientodetalle.sql")'>${lbl:b_quantity_to_receive}</th>
+		<th class='sortable' onclick='sortBy("mde_es_bonificacion","query-smnmovimientodetalle.sql")'>${lbl:b_bonus}</th>
+		<th class='sortable' onclick='sortBy("mca_fecha_recibida","query-smnmovimientocabecera.sql")'>${lbl:b_date_received}</th>
+		<th class='sortable' onclick='sortBy("mde_estatus","query-smnmovimientodetalle.sql")'>${lbl:b_status}</th>
+		<th class='sortable' onclick='sortBy("mde_fecha_registro","query-smnmovimientodetalle.sql")'>${lbl:b_store_date}</th>
+		<th>DTI</th>
+		<th>DTDR</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_movimiento_detalle_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor_Cant('${fld:smn_movimiento_detalle_id}')" title="${lbl:b_edit_button}"></td> 
+		<td><img src="${def:context}/images/icongrid/Generar.png"  onclick="cerrar('${fld:smn_movimiento_detalle_id}')" title="${lbl:b_close_button}"></td> 
+		<td>${fld:smn_item_rf}</td>
+		<td>${fld:smn_unidad_medida_rf}</td>
+		<td>${fld:mde_lote}</td>
+		<td>${fld:mde_cantidad_solicitada}</td>
+		<td>${fld:mde_cantidad_recibida}</td>
+		<td>${fld:mde_cantidad_por_recibir}</td>
+		<td>${fld:mde_cantidad_pendiente}</td>
+		<td>${fld:mde_es_bonificacion}</td>
+		<td>${fld:mca_fecha_recibida}</td>
+		<td>${fld:mde_estatus}</td>
+		<td>${fld:mde_fecha_registro@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="detalleimpuesto('${fld:smn_movimiento_detalle_id}','${fld:mde_monto_bruto_ml}')" title="${lbl:b_account_type_tax}"></td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="detalledescuento('${fld:smn_movimiento_detalle_id}','${fld:mde_monto_bruto_ml}')" title="${lbl:b_tax_deduction_detail}"></td>
+
+	</tr>
+	</rows>
+
+</table>

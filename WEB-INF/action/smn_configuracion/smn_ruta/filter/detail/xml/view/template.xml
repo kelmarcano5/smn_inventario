@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_ruta>
+	<detail>
+		<rows>		
+		<record rut_fecha_registro="${fld:rut_fecha_registro}"    rut_vigencia="${fld:rut_vigencia}"    rut_estatus="${fld:rut_estatus}"    rut_posicion_ruta="${fld:rut_posicion_ruta}"    smn_zona_rf="${fld:smn_zona_rf}"    rut_nombre="${fld:rut_nombre}"    rut_codigo="${fld:rut_codigo}"    rut_fecha_registro="${fld:rut_fecha_registro}"    rut_cantidad_aprobaciones="${fld:rut_cantidad_aprobaciones}"    rut_nombre="${fld:rut_nombre}"    rut_codigo="${fld:rut_codigo}"    rut_fecha_registro="${fld:rut_fecha_registro}"    rut_cantidad_aprobaciones="${fld:rut_cantidad_aprobaciones}"    rut_nombre="${fld:rut_nombre}"    rut_codigo="${fld:rut_codigo}"    />
+		</rows>
+	</detail>
+</smn_ruta>

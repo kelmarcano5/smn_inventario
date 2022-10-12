@@ -1,0 +1,36 @@
+INSERT INTO smn_inventario.smn_caracteristica_almacen
+(
+	smn_caracteristica_almacen_id,
+	smn_almacen_rf,
+	cal_tipo_almacen,
+	cal_capacidad_almacenaje,
+	smn_unidad_medida_rf,
+	cal_espacio_fisico,
+	smn_unidad_medida_espacio_fisico_rf,
+	cal_politica_recepcion,
+	cal_estatus,
+	cal_vigencia_desde,
+	cal_vigencia_hasta,
+	cal_idioma,
+	cal_usuario,
+	cal_fecha_registro,
+	cal_hora
+)
+VALUES
+(
+	${seq:nextval@smn_inventario.seq_smn_caracteristica_almacen},
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+)

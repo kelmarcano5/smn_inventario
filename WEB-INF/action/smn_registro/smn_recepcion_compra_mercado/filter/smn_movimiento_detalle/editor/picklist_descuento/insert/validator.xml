@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/ajax">
+
+
+	<parameter id='cnt_nombres2' type='varchar' required='true' label='${lbl:s_profile_fname}' maxlen='30'/>
+	<parameter id='cnt_apellidos2' type='varchar' required='true' label='${lbl:s_profile_lname}' maxlen='30'/>
+	<parameter id='cnt_email2' type='varchar' required='true' label='${lbl:s_profile_email}' maxlen='96'/>
+
+
+
+</validator>
+
+

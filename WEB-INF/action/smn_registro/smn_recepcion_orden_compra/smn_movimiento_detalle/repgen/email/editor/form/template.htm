@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica.css" />
+	
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+	
+</head>
+
+<body>
+
+<!--banner-->
+<div class="banner">
+	${lbl:b_messages}
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog()" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+	${req:progress}
+</div>
+
+<!--formulario addnew/edit-->
+<form name="form1" onsubmit="return insert()" style="width:650px;">
+
+	<!-- titulo -->
+	<h1 id="formTitle">${lbl:b_add_record}</h1>
+
+	<table>
+
+		<!--ancho de la columna de etiquetas-->
+		<col width="30%">
+
+		<!--control picklist de seleccion múltiple-->
+		<tr>
+			<td>${lbl:b_contacts}*</td>
+			<td>
+				<!--listbox--> 
+				<select id="smn_contactos_id_name" name="smn_contactos_id_name" size="5" style="width: 95%;">
+				</select>
+				<br>
+		
+				<!--comandos del listbox-->
+				<div style="float: right; margin-right: 12px; padding-top: 7px">
+				[<a href="javascript:pickSmnContactosId()" title="${lbl:b_add_item_list}">${lbl:b_add_button}</a>]
+				[<a href="javascript:removeSmnContactosId()" title="${lbl:b_delete_item_list}">${lbl:b_delete_button}</a>]
+				</div>
+		
+				<!--almacena los IDs de los items separados por ";"--> 
+				<input type="hidden" name="smn_contactos_id" id="smn_contactos_id" />
+				<input type="hidden" name="smn_contactos_id_text" id="smn_contactos_id_text" />
+			</td>
+		</tr>
+		<!--campos-->
+				<tr>
+			<td>${lbl:b_subject}*</td>
+			<td>
+				<input id="msj_asunto" name="msj_asunto" type="text" maxlength="96" >
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_text}*</td>
+			<td>
+				<textarea id="msj_texto" name="msj_texto" cols="30" rows="3"></textarea>
+			</td>
+		</tr>
+
+	</table>
+
+	<!--botones-->
+	<input id="grabar" type="submit" value="${lbl:b_save_button}" class="button">
+	<input id="limpiar" type="button" value="${lbl:b_clean_button}" onclick="addNew()" class="button">	
+	<input id="copiar" type="button" value="${lbl:b_copy_button}" onclick="getFormValuesToCopy('form1')" class="button">
+	<input id="pegar" type="button" value="${lbl:b_paste_button}" onclick="getFormValuesToPaste('form1')" class="button">
+	<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog(); parent.search();" class="button">	
+	
+	<!-- PK-->
+
+
+</form>
+	
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+	onload = function()
+	{ 
+		addNew();		
+	} 
+	
+	//desplegar picklist de seleccion multiple
+	function pickSmnContactosId(){
+		var url = "${def:context}/action/picklist/smncontactos/form";
+		pickOpen ('smn_contactos_id_name','smn_contactos_id',url, 450, 350);	
+	}	
+
+	//llamada por el picklist para añadir un item al listbox
+	function selectSmnContactosId(id, title) {
+		listboxAddItem("smn_contactos_id_name", id, title);
+	}
+	
+	//remover un item del listbox
+	function removeSmnContactosId() {
+		if (document.getElementById("smn_contactos_id_name").selectedIndex == -1) {
+			alertBox('${lbl:b_delete_item_list_message}.','${lbl:b_continue_button}');
+			return;
+		}
+		listboxRemoveItem("smn_contactos_id_name");
+	}
+
+	//configurar formulario para ingresar registro nuevo
+	function addNew()
+	{
+		document.getElementById("formTitle").innerHTML = "${lbl:b_add_record}";
+		document.getElementById("grabar").disabled=false;
+		clearForm("form1");
+		setFocusOnForm("form1");
+		listboxClear('smn_contactos_id_name');
+	}
+	
+	//retorna al estado previo que corresponde
+	//al estado actual de la pagina, cada llamada Ajax
+	//se encarga de definir cual es la funcion de goBack() que aplica
+	function goBack() 
+	{
+		_goBackFn()			
+	}
+	
+	//mostrar la actualizacion de un registro
+	function insert()
+	{	
+		
+		document.getElementById("smn_contactos_id").value = listboxGetItemValues("smn_contactos_id_name");
+
+		clearErrorMessages();
+		document.getElementById("grabar").disabled=true;
+			
+		//llamada Ajax...
+		return ajaxCall(httpMethod="POST", 
+						uri="${def:actionroot}/insert", 
+						divResponse=null, 
+						divProgress="status", 
+						formName="form1", 
+						afterResponseFn=null, 
+						onErrorFn=retryAddnewOrEdit);	
+	}
+	
+	//restaurar el formulario en caso de error
+	function retryAddnewOrEdit() {
+		document.getElementById("grabar").disabled=false;
+		setFocusOnForm("form1");		
+	}
+	
+
+
+</script>	
+</body>
+</html>

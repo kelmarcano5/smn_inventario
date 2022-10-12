@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnsubdivision.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="8" cellStep="0" name="${lbl:b_division}"/>
+	
+	<excel 
+		recordset='query-smnsubdivision.sql' 
+		sheetname='${lbl:b_division}' 
+		filename='${lbl:b_division}.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='smn_almacen_rf_combo' label='${lbl:b_stores}' />
+		<col id='smn_division_id_combo' label='${lbl:b_division}' />
+		<col id='sdi_codigo' label='${lbl:b_code}' />
+		<col id='sdi_descripcion' label='${lbl:b_description}' />
+		<col id='sdi_es_ubicacion_combo' label='${lbl:b_es_ubicacion}' />
+		<col id='sdi_alto' label='${lbl:b_dimension_alto}' />
+		<col id='smn_unidad_medida_alto_rf_combo' label='${lbl:b_unidad_medida_alto}' />
+		<col id='sdi_ancho' label='${lbl:b_dimension_ancho}' />
+		<col id='smn_unidad_medida_ancho_rf_combo' label='${lbl:b_unidad_medida_ancho}' />
+		<col id='sdi_profundidad' label='${lbl:b_profundidad}' />
+		<col id='smn_unidad_medida_prof_rf_combo' label='${lbl:b_unidad_medida_profundidad}' />
+		<col id='sdi_estatus_combo' label='${lbl:b_status}' />
+		<col id='sdi_vigencia' label='${lbl:b_validation_date}' />
+		<col id='sdi_idioma' label='${lbl:s_profile_lang}' />
+		<col id='sdi_usuario' label='${lbl:b_users}' />
+		<col id='sdi_fecha_registro' label='${lbl:b_store_date}' />
+		<col id='sdi_hora' label='${lbl:s_loginhist_col2}' />
+
+	</excel>
+
+</config>

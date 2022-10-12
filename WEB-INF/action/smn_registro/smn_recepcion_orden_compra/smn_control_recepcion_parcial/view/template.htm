@@ -1,0 +1,47 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="8" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th class='sortable' onclick='sortBy("smn_orden_compra_rf","query-smncontrolrecepcionparcial.sql")'>${lbl:b_numero_orden_compra}</th>
+		<th class='sortable' onclick='sortBy("crp_numero_documento","query-smncontrolrecepcionparcial.sql")'>${lbl:b_number_document}</th>
+		<th class='sortable' onclick='sortBy("smn_item_id_combo","query-smncontrolrecepcionparcial.sql")'>${lbl:b_item}</th>
+		<th class='sortable' onclick='sortBy("crp_cantidad_recibida","query-smncontrolrecepcionparcial.sql")'>${lbl:b_quantity_received}</th>
+		<th class='sortable' onclick='sortBy("crp_fecha_recepcion","query-smncontrolrecepcionparcial.sql")'>${lbl:b_received_date}</th>
+		<th class='sortable' onclick='sortBy("crp_lote","query-smncontrolrecepcionparcial.sql")'>${lbl:b_lot}</th>
+		<th class='sortable' onclick='sortBy("crp_fecha_vencimiento_lote","query-smncontrolrecepcionparcial.sql")'>${lbl:b_vencimiento_lote}</th>
+		<th class='sortable' onclick='sortBy("crp_fecha_registro","query-smncontrolrecepcionparcial.sql")'>${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td>${fld:smn_orden_compra_rf}</td>
+		<td>${fld:crp_numero_documento}</td>
+		<td>${fld:smn_item_id}</td>
+		<td>${fld:crp_cantidad_recibida}</td>
+		<td>${fld:crp_fecha_recepcion@dd-MM-yyyy}</td>
+		<td>${fld:crp_lote}</td>
+		<td>${fld:crp_fecha_vencimiento_lote@dd-MM-yyyy}</td>
+		<td>${fld:crp_fecha_registro@dd-MM-yyyy}</td>		
+	</tr>
+	</rows>
+
+</table>

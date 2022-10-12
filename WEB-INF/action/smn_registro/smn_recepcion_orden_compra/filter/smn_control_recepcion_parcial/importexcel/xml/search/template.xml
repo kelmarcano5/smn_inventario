@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_control_recepcion_parcial>
+	<detail>
+		<rows>		
+		<record crp_fecha_registro="${fld:crp_fecha_registro}"    crp_fecha_vencimiento_lote="${fld:crp_fecha_vencimiento_lote}"    crp_lote="${fld:crp_lote}"    crp_fecha_recepcion="${fld:crp_fecha_recepcion}"    crp_cantidad_recibida="${fld:crp_cantidad_recibida}"    smn_item_id="${fld:smn_item_id}"    crp_numero_documento="${fld:crp_numero_documento}"    smn_orden_compra_rf="${fld:smn_orden_compra_rf}"    smn_movimiento_cabecera_id="${fld:smn_movimiento_cabecera_id}"    smn_control_recepcion_id="${fld:smn_control_recepcion_id}"    />
+		</rows>
+	</detail>
+</smn_control_recepcion_parcial>

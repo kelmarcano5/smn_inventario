@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_control_lote>
+	<detail>
+		<rows>		
+		<record col_fecha_registro="${fld:col_fecha_registro}"    col_cantidad_final="${fld:col_cantidad_final}"    col_salidas="${fld:col_salidas}"    col_entradas="${fld:col_entradas}"    col_cantidad_inicial="${fld:col_cantidad_inicial}"    col_fecha_vencimiento="${fld:col_fecha_vencimiento}"    col_lote="${fld:col_lote}"    smn_caracteristica_item_id="${fld:smn_caracteristica_item_id}"    smn_caracteristica_almacen_id="${fld:smn_caracteristica_almacen_id}"    smn_sucursal_rf="${fld:smn_sucursal_rf}"    smn_entidad_rf="${fld:smn_entidad_rf}"    />
+		</rows>
+	</detail>
+</smn_control_lote>

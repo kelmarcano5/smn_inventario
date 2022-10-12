@@ -1,0 +1,23 @@
+Estimado Administrador:
+
+Este es un mensaje de alerta para informarle que ocurrió
+un intento de login fallido. Estos son los detalles del evento:
+
+* Fecha: ${def:date}
+* Hora: ${def:time}
+* Aplicación: ${def:context}
+* Login: ${req:userlogin}
+* IP remota: ${def:remoteaddr}
+* Servidor: ${def:host}
+
+Haga clic sobre este link y le mostrará la información
+sobre la dirección IP remota que aparece arriba:
+http://www.iptools.com/dnstools.php?tool=ipwhois&user_data=${def:remoteaddr}
+
+Si no obtiene información sobre la IP pruebe esta dirección:
+http://whois.arin.net
+
+Atentamente,
+Sistema de seguridad del Framework Dinámica
+http://www.martincordova.com
+

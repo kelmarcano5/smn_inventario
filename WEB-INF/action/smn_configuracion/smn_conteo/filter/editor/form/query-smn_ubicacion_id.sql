@@ -1,0 +1,1 @@
+select smn_inventario.smn_ubicacion_cabecera.smn_ubicacion_cabecera_id as id, smn_inventario.smn_ubicacion_cabecera.smn_ubicacion_cabecera_id  as item from smn_inventario.smn_ubicacion_cabecera 

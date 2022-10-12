@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnmovimientodetalle.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_movement_detail}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_movement_detail}">
+				<col id='mca_estatus_proceso_pl0' label='${lbl:b_inventory_movement}' />
+		<col id='smn_item_rf' label='${lbl:b_item}' />
+		<col id='smn_activo_fijo_rf' label='${lbl:b_actfij}' />
+		<col id='smn_centro_costo_rf' label='${lbl:b_cost_centers}' />
+		<col id='mde_lote' label='${lbl:b_lot}' />
+		<col id='mde_fecha_vencimiento_lote' label='${lbl:b_expiration_date}' />
+		<col id='mde_tipo_movimiento' label='${lbl:b_movement_type}' />
+		<col id='mde_cantidad_recibida' label='${lbl:b_received_amount}' />
+		<col id='mde_descripcion' label='${lbl:b_description}' />
+		<col id='mde_es_bonificacion' label='${lbl:b_bonus}' />
+		<col id='smn_unidad_medida_rf' label='${lbl:b_measurement_unit}' />
+		<col id='mde_valor_unitario_ml' label='${lbl:b_unitari_value_ml}' />
+		<col id='smn_tasa_rf' label='${lbl:b_exchange_rate}' />
+		<col id='smn_moneda_rf' label='${lbl:b_coins}' />
+		<col id='mde_valor_unitario_ma' label='${lbl:b_unitari_value_ma}' />
+		<col id='mde_monto_bruto_ml' label='${lbl:b_gross_amount_ml}' />
+		<col id='mde_monto_bruto_ma' label='${lbl:b_gross_amount_ma}' />
+		<col id='mde_monto_disminucion_ml' label='${lbl:b_decrease_amount_ml}' />
+		<col id='mde_monto_disminucion_ma' label='${lbl:b_decrease_amount_ma}' />
+		<col id='mde_monto_valor_agregado_ml' label='${lbl:b_agree_value_amount_ml}' />
+		<col id='mde_monto_valor_agregado_ma' label='${lbl:b_agree_value_amount_ma}' />
+		<col id='mde_monto_neto_ml' label='${lbl:b_net_document_amount_ml}' />
+		<col id='mde_monto_neto_ma' label='${lbl:b_net_document_amount_ma}' />
+		<col id='mde_estatus' label='${lbl:b_status}' />
+		<col id='mde_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

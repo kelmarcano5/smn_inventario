@@ -1,0 +1,10 @@
+select
+		smn_inventario.smn_ubicacion_cabecera.smn_movimiento_detalle_id,
+	smn_inventario.smn_ubicacion_cabecera.smn_caracteristica_almacen_id,
+	smn_inventario.smn_ubicacion_cabecera.smn_caracteristica_item_id,
+	smn_inventario.smn_ubicacion_cabecera.ubc_estatus,
+	smn_inventario.smn_ubicacion_cabecera.ubc_fecha_registro
+from
+	smn_inventario.smn_ubicacion_cabecera 
+where
+	smn_inventario.smn_ubicacion_cabecera.smn_ubicacion_cabecera_id = ${fld:id}

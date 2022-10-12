@@ -1,0 +1,2 @@
+ and
+ 	smn_inventario.smn_movimiento_detalle_impuesto.smn_porcentaje_impuesto_rf=${fld:smn_porcentaje_impuesto_rf}

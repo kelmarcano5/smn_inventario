@@ -1,0 +1,29 @@
+<!--data grid-->
+<table class="datagrid rowhover oneCellRow" style="width:90%;">
+
+	<col width='100%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="2">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th onclick="sortBy('smn_caracteristica_item_id','query-smnrelitemcodimpuesto.sql')" class="sortable">${lbl:b_caracteristicas_item}</th>
+		<th onclick="sortBy('smn_codigo_impuesto_rf','query-smnrelitemcodimpuesto.sql')" class="sortable">${lbl:b_tax_code}</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr onclick="selectItem('${fld:smn_rel_item_cod_impuesto_id}')" >
+		<td align="center"><span id="${fld:smn_rel_item_cod_impuesto_id}">${fld:smn_caracteristica_item_id}</span></td>
+		<td align="center">${fld:smn_codigo_impuesto_rf}</td>
+	</tr>
+	</rows>
+
+</table>
+

@@ -1,0 +1,1 @@
+select smn_clase_auxiliar_id as id, cla_codigo  ||' - '|| cla_nombre as item from smn_base.smn_clase_auxiliar order by smn_clase_auxiliar_id

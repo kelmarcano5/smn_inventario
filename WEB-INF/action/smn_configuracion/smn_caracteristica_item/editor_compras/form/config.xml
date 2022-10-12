@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		${lbl:b_caracteristicas_item}
+	</summary>
+
+	<log>false</log>
+	
+	<set-request-attribute id="progress" value="file:/WEB-INF/action/progress/progress.htm"/>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>true</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id='query-smn_item_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_unidad_medida_base_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_unidad_medida_compra_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_unidad_medida_venta_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_unidad_medida_almacenamiento_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_unidad_medida_despacho_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_unidad_medida_peso_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_unidad_medida_alto_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_unidad_medida_ancho_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_unidad_medida_profundidad_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_centro_costo_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_principio_activo_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_proveedor_rf.sql' source='sql' scope='transaction'/>
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>template.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/html</content-type>
+		<print mode='table' recordset='query-smn_item_rf.sql' tag='smn_item_rf_rows'/>
+		<print mode='table' recordset='query-smn_unidad_medida_base_rf.sql' tag='smn_unidad_medida_base_rf_rows'/>
+		<print mode='table' recordset='query-smn_unidad_medida_compra_rf.sql' tag='smn_unidad_medida_compra_rf_rows'/>
+		<print mode='table' recordset='query-smn_unidad_medida_venta_rf.sql' tag='smn_unidad_medida_venta_rf_rows'/>
+		<print mode='table' recordset='query-smn_unidad_medida_almacenamiento_rf.sql' tag='smn_unidad_medida_almacenamiento_rf_rows'/>
+		<print mode='table' recordset='query-smn_unidad_medida_despacho_rf.sql' tag='smn_unidad_medida_despacho_rf_rows'/>
+		<print mode='table' recordset='query-smn_unidad_medida_peso_rf.sql' tag='smn_unidad_medida_peso_rf_rows'/>
+		<print mode='table' recordset='query-smn_unidad_medida_alto_rf.sql' tag='smn_unidad_medida_alto_rf_rows'/>
+		<print mode='table' recordset='query-smn_unidad_medida_ancho_rf.sql' tag='smn_unidad_medida_ancho_rf_rows'/>
+		<print mode='table' recordset='query-smn_unidad_medida_profundidad_rf.sql' tag='smn_unidad_medida_profundidad_rf_rows'/>
+		<print mode='table' recordset='query-smn_centro_costo_rf.sql' tag='smn_centro_costo_rf_rows'/>
+		<print mode='table' recordset='query-smn_principio_activo_rf.sql' tag='smn_principio_activo_rf_rows'/>
+		<print mode='table' recordset='query-smn_proveedor_rf.sql' tag='smn_proveedor_rf_rows'/>
+		<print mode="form" recordset="_request" /> 
+	</output>
+
+</config>

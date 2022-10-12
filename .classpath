@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="WEB-INF/source"/>
+	<classpathentry exported="true" kind="lib" path="WEB-INF/lib/framework.jar" sourcepath="C:/tomcat7/dinamica/source.zip"/>
+	<classpathentry exported="true" kind="lib" path="WEB-INF/lib/iText-2.1.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="WEB-INF/lib/jcommon-1.0.21.jar"/>
+	<classpathentry exported="true" kind="lib" path="WEB-INF/lib/jfreechart-1.0.17.jar"/>
+	<classpathentry exported="true" kind="lib" path="WEB-INF/lib/captcha.jar"/>
+	<classpathentry exported="true" kind="lib" path="WEB-INF/lib/jxl.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="WEB-INF/lib/jbars.jar"/>
+	<classpathentry exported="true" kind="lib" path="WEB-INF/lib/log4j.jar"/>
+	<classpathentry exported="true" kind="lib" path="WEB-INF/lib/org.apache.commons.io.jar"/>
+	<classpathentry exported="true" kind="lib" path="WEB-INF/lib/poi-3.9-20121203.jar"/>
+	<classpathentry exported="true" kind="lib" path="WEB-INF/lib/postgresql-9.4-1201.jdbc41.jar"/>
+	<classpathentry kind="lib" path="E:/tomcat7/lib/servlet-api.jar" sourcepath="E:/tomcat7/dinamica/source.zip"/>
+	<classpathentry kind="output" path="WEB-INF/classes"/>
+</classpath>

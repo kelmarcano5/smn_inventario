@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica.css" />
+	
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+
+	<!--codigo especifico de este modulo--> 
+	<script type="text/javascript">
+		//inicializacion de la pagina cuando carga
+		onload = function() { 
+			search();
+		} 
+	
+		//ejecutar consulta
+		function search() {
+			ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/search", 
+							divResponse="response", 
+							divProgress="status", 
+							formName=null, 
+							afterResponseFn=null, 
+							onErrorFn=null);
+		}
+	
+		//recuperar una pagina X del grid
+		function viewPage() {
+			var url = "${def:actionroot}/view";
+			gotoPage(url);
+		}
+		
+		//exportar a PDF
+		function openPDF() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/pdf?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+	
+		//exportar a excel
+		function openExcel() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/excel?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+	</script>
+
+</head>
+
+<body>
+
+	<!--banner-->
+	<div class="banner">
+		${lbl:b_relation_item_almacen}
+		${req:progress}
+	</div>
+	
+	<!--panel de respuesta AJAX #1-->
+	<div id="response" style="display: none; width: 100%"></div>
+
+</body>
+
+</html>

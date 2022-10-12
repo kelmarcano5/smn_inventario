@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/crud'>
+	<parameter id='smn_caracteristica_item_id' type='integer' required='false' label='${lbl:b_caracteristicas_item}' maxlen='10'/>
+	<parameter id='smn_almacen_rf' type='integer' required='false' label='${lbl:b_store}' maxlen='10'/>
+</validator>

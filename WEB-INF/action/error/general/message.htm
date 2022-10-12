@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>System Error</title>
+<LINK REL="stylesheet" type="text/css" href="${def:context}/default.css" />
+</head>
+
+<body>
+
+<center>
+
+<h2 style="color: red">${lbl:system_error_title}</h2>
+
+<div class="alert" style="width: 60%">${lbl:system_error_msg}</div>
+
+<!--remove this if you don't want to see the stacktrace-->
+<h3>Stack trace:</h3>
+<textarea cols="60" rows="10">${req:dinamica.error.stacktrace}</textarea>
+
+
+<br>
+<br>
+<button onclick="goBack();">${lbl:button_back}</button>
+
+<script language="javascript">
+	
+	if (parent!=null) {
+		if (this.name=="uploadFrame")
+			parent.uploadError("${req:dinamica.error.description@js}");
+	}
+	
+	function goBack()
+	{
+		if (parent.closeDialog!=null)
+			parent.closeDialog();
+		else {
+			if (window.opener==null)
+				history.back();
+			else
+				window.close();
+		}
+	}
+	</script></center>
+
+</body>
+
+</html>

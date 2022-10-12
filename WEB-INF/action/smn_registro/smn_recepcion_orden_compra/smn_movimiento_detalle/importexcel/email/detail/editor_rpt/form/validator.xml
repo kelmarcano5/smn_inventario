@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id="view.record" onerror="/action/error/validation/dialog">
+	<parameter id="mensaje_id" type="integer" required="true" label="Mensaje ID" maxlen="10" />
+</validator>

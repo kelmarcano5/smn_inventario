@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<model>
+	<summary>${lbl:b_relacion_item_almacen}</summary>
+	<filter>
+		<row field='smn_item_rf' id='smn_item_rf' label='${lbl:b_item}@{select smn_base.smn_item.smn_item_id as id, smn_base.smn_item.itm_codigo|| &apos; - &apos; || smn_base.smn_item.itm_nombre as item from smn_base.smn_item order by itm_nombre}' required='NO' fk='' mSelection='' condiction='Igual que (=)' type='integer' tableName='smn_item_almacen' len='10'/>
+		<row field='smn_almacen_rf' id='smn_almacen_rf' label='${lbl:b_stores}@{select smn_base.smn_almacen.smn_almacen_id as id, smn_base.smn_almacen.alm_codigo|| &apos; - &apos; || smn_base.smn_almacen.alm_nombre as item from smn_base.smn_almacen order by alm_nombre}' required='NO' fk='' mSelection='' condiction='Igual que (=)' type='integer' tableName='smn_item_almacen' len='10'/>
+		<row field='ria_fecha_registro' id='ria_fecha_registro_ini' label='${lbl:b_store_date_greather_than}' required='NO' fk='' mSelection='' condiction='Mayor o igual que (&gt;=)' type='date' tableName='smn_item_almacen' len='10'/>
+		<row field='ria_fecha_registro' id='ria_fecha_registro_fin' label='${lbl:b_store_date_less_than}' required='NO' fk='' mSelection='' condiction='Menor o igual que (&lt;=)' type='date' tableName='smn_item_almacen' len='10'/>
+	</filter>
+	<detail>SI</detail>
+	<insert>SI</insert>
+	<edit>SI</edit>
+	<delete>SI</delete>
+	<audit>Consulta</audit>
+	<grid>
+		<row field='smn_item_rf' label='${lbl:b_item}@{select smn_base.smn_item.smn_item_id as id, smn_base.smn_item.itm_codigo|| &apos; - &apos; || smn_base.smn_item.itm_nombre as item from smn_base.smn_item order by itm_nombre}' fk='' tableName='smn_item_almacen' len='10' type='integer' align='center'/>
+		<row field='smn_almacen_rf' label='${lbl:b_stores}@{select smn_base.smn_almacen.smn_almacen_id as id, smn_base.smn_almacen.alm_codigo|| &apos; - &apos; || smn_base.smn_almacen.alm_nombre as item from smn_base.smn_almacen order by alm_nombre}' fk='' tableName='smn_item_almacen' len='10' type='integer' align='center'/>
+		<row field='ria_estatus' label='${lbl:b_status}@{AC=${lbl:b_account_type_active}|IN=${lbl:b_inactive}}' fk='' tableName='smn_item_almacen' len='2' type='varchar' align='left'/>
+		<row field='ria_vigencia' label='${lbl:b_validation_date}' fk='' tableName='smn_item_almacen' len='10' type='date' align='center'/>
+		<row field='ria_idioma' label='${lbl:s_profile_lang}@{${def:locale}}' fk='' tableName='smn_item_almacen' len='2' type='varchar' align='left'/>
+		<row field='ria_usuario' label='${lbl:b_users}@{${def:user}}' fk='' tableName='smn_item_almacen' len='10' type='varchar' align='left'/>
+		<row field='ria_fecha_registro' label='${lbl:b_store_date}@{${def:date}}' fk='' tableName='smn_item_almacen' len='10' type='date' align='center'/>
+		<row field='ria_hora' label='${lbl:s_loginhist_col2}@{${def:time}}' fk='' tableName='smn_item_almacen' len='8' type='varchar' align='left'/>
+	</grid>
+	<mobile>false</mobile>
+</model>

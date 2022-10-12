@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='repgen.filter' onerror='/action/error/validation/ajax'>
+
+	<parameter id='fdesde' type='date' required='false' label='Fecha desde'/>
+	<parameter id='fhasta' type='date' required='false' label='Fecha hasta'/>
+	
+	<parameter id='smn_tipo_documento_id_name' type='varchar' required='false' label='${lbl:b_document_type}'/>
+	<parameter id='smn_tipo_documento_id' type='integer' required='false' label='${lbl:b_document_type}' maxlen='10'/>
+	<parameter id='doc_codigo' type='varchar' required='false' label='${lbl:b_code}' maxlen='10'/>
+	<parameter id='doc_nombre' type='varchar' required='false' label='${lbl:b_name}' maxlen='100'/>
+	<parameter id='smn_documento_general_rf' type='integer' required='false' label='${lbl:b_general_document}' maxlen='10'/>
+	<parameter id='smn_modulo_origen_rf' type='integer' required='false' label='${lbl:b_source_module}' maxlen='10'/>
+	<parameter id='doc_despacho_int_consumo' type='varchar' required='false' label='${lbl:b_internal_office_consumption}' maxlen='2'/>
+	<parameter id='doc_despacho_int_transferencia' type='varchar' required='false' label='${lbl:b_internal_office_transfer}' maxlen='2'/>
+	<parameter id='doc_despacho_venta' type='varchar' required='false' label='${lbl:b_sales_office}' maxlen='2'/>
+	<parameter id='doc_secuencia' type='integer' required='false' label='${lbl:b_sequence}' maxlen='10'/>
+	<parameter id='doc_vigencia' type='date' required='false' label='${lbl:b_validation_date}' maxlen='10'/>
+	<parameter id='doc_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='doc_tipo_movimiento' type='varchar' required='false' label='${lbl:b_movement_type}' maxlen='2'/>
+	<parameter id='doc_tipo_documento_pago' type='varchar' required='false' label='${lbl:b_document_type_payment}' maxlen='2'/>
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='smn_tipo_documento_id_name'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='doc_codigo'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='doc_nombre'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='doc_despacho_int_consumo'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='doc_despacho_int_transferencia'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='doc_despacho_venta'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='doc_estatus'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='doc_tipo_movimiento'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='doc_tipo_documento_pago'
+		rule='contains' />
+
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarCodigo.sql'
+			id='doc_codigo'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarNombre.sql'
+			id='doc_nombre'/>
+
+
+	<custom-validator
+			classname='dinamica.validators.ArrayNotEmptyValidator'
+			on-error-label='Seleccione al menos un campo para la generación del reporte.'
+			parameter-name='field_id' 
+			id='field_id' />
+
+	<custom-validator 
+			classname='dinamica.validators.ArrayToRecordset'
+			paramName='field_id' 
+			recordsetId='fields' 
+			colName='field_id' 
+			colType='integer' />
+				
+</validator>

@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Edit user personal profile (preferences)
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.security.GetProfile</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>template.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/html</content-type>
+		<expiration>0</expiration>
+		<print mode="combo" recordset="getrecord.sql" control="locale" />
+		<print mode="form" recordset="getrecord.sql" />
+	</output>
+
+</config>

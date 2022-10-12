@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnmovimientodetalledescret.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_retention_discount}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_retention_discount}">
+				<col id='smn_codigo_descuento_rf' label='${lbl:b_code_discount}' />
+		<col id='mdd_monto_base_ml' label='${lbl:b_base_amount_ml}' />
+		<col id='smn_porcentaje_rf' label='${lbl:b_percentage}' />
+		<col id='smn_codigo_descuento_rf' label='${lbl:b_code_discount}' />
+		<col id='mdd_monto_base_ml' label='${lbl:b_base_amount_ml}' />
+		<col id='smn_porcentaje_rf' label='${lbl:b_percentage}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

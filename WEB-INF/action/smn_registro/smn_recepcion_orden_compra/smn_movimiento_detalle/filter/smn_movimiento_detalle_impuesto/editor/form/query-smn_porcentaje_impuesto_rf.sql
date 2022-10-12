@@ -1,0 +1,1 @@
+select smn_base.smn_codigos_impuestos.smn_codigos_impuestos_id as id, smn_base.smn_codigos_impuestos.imp_porcentaje_base as item from smn_base.smn_codigos_impuestos

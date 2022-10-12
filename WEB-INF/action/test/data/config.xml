@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Transfiere los Recordsets con la información de diagnóstico
+		del proceso Tomcat para ser utilizados por la aplicación "Monitor"
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.SysInfo2</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+	</transaction>
+
+	<output>
+		<classname>dinamica.DataOutput</classname>
+	</output>
+
+</config>

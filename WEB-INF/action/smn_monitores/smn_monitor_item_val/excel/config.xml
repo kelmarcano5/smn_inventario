@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smncontrolitem.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="8" cellStep="0" name="Monitor Control Item"/>
+	
+	<excel 
+		recordset='query-smncontrolitem.sql' 
+		sheetname='Monitor Control Item' 
+		filename='Monitor Control Item.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='smn_entidad_rf' label='Entidad' />
+		<col id='smn_sucursal_rf' label='Sucursal' />
+		<col id='smn_almacen_rf' label='Almacen' />
+		<col id='codigo' label='Codigo Item' />
+		<col id='nombre' label='Descripcion Item' />
+		<col id='coi_valor_inicial' label='Valor Inicial' />
+		<col id='coi_cantidad_entradas' label='Valor Entrada' />
+		<col id='coi_cantidad_salidas' label='Valor Salida' />
+		<col id='coi_saldo_final_existencia' label='Valor Final' />
+		<col id='coi_valor_inicial_ma' label='Valor Inicial' />
+		<col id='coi_cantidad_entradas_ma' label='Valor Entrada' />
+		<col id='coi_cantidad_salidas_ma' label='Valor Salida' />
+		<col id='coi_saldo_final_existencia_ma' label='Valor Final' />
+		<col id='coi_fecha_movimiento' label='Fecha Registro' />
+		
+	</excel>
+		
+</config>

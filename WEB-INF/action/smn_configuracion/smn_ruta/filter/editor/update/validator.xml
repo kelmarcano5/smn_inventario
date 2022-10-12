@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='rut_codigo' type='varchar' required='true' label='${lbl:b_code}' maxlen='10'/>
+	<parameter id='rut_nombre' type='varchar' required='true' label='${lbl:b_name}' maxlen='100'/>
+	<parameter id='smn_zona_rf' type='integer' required='true' label='${lbl:b_zone}' maxlen='10'/>
+	<parameter id='rut_posicion_ruta' type='integer' required='true' label='${lbl:b_position_route}' maxlen='10'/>
+	<parameter id='rut_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='rut_vigencia' type='date' required='true' label='${lbl:b_validation_date}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_route}' maxlen='10'/>
+
+
+</validator>

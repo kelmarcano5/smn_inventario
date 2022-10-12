@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="false">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smncontrolitem.sql" source="session" scope="transaction" />
+		<recordset id="filter.params" source="session" scope="transaction" />
+		<!-- <recordset id='gran-total.sql' source='session' scope='transaction' /> -->
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>Cuenta Mayor</pdf-title>
+	<pdf-logo url='/images/logo.png' scale='50' />
+
+	<pdf-report pageSize="letter" rotate="true">
+		<record recordset='filter.params' title='Filtro de Búsqueda' noFilterMsg='-- Sin filtro de búsqueda --' width='55' spacingBefore='10'>
+			<col name='smn_entidad_rf' title='Entidad' align='center' />
+			<col name='smn_sucursal_rf' title='Almacen' align='center' />
+			<col name='smn_almacen_rf' title='Almacen' align='center' />
+			<col name='smn_item_rf' title='Item' align='center' />
+			<col name='coi_fecha_registro_init' title='Fecha Desde' width='14' align='left' format='dd-MM-yyyy' />
+			<col name='coi_fecha_registro_end' title='Fecha Hasta' width='14' align='left' format='dd-MM-yyyy' />
+			
+		</record>
+		
+		 <table recordset='query-smncontrolitem.sql' width='90' spacingBefore='20' title='Monitor Control Item'> 
+		 	<col name='smn_entidad_rf' title='Entidad' width='7' align='center' />
+			<col name='smn_sucursal_rf' title='Sucursal' width='7' align='center' />
+			<col name='smn_almacen_rf' title='Almacen' width='7' align='left' />
+			<col name='smn_item_rf' title='Item' width='7' align='left' />
+			<col name='coi_fecha_registro' title='Fecha Registro'  width='7' align='left' format='dd-MM-yyyy' />
+		</table>
+
+
+	</pdf-report>
+</config>

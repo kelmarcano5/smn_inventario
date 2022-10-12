@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+
+<head>
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica.css" />
+	<title>Sistema de Seguridad</title>
+	<script type="text/javascript" src="${def:context}/action/script">
+</script>
+
+</head>
+
+<body>
+
+	<form name="form1" onsubmit="return update()" style="width:500px;">
+	
+		<h1>${lbl:s_form_title}</h1>
+		
+		<table>
+		
+			<!--layout-->
+			<col width="40%">
+		
+			<!--form fields-->
+			<tr>
+				<td>${lbl:s_fld_newpassword}</td>
+				<td><input name="passwd" id="passwd" type="password" size="20" maxlength="25" ></td>
+			</tr>
+		
+			<tr>
+				<td>${lbl:s_fld_confirm}</td>
+				<td><input name="confirm" id="confirm" type="password" size="20" maxlength="25" ></td>
+			</tr>
+		
+		</table>
+	
+		<input id="grabar" type="submit" value="${lbl:s_save}">
+	
+	</form>
+
+</center>
+
+</body>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+	onload = function()
+	{ 
+		setFocusOnForm("form1");
+	} 
+	
+	//actualizar registro en BD
+	function update()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/update", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+
+	//restaurar el formulario en caso de error
+	function retryAddnewOrEdit() {
+		document.getElementById("grabar").disabled=false;
+	}
+	
+	function updateOK() {
+		window.location = "${def:context}/action/security/home/welcome";
+	}
+	
+</script>
+
+</html>

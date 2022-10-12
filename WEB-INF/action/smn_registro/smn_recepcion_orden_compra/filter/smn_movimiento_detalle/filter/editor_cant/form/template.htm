@@ -1,0 +1,542 @@
+<!doctype html>
+<html>
+
+<head>
+
+		<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+		<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+	
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+
+</head>
+
+<body>
+
+<!--banner-->
+<div class="bannerDialog" id="encabezado_tabla">
+	${lbl:b_movement_detail}
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+	${req:progress}
+</div>
+
+<!--formulario addnew/edit-->
+<form name="form1" onsubmit="return save()" style="width:500px;">
+
+	<!-- titulo -->
+	<h1 id="formTitle">${lbl:b_add_record}</h1>
+
+	<table>
+
+		<!--ancho de la columna de etiquetas-->
+		<col width="30%">
+
+		<!--campos-->
+		<tr>
+			<td>${lbl:b_movement_head_order}*</td>
+			<td>
+				<input type="text" name="smn_movimiento_cabecera_id" id="smn_movimiento_cabecera_id" style="width: 80%;" />
+			</td>
+		</tr>
+	<tr>
+		<td>${lbl:b_item}</td>
+		<td>
+			<select name="smn_item_rf" id="smn_item_rf" onchange="chgCombo(smn_item_rf.options[smn_item_rf.selectedIndex].text,'smn_item_rf_name');obtenerlote(smn_item_rf.options[smn_item_rf.selectedIndex].text,'smn_item_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_item_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_item_rf_rows>
+			</select> 
+			<input id="smn_item_rf_name" name="smn_item_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr style="display: none;">
+		<td>${lbl:b_cost_centers}*</td>
+		<td>
+			<select name="smn_centro_costo_rf" id="smn_centro_costo_rf" onchange="chgCombo(smn_centro_costo_rf.options[smn_centro_costo_rf.selectedIndex].text,'smn_centro_costo_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_centro_costo_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_centro_costo_rf_rows>
+			</select> 
+			<input id="smn_centro_costo_rf_name" name="smn_centro_costo_rf_name" type="hidden">
+		</td>
+	</tr>
+		<tr id="lote" style="display: none;">
+			<td>${lbl:b_lot}*</td>
+			<td>
+				<input id="mde_lote" onblur="validarFecha()" name="mde_lote" type="text" maxlength="10" class="numeric">
+				<div id="msgErrorLote" style="color: red;"></div>
+			</td>
+		</tr>
+		<tr id="fvenc" style="display: none;">
+			<td>${lbl:b_expiration_date}*</td>
+			<td>
+				<input hidden id="col_fecha_vencimiento" name="col_fecha_vencimiento" type="text" class="date" maxlength="10">
+				<img hidden src="${def:context}/images/dropdown.png" title="Desplegar calendario" onclick="calendarOpen('col_fecha_vencimiento')">
+				<input id="fecha_vencimiento_lote" name="fecha_vencimiento_lote" type="text" class="date" maxlength="10">
+				<img src="${def:context}/images/dropdown.png" id="calendario_lote" title="Desplegar calendario" onclick="calendarOpen('fecha_vencimiento_lote','col_fecha_vencimiento')">
+				<div id="mensaje_fecha_vencimiento" style="color: red;"></div>
+			</td>
+		</tr>
+		<tr style="display: none;">
+			<td>${lbl:b_movement_type}*</td>
+			<td>
+				<select name="mde_tipo_movimiento" id="mde_tipo_movimiento">
+				<option value="EN">${lbl:b_entry}</option>
+				<option value="SA">${lbl:b_exit}</option>
+				<option value="AP">${lbl:b_fit_price}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_requested_amount}</td>
+			<td>
+				<input id="mde_cantidad_solicitada" name="mde_cantidad_solicitada" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_received_amount}*</td>
+			<td>
+				<input onblur="validarCantidad();calcularmontoml();calcularmontoma();calcularmontonetoml();calcularmontonetoma();" id="mde_cantidad_recibida" name="mde_cantidad_recibida" type="text" maxlength="10" class="numeric">
+				<div id="msgErrorCantidad" style="color: red;"></div>
+			</td>
+		</tr>
+		<tr style="display: none;">
+			<td>
+				<input id="mde_cantidad_recibida1" name="mde_cantidad_recibida1" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr style="display: none;">
+			<td>${lbl:b_description}*</td>
+			<td>
+				<input id="mde_descripcion" name="mde_descripcion" type="text" maxlength="48">
+			</td>
+		</tr>
+		<tr style="display: none;">
+			<td>${lbl:b_bonus}*</td>
+			<td>
+				<select name="mde_es_bonificacion" id="mde_es_bonificacion">
+					<option value="NO">${lbl:b_not}</option>
+					<option value="SI">${lbl:b_yes}</option>
+				</select> 
+			</td>
+		</tr>
+		<tr style="display: none;">
+			<td>${lbl:b_unitari_value_ml}*</td>
+			<td>
+				<input id="mde_valor_unitario_ml" name="mde_valor_unitario_ml" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr style="display: none;">
+			<td>${lbl:b_unitari_value_ma}</td>
+			<td>
+				<input id="mde_valor_unitario_ma" name="mde_valor_unitario_ma" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr style="display: none;">
+			<td>${lbl:b_gross_amount_ml}*</td>
+			<td>
+				<input id="mde_monto_bruto_ml" name="mde_monto_bruto_ml" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr style="display: none;">
+			<td>${lbl:b_gross_amount_ma}</td>
+			<td>
+				<input id="mde_monto_bruto_ma" name="mde_monto_bruto_ma" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr style="display: none;">
+			<td>${lbl:b_decrease_amount_ml}</td>
+			<td>
+				<input id="mde_monto_disminucion_ml" name="mde_monto_disminucion_ml" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr style="display: none;">
+			<td>${lbl:b_decrease_amount_ma}</td>
+			<td>
+				<input id="mde_monto_disminucion_ma" name="mde_monto_disminucion_ma" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr style="display: none;">
+			<td>${lbl:b_agree_value_amount_ml}</td>
+			<td>
+				<input id="mde_monto_valor_agregado_ml" name="mde_monto_valor_agregado_ml" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr style="display: none;">
+			<td>${lbl:b_agree_value_amount_ma}</td>
+			<td>
+				<input id="mde_monto_valor_agregado_ma" name="mde_monto_valor_agregado_ma" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr style="display: none;">
+			<td>${lbl:b_net_document_amount_ml}</td>
+			<td>
+				<input id="mde_monto_neto_ml" name="mde_monto_neto_ml" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr style="display: none;">
+			<td>${lbl:b_net_document_amount_ma}</td>
+			<td>
+				<input id="mde_monto_neto_ma" name="mde_monto_neto_ma" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr style="display: none;">
+			<td>${lbl:b_status}*</td>
+			<td>
+				<input id="mde_estatus" name="mde_estatus" type="text" maxlength="2">
+			</td>
+		</tr>
+
+	</table>
+
+	<!--botones-->
+	<input id="grabar" type="submit" value="${lbl:b_save_button}" class="button">
+	<input id="limpiar" type="button" value="${lbl:b_clean_button}" onclick="addNew()" class="button">	
+	<input id="copiar" type="button" value="${lbl:b_copy_button}" onclick="getFormValuesToCopy('form1')" class="button">
+	<input id="pegar" type="button" value="${lbl:b_paste_button}" onclick="getFormValuesToPaste('form1')" class="button">
+	<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog(); parent.search();" class="button">
+	<!-- PK-->
+<input type="hidden" id="smn_movimiento_detalle_id" name="id">
+
+</form>
+
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='25%'/>
+	<col width='25%'/>
+	<col width='25%'/>
+	<col width='25%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="4" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th class='sortable'>${lbl:b_number} NE/DP</th>
+		<th class='sortable'>${lbl:b_lot}</th>
+		<th class='sortable'>${lbl:b_expiration_date}</th>
+		<th class='sortable'>${lbl:b_received_amount}</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+		<tr> 
+			<td>${fld:crp_numero_documento}</td>
+			<td>${fld:crp_lote}</td>
+			<td>${fld:crp_fecha_vencimiento_lote}</td>
+			<td id="table_cantidad_recibida">${fld:crp_cantidad_recibida}</td>
+		</tr>
+	</rows>
+
+</table>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+		
+	onload = function()
+	{ 
+		var mde_estatus = "<mde_estatus_rows>${fld:item}</mde_estatus_rows>";
+		
+		if(mde_estatus == "RC")
+		{
+			alertBox("No se puede editar un registro *RECIBIDO*",'${lbl:b_continue_button}',null,'parent.closeDialog(); parent.search();');
+		}
+		else
+		if(mde_estatus == "CE")
+		{
+			alertBox("No se puede editar un registro *CERRADO*",'${lbl:b_continue_button}',null,'parent.closeDialog(); parent.search();');
+		}
+		else
+		{
+			if (id!="")
+				edit(id);
+		}
+	} 
+	
+	function validarInt(dato)
+	{
+		if(dato != "")
+			return parseInt(dato);
+		else
+			return 0;
+	}
+
+	function validarFloat(dato)
+	{
+		if(dato != "")
+			return parseFloat(dato);
+		else
+			return 0.0;
+	}
+
+	function chgCombo(text,id)
+	{
+		document.getElementById(id).value = text;
+	}
+	
+	//configurar formulario para ingresar registro nuevo
+	function addNew()
+	{
+		document.getElementById("formTitle").innerHTML = "${lbl:b_add_record}";
+		document.getElementById("grabar").disabled=false;
+		clearForm("form1");
+		setFocusOnForm("form1");
+	}
+	
+	//retorna al estado previo que corresponde
+	//al estado actual de la pagina, cada llamada Ajax
+	//se encarga de definir cual es la funcion de goBack() que aplica
+	function goBack() 
+	{
+		_goBackFn()			
+	}
+	
+	//mostrar la actualizacion de un registro
+	function insert()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/insert", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+	
+	//restaurar el formulario en caso de error
+	function retryAddnewOrEdit() {
+		document.getElementById("grabar").disabled=false;
+		setFocusOnForm("form1");		
+	}
+	
+	var id = "${fld:id}"
+	
+	//grabar el formulario
+	function save()
+	{
+		var calendario_lote = document.getElementById('calendario_lote');
+		var mensaje_fecha_vencimiento_lote = document.getElementById('mensaje_fecha_vencimiento');
+		var fecha_vencimiento_lote = document.getElementById('fecha_vencimiento_lote');
+		
+		if(!calendario_lote.hidden)
+		{
+			if(fecha_vencimiento_lote.value == "")
+			{
+				mensaje_fecha_vencimiento_lote.innerHTML="Este valor DEBE ser ingresado"
+				return false;
+			}
+		}
+		
+		return update();
+	}
+	
+	//editar registro en formulario
+	function edit(id)
+	{
+			clearErrorMessages();
+
+			//llamada Ajax...
+			ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/edit?id=" + id , 
+							divResponse=null, 
+							divProgress="status", 
+							formName=null, 
+							afterResponseFn=null, 
+							onErrorFn=null);	
+	}
+	
+	//actualizar registro en BD
+	function update()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/update", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+
+  function calcularmontoma()
+  {
+  	var can = parseFloat(document.getElementById("mde_cantidad_recibida").value);
+  	var precio = parseFloat(document.getElementById("mde_valor_unitario_ma").value);
+  	var monto = 0;
+
+  	if(can)
+  		monto = can * precio;
+
+  	document.getElementById("mde_monto_bruto_ma").value = monto;
+  }
+  function calcularmontoml()
+  {
+  	var can = parseFloat(document.getElementById("mde_cantidad_recibida").value);
+  	var precio = parseFloat(document.getElementById("mde_valor_unitario_ml").value);
+  	var monto = 0;
+
+  	if(can)
+  		monto = can * precio;
+
+  	document.getElementById("mde_monto_bruto_ml").value = monto;
+  }
+  function calcularmontonetoml()
+  {
+  	var brt= parseFloat(document.getElementById("mde_monto_bruto_ml").value);
+  	var dis = parseFloat(document.getElementById("mde_monto_disminucion_ml").value);
+  	var agr = parseFloat(document.getElementById("mde_monto_valor_agregado_ml").value);
+	var monto = 0;
+
+  	monto = brt - dis + agr; 
+
+  	document.getElementById("mde_monto_neto_ml").value = monto;
+  }
+  function calcularmontonetoma()
+  {
+  	var brt= parseFloat(document.getElementById("mde_monto_bruto_ma").value);
+  	var dis = parseFloat(document.getElementById("mde_monto_disminucion_ma").value);
+  	var agr = parseFloat(document.getElementById("mde_monto_valor_agregado_ma").value);
+	var monto = 0;
+
+  	monto = brt - dis + agr; 
+  // alert(monto);
+
+  		document.getElementById("mde_monto_neto_ma").value = monto;
+  }
+  
+  function validarCantidad()
+  {
+  	var cantidad_ingresada = document.getElementById("mde_cantidad_recibida");
+ 	var cantidad_solicitada = parseFloat(document.getElementById("mde_cantidad_solicitada").value);
+ 	var cantidad_recibida = document.getElementById('mde_cantidad_recibida1');
+ 	
+ 	if(cantidad_recibida.value)
+ 		cantidad_recibida = parseFloat(document.getElementById('mde_cantidad_recibida1').value);
+ 	else
+ 		cantidad_recibida = 0;
+
+ 	if(cantidad_ingresada.value)
+ 		cantidad_ingresada = parseFloat(document.getElementById('mde_cantidad_recibida').value);
+ 	else
+ 		cantidad_ingresada = 0;
+
+ 	var cantidad_permitida = cantidad_solicitada-cantidad_recibida;
+
+ 	if(cantidad_ingresada > cantidad_solicitada)
+ 	{
+ 		document.getElementById("msgErrorCantidad").innerHTML = "La cantidad no puede ser mayor a "+cantidad_solicitada;
+ 		document.getElementById("grabar").disabled=true;
+ 		document.getElementById("mde_cantidad_recibida").focus();
+ 		return false;
+ 	}
+ 	else
+ 	/*
+ 	if(cantidad_ingresada < 1)
+ 	{
+ 		document.getElementById("msgErrorCantidad").innerHTML = "La cantidad no puede ser menor a 1";
+ 		document.getElementById("grabar").disabled=true;
+ 		document.getElementById("mde_cantidad_recibida").focus();
+ 		return false;
+ 	}
+ 	else
+ 	*/
+ 	if(cantidad_ingresada > cantidad_permitida)
+ 	{
+ 		document.getElementById("msgErrorCantidad").innerHTML = "La cantidad no puede ser mayor a "+cantidad_permitida;
+ 		document.getElementById("grabar").disabled=true;
+ 		document.getElementById("mde_cantidad_recibida").focus();
+ 		return false;
+ 	}
+ 	else
+ 	{
+ 		if(cantidad_ingresada > 0)
+ 			document.getElementById("mde_estatus").value = "PE";
+ 		else
+ 		if((cantidad_ingresada+cantidad_recibida) == 0)
+ 			document.getElementById("mde_estatus").value = "RE";
+ 		else
+ 		if((cantidad_ingresada+cantidad_recibida) == cantidad_solicitada)
+ 			document.getElementById("mde_estatus").value = "RC";
+ 		else
+ 		if((cantidad_ingresada+cantidad_recibida) < cantidad_solicitada)
+ 			document.getElementById("mde_estatus").value = "PR";
+ 					
+ 		document.getElementById("msgErrorCantidad").innerHTML = "";
+ 		document.getElementById("grabar").disabled=false;
+ 		return true;
+ 	}
+  }
+
+  function getIDSelectedIndex(combo) 
+	{
+	    for (var i = 0; i < combo.options.length; i++) 
+	    {
+	        if (combo.options[i].selected == true) 
+	        {
+	            return combo.options[i].value;
+	        }
+	    }
+	}
+
+  function obtenerlote(text, id) {
+  	//llamada Ajax...
+
+		var combo = document.getElementById('smn_item_rf');
+		var valueCombo = getIDSelectedIndex(combo);
+
+		if(valueCombo != "")
+		{
+			return ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/obtenerlote?id=" + valueCombo, 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=null);
+		}
+		else
+		{
+			document.getElementById('lote').style.display='none';
+			document.getElementById('fvenc').style.display='none';
+			document.getElementById('mde_lote').value = 0;
+		}
+  }
+
+  function validarFecha()
+  	{
+  		var lote = document.getElementById('mde_lote').value;
+
+		if(lote!="")
+		{
+			var result =  ajaxCall(	
+								httpMethod="GET", 
+								uri="${def:actionroot}/validarFecha?mde_lote="+lote, 
+								divResponse=null, 
+								divProgress="status", 
+								formName="form1", 
+								afterResponseFn=null,
+								onErrorFn=null);
+		}
+  	}
+
+</script>	
+</body>
+</html>

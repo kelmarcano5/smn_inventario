@@ -1,0 +1,64 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="13">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick="sortBy('smn_movimiento_cabecera_id','query-smnmovimientodetalle.sql')" >${lbl:b_movement_head}</th>
+		<th class='sortable' onclick="sortBy('mde_es_bonificacion_combo','query-smnmovimientodetalle.sql')" >${lbl:b_bonus}</th>
+		<th class='sortable' onclick="sortBy('mde_cantidad','query-smnmovimientodetalle.sql')" >${lbl:b_quantity}</th>
+		<th class='sortable' onclick="sortBy('mde_lote','query-smnmovimientodetalle.sql')" >${lbl:b_lot}</th>
+		<th class='sortable' onclick="sortBy('mde_descripcion','query-smnmovimientodetalle.sql')" >${lbl:b_description}</th>
+		<th class='sortable' onclick="sortBy('smn_unidad_medida_rf_combo','query-smnmovimientodetalle.sql')" >${lbl:b_measurement_unit}</th>
+		<th class='sortable' onclick="sortBy('smn_precio_ml','query-smnmovimientodetalle.sql')" >${lbl:b_price}</th>
+		<th class='sortable' onclick="sortBy('smn_precio_ma','query-smnmovimientodetalle.sql')" >${lbl:b_coins_altern_price}</th>
+		<th class='sortable' onclick="sortBy('mde_estatus_combo','query-smnmovimientodetalle.sql')" >${lbl:b_status}</th>
+		<th class='sortable' onclick="sortBy('mde_fecha_registro','query-smnmovimientodetalle.sql')" >${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_movimiento_detalle_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_movimiento_detalle_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_movimiento_detalle_id}')" title="${lbl:b_edit_button}"></td>
+		<td align="center">${fld:smn_movimiento_cabecera_id}</td>
+		<td align="left">${fld:mde_es_bonificacion_combo}</td>
+		<td align="center">${fld:mde_cantidad}</td>
+		<td align="center">${fld:mde_lote}</td>
+		<td align="left">${fld:mde_descripcion}</td>
+		<td align="center">${fld:smn_unidad_medida_rf_combo}</td>
+		<td align="right">${fld:smn_precio_ml@#,###,##0.00}</td>
+		<td align="right">${fld:smn_precio_ma@#,###,##0.00}</td>
+		<td align="left">${fld:mde_estatus_combo}</td>
+		<td align="center">${fld:mde_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

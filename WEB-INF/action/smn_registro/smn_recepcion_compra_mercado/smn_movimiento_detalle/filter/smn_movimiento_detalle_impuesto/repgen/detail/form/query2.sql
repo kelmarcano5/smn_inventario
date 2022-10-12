@@ -1,0 +1,17 @@
+select
+		smn_inventario.smn_movimiento_detalle_impuesto.smn_mov_det_impuesto_id,
+	smn_inventario.smn_movimiento_detalle_impuesto.smn_movimiento_detalle_id,
+	smn_inventario.smn_movimiento_detalle_impuesto.smn_cod_impuesto_deduc_rf,
+	smn_inventario.smn_movimiento_detalle_impuesto.mdi_monto_base,
+	smn_inventario.smn_movimiento_detalle_impuesto.smn_porcentaje_impuesto_rf,
+	smn_inventario.smn_movimiento_detalle_impuesto.mdi_sustraendo_rf,
+	smn_inventario.smn_movimiento_detalle_impuesto.mdi_tipo_movimiento,
+	smn_inventario.smn_movimiento_detalle_impuesto.mdi_monto_impuesto_ml,
+	smn_inventario.smn_movimiento_detalle_impuesto.smn_moneda,
+	smn_inventario.smn_movimiento_detalle_impuesto.smn_tasa,
+	smn_inventario.smn_movimiento_detalle_impuesto.mdi_monto_impuesto_ma,
+	smn_inventario.smn_movimiento_detalle_impuesto.mdi_fecha_registro
+from
+	smn_inventario.smn_movimiento_detalle_impuesto 
+where
+	smn_inventario.smn_movimiento_detalle_impuesto.smn_movimiento_detalle_impuesto_id = ${fld:id}

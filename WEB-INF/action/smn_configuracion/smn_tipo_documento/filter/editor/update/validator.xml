@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='tdc_codigo' type='varchar' required='true' label='${lbl:b_code}' maxlen='10'/>
+	<parameter id='tdc_nombre' type='varchar' required='true' label='${lbl:b_name}' maxlen='100'/>
+	<parameter id='tdc_naturaleza' type='varchar' required='true' label='${lbl:b_nature}' maxlen='2'/>
+	<parameter id='tdc_vigencia' type='date' required='true' label='${lbl:b_validation_date}' maxlen='10'/>
+	<parameter id='tdc_estatus' type='varchar' required='true' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_document_type}' maxlen='10'/>
+
+
+</validator>

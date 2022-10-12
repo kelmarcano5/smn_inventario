@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='_contenttype' type='varchar' required='false' label='Formato' maxlen='150'/>
+	<parameter id='_filename' type='varchar' required='false' label='Nombre del archivo' maxlen='400'/>
+	<parameter id='_filesize' type='integer' required='false' label='Tamaño del archivo'/>
+	<parameter id='_tempfile' type='varchar' required='false' label='Ruta del archivo temporal'/>
+	<parameter id='_filenametemp' type='varchar' required='false' label='Nombre del archivo temporal'/>
+	
+	<custom-validator 
+		classname="dinamica.validators.ExcelFormatValidator" 
+		on-error-label="Formato Excel no reconocido; use Excel 97, XP o 2003." 
+		parameter-tempfile="_tempfile" id="file"/>
+	
+</validator>

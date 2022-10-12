@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='smn_movimiento_detalle_id' type='integer' required='false' label='${lbl:b_detail_movement}' maxlen='10'/>
+	<parameter id='smn_caracteristica_almacen_id' type='integer' required='false' label='${lbl:b_feature_store}' maxlen='10'/>
+	<parameter id='smn_caracteristica_item_id' type='integer' required='false' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='ubc_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='ubc_estatus' rule='like' />
+	<parameter id='ubc_fecha_registro_ini' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.DateRangeValidator' on-error-label='[${lbl:b_store_date}@{${def:date}} mayor o igual que] no puede ser mayor que [${lbl:b_store_date}@{${def:date}} menor o igual que].' date1='ubc_fecha_registro_ini' date2='ubc_fecha_registro_fin' id='ubc_fecha_registro_ini' />
+	<parameter id='ubc_fecha_registro_fin' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+</validator>

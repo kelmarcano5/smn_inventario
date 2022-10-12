@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smncontrollote.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="7" cellStep="0" name="${lbl:b_control_lot}"/>
+	
+	<excel 
+		recordset='query-smncontrollote.sql' 
+		sheetname='${lbl:b_control_lot}' 
+		filename='${lbl:b_control_lot}.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='smn_entidad_rf' label='${lbl:b_entities}' />
+		<col id='smn_sucursal_rf' label='${lbl:b_subsidiaries}' />
+		<col id='smn_caracteristica_almacen_id' label='${lbl:b_feature_store}' />
+		<col id='smn_caracteristica_item_id' label='${lbl:b_item}' />
+		<col id='col_lote' label='${lbl:b_lot}' />
+		<col id='col_fecha_vencimiento' label='${lbl:b_expiration_date}' />
+		<col id='col_cantidad_inicial' label='${lbl:b_initial_quantity}' />
+		<col id='col_entradas' label='${lbl:b_input}' />
+		<col id='col_salidas' label='${lbl:b_output}' />
+		<col id='col_cantidad_final' label='${lbl:b_final_quantity}' />
+		<col id='col_idioma' label='${lbl:s_profile_lang}' />
+		<col id='col_usuario' label='${lbl:b_users}' />
+		<col id='col_fecha_registro' label='${lbl:b_store_date}' />
+		<col id='col_hora' label='${lbl:s_loginhist_col2}' />
+
+	</excel>
+
+</config>

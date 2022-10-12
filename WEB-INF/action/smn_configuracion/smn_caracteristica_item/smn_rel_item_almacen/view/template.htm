@@ -1,0 +1,52 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='16%'/>
+	<col width='16%'/>
+	<col width='16%'/>
+	<col width='16%'/>
+	<col width='16%'/>
+	<col width='16%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="9" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_caracteristica_item_id","query-smnrelitemalmacen.sql")'>${lbl:b_caracteristicas_item}</th>
+		<th class='sortable' onclick='sortBy("smn_almacen_rf","query-smnrelitemalmacen.sql")'>${lbl:b_stores}</th>
+		<th class='sortable' onclick='sortBy("ria_cantidad_max","query-smnrelitemalmacen.sql")'>${lbl:b_cantidad_maxima}</th>
+		<th class='sortable' onclick='sortBy("ria_cantidad_min","query-smnrelitemalmacen.sql")'>${lbl:b_cantidad_minima}</th>
+		<th class='sortable' onclick='sortBy("ria_punto_reorden","query-smnrelitemalmacen.sql")'>${lbl:b_punto_reorden}</th>
+		<th class='sortable' onclick='sortBy("ria_cantidad_seguridad","query-smnrelitemalmacen.sql")'>${lbl:b_cantidad_seguridad}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_rel_item_almacen_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_rel_item_almacen_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_rel_item_almacen_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:smn_caracteristica_item_id}</td>
+		<td>${fld:smn_almacen_rf}</td>
+		<td>${fld:ria_cantidad_max}</td>
+		<td>${fld:ria_cantidad_min}</td>
+		<td>${fld:ria_punto_reorden}</td>
+		<td>${fld:ria_cantidad_seguridad}</td>
+
+	</tr>
+	</rows>
+
+</table>

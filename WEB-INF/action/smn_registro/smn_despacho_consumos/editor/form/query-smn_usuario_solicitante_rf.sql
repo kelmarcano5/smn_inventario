@@ -1,0 +1,1 @@
+select smn_usuarios_id as id, usr_usuario as item from smn_base.smn_usuarios order by smn_usuarios_id

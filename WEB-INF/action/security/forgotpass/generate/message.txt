@@ -1,0 +1,12 @@
+A petición tuya tu contraseña acaba de ser regenerada.
+Tu contraseña temporal para ingresar al Sistema es:
+
+${fld:passwd_clear}
+
+Cuando ingreses usando esta contraseña, por medidas de seguridad
+de inmediato se te solicitará que la cambies.
+
+Atentamente,
+Martín Córdova y Asociados C.A
+
+NOTA: Este es un mensaje generado automáticamente, por favor no lo responda. Gracias.

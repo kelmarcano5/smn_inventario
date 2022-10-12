@@ -1,0 +1,1 @@
+select last_value as smn_movimiento_cabecera_id from smn_inventario.seq_smn_movimiento_cabecera

@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnproyeccioncompras.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="3" cellStep="0" name="Proyecciones de Compras"/>
+	
+	<excel 
+		recordset='query-smnproyeccioncompras.sql' 
+		sheetname='Proyecciones de Compras' 
+		filename='Proyecciones de Compras.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='itm_codigo' label='${lbl:b_code} ${lbl:b_item}' />
+		<col id='itm_nombre' label='${lbl:b_description} ${lbl:b_item}' />
+		<col id='ventas' label='Ventas' />
+		<col id='pedidos_registrados' label='Pedidos Registrados' />
+		<col id='consumos' label='Consumos' />
+		<col id='existencia' label='Existencia' />
+		<col id='compras_colocadas' label='Compras Colocadas' />
+		<col id='sugerencia' label='Sugerencia' />
+		<col id='decision_compras' label='Decision Compra' />
+
+	</excel>
+
+</config>

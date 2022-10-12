@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='repgen.filter' onerror='/action/error/validation/ajax'>
+
+	<parameter id='fdesde' type='date' required='false' label='Fecha desde'/>
+	<parameter id='fhasta' type='date' required='false' label='Fecha hasta'/>
+	
+	<parameter id='smn_conteo_id' type='integer' required='false' label='${lbl:b_conteo}' maxlen='10'/>
+	<parameter id='smn_item_id' type='integer' required='false' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='cfi_cantidad' type='integer' required='false' label='${lbl:b_quantity}' maxlen='10'/>
+	<parameter id='smn_unidad_medida_almacenaje_id' type='integer' required='false' label='${lbl:b_measurement_unit}' maxlen='10'/>
+	<parameter id='cfi_costo' type='double' required='false' label='${lbl:b_cost}' maxlen='10'/>
+	<parameter id='smn_auxiliar_1_rf' type='integer' required='false' label='${lbl:b_auxiliary}' maxlen='10'/>
+	<parameter id='smn_auxiliar_2_rf' type='integer' required='false' label='${lbl:b_auxiliary}' maxlen='10'/>
+	<parameter id='cfi_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='10'/>
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='cfi_estatus'
+		rule='contains' />
+
+
+
+	<custom-validator
+			classname='dinamica.validators.ArrayNotEmptyValidator'
+			on-error-label='Seleccione al menos un campo para la generación del reporte.'
+			parameter-name='field_id' 
+			id='field_id' />
+
+	<custom-validator 
+			classname='dinamica.validators.ArrayToRecordset'
+			paramName='field_id' 
+			recordsetId='fields' 
+			colName='field_id' 
+			colType='integer' />
+				
+</validator>

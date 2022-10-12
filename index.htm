@@ -1,0 +1,237 @@
+<!doctype html>
+<html>
+
+<head>
+
+    <title>Modulo de Inventario</title>
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <link rel="stylesheet" type="text/css" href="dinamica.css" />
+
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="action/script">
+	</script>
+
+	<script type="text/javascript">
+	
+		if (top.frames.length!=0) {
+		    if (window.location.href.replace)
+		        top.location.replace(self.location.href);
+		    else
+		        top.location.href=self.document.href;
+		}
+		
+		onload = function() { 
+			displayLogin();
+		} 
+		
+		//ejecutar login
+		function login() {
+			clearErrorMessages();
+			document.getElementById("loginbutton").disabled=true;
+			return ajaxCall(	httpMethod="POST", 
+								uri="/action/security/login", 
+								divResponse="form_error", 
+								divProgress="status", 
+								formName="form1", 
+								afterResponseFn=null, 
+								onErrorFn=enableLoginButton);
+		}
+		
+		//rehabilitar boton de login en caso de error
+		function enableLoginButton() {
+			document.getElementById("loginbutton").disabled=false;
+		}
+		
+		//mostrar form de login
+		function displayLogin() {
+			document.getElementById("form1").style.display="";
+			document.getElementById("form2").style.display="none";
+			setFocusOnForm("form1");
+		}
+		
+		//mostrar form de forgot password
+		function displayForgotPass() {
+			document.getElementById("grabar").disabled=false;
+			document.getElementById("form1").style.display="none";
+			document.getElementById("form2").style.display="";
+			clearForm("form2");
+			setFocusOnForm("form2");
+		}
+		
+		//regenerar password
+		function getNewPassword() {		
+
+			document.getElementById("grabar").disabled=true;
+			clearErrorMessages();
+				
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+								uri="/action/security/forgotpass/generate", 
+								divResponse=null, 
+								divProgress="status2", 
+								formName="form2", 
+								afterResponseFn=null, 
+								onErrorFn=newPasswordFail);	
+		}
+		
+		//esconder formulario de nuevo login
+		function newPasswordOK() {
+			document.getElementById("form2").style.display="none";
+		}
+
+		//rehabilitar boton de regenerar password en caso de error
+		function newPasswordFail() {
+			document.getElementById("grabar").disabled=false;
+		}
+		
+		//mostrar imagen y esconder su indicador de progreso de carga
+		function displayCaptcha(captchaID) {
+			document.getElementById("status2").style.display='none';
+			document.getElementById(captchaID).style.display='';
+		}	
+
+		//regenerar captcha
+		function reloadCaptcha(captchaID) {
+			document.getElementById("status2").style.display='';
+			document.getElementById(captchaID).src = "action/security/getcaptcha?dummy=" + Math.random();
+		}
+	</script>
+
+	<style type="text/css">
+		.main {
+			box-shadow: 0px 0px 15px 3px #61606c;
+			border-radius: 5px;
+			behavior: url(/smn_compras/pie.htc); /* IE8 */
+		}
+	</style>
+
+</head>
+
+<body style="background-color:#f2f2f2; overflow:hidden">
+	
+	<!-- recuadro principal -->
+	<div class="main" style="margin:0 auto; background-color:#ffffff; width:970px; height:400px; margin-top:20px;">
+	
+		<!-- nombre del sistema -->
+		<div style="float:left;width:30%;margin-left:10px;margin-top:5px;">
+
+			<h1 style="font-size:14pt;margin-top:0px;">Modulo de Inventario</h1>
+
+			<p style="font-size:10pt;">
+			C.SIMONE 12015,C.A.<br/>
+			RIF: J-29868659-6<br/> 
+			</p>
+
+		</div>
+	
+		<!-- formularios -->
+		<div style="float:right;width:40%;margin-right:5px;margin-top:5px;">
+
+				<!--login form-->
+				<form  id="form1"  name="form1" onsubmit="return login()" style="width:350px;">
+	
+					<img id="status" style="float:right;margin-right:10px;margin-top:7px;display:none" src="images/progress.gif">
+					<h1>Ingresar al Sistema</h1>
+			 		
+					<table>
+						<col style="width:30%">
+					
+						<!--form fields-->
+						<tr>
+							<td>
+								Identificador
+							</td>
+							<td>
+								<input name="userlogin" id="userlogin" type="text" maxlength="100" autocomplete="off">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Contraseña
+							</td>
+							<td>
+								<input name="passwd" id="passwd" type="password" maxlength="40" autocomplete="off">
+							</td>
+						</tr>
+						<tr>
+							<td align="center" colspan="2">
+								<div id="form_error" class="errormsg"></div>
+							</td>
+						</tr>
+					</table>
+					
+					<input id="loginbutton" type="submit" value="Ingresar">
+					<input type="button" onclick="displayForgotPass()" value="Olvidé mi contraseña" style="width:170px">
+
+					<!--URI to navigate after sucessful login-->
+					<input type="hidden" name="uri" value="/action/security/home">
+
+				</form>
+				<!-- end login form -->
+		
+				<!--password form-->	
+				<form id="form2" name="form2" onsubmit="return getNewPassword()" style="width:350px;display:none">
+				
+					<img id="status2" style="float:right;margin-right:10px;margin-top:7px;display:none" src="images/progress.gif">
+					<h1>Regenerar contraseña</h1>
+			 		
+					<table>
+						<col style="width:30%">
+					
+						<!--campos-->
+						<tr>
+							<td>
+								Identificador
+							</td>
+							<td>
+								<input id="userlogin2" name="userlogin2" type="text" maxlength="100" autocomplete="off">
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								Email
+							</td>
+							<td>
+								<input id="email" name="email" type="text" maxlength="100" autocomplete="off">
+							</td>
+						</tr>
+					
+						<tr>
+							<td>
+							</td>
+							<td align="left" style="vertical-align:top;">
+								<img id="captchaimg" src="action/security/getcaptcha" border="1" onload="displayCaptcha('captchaimg')" 
+								onclick="reloadCaptcha('captchaimg')" style="display:block;" title="Haga clic arriba para regenerar la imagen">
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								Anti-Spam
+							</td>
+							<td>
+								<input id="captcha" name="captcha" type="text" maxlength="6" style="display:block;">
+								<div style="font-size:9pt;width:90%">Favor tipear los caracteres que aparecen en la imagen de arriba.</div>
+							</td>
+						</tr>
+						
+					</table>
+					
+					<input id="grabar" type="submit" value="Grabar">
+					<input id="cancelar" type="button" value="Cancelar" onclick="displayLogin()">				
+				
+				</form>
+				<!-- end password form -->		
+		
+		</div>
+	
+	</div>
+
+	<!--marca especial para que el codigo Ajax pueda reconocer un redirect a login-->
+	<span style="display:none">_ajax_VE8374yz_</span>
+
+</body>
+
+</html>

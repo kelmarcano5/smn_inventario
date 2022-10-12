@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Mensaje que aparece cuando no encuentra data
+	</summary>
+
+	<log>false</log>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>message.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/plain; charset=iso-8859-1</content-type>
+	</output>
+
+</config>

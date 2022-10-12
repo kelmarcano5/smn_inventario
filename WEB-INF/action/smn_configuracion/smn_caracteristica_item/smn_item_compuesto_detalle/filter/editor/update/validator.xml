@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_caracteristica_item_id' type='integer' required='true' label='${lbl:b_caracteristicas_item}' maxlen='10'/>
+	<parameter id='smn_item_id' type='integer' required='true' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='icd_cantidad' type='double' required='true' label='${lbl:b_quantity}' maxlen='10'/>
+	<parameter id='smn_unidad_medida_rf' type='integer' required='true' label='${lbl:b_measurement_unit}' maxlen='10'/>
+	<parameter id='icd_estatus' type='varchar' required='true' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='icd_vigencia' type='date' required='true' label='${lbl:b_validation_date}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_item_composed_detail}' maxlen='10'/>
+
+
+</validator>

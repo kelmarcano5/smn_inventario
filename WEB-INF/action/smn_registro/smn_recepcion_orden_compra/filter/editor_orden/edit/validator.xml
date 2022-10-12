@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/alert">
+	<parameter id="id" type="integer" required="true" label="ID" maxlen="10" />
+	<parameter id="smn_entidad_rf" type="varchar" required="false" label="smn_entidad_rf" maxlen="100" />
+	<parameter id="smn_almacen_rf_selec" type="varchar" required="false" label="smn_almacen_rf_selec" maxlen="100" />
+</validator>

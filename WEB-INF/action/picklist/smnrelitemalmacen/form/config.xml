@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF8'?>
+<config>
+
+	<summary>
+		${lbl:b_relacion_item_almacen}
+	</summary>
+
+	<log>false</log>
+	
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id='query-smn_almacen_rf.sql' source='sql' scope='transaction'/>
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>template.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/html</content-type>
+		<print mode='table' recordset='query-smn_almacen_rf.sql' tag='smn_almacen_rf_rows'/>
+	</output>
+
+</config>

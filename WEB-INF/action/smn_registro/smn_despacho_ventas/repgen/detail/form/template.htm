@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+	
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+
+	<script type="text/javascript">
+		//invoca la generacion de un PDF en un popup
+		function openPDF()
+		{
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/pdf?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a excel
+		function openExcel() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/excel?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a xml
+		function openXml(id) {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/xml?id=" + id;
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a texto
+		function openTxt(id) {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/txt?id=" + id;
+			var w = window.open(url, null, features);
+		}
+		
+		//envio de emails
+		function openEmails() {
+			var uri = "${def:context}${def:actionroot}/email/form";					
+			openDialog("editor0", uri, 980, 600);	
+		}
+		
+	</script>
+
+</head>
+
+<body>
+
+	<!--banner-->
+	<div class="bannerDialog" id="encabezado_tabla">
+		${lbl:b_despacho_id}
+		<img src="${def:context}/images/pdf.png" onclick="openPDF()" title="${lbl:b_export_pdf}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/excel.png" onclick="openExcel()" title="${lbl:b_export_excel}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/file-xml4.png" onclick="openXml('${fld:smn_despacho_id}')" title="${lbl:b_export_xml}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/file-text.png" onclick="openTxt('${fld:smn_despacho_id}')" title="${lbl:b_export_txt}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/emails.png" onclick="openEmails()" title="${lbl:s_profile_email}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog()" title="${lbl:b_close_button}" style="float:right; cursor:pointer;"/>
+	</div>
+
+<!--parametros de busqueda-->
+<table class="record" style="width:400px;">
+
+	<!--ancho de columna de etiquetas-->
+	<col width="50%">
+	<col width="50%">
+
+	<!--campos-->
+			<tr>
+		<td>${lbl:b_modulo_rf}</td>
+		<td>
+			<input id="smn_modulo_rf" name="smn_modulo_rf" type="text" maxlength="10" class="numeric" disabled >
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_numero_documento_origen}</td>
+		<td>
+			<input id="des_numero_documento_origen" name="des_numero_documento_origen" type="text" maxlength="10" class="numeric" disabled >
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_documento_id}</td>
+		<td>
+			<input id="smn_documento_id" name="smn_documento_id" type="text" maxlength="10" class="numeric" disabled >
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_numero_documento}</td>
+		<td>
+			<input id="des_numero_documento" name="des_numero_documento" type="text" maxlength="10" class="numeric" disabled >
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_entidad_rf}</td>
+		<td>
+			<input id="smn_entidad_rf" name="smn_entidad_rf" type="text" maxlength="10" class="numeric" disabled >
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_almacen_rf}</td>
+		<td>
+			<input id="smn_almacen_rf" name="smn_almacen_rf" type="text" maxlength="10" class="numeric" disabled >
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_clase_auxiliar_rf}</td>
+		<td>
+			<input id="smn_clase_auxiliar_rf" name="smn_clase_auxiliar_rf" type="text" maxlength="10" class="numeric" disabled >
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_auxiliar_rf}</td>
+		<td>
+			<input id="smn_auxiliar_rf" name="smn_auxiliar_rf" type="text" maxlength="10" class="numeric" disabled >
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_unidad_organizativa_rf}</td>
+		<td>
+			<input id="smn_unidad_organizativa_rf" name="smn_unidad_organizativa_rf" type="text" maxlength="10" class="numeric" disabled >
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_status}</td>
+		<td>
+			<select name="des_estatus" id="des_estatus" disabled >
+				<option value="">[Cualquiera]</option>
+				<option value="GE">${lbl:b_generada}</option>
+				<option value="TR">${lbl:b_transporte}</option>
+				<option value="AP">${lbl:b_aprobada}</option>
+				<option value="RE">${lbl:b_rechazada}</option>
+				<option value="EN">${lbl:b_entregada}</option>
+				<option value="PE">${lbl:b_parcialmente_entregada}</option>
+				<option value="CE">${lbl:b_cerrada}</option>
+
+			</select> 
+		</td>
+	</tr>
+	<tr>
+		<td width="40%">${lbl:b_store_date_grater_than}:</td>
+		<td style="background-color: white">${fld:fdesde@dd-MM-yyyy}</td>
+	</tr>
+	<tr>
+		<td width="40%">${lbl:b_store_date_less_than}:</td>
+		<td style="background-color: white">${fld:fhasta@dd-MM-yyyy}</td>
+	</tr>
+
+</table>
+
+<br>
+
+<!--data grid-->
+<table class="datagrid" width="${fld:width_total}" style="width:80%;">
+
+	<!--data-->
+	<rows>
+
+		<cols>		
+		<tr>	
+			<td width="40%" align="${fld:align}">${fld:alias}</td>
+			<td style="background-color: white" align="${fld:align}">${fld:market}}</td>
+		</tr>
+		</cols>
+	
+	</rows>
+
+</table>
+
+	<br>
+	<div  align="center">
+		<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog()" class="button">
+	</div>
+
+</body>
+
+</html>

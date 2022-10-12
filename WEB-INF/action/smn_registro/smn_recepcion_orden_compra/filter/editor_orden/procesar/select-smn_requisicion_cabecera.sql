@@ -1,0 +1,11 @@
+SELECT
+	smn_compras.smn_requisicion_cabecera.smn_documento_id,
+	smn_compras.smn_requisicion_cabecera.req_numero
+FROM
+	smn_compras.smn_requisicion_cabecera
+INNER JOIN 
+	smn_compras.smn_orden_compra_cabecera ON smn_compras.smn_requisicion_cabecera.smn_requisicion_cabecera_id = smn_compras.smn_orden_compra_cabecera.smn_requisicion_cabecera_id
+INNER JOIN
+	smn_inventario.smn_movimiento_cabecera ON smn_inventario.smn_movimiento_cabecera.smn_orden_compra_rf = smn_compras.smn_orden_compra_cabecera.smn_orden_compra_cabecera_id
+WHERE
+	smn_inventario.smn_movimiento_cabecera.smn_movimiento_cabecera_id = ${fld:smn_movimiento_cabecera_id}

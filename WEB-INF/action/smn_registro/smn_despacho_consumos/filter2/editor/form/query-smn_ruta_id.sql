@@ -1,0 +1,1 @@
+select smn_ruta_id as id, rut_codigo  ||' - '|| rut_nombre as item from smn_inventario.smn_ruta order by smn_ruta_id

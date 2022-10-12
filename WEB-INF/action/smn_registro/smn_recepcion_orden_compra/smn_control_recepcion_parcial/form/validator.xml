@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax' id='recepcionesParciales'>
+	<parameter id='id2' type='integer' required='false' label='${lbl:b_movement_head_order}' maxlen='10'/>
+</validator>

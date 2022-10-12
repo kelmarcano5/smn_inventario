@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="${def:context}/dinamica.css" />
+
+<!--biblioteca generica JS/Dinamica-->
+<script type="text/javascript" src="${def:context}/action/script">
+</script>
+
+<title>Sistema de Seguridad</title>
+</head>
+
+<body>
+
+<!--banner-->
+<div class="banner">
+	${lbl:s_loginhist_title} (${def:user})
+	${req:progress}
+</div>
+
+<br>
+
+<center>
+
+<!--response-->
+<div id="response" style="display: none; width: 100%"></div>
+
+</center>
+
+<!--template support code-->
+<script type="text/javascript">
+
+	onload = function()
+	{ 
+		search()
+	} 
+
+	//ejecutar consulta
+	function search()
+	{
+		//esconder grid principal
+		document.getElementById("response").style.display="none";
+
+		//llamada Ajax...
+		ajaxCall(httpMethod="GET", 
+						uri="${def:actionroot}/search", 
+						divResponse="response", 
+						divProgress="status", 
+						formName=null, 
+						afterResponseFn=null, 
+						onErrorFn=null);
+	}
+
+	//define la url en donde se mostrara el resultado de consulta
+	function viewPage()
+	{
+		var url = "${def:actionroot}/view";
+		//llama a la funcion para ir a la pagina indicada 
+		gotoPage(url);
+	}	
+	
+	//invoca la generacion de un PDF en un popup
+	function openPDF()
+	{
+		var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+		var url = "${def:context}${def:actionroot}/pdf?random=" + Math.random();
+		var w = window.open(url, null, features);
+	}
+
+	//invoca la generacion de un Excel en un popup
+	function openExcel()
+	{
+		var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+		var url = "${def:context}${def:actionroot}/excel?random=" + Math.random();
+		var w = window.open(url, null, features);
+	}
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnmovimientodetalleimpuesto.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_movement_detail_tax}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' />
+	<pdf-file-name>${lbl:b_movement_detail_tax}.pdf</pdf-file-name>
+
+	<pdf-report 
+		pageSize="letter" 
+		rotate="false"
+		footer="false" 
+		header="true">
+		<record recordset='query-smnmovimientodetalleimpuesto.sql' width='100' spacingBefore='40'>
+			<col name='smn_cod_impuesto_deduc_rf' title='${lbl:b_tax_code}' width='12' align='left'  />
+			<col name='mdi_monto_base' title='${lbl:b_base_amount} ' width='12' align='left' format='#,###,##0.00' />
+			<col name='smn_porcentaje_impuesto_rf' title='${lbl:b_tax_percentage}' width='12' align='left'  />
+			<col name='imp_monto_sustraendo' title='${lbl:b_subtract}' width='12' align='left' format='#,###,##0.00' />
+			<col name='mdi_tipo_movimiento' title='${lbl:b_movement_type}' width='12' align='left' />
+			<col name='mdi_monto_impuesto_ml' title='${lbl:b_tax_amount_ml}' width='12' align='left' format='#,###,##0.00' />
+			<col name='mdi_monto_impuesto_ma' title='${lbl:b_tax_amount_ma}' width='12' align='left' format='#,###,##0.00' />
+			<col name='mdi_fecha_registro' title='${lbl:b_store_date}' width='12' align='left' format='dd-MM-yyyy' />
+
+		</record>
+
+	</pdf-report>
+</config>

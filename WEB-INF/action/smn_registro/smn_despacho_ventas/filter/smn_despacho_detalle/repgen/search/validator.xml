@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='repgen.filter' onerror='/action/error/validation/ajax'>
+
+	<parameter id='fdesde' type='date' required='false' label='Fecha desde'/>
+	<parameter id='fhasta' type='date' required='false' label='Fecha hasta'/>
+	
+	<parameter id='smn_despacho_cabecera_id' type='integer' required='false' label='${lbl:b_office_headboard}' maxlen='10'/>
+	<parameter id='smn_item_rf' type='integer' required='false' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='dde_cantidad_solicitada' type='double' required='false' label='${lbl:b_requested_amount}' maxlen='10'/>
+	<parameter id='dde_cantidad_despachada' type='double' required='false' label='${lbl:b_delivered_amount}' maxlen='10'/>
+	<parameter id='dde_costo_ml' type='double' required='false' label='${lbl:b_cost_ml}' maxlen='10'/>
+	<parameter id='dde_costo_ma' type='double' required='false' label='${lbl:b_cost_ma}' maxlen='10'/>
+	<parameter id='dde_motivo' type='varchar' required='false' label='${lbl:b_reason}' maxlen='200'/>
+	<parameter id='smn_usuario_aprobador_rf' type='integer' required='false' label='${lbl:b_approving_user}' maxlen='10'/>
+	<parameter id='dde_fecha_aprobacion' type='date' required='false' label='${lbl:b_approval_date}' maxlen='10'/>
+	<parameter id='dde_fecha_cierre' type='date' required='false' label='${lbl:b_closing_date}' maxlen='10'/>
+	<parameter id='dde_estatus_transaccion' type='varchar' required='false' label='${lbl:b_transaction_status}' maxlen='2'/>
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='dde_motivo'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='dde_estatus_transaccion'
+		rule='contains' />
+
+
+
+	<custom-validator
+			classname='dinamica.validators.ArrayNotEmptyValidator'
+			on-error-label='Seleccione al menos un campo para la generación del reporte.'
+			parameter-name='field_id' 
+			id='field_id' />
+
+	<custom-validator 
+			classname='dinamica.validators.ArrayToRecordset'
+			paramName='field_id' 
+			recordsetId='fields' 
+			colName='field_id' 
+			colType='integer' />
+				
+</validator>

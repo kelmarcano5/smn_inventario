@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="false">
+
+	<summary>
+		Return JS in order to fill a combobox depending of value that send to this action
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>true</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query.sql" source="sql" scope="transaction" on-empty-return="1"/>
+		<recordset id="validator" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>script.js</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/javascript</content-type>	
+		<print mode="form" recordset="query.sql"/>
+		<print mode="form" recordset="validator"/>
+	</output>
+	
+	<on-exit return-code="1" forward-to="${def:actionroot}/notfound" />
+
+</config>

@@ -1,0 +1,84 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="21" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_item_rf","query-smncaracteristicaitem.sql")'>${lbl:b_item}</th>
+		<th class='sortable' onclick='sortBy("cit_codigo_barra","query-smncaracteristicaitem.sql")'>${lbl:b_codigo_barra}</th>
+		<th class='sortable' onclick='sortBy("cit_codigo_qr","query-smncaracteristicaitem.sql")'>${lbl:b_codigo_qr}</th>
+		<th class='sortable' onclick='sortBy("cit_codigo_alterno","query-smncaracteristicaitem.sql")'>${lbl:b_codigo_alterno}</th>
+		<th class='sortable' onclick='sortBy("cit_descripcion_tecnica","query-smncaracteristicaitem.sql")'>${lbl:b_descripcion_tecnica}</th>
+		<th class='sortable' onclick='sortBy("cit_vigencia","query-smncaracteristicaitem.sql")'>${lbl:b_validation_date}</th>
+		<th>ICD</th>
+		<th>RCA</th>
+		<th>RCC</th>
+		<th>COM</th>
+		<th>MED</th>
+		<th>VEN</th>
+		<th>RIA</th>
+		<th>RES</th>
+		<th>ING</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_caracteristica_item_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_caracteristica_item_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_caracteristica_item_id}')" title="${lbl:b_edit_button}"></td>
+		<td><img src="${def:context}/images/icongrid/Generar.png"  onclick="generarCodigoBarras('${fld:smn_caracteristica_item_id}')" title="${lbl:b_generate_bar_code}"></td>
+		<td>${fld:smn_item_rf}</td>
+		<td align='left'>${fld:cit_codigo_barra}</td>
+		<td align='left'>${fld:cit_codigo_qr}</td>
+		<td align='left'>${fld:cit_codigo_alterno}</td>
+		<td align='left'>${fld:cit_descripcion_tecnica}</td>
+		<td>${fld:cit_vigencia@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/icongrid/Comprobante-diario.png" onclick="relacion('${fld:smn_caracteristica_item_id}','${fld:cfc_nombre}','${fld:cit_item_compuesto}')" title="${lbl:b_item_composed_detail}"></td>
+		<td><img src="${def:context}/images/icongrid/Comprobante-diario.png" onclick="relacionalmacen('${fld:smn_caracteristica_item_id}','${fld:cfc_nombre}')" title="${lbl:b_relation_item_almacen}"></td>
+		<td><img src="${def:context}/images/icongrid/Comprobante-diario.png" onclick="relacioncodimp('${fld:smn_caracteristica_item_id}','${fld:cfc_nombre}')" title="${lbl:b_relation_item_codigo_imp}"></td>
+		<td><img src="${def:context}/images/icongrid/Comprobante-diario.png" onclick="dcompras('${fld:smn_caracteristica_item_id}','${fld:cfc_nombre}')" title="Datos Compras"></td>
+		<td><img src="${def:context}/images/icongrid/Comprobante-diario.png" onclick="dmedidas('${fld:smn_caracteristica_item_id}','${fld:cfc_nombre}')" title="Datos Medidas"></td>
+		<td><img src="${def:context}/images/icongrid/Comprobante-diario.png" onclick="dventas_('${fld:smn_caracteristica_item_id}','${fld:cfc_nombre}')" title="Datos Ventas"></td>
+		<td><img src="${def:context}/images/icongrid/Comprobante-diario.png" onclick="relacionalmacen('${fld:smn_caracteristica_item_id}','${fld:cfc_nombre}')" title="Datos Rel. Item Almacen"></td>
+		<td><img src="${def:context}/images/icongrid/Comprobante-diario.png" onclick="drestaurant_('${fld:smn_caracteristica_item_id}','${fld:cfc_nombre}')" title="Datos Restaurant"></td>
+		<td><img src="${def:context}/images/icongrid/Comprobante-diario.png" onclick="ingredientes('${fld:smn_caracteristica_item_id}','${fld:cfc_nombre}')" title="Ingredientes"></td>
+
+
+	</tr>
+	</rows>
+
+</table>

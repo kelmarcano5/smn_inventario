@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnvaloracionconteofisico.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${fld:smn_valoration_count_physic}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${fld:smn_valoration_count_physic}">
+				<col id='smn_almacen_rf' label='${lbl:b_store_code}' />
+		<col id='smn_conteo_id' label='${lbl:b_conteo}' />
+		<col id='smn_documento_id' label='${lbl:b_purchasing_documents}' />
+		<col id='vcf_numero_documento' label='${lbl:b_number_document}' />
+		<col id='smn_item_id' label='${lbl:b_item}' />
+		<col id='vcf_cantidad_contada' label='${lbl:b_quatity_count}' />
+		<col id='vcf_cantidad_existencia' label='${lbl:b_quatity_existency}' />
+		<col id='vcf_cantidad_diferencia' label='${lbl:b_quatity_different}' />
+		<col id='smn_unidad_medida_almacenaje_id' label='${lbl:b_unidad_almacenamiento}' />
+		<col id='vcf_costo_ml' label='${lbl:b_cost_ml}' />
+		<col id='vcf_costo_ma' label='${lbl:b_cost_ma}' />
+		<col id='vcf_monto_ml' label='${lbl:b_amount_ml}' />
+		<col id='smn_tasa_rf' label='${lbl:b_exchange_rate}' />
+		<col id='smn_moneda_rf' label='${lbl:b_coins}' />
+		<col id='vcf_monto_ma' label='${lbl:b_amount_ma}' />
+		<col id='vcf_estatus' label='${lbl:b_status}' />
+		<col id='vcf_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

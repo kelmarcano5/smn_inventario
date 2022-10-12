@@ -1,0 +1,32 @@
+INSERT INTO smn_inventario.smn_ubicacion_detalle
+(
+	smn_ubicacion_detalle_id,
+	smn_ubicacion_cabecera_id,
+	smn_divisiones_id,
+	smn_subdivisiones_id,
+	smn_lote_id,
+	ubd_cantidad_inicial,
+	ubd_entrada,
+	ubd_salida,
+	ubd_cantidad_final,
+	ubd_idioma,
+	ubd_usuario,
+	ubd_fecha_registro,
+	ubd_hora
+)
+VALUES
+(
+	${seq:nextval@smn_inventario.seq_smn_ubicacion_detalle},
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+)

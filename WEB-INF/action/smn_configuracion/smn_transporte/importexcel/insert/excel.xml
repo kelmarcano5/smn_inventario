@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='tra_codigo' type='varchar' required='true' maxlen='10'/>
+	<parameter id='tra_descripcion_transporte' type='varchar' required='true' maxlen='100'/>
+	<parameter id='tra_tipo_transporte' type='varchar' required='true' maxlen='2'/>
+	<parameter id='smn_activo_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_proveedor_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='tra_estatus' type='varchar' required='true' maxlen='2'/>
+	<parameter id='tra_vigencia' type='date' required='true' maxlen='10'/>
+
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarCodigo.sql'
+			id='tra_codigo'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarDescripcion.sql'
+			id='tra_descripcion_transporte'/>
+
+
+</validator>

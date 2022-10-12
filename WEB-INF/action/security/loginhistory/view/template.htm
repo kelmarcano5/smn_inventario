@@ -1,0 +1,32 @@
+<!--grid-->
+<table class="datagrid" width="80%">
+
+	<col style="width:25%;">
+	<col style="width:25%;">
+	<col style="width:25%;">
+	<col style="width:25%;">
+
+	<!--encabezados-->
+	<tr>
+		<th colspan="6">
+			${req:controls}
+		</th>
+	</tr>
+
+	<tr>
+		<th class="sortable" onclick="sortBy('login_date')">${lbl:s_loginhist_col1}</th>
+		<th class="sortable" onclick="sortBy('login_time')">${lbl:s_loginhist_col2}</th>
+		<th class="sortable" onclick="sortBy('remote_addr')">${lbl:s_loginhist_col3}</th>
+		<th class="sortable" onclick="sortBy('context')">${lbl:s_loginhist_col4}</th>
+	</tr>
+
+	<rows>
+	<tr>
+		<td align="center">${fld:login_date}</td>
+		<td align="center">${fld:login_time}</td>
+		<td align="center">${fld:remote_addr}</td>
+		<td align="center">${fld:context}</td>
+	</tr>
+	</rows>
+
+</table>

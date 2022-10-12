@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica.css" />
+	
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+
+	<script type="text/javascript">
+		//invoca la generacion de un PDF en un popup
+		function openPDF()
+		{
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/pdf?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a excel
+		function openExcel() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/excel?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a xml
+		function openXml(id) {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/xml?id=" + id;
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a texto
+		function openTxt(id) {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/txt?id=" + id;
+			var w = window.open(url, null, features);
+		}
+		
+		//envio de emails
+		function openEmails() {
+			var uri = "${def:context}${def:actionroot}/email/form";					
+			openDialog("editor0", uri, 980, 600);	
+		}
+		
+	</script>
+
+</head>
+
+<body>
+
+	<!--banner-->
+	<div class="bannerDialog">
+		${lbl:smn_valoration_count_physic}
+		<img src="${def:context}/images/pdf.png" onclick="openPDF()" title="${lbl:b_export_pdf}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/excel.png" onclick="openExcel()" title="${lbl:b_export_excel}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/file-xml4.png" onclick="openXml('${fld:smn_valoracion_conteo_fisico_id}')" title="${lbl:b_export_xml}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/file-text.png" onclick="openTxt('${fld:smn_valoracion_conteo_fisico_id}')" title="${lbl:b_export_txt}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/emails.png" onclick="openEmails()" title="${lbl:s_profile_email}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog()" title="${lbl:b_close_button}" style="float:right; cursor:pointer;"/>
+	</div>
+
+<!--parametros de busqueda-->
+<table class="record" style="width:400px;">
+
+	<!--ancho de columna de etiquetas-->
+	<col width="50%">
+	<col width="50%">
+
+	<!--campos-->
+			<tr>
+		<td>${lbl:b_store_code}</td>
+		<td>
+			<select name="smn_almacen_rf" id="smn_almacen_rf" onchange="chgCombo(smn_almacen_rf.options[smn_almacen_rf.selectedIndex].text,'smn_almacen_rf_name');" disabled >
+				<option value="">[Cualquiera]</option>
+				<smn_almacen_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_almacen_rf_rows>
+			</select> 
+			<input id="smn_almacen_rf_name" name="smn_almacen_rf_name" type="hidden" disabled >
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_conteo}</td>
+		<td>
+			<select name="smn_conteo_id" id="smn_conteo_id" onchange="chgCombo(smn_conteo_id.options[smn_conteo_id.selectedIndex].text,'smn_conteo_id_name');" disabled >
+				<option value="">[Cualquiera]</option>
+				<smn_conteo_id_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_conteo_id_rows>
+			</select> 
+			<input id="smn_conteo_id_name" name="smn_conteo_id_name" type="hidden" disabled >
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_number_document}</td>
+		<td>
+			<input id="vcf_numero_documento" name="vcf_numero_documento" type="text" maxlength="10" class="numeric" disabled >
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_item}</td>
+		<td>
+			<select name="smn_item_id" id="smn_item_id" onchange="chgCombo(smn_item_id.options[smn_item_id.selectedIndex].text,'smn_item_id_name');" disabled >
+				<option value="">[Cualquiera]</option>
+				<smn_item_id_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_item_id_rows>
+			</select> 
+			<input id="smn_item_id_name" name="smn_item_id_name" type="hidden" disabled >
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_store_date}</td>
+		<td>
+			<input id="vcf_fecha_registro_ini" name="vcf_fecha_registro_ini" type="text" class="date" maxlength="10" disabled >
+			<img src="${def:context}/images/dropdown.png" title="${lbl:b_deploy_calendar}" onclick="calendarOpen('vcf_fecha_registro_ini')">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_store_date}</td>
+		<td>
+			<input id="vcf_fecha_registro_fin" name="vcf_fecha_registro_fin" type="text" class="date" maxlength="10" disabled >
+			<img src="${def:context}/images/dropdown.png" title="${lbl:b_deploy_calendar}" onclick="calendarOpen('vcf_fecha_registro_fin')">
+		</td>
+	</tr>
+
+	
+
+	
+	<tr>
+		<td width="40%">${lbl:b_store_date_grater_than}:</td>
+		<td style="background-color: white">${fld:fdesde@dd-MM-yyyy}</td>
+	</tr>
+	<tr>
+		<td width="40%">${lbl:b_store_date_less_than}:</td>
+		<td style="background-color: white">${fld:fhasta@dd-MM-yyyy}</td>
+	</tr>
+
+</table>
+
+<br>
+
+<!--data grid-->
+<table class="datagrid" width="${fld:width_total}" style="width:80%;">
+
+	<!--data-->
+	<rows>
+
+		<cols>		
+		<tr>	
+			<td width="40%" align="${fld:align}">${fld:alias}</td>
+			<td style="background-color: white" align="${fld:align}">${fld:market}}</td>
+		</tr>
+		</cols>
+	
+	</rows>
+
+</table>
+
+	<br>
+	<div  align="center">
+		<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog()" class="button">
+	</div>
+
+</body>
+
+</html>

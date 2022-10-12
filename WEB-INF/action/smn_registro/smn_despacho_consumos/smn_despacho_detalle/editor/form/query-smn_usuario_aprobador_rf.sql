@@ -1,0 +1,1 @@
+select smn_usuarios_id as id, usr_nombres ||' - '||usr_apellidos as item from smn_base.smn_v_usuarios order by smn_usuarios_id

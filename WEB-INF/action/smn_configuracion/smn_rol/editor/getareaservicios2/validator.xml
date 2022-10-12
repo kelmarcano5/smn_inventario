@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/ajax">
+	<parameter id="id" type="integer" required="false" label="ID" maxlen="10" />
+	<parameter id="id1" type="integer" required="false" label="ID ${lbl:b_corporations}" />
+	<!-- <parameter id="id2" type="integer" required="false" label="ID ${lbl:b_entities}" />
+	<parameter id="id3" type="integer" required="false" label="ID ${lbl:b_subsidiary}" />
+	<parameter id="id4" type="integer" required="false" label="ID ${lbl:b_service_areas}" />	 -->
+</validator>

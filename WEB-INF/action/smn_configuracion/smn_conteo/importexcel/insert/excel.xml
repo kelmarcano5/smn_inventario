@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='con_codigo' type='varchar' required='true' maxlen='16'/>
+	<parameter id='con_descripcion' type='varchar' required='true' maxlen='64'/>
+	<parameter id='smn_almacen_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_ubicacion_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_rol_1_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_rol_2_id' type='integer' required='false' maxlen='10'/>
+	<parameter id='con_estatus' type='varchar' required='true' maxlen='2'/>
+	<parameter id='con_fecha_vigencia' type='date' required='true' maxlen='10'/>
+
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarCodigo.sql'
+			id='con_codigo'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarDescripcion.sql'
+			id='con_descripcion'/>
+
+
+</validator>

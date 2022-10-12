@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnrelitemcodimpuesto.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_relation_item_codigo_imp}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_relation_item_codigo_imp}">
+				<col id='smn_caracteristica_item_id' label='${lbl:b_caracteristicas_item}' />
+		<col id='smn_codigo_impuesto_rf' label='${lbl:b_tax_code}' />
+		<col id='smn_caracteristica_item_id' label='${lbl:b_caracteristicas_item}' />
+		<col id='smn_codigo_impuesto_rf' label='${lbl:b_tax_code}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

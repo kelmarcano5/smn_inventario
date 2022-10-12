@@ -1,0 +1,454 @@
+<html>
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+	
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+	
+	<title>${lbl:b_report_generator}</title>
+
+</head>
+
+<body>
+
+<!--banner-->
+<div class="banner" id="encabezado_tabla">
+	${lbl:b_report_generator}
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+	${req:progress}
+</div>
+
+<br>
+
+<!--formulario de filtro-->
+<div id="form">
+<form name="form1" onsubmit="return search()" style="width:500px;">
+
+<table style="width:500px;" class="formgrid">
+
+	<!--ancho de la columna de etiquetas-->
+	<col width="30%">
+	<col width="60%">
+	<col width="10%">
+
+	<!--titulo-->
+	<tr>
+		<th colspan="2">
+			${lbl:b_filter_find}
+		</th>
+	</tr>
+	
+	<!--separador-->
+	<tr height="10px">
+		<td colspan="2"></td>
+	</tr>
+	
+	<!--campos-->
+	<tr>
+		<td colspan="2">
+			${lbl:b_report_generator_fields}: 
+			<br>
+			<br>
+			${inc:${def:actionroot}/fields}
+			<div id="field_id_error" class="errormsg"></div>
+		</td>
+	</tr>
+	
+	<!--separador-->
+	<tr height="10px">
+		<td colspan="2"></td>
+	</tr>
+
+			<tr>
+		<td>${lbl:b_code}</td>
+		<td>
+			<input id="pac_codigo" name="pac_codigo" type="text" maxlength="10" class="numeric" disabled >
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_description}</td>
+		<td>
+			<input id="pac_descripcion" name="pac_descripcion" type="text" maxlength="65"  disabled >
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_long_description}</td>
+		<td>
+			<input id="pac_descripcion_completa" name="pac_descripcion_completa" type="text" maxlength="200"  disabled >
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_status}</td>
+		<td>
+			<select name="pac_estatus" id="pac_estatus" disabled >
+				<option value="">[Cualquiera]</option>
+				<option value="AC">${lbl:b_active}</option>
+				<option value="IN">${lbl:b_inactive}</option>
+
+			</select> 
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_store_date}</td>
+		<td>
+			<input id="pac_fecha_registro_ini" name="pac_fecha_registro_ini" type="text" class="date" maxlength="10" disabled >
+			<img src="${def:context}/images/dropdown.png" title="${lbl:b_deploy_calendar}" onclick="calendarOpen('pac_fecha_registro_ini')">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_store_date}</td>
+		<td>
+			<input id="pac_fecha_registro_fin" name="pac_fecha_registro_fin" type="text" class="date" maxlength="10" disabled >
+			<img src="${def:context}/images/dropdown.png" title="${lbl:b_deploy_calendar}" onclick="calendarOpen('pac_fecha_registro_fin')">
+		</td>
+	</tr>
+
+	
+
+	
+	<tr>
+		<td class="formlabel required">
+			${lbl:b_store_date_grater_than}:
+		</td>
+		<td>
+			<input id="fdesde" name="fdesde" type="text" size="10" value="" maxlength="10" disabled>
+		</td>
+		<td>
+			<img src="${def:context}/images/dropdown.png" title="${lbl:b_deploy_calendar}" onclick="calendarOpen('fdesde')">
+		</td>
+	</tr>
+	<tr>
+		<td class="formlabel required">
+			${lbl:b_store_date_less_than}:
+		</td>
+		<td>
+			<input id="fhasta" name="fhasta" type="text" size="10" value="" maxlength="10" disabled>
+		</td>
+		<td>
+			<img src="${def:context}/images/dropdown.png" title="${lbl:b_deploy_calendar}" onclick="calendarOpen('fhasta', 'fdesde')">
+		</td>
+	</tr>
+	
+	<!--separador-->
+	<tr height="10px">
+		<td colspan="2"></td>
+	</tr>
+
+</table>	
+
+<!--botones-->
+<input id="buscar" type="submit" value="${lbl:b_find_button}" class="button">
+<input id="grabar" type="button" value="${lbl:b_save_button}" onclick="insert()" class="button">	
+<input id="limpiar" type="button" value="${lbl:b_clean_button}" onclick="addNew()" class="button">	
+<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog(); parent.search();" class="button">	
+
+<br>
+
+</form>
+</div>
+
+<br>
+
+<!--panel de respuesta AJAX #1-->
+<div id="response" style="display:none;width:100%;margin-top:10px;"></div>
+
+<!--panel de respuesta AJAX #2-->
+<div id="detail" style="display:none;width:100%;margin-top:10px;"></div>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+		//apuntador a funcion para retornar dependiendo de donde este
+		var _goBackFn = null;
+
+		//inicializacion de la pagina cuando carga
+		onload = function()
+		{ 
+			document.form1.fdesde.focus();
+			document.forms[0].fdesde.onkeypress = keypressDate;
+			document.forms[0].fhasta.onkeypress = keypressDate;
+			loadConfiguration();
+		} 
+	
+		//mostrar filtro de busqueda
+		function showFilter()
+		{
+			document.getElementById("form").style.display="";
+			document.getElementById("response").style.display='none';
+			document.getElementById("detail").style.display='none';
+			document.form1.elements[0].focus();			
+		}
+		
+		//esconder filtro de busqueda	
+		function hideFilter() 
+		{
+			document.getElementById("form").style.display="none";
+		}
+
+		//ejecutar consulta
+		function search()
+		{
+			clearErrorMessages();
+			
+			//definir funcion goBack()
+			_goBackFn = showFilter;
+
+			//llamada Ajax...
+			return ajaxCall(	httpMethod="POST", 
+								uri="${def:actionroot}/search", 
+								divResponse="response", 
+								divProgress="status", 
+								formName="form1", 
+								afterResponseFn=null, 
+								onErrorFn=showFilter);
+		
+		}
+	
+		//retorna al estado previo que corresponde
+		//al estado actual de la pagina, cada llamada Ajax
+		//se encarga de definir cual es la funcion de goBack() que aplica
+		function goBack() 
+		{
+			_goBackFn()			
+		}
+	
+		//invoca la generacion de un PDF en un popup
+		function openPDF()
+		{
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/pdf?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+
+		//invoca la generacion de un Excel en un popup
+		function openExcel()
+		{
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/excel?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a excel
+		function openXml() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/xml?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a excel
+		function openTxt() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/txt?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//envio de emails
+		function openEmails() {
+			var uri = "${def:context}${def:actionroot}/email/form";					
+			openDialog("editor0", uri, 750, 620);	
+		}
+	
+		//mostrar detalle de un registro
+		function drillDown(id)
+		{
+			//definir funcion goBack()
+			_goBackFn = showGrid;			
+		
+			//esconder grid principal
+			document.getElementById("response").style.display="none";
+	
+			//llamada Ajax...
+			return ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/drilldown?id=" + id, 
+							divResponse="detail", 
+							divProgress="status", 
+							formName=null, 
+							afterResponseFn=null, 
+							onErrorFn=showGrid);		
+		}
+		
+		//mostrar grid principal
+		function showGrid()
+		{
+			document.getElementById("response").style.display="";
+			document.getElementById("detail").style.display='none';
+			
+			//restaura el goBack que corresponde a este estado
+			_goBackFn = showFilter;
+		}
+		
+		//define la url en donde se mostrara el resultado de consulta
+		function viewPage()
+		{
+			hideFilter(); //esconde el formulario cuando muestra el resultado
+			var url = "${def:actionroot}/view";
+			//llama a la funcion para ir a la pagina indicada 
+			gotoPage(url);
+		}
+		
+		function checkAll(field)
+		{
+			for (i = 0; i < field.length; i++)
+			{
+	   			field[i].checked = true;
+
+				
+				
+				//fecha desde y hasta
+	   			if (field[i].value == 0) 
+	   			{
+	   				document.getElementById("fdesde").disabled=false;
+	   				document.getElementById("fhasta").disabled=false;
+	   			}
+			}
+		}
+		
+		function uncheckAll(field)
+		{
+			for (i = 0; i < field.length; i++)
+			{
+	   			field[i].checked = false;
+
+				
+				
+	   			//fecha desde y hasta
+	   			if (field[i].value == 0) 
+	   			{
+	   				document.getElementById("fdesde").disabled=true;
+	   				document.getElementById("fhasta").disabled=true;
+	   			}
+			}
+		}
+		
+		function enableField(field_id, checked)
+		{
+			if (checked)
+			{
+				
+				
+	   			//fecha desde y hasta
+	   			if (field_id == 0) 
+	   			{
+	   				document.getElementById("fdesde").disabled=false;
+	   				document.getElementById("fhasta").disabled=false;
+	   			}
+			}
+			else
+			{
+				
+				
+	   			//fecha desde y hasta
+	   			if (field_id == 0) 
+	   			{
+	   				document.getElementById("fdesde").disabled=true;
+	   				document.getElementById("fhasta").disabled=true;
+	   			}				
+			}
+
+		}
+		
+		//configurar formulario para ingresar registro nuevo
+		function addNew()
+		{
+			document.getElementById("grabar").disabled=false;
+			clearForm("form1");
+			setFocusOnForm("form1");
+		}
+		
+		//mostrar la actualizacion de un registro
+		function insert()
+		{		
+				clearErrorMessages();
+				document.getElementById("grabar").disabled=true;
+				
+				var fields = getFormValuesToStore('form1');
+				
+//				//alert("${def:actionroot}/insert?cfg_descripcion=" + fields);
+				
+				//llamada Ajax...
+				return ajaxCall(httpMethod="POST", 
+								uri="${def:actionroot}/insert?cfg_descripcion=" + fields, 
+								divResponse=null, 
+								divProgress="status", 
+								formName="form1", 
+								afterResponseFn=null, 
+								onErrorFn=retryAddnewOrEdit);	
+		}
+		
+		//restaurar el formulario en caso de error
+		function retryAddnewOrEdit() {
+			document.getElementById("grabar").disabled=false;
+			setFocusOnForm("form1");		
+		}
+		
+		//ejecutar consulta
+		function loadConfiguration() {
+			ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/cargar_config", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=null);
+		}
+		
+		//asignar configuraci�n
+		var fields = '';
+		function setConfiguration(config) {
+			var cfg = config.split("|");
+			formElements = document.forms['form1'].elements;
+			for(var k = 0; k < cfg.length; k++) {
+				var variable = cfg[k].split("=");
+				var field = variable[0];
+				var value = variable[1];				
+				for (var i=formElements.length-1; i>=0; --i) 
+				{
+					if (formElements[i].name != "" && formElements[i].name == field && formElements[i].name != 'field_id')
+					{ 						
+						formElements[i].value = value;
+						if (formElements[i].value != null)
+						{
+							formElements[i].disabled = false;
+						}
+						break;
+					}
+					else
+					{						
+						//a�ade elementos radio y checkbox
+						if (formElements[i].type=="checkbox" || formElements[i].type=="radio")  
+						{
+							if (formElements[i].value != null)
+							{
+								if (formElements[i].value == value)
+								{
+									formElements[i].checked = 'true';
+									fields = fields + value + ";";
+									break;
+								}
+							}
+						}
+						
+					}
+				}
+			}
+			fields = fields.substring(0, fields.length - 1);
+		}
+		
+		//mostrar el detalle de un registro
+		function getDetail(id)
+		{
+//			//alert('Colocar su c�digo aqu�.')
+			
+			var uri = "${def:context}${def:actionroot}/detail/form?id=" + id ; //+ '&field_id=' + fields;
+			openDialog("dialog", uri, 650, 300);			
+		}
+
+</script>
+
+</body>
+
+</html>

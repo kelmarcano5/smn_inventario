@@ -1,0 +1,29 @@
+INSERT INTO smn_inventario.smn_movimiento_detalle_desc_ret
+(
+	smn_descuento_retencion_id,
+	smn_movimiento_detalle_id,
+	smn_codigo_descuento_rf,
+	mdd_monto_base_ml,
+	smn_porcentaje_rf,
+	mdd_monto_descuento_ml,
+	smn_moneda_rf,
+	smn_tasa_rf,
+	mdd_monto_base_ma,
+	mdd_monto_descuento_ma,
+	mdd_fecha_registro
+)
+VALUES
+(
+	${seq:nextval@smn_inventario.seq_smn_movimiento_detalle_desc_ret},
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	'${def:date
+}'
+)

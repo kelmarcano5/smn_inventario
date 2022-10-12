@@ -1,0 +1,71 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<!-- <col width='3%'/> -->
+
+	<col width='8%'/>
+	<col width='8%'/>
+	<col width='8%'/>
+	<col width='8%'/>
+	<col width='8%'/>
+	
+	<col width='8%'/>
+	<col width='8%'/>
+	<col width='8%'/>
+	<col width='8%'/>
+	<col width='8%'/>
+	<col width='8%'/>
+	<col width='8%'/>
+	<col width='8%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="13" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<!-- <th></th> -->
+		<th class='sortable' onclick="sortBy('smn_entidad_rf','query-smncontrolitem.sql')" >${lbl:b_entity}</th>
+		<th class='sortable' onclick="sortBy('smn_almacen_rf','query-smncontrolitem.sql')" >${lbl:b_store_code}</th>
+		<th class='sortable' onclick="sortBy('codigo','query-smncontrolitem.sql')" >${lbl:b_code}</th>
+		<th class='sortable' onclick="sortBy('nombre','query-smncontrolitem.sql')" >${lbl:b_name}</th>
+		<th class='sortable' onclick="sortBy('coi_fecha_movimiento','query-smncontrolitem.sql')" >Fecha Movimiento</th>
+		<th class='sortable' onclick="sortBy('coi_valor_inicial','query-smncontrolitem.sql')" >Valor Inicial</th>
+		<th class='sortable' onclick="sortBy('coi_valor_entrada','query-smncontrolitem.sql')" >Valor Entrada</th>
+		<th class='sortable' onclick="sortBy('coi_valor_salida','query-smncontrolitem.sql')" >Valor Salida</th>
+		<th class='sortable' onclick="sortBy('coi_valor_final','query-smncontrolitem.sql')" >Valor Final</th>
+		<th class='sortable' onclick="sortBy('coi_valor_inicial_ma','query-smncontrolitem.sql')" >Valor Inicial MA</th>
+		<th class='sortable' onclick="sortBy('coi_valor_entradas_ma','query-smncontrolitem.sql')" >Valor Entrada MA</th>
+		<th class='sortable' onclick="sortBy('coi_valor_salidas_ma','query-smncontrolitem.sql')" >Valor Salida MA</th>
+		<th class='sortable' onclick="sortBy('coi_valor_final_ma','query-smncontrolitem.sql')" >Valor Final MA</th>
+		
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<!-- <td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_control_item_id}')" title="${lbl:b_view_detail}"></td> -->
+		<td align="center">${fld:smn_entidad_rf}</td>
+		<td align="center">${fld:smn_almacen_rf}</td>
+		<td align="center">${fld:codigo}</td>
+		<td align="center">${fld:nombre}</td>
+		<td align="center">${fld:coi_fecha_movimiento@dd-MM-yyyy}</td>
+		<td align="right">${fld:coi_valor_inicial@#,###,##0.00}</td>
+		<td align="right">${fld:coi_valor_entrada@#,###,##0.00}</td>
+		<td align="right">${fld:coi_valor_salida@#,###,##0.00}</td>
+		<td align="right">${fld:coi_valor_final@#,###,##0.00}</td>
+		<td align="right">${fld:coi_valor_inicial_ma@#,###,##0.00}</td>
+		<td align="right">${fld:coi_valor_entradas_ma@#,###,##0.00}</td>
+		<td align="right">${fld:coi_valor_salidas_ma@#,###,##0.00}</td>
+		<td align="right">${fld:coi_valor_final_ma@#,###,##0.00}</td>
+
+
+	</tr>
+	</rows>
+
+</table>

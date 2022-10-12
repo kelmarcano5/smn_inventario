@@ -1,0 +1,52 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='16%'/>
+	<col width='16%'/>
+	<col width='16%'/>
+	<col width='16%'/>
+	<!-- <col width='16%'/> -->
+	<col width='16%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="8" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("tra_codigo","query-smntransporte.sql")'>${lbl:b_code}</th>
+		<th class='sortable' onclick='sortBy("tra_descripcion_transporte","query-smntransporte.sql")'>${lbl:b_description}</th>
+		<th class='sortable' onclick='sortBy("tra_tipo_transporte","query-smntransporte.sql")'>${lbl:b_transport_type}</th>
+		<th class='sortable' onclick='sortBy("smn_proveedor_rf","query-smntransporte.sql")'>${lbl:b_providers}</th>
+		<!-- <th class='sortable' onclick='sortBy("tra_estatus","query-smntransporte.sql")'>${lbl:b_status}</th> -->
+		<th class='sortable' onclick='sortBy("tra_fecha_registro","query-smntransporte.sql")'>${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_transporte_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_transporte_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_transporte_id}')" title="${lbl:b_edit_button}"></td>
+		<td align='left'>${fld:tra_codigo}</td>
+		<td align='left'>${fld:tra_descripcion_transporte}</td>
+		<td align='left'>${fld:tra_tipo_transporte}</td>
+		<td>${fld:smn_proveedor_rf}</td>
+		<!-- <td align='left'>${fld:tra_estatus}</td> -->
+		<td>${fld:tra_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

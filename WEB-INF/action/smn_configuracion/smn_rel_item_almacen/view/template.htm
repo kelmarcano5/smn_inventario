@@ -1,0 +1,28 @@
+<!--data grid-->
+<table class="datagrid" style="width:90%;">
+
+	<col width='50%'/>
+	<col width='50%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="2">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th class='sortable' onclick='sortBy("smn_caracteristica_item_combo","query-smnrelitemalmacen.sql")'>${lbl:b_caracteristicas_item}</th>
+		<th class='sortable' onclick='sortBy("smn_almacen_rf_combo","query-smnrelitemalmacen.sql")'>${lbl:b_stores}</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td>${fld:smn_caracteristica_item_combo}</td>
+		<td>${fld:smn_almacen_rf_combo}</td>
+	</tr>
+	</rows>
+
+</table>

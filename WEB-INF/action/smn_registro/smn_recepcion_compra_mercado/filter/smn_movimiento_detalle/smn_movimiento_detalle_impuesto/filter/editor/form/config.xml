@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		${lbl:b_movement_detail_tax}
+	</summary>
+
+	<log>false</log>
+	
+	<set-request-attribute id="progress" value="file:/WEB-INF/action/progress/progress.htm"/>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>true</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id='query-smn_movimiento_detalle_id.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_cod_impuesto_deduc_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_moneda.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_tasa.sql' source='sql' scope='transaction'/>
+		<recordset id='query-cal_tipo_calculo_costo.sql' source='sql' scope='transaction'/>
+		<recordset id='query-mdd_monto_descuento_ml.sql' source='sql' scope='transaction'/>
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>template.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/html</content-type>
+		<print mode='table' recordset='query-smn_movimiento_detalle_id.sql' tag='smn_movimiento_detalle_id_rows'/>
+		<print mode='table' recordset='query-smn_cod_impuesto_deduc_rf.sql' tag='smn_cod_impuesto_deduc_rf_rows'/>
+		<print mode='table' recordset='query-smn_moneda.sql' tag='smn_moneda_rows'/>
+		<print mode='table' recordset='query-smn_tasa.sql' tag='smn_tasa_rows'/>
+		<print mode='form' recordset='query-cal_tipo_calculo_costo.sql'/>
+		<print mode='form' recordset='query-mdd_monto_descuento_ml.sql'/>
+		<print mode="form" recordset="_request" /> 
+	</output>
+
+</config>

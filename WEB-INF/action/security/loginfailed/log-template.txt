@@ -1,0 +1,1 @@
+[LOGIN FAILED] ${def:context} ${req:userlogin} ${def:remoteaddr}

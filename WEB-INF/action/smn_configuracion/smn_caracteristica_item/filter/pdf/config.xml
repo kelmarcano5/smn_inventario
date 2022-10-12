@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smncaracteristicaitem.sql" source="session" scope="transaction" />
+		<recordset id="filter.params" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_caracteristicas_item}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' align="left" />
+	<pdf-file-name>${lbl:b_caracteristicas_item}.pdf</pdf-file-name>
+
+	<pdf-report pageSize="letter" rotate="false" footer="true" header="true">
+		<record recordset='filter.params' title='${lbl:b_filter_find}' noFilterMsg='-- ${lbl:b_all_message} --' width='55' spacingBefore='15'>
+			<col name='smn_item_rf' title='${lbl:b_item}'  format='######' align='left' />
+			<col name='cit_descripcion_tecnica' title='${lbl:b_descripcion_tecnica}'  align='left' />
+			<col name='cit_fecha_registro_ini' title='${lbl:b_store_date_greather_than}'  format='dd-MM-yyyy' align='left' />
+			<col name='cit_fecha_registro_fin' title='${lbl:b_store_date_less_than}'  format='dd-MM-yyyy' align='left' />
+
+		</record>
+		<record recordset='query-smncaracteristicaitem.sql' width='100' spacingBefore='10'>
+			<col name='smn_item_rf' title='${lbl:b_item}' width='2' align='left' format='######' />
+			<col name='cit_codigo_barra' title='${lbl:b_codigo_barra}' width='2' align='left' />
+			<col name='cit_codigo_qr' title='${lbl:b_codigo_qr}' width='2' align='left' />
+			<col name='cit_codigo_alterno' title='${lbl:b_codigo_alterno}' width='2' align='left' />
+			<col name='cit_descripcion_tecnica' title='${lbl:b_descripcion_tecnica}' width='2' align='left' />
+			<col name='smn_unidad_medida_base_rf' title='${lbl:b_unidad_medida_base}' width='2' align='left' format='######' />
+			<col name='smn_unidad_medida_compra_rf' title='${lbl:b_unidad_medida_compra}' width='2' align='left' format='######' />
+			<col name='smn_unidad_medida_venta_rf' title='${lbl:b_unidad_medida_venta}' width='2' align='left' format='######' />
+			<col name='smn_unidad_medida_almacenamiento_rf' title='${lbl:b_unidad_almacenamiento}' width='2' align='left' format='######' />
+			<col name='smn_unidad_medida_despacho_rf' title='${lbl:b_unidad_despacho}' width='2' align='left' format='######' />
+			<col name='cit_peso' title='${lbl:b_weight}' width='2' align='left' format='#,###,##0.00' />
+			<col name='smn_unidad_medida_peso_rf' title='${lbl:b_measurement_unit_weight}' width='2' align='left' format='######' />
+			<col name='cit_alto' title='${lbl:b_dimension_alto}' width='2' align='left' format='#,###,##0.00' />
+			<col name='smn_unidad_medida_alto_rf' title='${lbl:b_unidad_medida_alto}' width='2' align='left' format='######' />
+			<col name='cit_ancho' title='${lbl:b_dimension_ancho}' width='2' align='left' format='#,###,##0.00' />
+			<col name='smn_unidad_medida_ancho_rf' title='${lbl:b_unidad_medida_ancho}' width='2' align='left' format='######' />
+			<col name='cit_profundidad' title='${lbl:b_dimension_profundidad}' width='2' align='left' format='#,###,##0.00' />
+			<col name='smn_unidad_medida_profundidad_rf' title='${lbl:b_dimension_profundidad}' width='2' align='left' format='######' />
+			<col name='cit_es_medicamento' title='${lbl:b_es_medicamento}' width='2' align='left' />
+			<col name='smn_principio_activo_rf' title='${lbl:b_principio_activo}' width='2' align='left' />
+			<col name='cit_req_control_lote' title='${lbl:b_requiere_control_lote}' width='2' align='left' />
+			<col name='cit_req_control_vencimiento' title='${lbl:b_requiere_control_vencimiento}' width='2' align='left' />
+			<col name='cit_dias_ant_vencimiento' title='${lbl:b_dias_antelacion_vencimiento}' width='2' align='left' format='######' />
+			<col name='cit_tipo_costo' title='${lbl:b_tipo_costo}' width='2' align='left' />
+			<col name='cit_valoracion_inventario' title='${lbl:b_valoracion_inventario}' width='2' align='left' />
+			<col name='cit_metodo_despacho' title='${lbl:b_metodo_despacho}' width='2' align='left' />
+			<col name='cit_cant_minima' title='${lbl:b_cantidad_minima}' width='2' align='left' format='#,###,##0.00' />
+			<col name='cit_cant_maxima' title='${lbl:b_cantidad_maxima}' width='2' align='left' format='#,###,##0.00' />
+			<col name='cit_punto_reorden' title='${lbl:b_punto_reorden}' width='2' align='left' format='#,###,##0.00' />
+			<col name='cit_cant_seguridad' title='${lbl:b_cantidad_seguridad}' width='2' align='left' format='#,###,##0.00' />
+			<col name='cit_es_reusable' title='${lbl:b_es_reusable}' width='2' align='left' />
+			<col name='cit_reuso_apertura' title='${lbl:b_reuso_apertura}' width='2' align='left' />
+			<col name='cit_cant_reuso' title='${lbl:b_cantidad_reuso}' width='2' align='left' format='#,###,##0.00' />
+			<col name='cit_origen_producto' title='${lbl:b_origen_producto}' width='2' align='left' />
+			<col name='cit_descripcion_compra' title='${lbl:b_descripcion_compra}' width='2' align='left' />
+			<col name='cit_codigo_arancel' title='${lbl:b_codigo_arancel}' width='2' align='left' />
+			<col name='cit_dias_entrega' title='${lbl:b_dias_entrega}' width='2' align='left' format='#,###,##0.00' />
+			<col name='smn_centro_costo_rf' title='${lbl:b_cost_lefts}' width='2' align='left' format='######' />
+			<col name='cit_estatus' title='${lbl:b_status}' width='2' align='left' />
+			<col name='cit_vigencia' title='${lbl:b_validation_date}' width='2' align='left' format='dd-MM-yyyy' />
+			<col name='cit_idioma' title='${lbl:s_profile_lang}' width='2' align='left' />
+			<col name='cit_usuario' title='${lbl:b_users}' width='2' align='left' />
+			<col name='cit_fecha_registro' title='${lbl:b_store_date}' width='2' align='left' format='dd-MM-yyyy' />
+			<col name='cit_hora' title='${lbl:s_loginhist_col2}' width='2' align='left' />
+
+		</record>
+
+	</pdf-report>
+</config>

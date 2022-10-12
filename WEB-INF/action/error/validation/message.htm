@@ -1,0 +1,37 @@
+<html>
+
+<head>
+<title>Invalid Form</title>
+<LINK REL="stylesheet" type="text/css" href="${def:context}/dinamica.css" />
+</head>
+
+<body>
+
+<center>
+
+
+<table cellspacing="1" class="datagrid" width="400px">
+	<rows>
+	<tr>
+		<td align="center"><img src="${def:context}/images/alert.png"></td>
+		<td >${fld:message}</td>
+	</tr>
+	</rows>
+</table>
+
+<br>
+<button onclick="goBack();">${lbl:button_back}</button>
+
+<script language="javascript">
+	function goBack()
+	{
+		if (window.opener==null)
+			history.back();
+		else
+			window.close();
+	}
+	</script></center>
+
+</body>
+
+</html>

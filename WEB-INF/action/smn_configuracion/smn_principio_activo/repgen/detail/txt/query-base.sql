@@ -1,0 +1,7 @@
+select
+	${field}
+from
+	smn_inventario.smn_principio_activo
+where
+		smn_inventario.smn_principio_activo.smn_principio_activo_id = ${fld:id}
+	

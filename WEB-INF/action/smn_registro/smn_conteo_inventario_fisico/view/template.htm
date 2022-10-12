@@ -1,0 +1,58 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="11" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_conteo_id","query-smnconteoinventariofisico.sql")'>${lbl:b_conteo}</th>
+		<th class='sortable' onclick='sortBy("smn_item_id","query-smnconteoinventariofisico.sql")'>${lbl:b_item}</th>
+		<th class='sortable' onclick='sortBy("cfi_cantidad","query-smnconteoinventariofisico.sql")'>${lbl:b_quantity}</th>
+		<th class='sortable' onclick='sortBy("smn_unidad_medida_almacenaje_id","query-smnconteoinventariofisico.sql")'>${lbl:b_measurement_unit}</th>
+		<th class='sortable' onclick='sortBy("cfi_costo","query-smnconteoinventariofisico.sql")'>${lbl:b_cost}</th>
+		<th class='sortable' onclick='sortBy("smn_auxiliar_1_rf","query-smnconteoinventariofisico.sql")'>${lbl:b_auxiliary} 1</th>
+		<th class='sortable' onclick='sortBy("cfi_estatus","query-smnconteoinventariofisico.sql")'>${lbl:b_status}</th>
+		<th class='sortable' onclick='sortBy("cfi_fecha_registro","query-smnconteoinventariofisico.sql")'>${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_conteo_inventario_fisico_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_conteo_inventario_fisico_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_conteo_inventario_fisico_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:smn_conteo_id}</td>
+		<td>${fld:smn_item_id}</td>
+		<td>${fld:cfi_cantidad}</td>
+		<td>${fld:smn_unidad_medida_almacenaje_id}</td>
+		<td align='right'>${fld:cfi_costo@#,###,##0.00}</td>
+		<td>${fld:smn_auxiliar_1_rf}</td>
+		<td align='center'>${fld:cfi_estatus}</td>
+		<td>${fld:cfi_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

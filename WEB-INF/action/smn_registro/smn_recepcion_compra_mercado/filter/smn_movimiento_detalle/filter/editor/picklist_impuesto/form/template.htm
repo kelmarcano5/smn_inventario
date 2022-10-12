@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+
+<head>
+
+<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+
+<!--biblioteca generica JS/Dinamica-->
+<script type="text/javascript" src="${def:context}/action/script">
+</script>
+<script type="text/javascript" src="${def:context}/action/jquery"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+		
+		
+		
+
+		//inicializacion de la pagina cuando carga
+		onload = function()
+		{ 
+			document.form1.elements[0].focus();
+			document.getElementById("status").style.display='none';
+			$(document).ready(function() {
+		    	$('.js-example-basic-single').select2();
+			});
+			
+			search();
+		} 
+	
+		//mostrar filtro de busqueda
+		function showFilter()
+		{
+			document.form1.elements[0].focus();			
+		}
+
+		//ejecutar consulta
+		function search()
+		{
+
+			//llamada Ajax...
+			return ajaxCall(	httpMethod="POST", 
+								uri="${def:actionroot}/search", 
+								divResponse="response", 
+								divProgress="status", 
+								formName="form1", 
+								afterResponseFn=showFilter, 
+								onErrorFn=showFilter);
+		
+		}
+	
+		//leer una pagina del grid
+		function viewPage()
+		{
+			var url = "${def:actionroot}/view";
+			gotoPage(url);
+		}
+
+		//retornar el item seleccionado a la pagina que llamo al picklist
+		function selectImpuesto(id,tipo_codigo,porcentaje_base,porcentaje_calculo,monto_sustraendo) {
+			var description = document.getElementById(id).innerHTML;
+			parent.selectImpuestos(id, description,tipo_codigo,porcentaje_base,porcentaje_calculo,monto_sustraendo);
+			document.form1.elements[0].value = '';
+			document.form1.elements[0].focus();
+		}
+		
+		//mostrar formulario para addnew
+		function addNew() {
+			document.getElementById("addnew").style.display="block";
+			document.getElementById("form").style.display="none";
+			document.getElementById("response").style.display="none";
+			document.form2.elements[0].focus();
+		}
+		
+		function cancelAddnew() {
+			document.getElementById("addnew").style.display="none";
+			document.getElementById("form").style.display="block";
+			document.getElementById("response").style.display="block";
+			document.form1.name.focus();
+		}
+		
+		//ejecutar consulta
+		function insert()
+		{
+			//llamada Ajax...
+			return ajaxCall(	httpMethod="POST", 
+								uri="${def:actionroot}/insert", 
+								divResponse=null, 
+								divProgress="status", 
+								formName="form2", 
+								afterResponseFn=null, 
+								onErrorFn=addNew);
+		}
+		
+</script>
+
+</head>
+
+<body>
+
+<!--banner-->
+<div class="bannerDialog" id="encabezado_tabla">
+	${lbl:b_select_tax}
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.pickClose()" title="Cerrar" style="float:right; cursor:pointer;">
+	<img id="status" src="${def:context}/images/progbar.gif" style="display:inline; float:right;">
+</div>
+
+
+<!--formulario de filtro-->
+<form id="form" name="form1" onsubmit="return search()" style="width:90%; margin-top:10px;">
+	<table>
+
+	<!--ancho de la columna de etiquetas-->
+	<col width="30%">
+
+	<!--campos-->
+
+	<tr>
+		<td>${lbl:b_tax_code}</td>
+		<td>
+			<select name="smn_codigos_impuestos_id" id="smn_codigos_impuestos_id" ${class} class="js-example-basic-single">
+				<option value="">[Cualquiera]</option>
+				<smn_codigos_impuestos_rows>
+					<option value="${fld:id}">${fld:item}</option>
+				</smn_codigos_impuestos_rows>
+			</select> 
+		</td>
+	</tr>
+
+	</table>
+	<input type="submit" value="Buscar" class="button" style="font-size: 9pt">	
+	<input type="button" value="Añadir" class="button" style="font-size: 9pt" title="Añadir un nuevo impuesto" onclick="addNew()">
+</form>
+
+<!--formulario para añadir nuevo registro-->
+<form id="addnew" name="form2" onsubmit="return insert()" style="display:none; margin-top:10px; width:90%">
+	<h3>En construcción...</h3>
+	<img src="${def:context}/images/alert.png" width="30">
+	<!--<table>
+	<h1>Añadir registro</h1>-->
+	<!--ancho de la columna de etiquetas-->
+	<!--<col width="30%">-->
+	<!--campos-->
+		<!--<tr>
+			<td>${lbl:s_profile_fname}*</td>
+			<td>
+				<input id="cnt_nombres2" name="cnt_nombres2" type="text" maxlength="30" >
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:s_profile_lname}*</td>
+			<td>
+				<input id="cnt_apellidos2" name="cnt_apellidos2" type="text" maxlength="30" >
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:s_profile_email}*</td>
+			<td>
+				<input id="cnt_email2" name="cnt_email2" type="text" maxlength="96" >
+			</td>
+		</tr>
+
+	</table>
+	<input type="submit" value="Grabar" class="button" style="font-size: 9pt">
+	<input 	type="button" value="Cancelar" class="button" style="font-size: 9pt" onclick="cancelAddnew()">-->
+</form>			
+
+<!--panel de respuesta AJAX-->
+<div id="response" style="display: none; width:100%; margin-top:15px;">
+</div>
+
+</body>
+
+</html>

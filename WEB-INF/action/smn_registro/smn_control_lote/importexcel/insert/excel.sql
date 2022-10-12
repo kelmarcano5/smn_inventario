@@ -1,0 +1,36 @@
+INSERT INTO smn_inventario.smn_control_lote
+(
+	smn_control_lote_id,
+	smn_entidad_rf,
+	smn_sucursal_rf,
+	smn_caracteristica_almacen_id,
+	smn_caracteristica_item_id,
+	col_lote,
+	col_fecha_vencimiento,
+	col_cantidad_inicial,
+	col_entradas,
+	col_salidas,
+	col_cantidad_final,
+	col_idioma,
+	col_usuario,
+	col_fecha_registro,
+	col_hora
+)
+VALUES
+(
+	${seq:nextval@smn_inventario.seq_smn_control_lote},
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+)

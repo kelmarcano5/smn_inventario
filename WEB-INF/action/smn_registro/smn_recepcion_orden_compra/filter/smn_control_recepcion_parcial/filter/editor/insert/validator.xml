@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_movimiento_cabecera_id_name' type='varchar' required='true' label='${lbl:b_movement_head}'/>
+	<parameter id='smn_movimiento_cabecera_id' type='integer' required='false' label='${lbl:b_movement_head}' maxlen='10'/>
+	<parameter id='smn_orden_compra_rf' type='integer' required='true' label='${lbl:b_pay_order}' maxlen='10'/>
+	<parameter id='crp_numero_documento' type='integer' required='true' label='${lbl:b_number_document}' maxlen='10'/>
+	<parameter id='smn_item_id' type='integer' required='true' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='crp_cantidad_recibida' type='integer' required='true' label='${lbl:b_quantity_received}' maxlen='10'/>
+	<parameter id='crp_fecha_recepcion' type='date' required='true' label='${lbl:b_received_date}' maxlen='13'/>
+	<parameter id='crp_lote' type='integer' required='false' label='${lbl:b_lote}' maxlen='10'/>
+	<parameter id='crp_fecha_vencimiento_lote' type='date' required='false' label='${lbl:b_expiration_date_lot}' maxlen='13'/>
+
+
+</validator>

@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<model>
+	<summary>${lbl:b_caracteristicas_item}</summary>
+	<filter>
+		<row field='smn_item_rf' id='smn_item_rf' label='${lbl:b_item}@{select smn_base.smn_item.smn_item_id as id, smn_base.smn_item.itm_codigo|| &apos; - &apos; || smn_base.smn_item.itm_nombre as item from smn_base.smn_item order by itm_nombre}' required='NO' fk='' mSelection='' condiction='Igual que (=)' type='integer' tableName='smn_caracteristica_item' len='10'/>
+		<row field='cit_descripcion_tecnica' id='cit_descripcion_tecnica' label='${lbl:b_descripcion_tecnica}' required='NO' fk='' mSelection='' condiction='Contiene' type='varchar' tableName='smn_caracteristica_item' len='400'/>
+		<row field='cit_fecha_registro' id='cit_fecha_registro_ini' label='${lbl:b_store_date_greather_than}' required='NO' fk='' mSelection='' condiction='Mayor o igual que (&gt;=)' type='date' tableName='smn_caracteristica_item' len='10'/>
+		<row field='cit_fecha_registro' id='cit_fecha_registro_fin' label='${lbl:b_store_date_less_than}' required='NO' fk='' mSelection='' condiction='Menor o igual que (&lt;=)' type='date' tableName='smn_caracteristica_item' len='10'/>
+	</filter>
+	<detail>SI</detail>
+	<insert>SI</insert>
+	<edit>SI</edit>
+	<delete>SI</delete>
+	<audit>Consulta</audit>
+	<grid>
+		<row field='smn_item_rf' label='${lbl:b_item}@{select smn_base.smn_item.smn_item_id as id, smn_base.smn_item.itm_codigo|| &apos; - &apos; || smn_base.smn_item.itm_nombre as item from smn_base.smn_item order by itm_nombre}' fk='' tableName='smn_caracteristica_item' len='10' type='integer' align='center'/>
+		<row field='cit_codigo_barra' label='${lbl:b_codigo_barra}' fk='' tableName='smn_caracteristica_item' len='100' type='varchar' align='left'/>
+		<row field='cit_codigo_qr' label='${lbl:b_codigo_qr}' fk='' tableName='smn_caracteristica_item' len='100' type='varchar' align='left'/>
+		<row field='cit_codigo_alterno' label='${lbl:b_codigo_alterno}' fk='' tableName='smn_caracteristica_item' len='100' type='varchar' align='left'/>
+		<row field='cit_descripcion_tecnica' label='${lbl:b_descripcion_tecnica}' fk='' tableName='smn_caracteristica_item' len='400' type='varchar' align='left'/>
+		<row field='smn_unidad_medida_base_rf' label='${lbl:b_unidad_medida_base}@{select smn_base.smn_unidad_medida.smn_unidad_medida_id as id, smn_base.smn_unidad_medida.unm_codigo|| &apos; - &apos; || smn_base.smn_unidad_medida.unm_descripcion as item from smn_base.smn_unidad_medida order by unm_descripcion}' fk='' tableName='smn_caracteristica_item' len='10' type='integer' align='center'/>
+		<row field='smn_unidad_medida_compra_rf' label='${lbl:b_unidad_medida_compra}@{select smn_base.smn_unidad_medida.smn_unidad_medida_id as id, smn_base.smn_unidad_medida.unm_codigo|| &apos; - &apos; || smn_base.smn_unidad_medida.unm_descripcion as item from smn_base.smn_unidad_medida order by unm_descripcion}' fk='' tableName='smn_caracteristica_item' len='10' type='integer' align='center'/>
+		<row field='smn_unidad_medida_venta_rf' label='${lbl:b_unidad_medida_venta}@{select smn_base.smn_unidad_medida.smn_unidad_medida_id as id, smn_base.smn_unidad_medida.unm_codigo|| &apos; - &apos; || smn_base.smn_unidad_medida.unm_descripcion as item from smn_base.smn_unidad_medida order by unm_descripcion}' fk='' tableName='smn_caracteristica_item' len='10' type='integer' align='center'/>
+		<row field='smn_unidad_medida_almacenamiento_rf' label='${lbl:b_unidad_almacenamiento}@{select smn_base.smn_unidad_medida.smn_unidad_medida_id as id, smn_base.smn_unidad_medida.unm_codigo|| &apos; - &apos; || smn_base.smn_unidad_medida.unm_descripcion as item from smn_base.smn_unidad_medida order by unm_descripcion}' fk='' tableName='smn_caracteristica_item' len='10' type='integer' align='center'/>
+		<row field='smn_unidad_medida_despacho_rf' label='${lbl:b_unidad_despacho}@{select smn_base.smn_unidad_medida.smn_unidad_medida_id as id, smn_base.smn_unidad_medida.unm_codigo|| &apos; - &apos; || smn_base.smn_unidad_medida.unm_descripcion as item from smn_base.smn_unidad_medida order by unm_descripcion}' fk='' tableName='smn_caracteristica_item' len='10' type='integer' align='center'/>
+		<row field='cit_peso' label='${lbl:b_weight}' fk='' tableName='smn_caracteristica_item' len='10' type='double' align='right'/>
+		<row field='smn_unidad_medida_peso_rf' label='${lbl:b_measurement_unit_weight}@{select smn_base.smn_unidad_medida.smn_unidad_medida_id as id, smn_base.smn_unidad_medida.unm_codigo|| &apos; - &apos; || smn_base.smn_unidad_medida.unm_descripcion as item from smn_base.smn_unidad_medida order by unm_descripcion}' fk='' tableName='smn_caracteristica_item' len='10' type='integer' align='center'/>
+		<row field='cit_alto' label='${lbl:b_dimension_alto}' fk='' tableName='smn_caracteristica_item' len='10' type='double' align='right'/>
+		<row field='smn_unidad_medida_alto_rf' label='${lbl:b_unidad_medida_alto}@{select smn_base.smn_unidad_medida.smn_unidad_medida_id as id, smn_base.smn_unidad_medida.unm_codigo|| &apos; - &apos; || smn_base.smn_unidad_medida.unm_descripcion as item from smn_base.smn_unidad_medida order by unm_descripcion}' fk='' tableName='smn_caracteristica_item' len='10' type='integer' align='center'/>
+		<row field='cit_ancho' label='${lbl:b_dimension_ancho}' fk='' tableName='smn_caracteristica_item' len='10' type='double' align='right'/>
+		<row field='smn_unidad_medida_ancho_rf' label='${lbl:b_unidad_medida_ancho}@{select smn_base.smn_unidad_medida.smn_unidad_medida_id as id, smn_base.smn_unidad_medida.unm_codigo|| &apos; - &apos; || smn_base.smn_unidad_medida.unm_descripcion as item from smn_base.smn_unidad_medida order by unm_descripcion}' fk='' tableName='smn_caracteristica_item' len='10' type='integer' align='center'/>
+		<row field='cit_profundidad' label='${lbl:b_dimension_profundidad}' fk='' tableName='smn_caracteristica_item' len='10' type='double' align='right'/>
+		<row field='smn_unidad_medida_profundidad_rf' label='${lbl:b_dimension_profundidad}@{select smn_base.smn_unidad_medida.smn_unidad_medida_id as id, smn_base.smn_unidad_medida.unm_codigo|| &apos; - &apos; || smn_base.smn_unidad_medida.unm_descripcion as item from smn_base.smn_unidad_medida order by unm_descripcion}' fk='' tableName='smn_caracteristica_item' len='10' type='integer' align='center'/>
+		<row field='cit_es_medicamento' label='${lbl:b_es_medicamento}@{SI=${lbl:b_yes}|NO=${lbl:b_not}}' fk='' tableName='smn_caracteristica_item' len='2' type='varchar' align='left'/>
+		<row field='smn_principio_activo_rf' label='${lbl:b_principio_activo}' fk='' tableName='smn_caracteristica_item' len='100' type='varchar' align='left'/>
+		<row field='cit_req_control_lote' label='${lbl:b_requiere_control_lote}@{SI=${lbl:b_yes}|NO=${lbl:b_not}}' fk='' tableName='smn_caracteristica_item' len='2' type='varchar' align='left'/>
+		<row field='cit_req_control_vencimiento' label='${lbl:b_requiere_control_vencimiento}@{SI=${lbl:b_yes}|NO=${lbl:b_not}}' fk='' tableName='smn_caracteristica_item' len='2' type='varchar' align='left'/>
+		<row field='cit_dias_ant_vencimiento' label='${lbl:b_dias_antelacion_vencimiento}' fk='' tableName='smn_caracteristica_item' len='10' type='integer' align='center'/>
+		<row field='cit_tipo_costo' label='${lbl:b_tipo_costo}@{FI=${lbl:b_fijo}|PR=${lbl:b_promedio}|UL=${lbl:b_ultimo}}' fk='' tableName='smn_caracteristica_item' len='2' type='varchar' align='left'/>
+		<row field='cit_valoracion_inventario' label='${lbl:b_valoracion_inventario}@{FI=${lbl:b_fifo}|LI={${lbl:lifo}}' fk='' tableName='smn_caracteristica_item' len='2' type='varchar' align='left'/>
+		<row field='cit_metodo_despacho' label='${lbl:b_metodo_despacho}@{FI=${lbl:b_fifo}|LI=${lbl:lifo}|VL=${lbl:b_vencimiento_lote}}' fk='' tableName='smn_caracteristica_item' len='2' type='varchar' align='left'/>
+		<row field='cit_cant_minima' label='${lbl:b_cantidad_minima}' fk='' tableName='smn_caracteristica_item' len='10' type='double' align='right'/>
+		<row field='cit_cant_maxima' label='${lbl:b_cantidad_maxima}' fk='' tableName='smn_caracteristica_item' len='10' type='double' align='right'/>
+		<row field='cit_punto_reorden' label='${lbl:b_punto_reorden}' fk='' tableName='smn_caracteristica_item' len='10' type='double' align='right'/>
+		<row field='cit_cant_seguridad' label='${lbl:b_cantidad_seguridad}' fk='' tableName='smn_caracteristica_item' len='10' type='double' align='right'/>
+		<row field='cit_es_reusable' label='${lbl:b_es_reusable}@{SI=${lbl:b_yes}|NO=${lbl:b_not}}' fk='' tableName='smn_caracteristica_item' len='2' type='varchar' align='left'/>
+		<row field='cit_reuso_apertura' label='${lbl:b_reuso_apertura}@{SI=${lbl:b_yes}|NO=${lbl:b_not}}' fk='' tableName='smn_caracteristica_item' len='2' type='varchar' align='left'/>
+		<row field='cit_cant_reuso' label='${lbl:b_cantidad_reuso}' fk='' tableName='smn_caracteristica_item' len='10' type='double' align='right'/>
+		<row field='cit_origen_producto' label='${lbl:b_origen_producto}@{NA=${lbl:b_nacional}|{IM=${lbl:b_importado}}' fk='' tableName='smn_caracteristica_item' len='2' type='varchar' align='left'/>
+		<row field='cit_descripcion_compra' label='${lbl:b_descripcion_compra}' fk='' tableName='smn_caracteristica_item' len='400' type='varchar' align='left'/>
+		<row field='cit_codigo_arancel' label='${lbl:b_codigo_arancel}' fk='' tableName='smn_caracteristica_item' len='40' type='varchar' align='left'/>
+		<row field='cit_dias_entrega' label='${lbl:b_dias_entrega}' fk='' tableName='smn_caracteristica_item' len='10' type='double' align='right'/>
+		<row field='smn_centro_costo_rf' label='${lbl:b_cost_centers}@{select smn_base.smn_centro_costo.smn_centro_costo_id as id, smn_base.smn_centro_costo.cco_codigo|| &apos; - &apos; || smn_base.smn_centro_costo.cco_descripcion_larga as item from smn_base.smn_centro_costo order by cco_descripcion_larga}' fk='' tableName='smn_caracteristica_item' len='10' type='integer' align='center'/>
+		<row field='cit_estatus' label='${lbl:b_status}@{AC=${lbl:b_account_type_active}|IN=${lbl:b_inactive}|CU=${lbl:b_cuarentena}}' fk='' tableName='smn_caracteristica_item' len='2' type='varchar' align='left'/>
+		<row field='cit_vigencia' label='${lbl:b_validation_date}' fk='' tableName='smn_caracteristica_item' len='10' type='date' align='center'/>
+		<row field='cit_idioma' label='${lbl:s_profile_lang}@{${def:locale}}' fk='' tableName='smn_caracteristica_item' len='2' type='varchar' align='left'/>
+		<row field='cit_usuario' label='${lbl:b_users}@{${def:user}}' fk='' tableName='smn_caracteristica_item' len='10' type='varchar' align='left'/>
+		<row field='cit_fecha_registro' label='${lbl:b_store_date}@{${def:date}}' fk='' tableName='smn_caracteristica_item' len='10' type='date' align='center'/>
+		<row field='cit_hora' label='${lbl:s_loginhist_col2}@{${def:time}}' fk='' tableName='smn_caracteristica_item' len='8' type='varchar' align='left'/>
+	</grid>
+	<mobile>false</mobile>
+</model>

@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<email_messages>
+	<detail>
+		<rows>		
+		<record time_stored="${fld:rsp_hora}" date_stored="${fld:rsp_fecha_registro}" response="${fld:rsp_texto}" />
+		</rows>
+	</detail>
+</email_messages>

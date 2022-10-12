@@ -1,0 +1,61 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="12" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick="sortBy('smn_almacen_rf_combo','query-smncaracteristicaalmacen.sql')" >${lbl:b_stores}</th>
+		<th class='sortable' onclick="sortBy('cal_tipo_almacen_combo','query-smncaracteristicaalmacen.sql')" >${lbl:b_tipo_almacen}</th>
+		<th class='sortable' onclick="sortBy('cal_capacidad_almacenaje','query-smncaracteristicaalmacen.sql')" >${lbl:b_capacidad_almacenaje}</th>
+		<th class='sortable' onclick="sortBy('smn_unidad_medida_rf_combo','query-smncaracteristicaalmacen.sql')" >${lbl:b_unidad_medida_capacidad_almacenaje}</th>
+		<th class='sortable' onclick="sortBy('cal_espacio_fisico','query-smncaracteristicaalmacen.sql')" >${lbl:b_espacio_fisico}</th>
+		<th class='sortable' onclick="sortBy('smn_unidad_medida_espacio_fisico_rf_combo','query-smncaracteristicaalmacen.sql')" >${lbl:b_unidad_medida_espacio_fisico}</th>
+		<th class='sortable' onclick='sortBy("smn_auxiliar_rf","query-smncaracteristicaalmacen.sql")'>${lbl:b_auxiliary}</th>
+		<th class='sortable' onclick='sortBy("smn_centro_costo_rf","query-smncaracteristicaalmacen.sql")'>${lbl:b_cost_centers}</th>
+		<th class='sortable' onclick="sortBy('cal_fecha_registro','query-smncaracteristicaalmacen.sql')" >${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_caracteristica_almacen_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_caracteristica_almacen_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_caracteristica_almacen_id}')" title="${lbl:b_edit_button}"></td>
+		<td align="center">${fld:smn_almacen_rf_combo}</td>
+		<td align="left">${fld:cal_tipo_almacen_combo}</td>
+		<td align="right">${fld:cal_capacidad_almacenaje@#,###,##0.00}</td>
+		<td align="center">${fld:smn_unidad_medida_rf_combo}</td>
+		<td align="right">${fld:cal_espacio_fisico@#,###,##0.00}</td>
+		<td align="center">${fld:smn_unidad_medida_espacio_fisico_rf_combo}</td>
+		<td align="center">${fld:smn_auxiliar_rf}</td>
+		<td align="center">${fld:smn_centro_costo_rf}</td>
+		<td align="center">${fld:cal_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator>
+	<parameter id="file" type="varchar" required="false" label="Archivo temporal" maxlen="500"/>
+	<parameter id="file.content-type" type="varchar" required="false" label="Formato" maxlen="150"/>
+	<parameter id="file.filename" type="varchar" required="false" label="Archivo" maxlen="400"/>
+	<parameter id="image_size" type="integer" required="false" label="Tamaño del archivo"/>
+</validator>

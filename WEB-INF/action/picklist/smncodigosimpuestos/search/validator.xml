@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/crud'>
+	<parameter id='imp_codigo' type='varchar' required='false' label='${lbl:b_code}' maxlen='16'/>
+	<parameter id='imp_descripcion' type='varchar' required='false' label='${lbl:b_description}' maxlen='48'/>
+	<parameter id='imp_tipo_codigo' type='varchar' required='false' label='${lbl:b_code_type}' maxlen='2'/>
+	<custom-validator classname="dinamica.validators.SQLPatternTransformer" parameter="imp_codigo" rule="contains" />
+	<custom-validator classname="dinamica.validators.SQLPatternTransformer" parameter="imp_descripcion" rule="contains" />
+	<custom-validator classname="dinamica.validators.SQLPatternTransformer" parameter="imp_tipo_codigo" rule="contains" />
+</validator>

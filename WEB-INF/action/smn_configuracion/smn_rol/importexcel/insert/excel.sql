@@ -1,0 +1,36 @@
+INSERT INTO smn_inventario.smn_rol
+(
+	smn_rol_id,
+	smn_usuarios_rf,
+	rol_tipo,
+	smn_corporaciones_rf,
+	smn_entidades_rf,
+	smn_sucursales_rf,
+	smn_areas_servicios_rf,
+	smn_unidades_servicios_rf,
+	rol_posicion_estructura_rf,
+	rol_estatus,
+	rol_vigencia,
+	rol_idioma,
+	rol_usuario,
+	rol_fecha_registro,
+	rol_hora
+)
+VALUES
+(
+	${seq:nextval@smn_inventario.seq_smn_rol},
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+)

@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query.sql" source="session" scope="transaction" />
+
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_division}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' />
+	<pdf-file-name>${lbl:b_division}.pdf</pdf-file-name>
+
+	<pdf-report pageSize="letter" rotate="false" footer="true" header="true">
+		<record recordset='query.sql' title='${lbl:b_division}' width='60' spacingBefore='40'>
+			<col name='smn_almacen_rf_combo' title='${lbl:b_stores}' align='left' format='######' />
+			<col name='smn_division_id_combo' title='${lbl:b_division}' align='left' format='######' />
+			<col name='sdi_codigo' title='${lbl:b_code}' align='left' />
+			<col name='sdi_descripcion' title='${lbl:b_description}' align='left' />
+			<col name='sdi_es_ubicacion_combo' title='${lbl:b_es_ubicacion}' align='left' />
+			<col name='sdi_alto' title='${lbl:b_dimension_alto}' align='left' format='#,###,##0.00' />
+			<col name='smn_unidad_medida_alto_rf_combo' title='${lbl:b_unidad_medida_alto}' align='left' format='######' />
+			<col name='sdi_ancho' title='${lbl:b_dimension_ancho}' align='left' format='#,###,##0.00' />
+			<col name='smn_unidad_medida_ancho_rf_combo' title='${lbl:b_unidad_medida_ancho}' align='left' format='######' />
+			<col name='sdi_profundidad' title='${lbl:b_profundidad}' align='left' format='#,###,##0.00' />
+			<col name='smn_unidad_medida_prof_rf_combo' title='${lbl:b_unidad_medida_profundidad}' align='left' format='######' />
+			<col name='sdi_estatus_combo' title='${lbl:b_status}' align='left' />
+			<col name='sdi_vigencia' title='${lbl:b_validation_date}' align='left' format='dd-MM-yyyy' />
+			<col name='sdi_idioma' title='${lbl:s_profile_lang}' align='left' />
+			<col name='sdi_usuario' title='${lbl:b_users}' align='left' />
+			<col name='sdi_fecha_registro' title='${lbl:b_store_date}' align='left' format='dd-MM-yyyy' />
+			<col name='sdi_hora' title='${lbl:s_loginhist_col2}' align='left' />
+		</record>
+
+
+	</pdf-report>
+</config>

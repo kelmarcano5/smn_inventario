@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Ver resultado de consulta
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>true</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="field2.sql" source="session" scope="session" />
+		<recordset id="query2.sql" source="sql" scope="session" />
+		<recordset id="total_width.sql" source="session" scope="session" />
+		<recordset id="repgen.filter" source="session" scope="session" />
+	</transaction>
+	
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>template.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/html</content-type>		
+		<print mode="table" recordset="field2.sql" tag="cols" />
+		<print mode="form" recordset="query2.sql" />
+		<print mode="form" recordset="total_width.sql" />
+		<print mode="form" recordset="repgen.filter" />
+	</output>
+
+</config>

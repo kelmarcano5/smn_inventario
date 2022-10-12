@@ -1,0 +1,16 @@
+Ha ocurrido un error en la aplicación, 
+estos son los detalles:
+
+Fecha: ${def:date}
+Hora: ${def:time}
+Aplicación: ${req:dinamica.error.context}
+URL invocada: ${req:dinamica.error.url}
+Invocado por (Referer): ${req:dinamica.error.referer}
+Usuario: ${req:dinamica.error.user}
+IP remota: ${req:dinamica.error.remote_addr}
+Host: ${def:host}
+
+Stack trace:
+---------------
+${req:dinamica.error.stacktrace}
+

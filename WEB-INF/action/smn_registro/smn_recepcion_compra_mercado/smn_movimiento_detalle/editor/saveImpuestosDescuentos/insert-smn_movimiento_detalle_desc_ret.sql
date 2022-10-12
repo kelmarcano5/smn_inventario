@@ -1,0 +1,34 @@
+INSERT INTO smn_inventario.smn_movimiento_detalle_desc_ret
+(
+	smn_descuento_retencion_id,
+	smn_movimiento_detalle_id,
+	smn_codigo_descuento_rf,
+	mdd_monto_base_ml,
+	smn_porcentaje_rf,
+	mdd_monto_descuento_ml,
+	smn_moneda_rf,
+	smn_tasa_rf,
+	mdd_monto_base_ma,
+	mdd_monto_descuento_ma,
+	mdd_idioma,
+	mdd_usuario,
+	mdd_fecha_registro,
+	mdd_hora
+)
+VALUES
+(
+	nextval('smn_inventario.seq_smn_movimiento_detalle_desc_ret'),
+	${fld:id},
+	${fld:smn_descuentos_retenciones_id},
+	${fld:mde_monto_bruto_ml},
+	${fld:dyr_porcentaje_descuento},
+	${fld:total_descuento_ml_redondeo},
+	${fld:smn_moneda_rf_detalle},
+	${fld:smn_tasa_rf_detalle},
+	${fld:mde_monto_bruto_ma},
+	${fld:total_descuento_ma_redondeo},
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+);

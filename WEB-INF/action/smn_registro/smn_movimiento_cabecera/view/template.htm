@@ -1,0 +1,54 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='4%'/>
+	<col width='4%'/>
+	<col width='4%'/>
+	<col width='4%'/>
+	<col width='4%'/>
+	<col width='4%'/>
+	<col width='4%'/>
+	<col width='3%'/>
+	<!--toolbar-->
+	<tr>
+		<th colspan="11">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_modulo_rf","query-smnmovimientocabecera.sql")'>${lbl:b_modules}</th>
+		<th class='sortable' onclick='sortBy("smn_documento_rf","query-smnmovimientocabecera.sql")'>${lbl:b_purchasing_documents}</th>
+		<th class='sortable' onclick='sortBy("mca_numero","query-smnmovimientocabecera.sql")'>${lbl:b_number}</th>
+		<th class='sortable' onclick='sortBy("smn_proveedor_rf","query-smnmovimientocabecera.sql")'>${lbl:b_providers}</th>
+		<th class='sortable' onclick='sortBy("smn_orden_compra_rf","query-smnmovimientocabecera.sql")'>${lbl:b_purchase_order_header}</th>
+		<th class='sortable' onclick='sortBy("mca_recibo","query-smnmovimientocabecera.sql")'>${lbl:b_receipt}</th>
+		<th class='sortable' onclick='sortBy("mca_fecha_registro","query-smnmovimientocabecera.sql")'>${lbl:b_store_date}</th>
+		<th>MD</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_movimiento_cabecera_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_movimiento_cabecera_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_movimiento_cabecera_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:smn_modulo_rf}</td>
+		<td>${fld:smn_documento_rf}</td>
+		<td>${fld:mca_numero}</td>
+		<td>${fld:smn_proveedor_rf}</td>
+		<td>${fld:smn_orden_compra_rf}</td>
+		<td>${fld:mca_recibo}</td>
+		<td>${fld:mca_fecha_registro@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/view-list-details.png" onclick="detalle('${fld:smn_movimiento_cabecera_id}', '${fld:smn_movimiento_cabecera_id}')" title="${lbl:b_movement_detail}"></td>
+	</tr>
+	</rows>
+
+</table>

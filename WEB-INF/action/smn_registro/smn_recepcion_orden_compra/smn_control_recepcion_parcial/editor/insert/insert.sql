@@ -1,0 +1,32 @@
+INSERT INTO smn_inventario.smn_control_recepcion_parcial
+(
+	smn_control_recepcion_id,
+	smn_movimiento_cabecera_id,
+	smn_orden_compra_rf,
+	crp_numero_documento,
+	smn_item_id,
+	crp_cantidad_recibida,
+	crp_fecha_recepcion,
+	crp_lote,
+	crp_fecha_vencimiento_lote,
+	crp_idioma,
+	crp_usuario,
+	crp_fecha_registro,
+	crp_hora
+)
+VALUES
+(
+	${seq:currval@smn_inventario.seq_smn_control_recepcion_parcial},
+	${fld:smn_movimiento_cabecera_id},
+	${fld:smn_orden_compra_rf},
+	${fld:crp_numero_documento},
+	${fld:smn_item_id},
+	${fld:crp_cantidad_recibida},
+	${fld:crp_fecha_recepcion},
+	${fld:crp_lote},
+	${fld:crp_fecha_vencimiento_lote},
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+)

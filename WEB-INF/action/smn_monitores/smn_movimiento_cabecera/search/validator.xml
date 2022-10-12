@@ -1,0 +1,7 @@
+ <validator onerror="/action/error/validation/alert">
+ 	<parameter id="entidad" type="integer" required="true" label="ID" maxlen="10" />
+ 	<parameter id="sucursal" type="integer" required="true" label="ID" maxlen="10" />
+ 	<parameter id="almacen" type="integer" required="true" label="ID" maxlen="10" />
+ 	<!-- <parameter id="unidad_prestador" type="integer" required="true" label="ID" maxlen="10" /> -->
+ 	<!-- <parameter id="usuario" type="varchar" required="true" label="ID" maxlen="10" /> -->
+ </validator>

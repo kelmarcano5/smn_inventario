@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<validator onerror="/action/error/validation/alert">
+	<parameter id='mensaje' type='varchar' required='false' label='${fld:mensaje}' maxlen='100' />
+	<parameter id='id'                            type='integer' required='true' label='${lbl:b_movement_detail}'      maxlen='10'/>
+	<parameter id='subtotal_monto_neto_ml'        type='double'  required='false' label='subtotal monto neto'           maxlen='20'/>
+	<parameter id='impuestos_id'                  type='varchar' required='false' label='${lbl:b_account_type_tax}'    maxlen='500'/>
+	<parameter id='descuentos_id'                 type='varchar' required='false' label='${lbl:b_discount}'            maxlen='500'/>
+	<parameter id='smn_codigos_impuestos_id'      type='integer' required='false' label='${lbl:b_taxes}'               maxlen='10'/>
+	<parameter id='smn_descuentos_retenciones_id' type='integer' required='false' label='${lbl:b_code_discount}'       maxlen='10'/>
+	<parameter id='mde_monto_bruto_ml'         type='double'  required='false' label='${lbl:b_base_amount} ml'         maxlen='20'/>
+	<parameter id='mde_monto_bruto_ma'         type='double'  required='false' label='${lbl:b_base_amount} ma'         maxlen='20'/>
+	<parameter id='mde_monto_neto_ml'          type='double'  required='false' label='${lbl:b_amount_net} ml'          maxlen='20'/>
+	<parameter id='mde_monto_neto_ma'          type='double'  required='false' label='${lbl:b_amount_net} ma'          maxlen='20'/>
+	<parameter id='dyr_porcentaje_base'        type='double'  required='false' label='${lbl:b_base_percentage}'        maxlen='20'/>
+	<parameter id='dyr_porcentaje_descuento'   type='double'  required='false' label='${lbl:b_calculation_percentage}' maxlen='20'/>
+	<parameter id='smn_moneda_rf_detalle'      type='integer' required='false' label='${lbl:b_coins}'                  maxlen='10'/>
+	<parameter id='smn_tasa_rf_detalle'        type='integer' required='false' label='${lbl:b_rate}'                   maxlen='10'/>
+	<parameter id='total_descuento_ml_redondeo' type='integer'  required='false' label='${lbl:b_mount_discount} ml'      maxlen='20'/>
+	<parameter id='total_descuento_ma_redondeo' type='integer'  required='false' label='${lbl:b_mount_discount} ma'      maxlen='20'/>
+	<parameter id='sum_descuento_ml'           type='double'  required='false' label='total descuento ml'              maxlen='20'/>
+	<parameter id='sum_descuento_ma'           type='double'  required='false' label='total descuento ma'              maxlen='20'/>
+	<parameter id='monto_neto_ml_redondeo'     type='integer'  required='false' label='total monto neto ml'             maxlen='20'/>
+	<parameter id='monto_neto_ma_redondeo'     type='integer'  required='false' label='total monto neto ma'             maxlen='20'/>
+	<parameter id='imp_monto_sustraendo'       type='double'  required='false' label='${lbl:b_subtract}'               maxlen='20'/>
+	<parameter id='imp_porcentaje_calculo'     type='double'  required='false' label='${lbl:b_calculation_percentage}' maxlen='20'/>
+	<parameter id='imp_porcentaje_base'        type='double'  required='false' label='${lbl:b_base_percentage}'        maxlen='20'/>
+	<parameter id='imp_tipo_codigo'            type='varchar' required='false' label='tipo codigo'                     maxlen='2'/>
+	<parameter id='total_impuesto_ml_redondeo' type='integer'  required='false' label='${lbl:b_tax_amount_ml}'          maxlen='20'/>
+	<parameter id='total_impuesto_ma_redondeo' type='integer'  required='false' label='${lbl:b_tax_amount_ma}'          maxlen='20'/>
+	<parameter id='sum_impuesto_ml'            type='double'  required='false' label='total impuesto ml'               maxlen='20'/>
+	<parameter id='sum_impuesto_ma'            type='double'  required='false' label='total impuesto ma'               maxlen='20'/>
+	<parameter id='smn_movimiento_cabecera_id' type='integer' required='false' label='${lbl:b_movement_head}'          maxlen='10'/>
+	<parameter id='smn_descuento_retencion_id' type='integer' required='false' label='ID ${lbl:b_retention_discount}'  maxlen='10'/>
+	<parameter id='smn_mov_det_impuesto_id'    type='integer' required='false' label='ID ${lbl:b_account_type_tax}'    maxlen='10'/>
+	<parameter id='cal_tipo_calculo_costo'     type='varchar' required='false' label='ID ${lbl:b_calculation_type}'    maxlen='2'/>
+	<parameter id='porc_descuento_libre'       type='double'  required='false' label='${lbl:b_calculation_percentage}' maxlen='20'/>
+	<parameter id='monto_descuento_libre'      type='double'  required='false' label='${lbl:b_free_discount_amount}'   maxlen='20'/>
+</validator>

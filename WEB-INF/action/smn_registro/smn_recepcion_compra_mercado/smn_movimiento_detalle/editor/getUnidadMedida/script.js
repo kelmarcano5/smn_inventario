@@ -1,0 +1,1 @@
+$('#smn_unidad_medida_rf').val('${fld:id}').trigger('change');

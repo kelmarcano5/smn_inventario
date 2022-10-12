@@ -1,0 +1,36 @@
+INSERT INTO smn_inventario.smn_movimiento_detalle_impuesto
+(
+	smn_mov_det_impuesto_id,
+	smn_movimiento_detalle_id,
+	smn_cod_impuesto_deduc_rf,
+	mdi_monto_base,
+	smn_porcentaje_impuesto_rf,
+	mdi_sustraendo_rf,
+	mdi_tipo_movimiento,
+	mdi_monto_impuesto_ml,
+	smn_moneda,
+	smn_tasa,
+	mdi_monto_impuesto_ma,
+	mdi_idioma,
+	mdi_usuario,
+	mdi_fecha_registro,
+	mdi_hora
+)
+VALUES
+(
+	${seq:currval@smn_inventario.seq_smn_movimiento_detalle_impuesto},
+	${fld:smn_movimiento_detalle_id},
+	${fld:smn_cod_impuesto_deduc_rf},
+	${fld:mdi_monto_base},
+	${fld:smn_porcentaje_impuesto_rf},
+	${fld:mdi_sustraendo_rf},
+	${fld:mdi_tipo_movimiento},
+	${fld:mdi_monto_impuesto_ml},
+	${fld:smn_moneda},
+	${fld:smn_tasa},
+	${fld:mdi_monto_impuesto_ma},
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+)

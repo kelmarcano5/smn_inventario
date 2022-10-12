@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='con_codigo' type='varchar' required='true' label='${lbl:b_code}' maxlen='16'/>
+	<parameter id='con_descripcion' type='varchar' required='true' label='${lbl:b_description}' maxlen='64'/>
+	<parameter id='smn_almacen_rf' type='integer' required='true' label='${lbl:b_store_code}' maxlen='10'/>
+	<parameter id='smn_ubicacion_id' type='integer' required='false' label='${lbl:b_head_location}' maxlen='10'/>
+	<parameter id='smn_rol_1_id' type='integer' required='true' label='${lbl:b_inventariador_uno}' maxlen='10'/>
+	<parameter id='smn_rol_2_id' type='integer' required='false' label='${lbl:b_inventariador_dos}' maxlen='10'/>
+	<parameter id='con_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='con_fecha_vigencia' type='date' required='false' label='${lbl:b_vigency_date}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_count}' maxlen='10'/>
+
+
+</validator>

@@ -1,0 +1,1 @@
+select smn_base.smn_unidades_impositivas.smn_unidades_impositivas_id as id, smn_base.smn_unidades_impositivas.uim_codigo || ' - ' || smn_base.smn_unidades_impositivas.uim_descripcion as item from smn_base.smn_unidades_impositivas order by smn_base.smn_unidades_impositivas.uim_descripcion

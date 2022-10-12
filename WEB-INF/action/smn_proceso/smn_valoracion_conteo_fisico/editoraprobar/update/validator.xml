@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_almacen_rf' type='integer' required='true' label='${lbl:b_store_code}' maxlen='10'/>
+	<parameter id='smn_conteo_id' type='integer' required='true' label='${lbl:b_conteo}' maxlen='10'/>
+	<parameter id='smn_documento_id' type='integer' required='true' label='${lbl:b_purchasing_documents}' maxlen='10'/>
+	<parameter id='vcf_numero_documento' type='integer' required='true' label='${lbl:b_number_document}' maxlen='10'/>
+	<parameter id='smn_item_id' type='integer' required='true' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='vcf_cantidad_contada' type='double' required='true' label='${lbl:b_quatity_count}' maxlen='10'/>
+	<parameter id='vcf_cantidad_existencia' type='double' required='true' label='${lbl:b_quatity_existency}' maxlen='10'/>
+	<parameter id='vcf_cantidad_diferencia' type='double' required='true' label='${lbl:b_quatity_different}' maxlen='10'/>
+	<parameter id='smn_unidad_medida_almacenaje_id' type='integer' required='true' label='${lbl:b_unidad_almacenamiento}' maxlen='10'/>
+	<parameter id='vcf_costo_ml' type='double' required='true' label='${lbl:b_cost_ml}' maxlen='10'/>
+	<parameter id='vcf_costo_ma' type='double' required='false' label='${lbl:b_cost_ma}' maxlen='10'/>
+	<parameter id='vcf_monto_ml' type='double' required='true' label='${lbl:b_amount_ml}' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_exchange_rate}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='vcf_monto_ma' type='double' required='false' label='${lbl:b_amount_ma}' maxlen='10'/>
+	<parameter id='vcf_estatus' type='varchar' required='true' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='id' type='integer' required='true' label='${fld:smn_valoration_count_physic}' maxlen='10'/>
+
+
+</validator>

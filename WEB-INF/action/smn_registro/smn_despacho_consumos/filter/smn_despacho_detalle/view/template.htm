@@ -1,0 +1,49 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<!-- <col width='3%'/>
+	<col width='3%'/> -->
+	<col width='20%'/>
+	<col width='20%'/>
+	<col width='20%'/>
+	<col width='20%'/>
+	<col width='20%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="6" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<!--<th></th>
+		<th></th>-->
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_item_rf","query-smndespachodetalle.sql")'>${lbl:b_item}</th>
+		<th class='sortable' onclick='sortBy("dde_cantidad_solicitada","query-smndespachodetalle.sql")'>${lbl:b_requested_amount}</th>
+		<th class='sortable' onclick='sortBy("dde_cantidad_despachada","query-smndespachodetalle.sql")'>${lbl:b_delivered_amount}</th>
+		<th class='sortable' onclick='sortBy("dde_estatus_transaccion","query-smndespachodetalle.sql")'>${lbl:b_transaction_status}</th>
+		<th class='sortable' onclick='sortBy("dde_fecha_registro","query-smndespachodetalle.sql")'>${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<!--<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_despacho_detalle_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_despacho_detalle_id}')" title="${lbl:b_delete_button}"></td>-->
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_despacho_detalle_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:smn_item_rf}</td>
+		<td align='right'>${fld:dde_cantidad_solicitada@#,###,##0.00}</td>
+		<td align='right'>${fld:dde_cantidad_despachada@#,###,##0.00}</td>
+		<td align='left'>${fld:dde_estatus_transaccion}</td>
+		<td>${fld:dde_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

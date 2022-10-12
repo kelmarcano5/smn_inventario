@@ -1,0 +1,42 @@
+INSERT INTO smn_inventario.smn_sub_division
+(
+	smn_sub_division_id,
+	smn_almacen_rf,
+	smn_division_id,
+	sdi_codigo,
+	sdi_descripcion,
+	sdi_es_ubicacion,
+	sdi_alto,
+	smn_unidad_medida_alto_rf,
+	sdi_ancho,
+	smn_unidad_medida_ancho_rf,
+	sdi_profundidad,
+	smn_unidad_medida_prof_rf,
+	sdi_estatus,
+	sdi_vigencia,
+	sdi_idioma,
+	sdi_usuario,
+	sdi_fecha_registro,
+	sdi_hora
+)
+VALUES
+(
+	${seq:currval@smn_inventario.seq_smn_sub_division},
+	${fld:smn_almacen_rf},
+	${fld:smn_division_id},
+	${fld:sdi_codigo},
+	${fld:sdi_descripcion},
+	${fld:sdi_es_ubicacion},
+	${fld:sdi_alto},
+	${fld:smn_unidad_medida_alto_rf},
+	${fld:sdi_ancho},
+	${fld:smn_unidad_medida_ancho_rf},
+	${fld:sdi_profundidad},
+	${fld:smn_unidad_medida_prof_rf},
+	${fld:sdi_estatus},
+	${fld:sdi_vigencia},
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+)

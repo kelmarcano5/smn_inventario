@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		${lbl:b_stores}
+	</summary>
+
+	<log>false</log>
+	
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<!-- <recordset id='query-alm_empresa.sql' source='sql' scope='transaction'/><recordset id='query-alm_unidad_negocio.sql' source='sql' scope='transaction'/><recordset id='query-alm_sucursal.sql' source='sql' scope='transaction'/><recordset id='query-alm_area_servicio.sql' source='sql' scope='transaction'/><recordset id='query-alm_unidad_servicio.sql' source='sql' scope='transaction'/> -->
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>template.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/html</content-type>
+		<!-- <print mode='table' recordset='query-alm_empresa.sql' tag='alm_empresa_rows'/><print mode='table' recordset='query-alm_unidad_negocio.sql' tag='alm_unidad_negocio_rows'/><print mode='table' recordset='query-alm_sucursal.sql' tag='alm_sucursal_rows'/><print mode='table' recordset='query-alm_area_servicio.sql' tag='alm_area_servicio_rows'/><print mode='table' recordset='query-alm_unidad_servicio.sql' tag='alm_unidad_servicio_rows'/> -->
+	</output>
+
+</config>

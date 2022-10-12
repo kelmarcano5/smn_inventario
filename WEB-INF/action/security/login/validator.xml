@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/ajax">
+
+	<parameter id="userlogin" type="varchar" required="true" label="${lbl:s_fld_login}" maxlen="25" />
+	<parameter id="passwd" type="varchar" required="true" label="${lbl:s_fld_password}" maxlen="25" />
+	<parameter id="uri" type="varchar" required="true" label="URL to redirect after login" />
+
+	<!--
+		<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+		on-error-label='Su dirección IP actual no está autorizada para que
+		usted ingrese al sistema.' sql='invalid-ip.sql' id="form_error"/>
+	-->
+	<!--
+		<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+		on-error-label='Su identificador de usuario ya tiene una sesión activa
+		en esta aplicación.' sql='invalid-session.sql' id="form_error"/>
+	-->
+
+</validator>
+

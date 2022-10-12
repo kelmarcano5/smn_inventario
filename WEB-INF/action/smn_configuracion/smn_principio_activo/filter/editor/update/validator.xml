@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='pac_codigo' type='integer' required='true' label='${lbl:b_code}' maxlen='10'/>
+	<parameter id='pac_descripcion' type='varchar' required='true' label='${lbl:b_description}' maxlen='65'/>
+	<parameter id='pac_descripcion_completa' type='varchar' required='false' label='${lbl:b_long_description}' maxlen='200'/>
+	<parameter id='pac_estatus' type='varchar' required='true' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='pac_fecha_vigencia' type='date' required='true' label='${lbl:b_validation_date}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_principio_activo}' maxlen='10'/>
+
+
+</validator>

@@ -1,0 +1,58 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="11" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_cod_impuesto_deduc_rf","query-smnmovimientodetalleimpuesto.sql")'>${lbl:b_tax_code}</th>
+		<th class='sortable' onclick="sortBy('mdi_monto_base','query-smnmovimientodetalleimpuesto.sql')" >${lbl:b_base_amount} </th>
+		<th class='sortable' onclick='sortBy("smn_porcentaje_impuesto_rf","query-smnmovimientodetalleimpuesto.sql")'>${lbl:b_tax_percentage}</th>
+		<th class='sortable' onclick='sortBy("mdi_sustraendo_rf","query-smnmovimientodetalleimpuesto.sql")'>${lbl:b_subtract}</th>
+		<th class='sortable' onclick='sortBy("mdi_tipo_movimiento","query-smnmovimientodetalleimpuesto.sql")'>${lbl:b_movement_type}</th>
+		<th class='sortable' onclick='sortBy("mdi_monto_impuesto_ml","query-smnmovimientodetalleimpuesto.sql")'>${lbl:b_tax_amount_ml}</th>
+		<th class='sortable' onclick='sortBy("mdi_monto_impuesto_ma","query-smnmovimientodetalleimpuesto.sql")'>${lbl:b_tax_amount_ma}</th>
+		<th class='sortable' onclick='sortBy("mdi_fecha_registro","query-smnmovimientodetalleimpuesto.sql")'>${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_mov_det_impuesto_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_mov_det_impuesto_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_mov_det_impuesto_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:smn_cod_impuesto_deduc_rf}</td>
+		<td align='right'>${fld:mdi_monto_base@#,###,##0.00}</td>
+		<td>${fld:smn_porcentaje_impuesto_rf@#,###,##0.00}</td>
+		<td align='right'>${fld:mdi_sustraendo_rf@#,###,##0.00}</td>
+		<td align='left'>${fld:mdi_tipo_movimiento}</td>
+		<td align='right'>${fld:mdi_monto_impuesto_ml@#,###,##0.00}</td>
+		<td align='right'>${fld:mdi_monto_impuesto_ma@#,###,##0.00}</td>
+		<td>${fld:mdi_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

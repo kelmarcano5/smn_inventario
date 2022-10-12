@@ -1,0 +1,10 @@
+select
+	smn_inventario.smn_ubicacion_detalle.smn_ubicacion_detalle_id,
+	smn_inventario.smn_ubicacion_detalle.smn_divisiones_id,
+	smn_inventario.smn_ubicacion_detalle.smn_subdivisiones_id,
+	smn_inventario.smn_ubicacion_detalle.smn_lote_id,
+	smn_inventario.smn_ubicacion_detalle.ubd_cantidad_final,
+	smn_inventario.smn_ubicacion_detalle.ubd_fecha_registro
+	
+from
+	smn_inventario.smn_ubicacion_detalle

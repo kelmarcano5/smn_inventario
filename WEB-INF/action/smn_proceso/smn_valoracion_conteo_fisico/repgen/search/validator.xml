@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='repgen.filter' onerror='/action/error/validation/ajax'>
+
+	<parameter id='fdesde' type='date' required='false' label='Fecha desde'/>
+	<parameter id='fhasta' type='date' required='false' label='Fecha hasta'/>
+	
+	<parameter id='smn_almacen_rf' type='integer' required='false' label='${lbl:b_store_code}' maxlen='10'/>
+	<parameter id='smn_conteo_id' type='integer' required='false' label='${lbl:b_conteo}' maxlen='10'/>
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_purchasing_documents}' maxlen='10'/>
+	<parameter id='vcf_numero_documento' type='integer' required='false' label='${lbl:b_number_document}' maxlen='10'/>
+	<parameter id='smn_item_id' type='integer' required='false' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='vcf_cantidad_contada' type='double' required='false' label='${lbl:b_quatity_count}' maxlen='10'/>
+	<parameter id='vcf_cantidad_existencia' type='double' required='false' label='${lbl:b_quatity_existency}' maxlen='10'/>
+	<parameter id='vcf_cantidad_diferencia' type='double' required='false' label='${lbl:b_quatity_different}' maxlen='10'/>
+	<parameter id='smn_unidad_medida_almacenaje_id' type='integer' required='false' label='${lbl:b_unidad_almacenamiento}' maxlen='10'/>
+	<parameter id='vcf_costo_ml' type='double' required='false' label='${lbl:b_cost_ml}' maxlen='10'/>
+	<parameter id='vcf_costo_ma' type='double' required='false' label='${lbl:b_cost_ma}' maxlen='10'/>
+	<parameter id='vcf_monto_ml' type='double' required='false' label='${lbl:b_amount_ml}' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_exchange_rate}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='vcf_monto_ma' type='double' required='false' label='${lbl:b_amount_ma}' maxlen='10'/>
+	<parameter id='vcf_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='vcf_estatus'
+		rule='contains' />
+
+
+
+	<custom-validator
+			classname='dinamica.validators.ArrayNotEmptyValidator'
+			on-error-label='Seleccione al menos un campo para la generación del reporte.'
+			parameter-name='field_id' 
+			id='field_id' />
+
+	<custom-validator 
+			classname='dinamica.validators.ArrayToRecordset'
+			paramName='field_id' 
+			recordsetId='fields' 
+			colName='field_id' 
+			colType='integer' />
+				
+</validator>

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smntransporte.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_transport}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' />
+	<pdf-file-name>${lbl:b_transport}.pdf</pdf-file-name>
+
+	<pdf-report 
+		pageSize="letter" 
+		rotate="false"
+		footer="false" 
+		header="true">
+		<record recordset='query-smntransporte.sql' width='100' spacingBefore='40'>
+			<col name='tra_codigo' title='${lbl:b_code}' width='16' align='left' />
+			<col name='tra_descripcion_transporte' title='${lbl:b_description}' width='16' align='left' />
+			<col name='tra_tipo_transporte' title='${lbl:b_transport_type}' width='16' align='left' />
+			<col name='smn_proveedor_rf' title='${lbl:b_providers}' width='16' align='left' format='######' />
+			<col name='tra_estatus' title='${lbl:b_status}' width='16' align='left' />
+			<col name='tra_fecha_registro' title='${lbl:b_store_date}' width='16' align='left' format='dd-MM-yyyy' />
+
+		</record>
+
+	</pdf-report>
+</config>

@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_ubicacion_cabecera>
+	<detail>
+		<rows>		
+		<record ubc_fecha_registro="${fld:ubc_fecha_registro}"    ubc_estatus="${fld:ubc_estatus}"    smn_caracteristica_item_id="${fld:smn_caracteristica_item_id}"    smn_caracteristica_almacen_id="${fld:smn_caracteristica_almacen_id}"    smn_movimiento_detalle_id="${fld:smn_movimiento_detalle_id}"    />
+		</rows>
+	</detail>
+</smn_ubicacion_cabecera>

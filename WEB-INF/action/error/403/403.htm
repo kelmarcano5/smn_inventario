@@ -1,0 +1,57 @@
+<html>
+
+<head>
+	<link rel="stylesheet" type="text/css" href="${def:context}/default.css" />
+	<title>Alerta de Seguridad</title>
+</head>
+
+<body>
+
+<center>
+
+<br>
+
+<div class="alert" style="width:300px">
+
+<br>
+<img src="${def:context}/images/warning.png">
+
+<br><br>
+Usted no tiene los permisos necesarios<br> 
+para ejecutar esta operación.
+
+<br><br>
+
+<input type="button" class="button" 
+onclick="goBack()"
+value="Retornar">
+
+<br><br>
+
+</div>
+
+</center>
+
+	<script language="javascript">
+	var xx = "${fld:idx}"
+	
+	if (parent!=null) {
+		if (this.name=="uploadFrame")
+			parent.uploadError("Permiso DENEGADO para ejecutar este comando.");
+	}
+	
+	function goBack()
+	{
+		if (window.opener==null) {
+			if (xx!="")
+				window.location = "${def:context}/" + xx;
+			else
+				history.back();
+		}
+		else
+			window.close();
+	}
+	</script>
+
+</body>
+</html>

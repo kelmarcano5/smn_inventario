@@ -1,0 +1,7 @@
+select
+	${field}
+from
+	smn_inventario.smn_movimiento_cabecera
+where
+		smn_inventario.smn_movimiento_cabecera.smn_movimiento_cabecera_id = ${fld:id}
+	

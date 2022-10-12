@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_valoracion_conteo_fisico>
+	<detail>
+		<rows>		
+		<record vcf_fecha_registro="${fld:vcf_fecha_registro}"    vcf_estatus="${fld:vcf_estatus}"    vcf_monto_ma="${fld:vcf_monto_ma}"    smn_moneda_rf="${fld:smn_moneda_rf}"    smn_tasa_rf="${fld:smn_tasa_rf}"    vcf_monto_ml="${fld:vcf_monto_ml}"    vcf_costo_ma="${fld:vcf_costo_ma}"    vcf_costo_ml="${fld:vcf_costo_ml}"    smn_unidad_medida_almacenaje_id="${fld:smn_unidad_medida_almacenaje_id}"    vcf_cantidad_diferencia="${fld:vcf_cantidad_diferencia}"    vcf_cantidad_existencia="${fld:vcf_cantidad_existencia}"    vcf_cantidad_contada="${fld:vcf_cantidad_contada}"    smn_item_id="${fld:smn_item_id}"    vcf_numero_documento="${fld:vcf_numero_documento}"    smn_documento_id="${fld:smn_documento_id}"    smn_conteo_id="${fld:smn_conteo_id}"    smn_almacen_rf="${fld:smn_almacen_rf}"    />
+		</rows>
+	</detail>
+</smn_valoracion_conteo_fisico>

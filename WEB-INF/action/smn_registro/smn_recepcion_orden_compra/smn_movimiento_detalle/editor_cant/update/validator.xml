@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_movimiento_cabecera_id' type='integer' required='false' label='${lbl:b_movement_head_order}' maxlen='10'/>
+	<parameter id='smn_item_rf' type='integer' required='false' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='smn_centro_costo_rf' type='integer' required='false' label='${lbl:b_cost_centers}' maxlen='10'/>
+	<parameter id='mde_lote' type='integer' required='true' label='${lbl:b_lot}' maxlen='10'/>
+	<parameter id='fecha_vencimiento_lote' type='date' required='false' label='${lbl:b_expiration_date}' maxlen='10'/>
+	<parameter id='mde_tipo_movimiento' type='varchar' required='false' label='${lbl:b_movement_type}' maxlen='2'/>
+	<parameter id='mde_cantidad_recibida' type='double' required='false' label='${lbl:b_received_amount}' maxlen='10'/>
+	<parameter id='mde_descripcion' type='varchar' required='false' label='${lbl:b_description}' maxlen='200'/>
+	<parameter id='mde_es_bonificacion' type='varchar' required='false' label='${lbl:b_bonus}' maxlen='2'/>
+	<parameter id='smn_unidad_medida_rf' type='integer' required='false' label='${lbl:b_measurement_unit}' maxlen='10'/>
+	<parameter id='mde_valor_unitario_ml' type='double' required='false' label='${lbl:b_unitari_value_ml}' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_exchange_rate}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='mde_valor_unitario_ma' type='double' required='false' label='${lbl:b_unitari_value_ma}' maxlen='10'/>
+	<parameter id='mde_monto_bruto_ml' type='double' required='false' label='${lbl:b_gross_amount_ml}' maxlen='10'/>
+	<parameter id='mde_monto_bruto_ma' type='double' required='false' label='${lbl:b_gross_amount_ma}' maxlen='10'/>
+	<parameter id='mde_monto_disminucion_ml' type='double' required='false' label='${lbl:b_decrease_amount_ml}' maxlen='10'/>
+	<parameter id='mde_monto_disminucion_ma' type='double' required='false' label='${lbl:b_decrease_amount_ma}' maxlen='10'/>
+	<parameter id='mde_monto_valor_agregado_ml' type='double' required='false' label='${lbl:b_agree_value_amount_ml}' maxlen='10'/>
+	<parameter id='mde_monto_valor_agregado_ma' type='double' required='false' label='${lbl:b_agree_value_amount_ma}' maxlen='10'/>
+	<parameter id='mde_monto_neto_ml' type='double' required='false' label='${lbl:b_net_document_amount_ml}' maxlen='10'/>
+	<parameter id='mde_monto_neto_ma' type='double' required='false' label='${lbl:b_net_document_amount_ma}' maxlen='10'/>
+	<parameter id='mde_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_movement_detail}' maxlen='10'/>
+
+
+</validator>

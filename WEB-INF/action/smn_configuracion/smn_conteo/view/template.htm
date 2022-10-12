@@ -1,0 +1,55 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="10" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("con_codigo","query-smnconteo.sql")'>${lbl:b_code}</th>
+		<th class='sortable' onclick='sortBy("con_descripcion","query-smnconteo.sql")'>${lbl:b_description}</th>
+		<th class='sortable' onclick='sortBy("smn_almacen_rf","query-smnconteo.sql")'>${lbl:b_store_code}</th>
+		<th class='sortable' onclick='sortBy("smn_ubicacion_id","query-smnconteo.sql")'>${lbl:b_head_location}</th>
+		<th class='sortable' onclick='sortBy("smn_rol_1_id","query-smnconteo.sql")'>${lbl:b_inventariador_uno}</th>
+		<th class='sortable' onclick='sortBy("con_estatus","query-smnconteo.sql")'>${lbl:b_status}</th>
+		<th class='sortable' onclick='sortBy("con_fecha_registro","query-smnconteo.sql")'>${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_conteo_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_conteo_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_conteo_id}')" title="${lbl:b_edit_button}"></td>
+		<td align='left'>${fld:con_codigo}</td>
+		<td align='left'>${fld:con_descripcion}</td>
+		<td>${fld:smn_almacen_rf}</td>
+		<td>${fld:smn_ubicacion_id}</td>
+		<td>${fld:smn_rol_1_id}</td>
+		<td align='left'>${fld:con_estatus}</td>
+		<td>${fld:con_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

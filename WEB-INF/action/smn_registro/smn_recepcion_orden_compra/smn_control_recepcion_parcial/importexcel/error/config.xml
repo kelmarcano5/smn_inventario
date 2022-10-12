@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Error handler para el upload del blob, retorna una página al iframe escondido
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.ErrorHandler</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>message.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/html; charset=iso-8859-1</content-type>
+		<expiration>0</expiration>
+	</output>
+
+	<!--
+		customise if you want
+		to send email alerts on errors
+	-->
+	<mail>
+		<enabled>false</enabled>
+		<host>localhost</host>
+		<subject>Application Error Notification</subject>
+		<from>mcordova@localhost</from>
+		<from-name>System Error Handler</from-name>
+		<to>admin@localhost</to>
+	</mail>
+
+</config>

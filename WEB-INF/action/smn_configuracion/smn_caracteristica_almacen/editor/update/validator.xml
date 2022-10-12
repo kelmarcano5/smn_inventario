@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_almacen_rf' type='integer' required='true' label='${lbl:b_stores}' maxlen='10'/>
+	<parameter id='cal_tipo_almacen' type='varchar' required='true' label='${lbl:b_tipo_almacen}' maxlen='2'/>
+	<parameter id='cal_capacidad_almacenaje' type='double' required='true' label='${lbl:b_capacidad_almacenaje}' maxlen='10'/>
+	<parameter id='smn_unidad_medida_rf' type='integer' required='true' label='${lbl:b_unidad_medida_capacidad_almacenaje}' maxlen='10'/>
+	<parameter id='cal_espacio_fisico' type='double' required='true' label='${lbl:b_espacio_fisico}' maxlen='10'/>
+	<parameter id='smn_unidad_medida_espacio_fisico_rf' type='integer' required='true' label='${lbl:b_unidad_medida_espacio_fisico}' maxlen='10'/>
+	<parameter id='cal_politica_recepcion' type='varchar' required='true' label='${lbl:b_politica_recepcion}' maxlen='2'/>
+	<parameter id='cal_estatus' type='varchar' required='true' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='cal_vigencia_desde' type='date' required='true' label='${lbl:b_validation_date_from}' maxlen='10'/>
+	<parameter id='cal_vigencia_hasta' type='date' required='true' label='${lbl:b_validation_date_until}' maxlen='10'/>
+	<parameter id='cal_control_ubicacion' type='varchar' required='false' label='${lbl:b_requiere_control_ubicacion}' maxlen='2'/>
+	<parameter id='smn_auxiliar_rf' type='integer' required='false' label='${lbl:b_auxiliary}' maxlen='10'/>
+	<parameter id='smn_centro_costo_rf' type='integer' required='false' label='${lbl:b_cost_centers}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_caracteristicas_almacen}' maxlen='10'/>
+	<parameter id='cal_tipo_calculo_costo' type='varchar' required='false' label='${lbl:b_calculation_type}' maxlen='2'/>
+	
+</validator>

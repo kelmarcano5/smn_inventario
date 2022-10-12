@@ -1,0 +1,37 @@
+<!--data grid-->
+<table class="datagrid" style="width:90%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='45%'/>
+	<col width='45%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="5">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick="sortBy('smn_caracteristica_item_combo','query-smnrelitemcodimpuesto.sql')" >${lbl:b_caracteristicas_item}</th>
+		<th class='sortable' onclick="sortBy('smn_codigo_impuesto_rf_combo','query-smnrelitemcodimpuesto.sql')" >${lbl:b_tax_code}</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_rel_item_cod_impuesto_id}')" title="Ver detalle"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_rel_item_cod_impuesto_id}')" title="Eliminar"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_rel_item_cod_impuesto_id}')" title="Editar"></td>
+		<td align="center">${fld:smn_caracteristica_item_combo}</td>
+		<td align="center">${fld:smn_codigo_impuesto_rf_combo}</td>
+	</tr>
+	</rows>
+
+</table>

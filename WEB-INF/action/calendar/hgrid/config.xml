@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Create HGrid of calendar days
+	</summary>
+
+	<log>false</log>
+
+	<output>
+		<classname>dinamica.HGridOutput</classname>
+		<template>template.htm</template>
+		<set-http-headers>false</set-http-headers>
+		<content-type>text/html</content-type>
+	</output>
+
+	<!--hgrid config-->
+	<row-template>row.htm</row-template>
+	<col-template>col.htm</col-template>
+	<cols>7</cols>
+	<hgrid-recordset>calendar</hgrid-recordset>
+	<!--end hgrid config-->
+
+</config>

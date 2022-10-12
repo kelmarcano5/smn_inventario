@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="error.excel" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="0" cellPosX="1" cellStep="0" name="${lbl:b_retention_discount}"/>
+	
+	<excel 
+			recordset='error.excel' 
+			sheetname='${lbl:b_retention_discount}' 
+			filename='${lbl:b_retention_discount}.xls' 
+			date-format='dd-MM-yyyy'
+			header-background='true'>
+		<col id='columna' label='${lbl:b_column}' />
+		<col id='fila' label='${lbl:b_row}' />
+		<col id='error' label='${lbl:b_error_description}' />
+
+	</excel>
+
+</config>

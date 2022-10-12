@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica.css" />
+	
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+
+	<script type="text/javascript">
+		
+		//invoca la generacion de un PDF en un popup
+		function openPDF()
+		{
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/pdf?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+	</script>
+
+</head>
+
+<body>
+
+	<!--banner-->
+	<div class="bannerDialog">
+		${lbl:b_messages} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<img src="${def:context}/images/pdf.png" onclick="openPDF()" title="${lbl:b_export_pdf}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/excel.png" onclick="openExcel()" title="${lbl:b_export_excel}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/file-xml4.png" onclick="openXml('${fld:smn_mensajes_id}')" title="${lbl:b_export_xml}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/file-text.png" onclick="openTxt('${fld:smn_mensajes_id}')" title="${lbl:b_export_txt}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog()" title="${lbl:b_close_button}" style="float:right; cursor:pointer;"/>
+	</div>
+
+	<table class="record" style="width:500px;">
+		<tr>
+			<td width="40%">${lbl:b_subject}</td>
+			<td style="background-color: white">${fld:msj_asunto}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_text}</td>
+			<td style="background-color: white">${fld:msj_texto}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_store_date}</td>
+			<td style="background-color: white">${fld:msj_fecha_registro@dd-MM-yyyy}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:s_loginhist_col2}</td>
+			<td style="background-color: white">${fld:msj_hora}</td>
+		</tr>
+
+	</table>
+
+<!--data grid-->
+<table class="datagrid" width="600px">
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="3" style="font-weight:bold;font-size:10pt;">
+			${lbl:b_replies}
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th width="33%">${lbl:b_text}</th>
+		<th width="33%">${lbl:b_store_date}</th>
+		<th width="33%">${lbl:s_loginhist_col2}</th>
+	</tr>
+
+	<!--data-->
+	<rows-smnrespuestas>
+	<tr>
+		<td align="left">${fld:rsp_texto}</td>
+		<td align="center">${fld:rsp_fecha_registro@dd-MM-yyyy}</td>
+		<td align="left">${fld:rsp_hora}</td>
+	</tr>
+	</rows-smnrespuestas>
+
+</table>
+
+<br>
+<br>
+${inc:${def:actionroot}/editor_rpt/form?mensaje_id=${fld:id}}
+
+</body>
+
+</html>

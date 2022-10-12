@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_entidad_rf' type='integer' required='true' label='${lbl:b_entities}' maxlen='10'/>
+	<parameter id='smn_sucursal_rf' type='integer' required='false' label='${lbl:b_subsidiaries}' maxlen='10'/>
+	<parameter id='smn_caracteristica_almacen_id' type='integer' required='true' label='${lbl:b_feature_store}' maxlen='10'/>
+	<parameter id='smn_caracteristica_item_id' type='integer' required='true' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='col_lote' type='varchar' required='true' label='${lbl:b_lot}' maxlen='50'/>
+	<parameter id='col_fecha_vencimiento' type='date' required='true' label='${lbl:b_expiration_date}' maxlen='10'/>
+	<parameter id='col_cantidad_inicial' type='double' required='true' label='${lbl:b_initial_quantity}' maxlen='10'/>
+	<parameter id='col_entradas' type='double' required='true' label='${lbl:b_input}' maxlen='10'/>
+	<parameter id='col_salidas' type='double' required='true' label='${lbl:b_output}' maxlen='10'/>
+	<parameter id='col_cantidad_final' type='double' required='true' label='${lbl:b_final_quantity}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_control_lot}' maxlen='10'/>
+
+
+</validator>

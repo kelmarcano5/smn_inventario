@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>${lbl:b_codigo_barra}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/pdf-codbarras.css" />	
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript" src="${def:context}/action/script"></script>
+	<script type="text/javascript" src="${def:context}/action/jquery"></script>
+   	<script type="text/javascript" src="${def:context}/action/jqueryi"></script>
+	<script type="text/javascript" src="${def:context}/action/jquery_bar"></script>
+</head>
+<body>
+	
+	<form id="barcode_1">
+		<div align="center">
+			<label>${lbl:b_item}: ${fld:itm_nombre}</label>
+			<!--<label>${lbl:s_loginhist_col1}: ${fld:fecha_actual@dd-MM-yyyy}</label>-->
+		</div>
+		<table id="tabla">
+		
+		</table>
+	</form>
+</body>
+</html>
+
+<script type="text/javascript">
+	var cod = '${fld:itm_codigo}';
+	var nom = '${fld:itm_nombre}';
+
+  	onload = function() {
+  		$(document).ready(function() {
+  			for (var f = 0; f < 6; f++) {
+  				$("#tabla").append("<tr id='fila"+f+"'></tr>");
+  				for (var c = 0; c < 7; c++) {
+  					$("#fila"+f).append("<td><div id='barcode"+f+"_"+c+"'></div></td>");
+  					$("#barcode"+f+"_"+c).barcode(
+						cod, // Valor del codigo de barras
+						"code128" // tipo (cadena)
+					);
+  				}
+  			}
+  		});
+		$('#barcode_1').printThis({
+  			debug: false,               // show the iframe for debugging
+		    importCSS: true,            // import parent page css
+		    importStyle: true,         // import style tags
+		    printContainer: false,       // print outer container/$.selector
+		    loadCSS: "/pdf-codbarras.css",                // path to additional css file - use an array [] for multiple
+		    pageTitle: "",              // add title to print page
+		    removeInline: false,        // remove inline styles from print elements
+		    removeInlineSelector: "*",  // custom selectors to filter inline styles. removeInline must be true
+		    printDelay: 333,            // variable print delay
+		    header: null,               // prefix to html
+		    footer: null,               // postfix to html
+		    base: false,                // preserve the BASE tag or accept a string for the URL
+		    formValues: false,           // preserve input/form values
+		    canvas: false,              // copy canvas content
+		    doctypeString: '...',       // enter a different doctype for older markup
+		    removeScripts: true,       // remove script tags from print content
+		    copyTagClasses: false,      // copy classes from the html & body tag
+		    beforePrintEvent: null,     // function for printEvent in iframe
+		    beforePrint: null,          // function called before iframe is filled
+		    afterPrint: null            // function called before iframe is removed
+  		});
+  	}
+</script>
+
+

@@ -1,0 +1,573 @@
+<?xml version='1.0' encoding='UTF8'?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+  version="3.0"
+  metadata-complete="true">
+
+  <display-name>smn_inventario</display-name>
+  <description>Modulo de Inventario</description>
+	
+
+	<!--descomentar si usa clusters-->
+	<!--	
+	<distributable/>
+	--> 
+
+	<!--configuracion de conexion LDAP-->
+	<context-param>
+		<description>URL para hacer logins contra servidor LDAP</description>		
+		<param-name>ldap-url</param-name>
+		<param-value>ldap://localhost:389/DC=example,DC=com</param-value>
+	</context-param>
+
+	<context-param>
+		<description>Modo de autenticacion contra servidor LDAP</description>
+		<param-name>ldap-authentication</param-name>
+		<param-value>simple</param-value>
+	</context-param>
+
+	<!--context parameters required by the framework-->
+	<context-param>
+		<description>Filename to save Requests and JDBC performance logs</description>
+		<param-name>log-file</param-name>
+		<param-value>D:/data/loginventario/dinamica.log</param-value>
+	</context-param>
+
+	<context-param>
+		<description>JNDI prefix for DataSource lookup (may be empty for many servers)</description>
+		<param-name>jndi-prefix</param-name>
+		<param-value>java:comp/env/</param-value>
+	</context-param>
+
+	<context-param>
+		<description>Default DataSource name</description>
+		<param-name>def-datasource</param-name>
+		<param-value>jdbc/dinamica</param-value>
+	</context-param>
+
+	<context-param>
+		<description>Default language for dynamic labels</description>
+		<param-name>def-language</param-name>
+		<param-value>es</param-value>
+	</context-param>
+
+	<context-param>
+		<description>Default format for dates</description>
+		<param-name>def-format-date</param-name>
+		<param-value>dd-MM-yyyy</param-value>
+	</context-param>
+
+	<context-param>
+		<description>Default format to parse and validate dates</description>
+		<param-name>def-input-date</param-name>
+		<param-value>dd-MM-yy</param-value>
+	</context-param>
+
+	<context-param>
+		<description>SQL expression to obtain the next sequence value - Oracle would use ${seq}.NEXTVAL</description>
+		<param-name>sequence-nextval</param-name>
+		<param-value>NEXTVAL('${seq}')</param-value>
+	</context-param>
+
+	<context-param>
+		<description>SQL expression to obtain the current sequence value - Oracle would use ${seq}.CURRVAL</description>
+		<param-name>sequence-currval</param-name>
+		<param-value>CURRVAL('${seq}')</param-value>
+	</context-param>
+
+	<context-param>
+		<description>Default action to forward when a request validation error is triggered by the generic validator</description>
+		<param-name>on-validation-error</param-name>
+		<param-value>/action/error/validation</param-value>
+	</context-param>
+
+	<context-param>
+		<description>Color #1 for alternate row color in tables</description>
+		<param-name>def-color1</param-name>
+		<param-value>class='normalColor'</param-value>
+	</context-param>
+
+	<context-param>
+		<description>Color #2 for alternate row color in tables</description>
+		<param-name>def-color2</param-name>
+		<param-value>class='altColor'</param-value>
+	</context-param>
+
+	<context-param>
+		<description>Default header for PDF reports (deprecated)</description>
+		<param-name>pdf-header</param-name>
+		<param-value>Dinamica PDF Report</param-value>
+	</context-param>
+
+	<context-param>
+		<description>Default footer for PDF reports</description>
+		<param-name>pdf-footer</param-name>
+		<param-value>Modulo de Inventario</param-value>
+	</context-param>
+
+  	<context-param>
+		<description>Default date format for PDF report footer</description>
+		<param-name>pdf-dateformat</param-name>
+		<param-value>dd-MM-yyyy HH:mm</param-value>
+	</context-param>
+
+	<context-param>
+		<description>Default encoding for reading templates and generating response</description>
+		<param-name>file-encoding</param-name>
+		<param-value>iso-8859-1</param-value>
+	</context-param>
+
+	<context-param>
+		<description>Default security schema if any is being used; otherwise leave empty</description>
+		<param-name>security-schema</param-name>
+		<param-value>smn_seguridad</param-value>
+	</context-param>
+
+	<context-param>
+		<description>Indica si la traza de auditor�a se debe grabar usando SQL compatible SQLServer/MySQL</description>
+		<param-name>audit-sqlserver</param-name>
+		<param-value>false</param-value>
+	</context-param>
+
+	<context-param>
+		<description>Servidor de correo por defecto</description>
+		<param-name>mail-server</param-name>
+		<param-value>smtp.intercable.net.ve</param-value>
+	</context-param>
+
+	<context-param>
+		<description>Direcci�n email del remitente por defecto</description>
+		<param-name>mail-from</param-name>
+		<param-value>mcordova@intercable.net.ve</param-value>
+	</context-param>
+	
+	<context-param>
+		<description>Nombre del remitente por defecto</description>
+		<param-name>mail-from-displayname</param-name>
+		<param-value>Dinamica Framework</param-value>
+	</context-param>
+
+	<context-param>
+		<description>Usuario para autenticacion SMTP (si es vacio se usa mail-from)</description>
+		<param-name>mail-user</param-name>
+		<param-value></param-value>
+	</context-param>
+	
+	<context-param>
+		<description>Contrase�a para autenticacion SMTP (si coloca una contrase�a se asume SMTP seguro)</description>
+		<param-name>mail-password</param-name>
+		<param-value></param-value>
+	</context-param>
+
+	<context-param>
+		<description>Puerto del Servidor SMTP</description>
+		<param-name>mail-port</param-name>
+		<param-value>25</param-value>
+	</context-param>
+	
+	<context-param>
+		<description>Requiere SSL para conectarse al Servidor SMTP (true|false)</description>
+		<param-name>mail-ssl</param-name>
+		<param-value>false</param-value>
+	</context-param>
+
+	<context-param>
+		<description>Indica si se imprime traza http por STDERR</description>
+		<param-name>httpclient-debug</param-name>
+		<param-value>false</param-value>
+	</context-param>		
+
+
+	<!-- configuracion del listener JMX para monitoreo y alertas de Tomcat 6 -->
+	<context-param>
+		<description>Intervalo en milisegunos que indica cada cuanto correr la tarea de monitoreo</description>
+		<param-name>jmx-timer</param-name>
+		<param-value>20000</param-value>
+	</context-param>		
+
+	<context-param>
+		<description>Indica si se notifica por email cuando se disparan alertas</description>
+		<param-name>jmx-send-mail</param-name>
+		<param-value>false</param-value>
+	</context-param>		
+
+	<context-param>
+		<description>Asunto del email enviado en caso de alerta</description>
+		<param-name>jmx-mail-subject</param-name>
+		<param-value>ALERTA en el servidor Tomcat</param-value>
+	</context-param>
+
+	<context-param>
+		<description>Indica si se notifica por email cuando se disparan alertas</description>
+		<param-name>jmx-mail-recipient</param-name>
+		<param-value>martin.cordova@gmail.com</param-value>
+	</context-param>		
+
+	<context-param>
+		<description>Tiempo en minutos que debe esperar antes de enviar otro email de alerta</description>
+		<param-name>jmx-send-mail-interval</param-name>
+		<param-value>10</param-value>
+	</context-param>
+
+	<context-param>
+		<description>Prefijo para las trazas dejadas en el log de Tomcat</description>
+		<param-name>jmx-log-prefix</param-name>
+		<param-value>[ALERT]: </param-value>
+	</context-param>
+
+	<context-param>
+		<description>Por encima de esta cantidad threads en estado runnable se dispara alerta</description>
+		<param-name>jmx-max-runnable</param-name>
+		<param-value>25</param-value>
+	</context-param>		
+
+	<context-param>
+		<description>Por debajo de esta cantidad de memoria (MB) se dispara alerta</description>
+		<param-name>jmx-min-freemem</param-name>
+		<param-value>20</param-value>
+	</context-param>		
+
+	<context-param>
+		<description>Por encima de esta cantidad de conexiones a BD en el pool indicado se dispara alerta</description>
+		<param-name>jmx-max-db-connections</param-name>
+		<param-value>100</param-value>
+	</context-param>		
+
+	<context-param>
+		<description>Nombre JMX del pool de conexiones a BD a monitorear</description>
+		<param-name>jmx-db-pool</param-name>
+		<param-value>Catalina:type=DataSource,path=/devel,host=localhost,class=javax.sql.DataSource,name="jdbc/dinamica"</param-value>
+	</context-param>		
+
+	<context-param>
+		<description>Por encima de esta cantidad de sesiones se dispara alerta</description>
+		<param-name>jmx-max-sessions</param-name>
+		<param-value>250</param-value>
+	</context-param>		
+
+	<context-param>
+		<description>Nombre JMX del manager de sesiones</description>
+		<param-name>jmx-session-manager</param-name>
+		<param-value>Catalina:type=Manager,path=/devel,host=localhost</param-value>
+	</context-param>
+
+	<context-param>
+		<description>Nombre JMX de la aplicacion web para medir rendimiento promedio</description>
+		<param-name>jmx-webapp</param-name>
+		<param-value>Catalina:j2eeType=WebModule,name=//localhost/devel,J2EEApplication=none,J2EEServer=none</param-value>
+	</context-param>	
+	
+	<context-param>
+		<description>Por encima de este rendimiento promedio se dispara alerta</description>
+		<param-name>jmx-average</param-name>
+		<param-value>2500</param-value>
+	</context-param>
+
+	<context-param>
+		<description>Keystore a utilizar para firmar PDFs con certificado del servidor</description>
+		<param-name>ks-file</param-name>
+		<param-value>D:/automatizacion/herramientas/tomcat7/conf/localhost.jks</param-value>
+	</context-param>	
+
+	<context-param>
+		<description>Password del keystore</description>
+		<param-name>ks-password</param-name>
+		<param-value>basica</param-value>
+	</context-param>	
+
+	<context-param>
+		<description>Password del keystore</description>
+		<param-name>ks-alias</param-name>
+		<param-value>localhost</param-value>
+	</context-param>
+		
+	<!-- par�metros del m�dulo StuckThreadListener -->
+	<context-param>
+		<description>StuckThreadListener: Intervalo en milisegunos que indica cada cuanto tiempo correr la tarea de monitoreo</description>
+		<param-name>stl-timer</param-name>
+		<param-value>200</param-value>
+	</context-param>	
+
+	<context-param>
+		<description>StuckThreadListener: Prefijo para las trazas dejadas en el log de Tomcat</description>
+		<param-name>stl-log-prefix</param-name>
+		<param-value>[SlowThreadAlert]</param-value>
+	</context-param>	
+
+	<context-param>
+		<description>StuckThreadListener: Por encima de este tiempo corriendo se dispara la alerta</description>
+		<param-name>stl-threshold</param-name>
+		<param-value>5000</param-value>
+	</context-param>
+
+	<!-- par�metros de log de web services -->
+	<context-param>	
+		<description>JAX-WS: habilitar logs?</description>
+		<param-name>jaxws-log-enabled</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+	<context-param>	
+		<description>JAX-WS: archivo de logs</description>
+		<param-name>jaxws-log-file</param-name>
+		<param-value>D:/automatizacion/herramientas/tomcat7/logs/jaxws.log</param-value>
+	</context-param>
+
+	<!--security filter-->
+	<filter>
+		<description>Dinamica custom security filter</description>
+		<filter-name>SecurityFilter</filter-name>
+		<filter-class>dinamica.security.SecurityFilter</filter-class>
+		<init-param>
+			<description>Application alias used to lookup security model in DB</description>
+			<param-name>app-alias</param-name>
+			<param-value>smn_inventario</param-value>
+		</init-param>
+		<init-param>
+			<description>Database containing security data</description>
+			<param-name>datasource</param-name>
+			<param-value>jdbc/dinamica</param-value>
+		</init-param>
+		<init-param>
+			<description>Location of the login form</description>
+			<param-name>loginform</param-name>
+			<param-value>/index.htm</param-value>
+		</init-param>
+		<init-param>
+			<description>Force the use of SSL for protected resources</description>
+			<param-name>ssl</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<init-param>
+			<description>Enable debug output to STDERR</description>
+			<param-name>debug</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<init-param>
+			<description>Limpiar registros huerfanos de sesiones activas</description>
+			<param-name>clear-sessions</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+
+		<filter>
+		<description>Permite usar un Action como welcome-page</description>
+		<filter-name>HomePageFilter</filter-name>
+		<filter-class>dinamica.portal.HomePageFilter</filter-class>
+		<init-param>
+			<description>Define el Action a usar como welcome-page</description>
+			<param-name>welcome-page</param-name>
+			<param-value>/action/index</param-value>
+		</init-param>		
+	</filter>
+
+		<!--security filter mapping-->
+	<filter-mapping>
+		<filter-name>SecurityFilter</filter-name>
+		<url-pattern>/action/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>HomePageFilter</filter-name>
+		<url-pattern>*</url-pattern>
+	</filter-mapping>
+
+
+	<!--file upload filter-->
+	<!-- 
+	<filter>
+		<description>File Upload Filter</description>
+		<filter-name>UploadFilter</filter-name>
+		<filter-class>dinamica.upload.MultipartRequestFilter</filter-class>
+	</filter>
+	 -->
+
+	<!--performance log filter-->
+	<!-- 
+	<filter>
+		<description>Saves performance log</description>
+		<filter-name>PerformanceFilter</filter-name>
+		<filter-class>dinamica.PerformanceFilter</filter-class>
+		<init-param>
+			<description>Log all request whose execution takes longer than -limit- milliseconds</description>
+			<param-name>limit</param-name>
+			<param-value>0</param-value>
+		</init-param>
+		<init-param>
+			<description>Location of the performance log file</description>
+			<param-name>path</param-name>
+			<param-value>D:/automatizacion/herramientas/tomcat7/logs/performance.log</param-value>
+		</init-param>
+	</filter>
+	 -->
+
+	<!--allow host filter-->
+	<!-- 
+	<filter>
+		<description>Filtro de seguridad para servicios REST</description>
+		<filter-name>AllowHostFilter</filter-name>
+		<filter-class>dinamica.security.AllowHosts</filter-class>
+		<init-param>
+   			<description>Lista de direcciones IP autorizadas separadas por ;</description>
+   			<param-name>allow-hosts</param-name>
+   			<param-value>127.0.0.1</param-value>
+   		</init-param>
+		<init-param>
+			<description>Enable debug output to context log</description>
+			<param-name>debug</param-name>
+			<param-value>false</param-value>
+		</init-param>
+   	</filter>
+	-->
+
+	<!--Stuck Thread Filter-->
+	<!--
+	<filter>
+		<description>Registra los threads para que un listener los diagnostique por si tardan demasiado</description>
+		<filter-name>StuckThreadFilter</filter-name>
+		<filter-class>dinamica.StuckThreadFilter</filter-class>
+	</filter>
+	-->
+  
+	<!--performance filter mapping-->
+	<!-- 
+	<filter-mapping>
+		<filter-name>PerformanceFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+	 -->
+ 	
+	<!--upload filter mapping-->
+	<!--
+	<filter-mapping>
+		<filter-name>UploadFilter</filter-name>
+		<url-pattern>/action/blob/upload</url-pattern>
+	</filter-mapping>
+	-->
+
+	<!--allow host mapping-->
+	<!-- 
+	<filter-mapping>
+		<filter-name>AllowHostFilter</filter-name>
+		<url-pattern>/action/test</url-pattern>
+	</filter-mapping>
+	 -->
+
+	<!--Stuck Thread Mapping-->
+	<!--
+	<filter-mapping>
+		<filter-name>StuckThreadFilter</filter-name>
+		<url-pattern>/action/*</url-pattern>
+	</filter-mapping>
+	-->
+
+
+
+ 
+	<!--session listener para eliminar sesiones activas en la BD de seguridad-->
+	<listener>
+		<listener-class>dinamica.security.SessionListener</listener-class>
+	</listener>
+
+ 
+
+	<!-- session listener de atributos de sesion - para debug solamente -->
+	<!-- 
+	<listener>
+		<listener-class>dinamica.SessionAttributeListener</listener-class>
+	</listener>
+ 	-->
+
+
+	<!--jmx listener para diagnostico y alertas de tomcat (carga, deadlocks, etc.)-->
+	<!--		
+	<listener>
+		<listener-class>dinamica.JMXListener</listener-class>
+	</listener>
+	-->
+
+	<!--Detecta threads que tardan demasiado en ejecutarse-->
+	<!--
+	<listener>
+		<listener-class>dinamica.StuckThreadListener</listener-class>
+	</listener>
+	-->
+
+	<!--jax-ws servlet-->
+	<servlet>
+		<servlet-name>soapserver</servlet-name>
+		<servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+
+	<!--Controller Servlet to intercept requests-->
+	<servlet>
+		<description>Request Controller for the MVC mechanism</description>
+		<servlet-name>Controller</servlet-name>
+		<servlet-class>dinamica.Controller</servlet-class>
+		<init-param>
+			<description>Base string to build path starting from /WEB-INF/ to search for the action configuration file</description>
+			<param-name>base-dir</param-name>
+			<param-value>/action</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!--URLs intercepted by the Controller-->
+	<servlet-mapping>
+		<servlet-name>Controller</servlet-name>
+		<url-pattern>/action/*</url-pattern>
+	</servlet-mapping>
+
+	<!--jax-ws service mapping-->
+	<servlet-mapping>
+		<servlet-name>soapserver</servlet-name>
+		<url-pattern>/soap/*</url-pattern>
+	</servlet-mapping>
+
+
+	<!--session timeout-->
+	<session-config>
+		<session-timeout>45</session-timeout>
+	</session-config>
+
+	<!--welcome page-->
+	<welcome-file-list>
+		<welcome-file>index.htm</welcome-file>
+	</welcome-file-list>
+
+	<!--error pages-->
+
+	<!--servlet exception-->
+	<error-page>
+		<error-code>500</error-code>
+		<location>/action/error/general</location>
+	</error-page>
+
+	<!--SSL required-->
+	<!--
+		<error-page> <error-code>401</error-code>
+		<location>/error_401.htm</location> </error-page>
+	-->
+
+	<!--access denied-->
+	<error-page>
+		<error-code>403</error-code>
+		<location>/action/error/403</location>
+	</error-page>
+
+	<!--not found-->
+	<!--
+		<error-page> <error-code>404</error-code>
+		<location>/error_404.htm</location> </error-page>
+	-->
+
+
+</web-app>

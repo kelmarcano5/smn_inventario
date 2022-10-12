@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/alert">
+	<parameter id="id" type="integer" required="false" label="ID" maxlen="10" />
+	<parameter id='id2' type='varchar' required='false' label='${lbl:b_movement_head_order}' maxlen='100'/>
+	<parameter id='req_control_lote' type='varchar' required='false' label='${fld:req_control_lote}' maxlen='2'/>
+	<parameter id='mde_cantidad_recibida' type='double' required='false' label='${fld:mde_cantidad_recibida}' maxlen='10'/>
+	<parameter id='mde_descripcion' type='varchar' required='false' label='${fld:mde_descripcion}' maxlen='48'/>
+</validator>

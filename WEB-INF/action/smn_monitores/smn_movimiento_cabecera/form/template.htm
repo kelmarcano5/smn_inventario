@@ -1,0 +1,387 @@
+<!doctype html>
+<html>
+
+<head>
+
+<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />	
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+
+</head>
+
+<body>
+
+<!--banner-->
+	<div class="welcome" style="padding-right:50px; margin-top: 20px;"><br>
+        <b>${lbl:b_welcome}</b> ${fld:fname} ${fld:lname} ${req:progress}
+        <div class="" style="width: 100%; border-bottom: solid 6px #1d61a0; border-radius: 30px; margin-top: 4px;">
+        </div>
+    </div>
+    <br>
+    <div class="titulo-negocios">
+        <div style="padding-top: 15px;">${lbl:b_inventory_movement}</div>
+    </div>
+    <br><br><br>
+
+<!--formulario addnew/edit-->
+<form name="form1" onsubmit="return save()" style="width:500px;">
+
+	<!-- titulo -->
+	<!-- <h1 id="formTitle"></h1> -->
+	<br>
+	<br>
+	<table>
+
+		<!--ancho de la columna de etiquetas-->
+		<col width="30%">
+
+		<!--campos-->
+		
+		<tr>
+			<td>${lbl:b_entity}*</td>
+			<td>
+				<select name="smn_entidades_id" id="smn_entidades_id" onchange="chgCombo1(smn_entidades_id.options[smn_entidades_id.selectedIndex].text,'smn_entidades_id_name');chgCombo2(smn_entidades_id.options[smn_entidades_id.selectedIndex].text,'smn_entidades_id_name');">
+					<option value="">[Cualquiera]</option>
+					<smn_entidades_id_rows>
+					<option value="${fld:id}">${fld:item}</option>
+	
+					</smn_entidades_id_rows>
+				</select> 
+				<input id="smn_entidades_id_name" name="smn_entidades_id_name" type="hidden">
+			</td>
+		</tr>
+	
+		<tr>
+			<td>${lbl:b_subsidiary}*</td>
+			<td>
+				<select name="smn_sucursales_id" id="smn_sucursales_id" onchange="chgCombo(smn_sucursales_id.options[smn_sucursales_id.selectedIndex].text,'smn_sucursales_id_name');">
+					<option value="">[Cualquiera]</option>
+					<smn_sucursales_id_rows>
+					<option value="${fld:id}">${fld:item}</option>
+		
+					</smn_sucursales_id_rows>
+				</select> 
+				<input id="smn_sucursales_id_name" name="smn_sucursales_id_name" type="hidden">
+			</td>
+		</tr>
+	
+		<tr>
+			<td>${lbl:b_store}*</td>
+			<td>
+				<select name="smn_almacen_rf" id="smn_almacen_rf" onchange="chgCombo(smn_almacen_rf.options[smn_almacen_rf.selectedIndex].text,'smn_almacen_rf_name');">
+					<option value="">[Cualquiera]</option>
+					<smn_almacen_rf_rows>
+					<option value="${fld:id}">${fld:item}</option>
+	
+					</smn_almacen_rf_rows>
+				</select> 
+				<input id="smn_almacen_rf_name" name="smn_almacen_rf_name" type="hidden">
+			</td>
+		</tr>
+
+		
+	</table>
+
+	<!--botones-->
+	<input id="grabar" type="button" value="${lbl:b_save_button}" onclick="goForm(smn_entidades_id.options[smn_entidades_id.selectedIndex].value, smn_sucursales_id.options[smn_sucursales_id.selectedIndex].value, smn_almacen_rf.options[smn_almacen_rf.selectedIndex].value)">	
+	<!-- PK-->
+<input type="hidden" name="id" value="">
+
+</form>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+	onload = function()
+	{ 
+		addNew();
+
+		document.form1.smn_sucursales_id.disabled=true;
+		document.form1.smn_almacen_rf.disabled=true;
+
+		//Set first value for all combo linked
+		setElementFirstIndex('smn_entidades_id');
+		setElementFirstIndex('smn_sucursales_id');
+		setElementFirstIndex('smn_almacen_rf');
+
+		if (id!="")
+			edit(id);
+	} 
+	
+	function chgCombo(text,id)
+	{
+		document.getElementById(id).value = text;
+	}
+	
+	//configurar formulario para ingresar registro nuevo
+	function addNew()
+	{
+	//	document.getElementById("formTitle").innerHTML = "${lbl:b_add_record}";
+		document.getElementById("grabar").disabled=false;
+		clearForm("form1");
+		setFocusOnForm("form1");
+	}
+	
+	//retorna al estado previo que corresponde
+	//al estado actual de la pagina, cada llamada Ajax
+	//se encarga de definir cual es la funcion de goBack() que aplica
+	function goBack() 
+	{
+		_goBackFn()			
+	}
+	
+	//mostrar la actualizacion de un registro
+	function insert()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/insert", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+	
+	//restaurar el formulario en caso de error
+	function retryAddnewOrEdit() {
+		document.getElementById("grabar").disabled=false;
+		setFocusOnForm("form1");		
+	}
+	
+	var id = "${fld:id}"
+	
+	//grabar el formulario
+	function save()
+	{
+		//determina si es un insert o un update
+		if (document.form1.id.value=="")
+			return insert();
+		else
+			return update();
+	}
+	
+	//editar registro en formulario
+	function edit(id)
+	{
+			clearErrorMessages();
+
+			//llamada Ajax...
+			ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/edit?id=" + id , 
+							divResponse=null, 
+							divProgress="status", 
+							formName=null, 
+							afterResponseFn=null, 
+							onErrorFn=null);	
+	}
+	
+	//actualizar registro en BD
+	function update()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/update", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+	
+	function goForm(entidad, sucursal, almacen) 
+	{
+
+		uri = "${def:context}${def:actionroot}/../smn_movimiento_cabecera/form_movimiento?entidad="+entidad+"&sucursal="+sucursal+"&almacen="+almacen;
+		openDialog("editor5", uri, 1350, 700);
+		//alert(uri);
+	}
+
+	//Author     : SIMONE
+	//Description: Set first element as selected value
+	//Return     : None
+	function setElementFirstIndex(id)
+	{
+		var combo = document.getElementById(id);
+		combo.selectedIndex = 0;
+	}
+
+	//Author     : SIMONE
+	//Description: Insert new value into combo box
+	//Return     : None
+	function insertComboBox(code, combo, description) {
+		var valueText = code;
+		if (description != null)
+		{
+			valueText = valueText + ' - ' + description;
+		}
+		//alert("Insert Combo: "+valueText);
+        combo.options[combo.options.length] = new Option(valueText);
+	}
+	
+	//Author     : SIMONE
+	//Description: Add new value to combo box
+	//Return     : None
+	function addValueToCombo(code, description, field) 
+	{
+	    var combo = document.getElementById(field);	    
+	    insertComboBox(code, combo, description);
+	}
+	
+	//Author     : SIMONE
+	//Description: Set selected index into combo box
+	//Return     : None
+	function setSelectedIndex(code, combo, description) 
+	{
+	    for (var i = 0; i < combo.options.length; i++) 
+	    {
+			var valueText = code;
+			if (description != null)
+			{
+				valueText = valueText + ' - ' + description;
+			}
+	        if (combo.options[i].text == valueText) 
+	        {
+	        	combo.options[i].selected = true;
+	            return;
+	        }
+	    }
+	}
+	
+		//Author     : SIMONE
+	//Description: Get text valueof selected index
+	//Return     : Text associated to index
+	function getSelectedIndex(combo) 
+	{
+	    for (var i = 0; i < combo.options.length; i++) 
+	    {
+	        if (combo.options[i].selected == true) 
+	        {
+	            return combo.options[i].text;
+	        }
+	    }
+	}
+
+	function getIDSelectedIndex(combo) 
+	{
+	    for (var i = 0; i < combo.options.length; i++) 
+	    {
+	        if (combo.options[i].selected == true) 
+	        {
+	            return combo.options[i].value;
+	        }
+	    }
+	}
+	
+
+	//Author     : SIMONE
+	//Description: Set value to combo box
+	//Parameters : code - it is code associated into each database table 
+	//             descripcion - it is description associated into each database table 
+	//             field - name combo field
+	//             id - identifier retrieved after transaction
+	//             linked - flag indicates 'true' when combos are linked and 'false' otherwise
+	//Return     : None
+	function setValueComboBox(code, description, field, linked)
+	{
+		//add value text to combo
+		addValueToCombo(code,description,field);
+
+		//get select object 
+		var combo = document.getElementById(field);
+		
+		//set element selected to field referenced
+		setSelectedIndex(code,combo, description);
+		
+		//set text value to combo field
+		var valueText = getSelectedIndex(combo);		
+		
+		//get hidden field in order to set any value
+		var combo = document.getElementById(field+'_name');
+		
+		//alert("Text: "+valueText+" - bdID: "+bdID);
+		
+		combo.text  = valueText;
+		combo.value = bdID;
+		
+		//enable linked fields
+		if (linked)
+		{
+			
+			
+			if (field == 'smn_area_id')
+			{
+				document.form1.smn_area_id.disabled = false;
+			}
+			
+			if (field == 'smn_sucursales_id')
+			{
+				document.form1.smn_sucursales_id.disabled = false;
+			}
+			
+		}
+	}
+
+	//Este codigo fue creado por SIMONE y ajustado en este crud por Kelvin Marcano
+	var geo_id1 = null;
+	function chgCombo1(text,id)
+	{		
+		document.form1.smn_sucursales_id.disabled=false;
+		//document.form1.smn_area_id.disabled=false;
+		
+		var combo = document.getElementById('smn_entidades_id');
+		var geo_id1 = getIDSelectedIndex(combo);
+		//geo_id1 = valueCombo.split("-").pop().trim();
+		
+		//findLocation(geo_id0, '');
+		
+		if (id!=null && id!="") 
+		{
+			return ajaxCall(	
+							httpMethod="GET", 
+							uri="${def:actionroot}/form/getsucursal?id=" + geo_id1, 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=setElementFirstIndex('smn_sucursales_id'), //function 'setElementFirstIndex' select first element of combo list
+							onErrorFn=null);				
+		}
+		
+	}
+
+	var geo_id2 = null;
+	function chgCombo2(text,id)
+	{		
+		document.form1.smn_almacen_rf.disabled=false;
+		
+		var combo = document.getElementById('smn_entidades_id');
+		var geo_id2 = getIDSelectedIndex(combo);
+		//geo_id2 = valueCombo.split("-").pop().trim();
+		
+		//findLocation(geo_id0, '');
+		
+		if (id!=null && id!="") 
+		{
+			return ajaxCall(	
+							httpMethod="GET", 
+							uri="${def:actionroot}/form/getalmacen?id=" + geo_id2,
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=setElementFirstIndex('smn_almacen_rf'), //function 'setElementFirstIndex' select first element of combo list
+							onErrorFn=null);				
+		}
+		
+	}
+	
+</script>	
+</body>
+</html>

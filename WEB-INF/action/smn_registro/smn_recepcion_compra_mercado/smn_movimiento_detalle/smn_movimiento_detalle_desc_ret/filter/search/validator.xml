@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='mdd_monto_base_ml' type='double' required='true' label='${lbl:b_base_amount_ml}' maxlen='10'/>
+	<parameter id='smn_codigo_descuento_rf' type='integer' required='true' label='${lbl:b_code_discount}' maxlen='10'/>
+</validator>

@@ -1,0 +1,42 @@
+INSERT INTO smn_inventario.smn_valoracion_conteo_fisico
+(
+	smn_valoracion_conteo_fisico_id,
+	smn_almacen_rf,
+	smn_conteo_id,
+	smn_documento_id,
+	vcf_numero_documento,
+	smn_item_id,
+	vcf_cantidad_contada,
+	vcf_cantidad_existencia,
+	vcf_cantidad_diferencia,
+	smn_unidad_medida_almacenaje_id,
+	vcf_costo_ml,
+	vcf_costo_ma,
+	vcf_monto_ml,
+	smn_tasa_rf,
+	smn_moneda_rf,
+	vcf_monto_ma,
+	vcf_estatus,
+	vcf_fecha_registro
+)
+VALUES
+(
+	${seq:nextval@smn_inventario.seq_smn_valoracion_conteo_fisico},
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	{d '${def:date}'}
+)

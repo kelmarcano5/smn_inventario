@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	
+	<parameter id='smn_almacen_rf' type='integer' required='true' label='${lbl:b_store_code}' maxlen='10'/>
+	<parameter id='smn_documento_id' type='integer' required='true' label='${lbl:b_pre_documento}' maxlen='10'/>
+	<parameter id='mca_recibo' type='integer' required='true' label='${lbl:b_receipt}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_movement_head_order}' maxlen='10'/>
+
+</validator>

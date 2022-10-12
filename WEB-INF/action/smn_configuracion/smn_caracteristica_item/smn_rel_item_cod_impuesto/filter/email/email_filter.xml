@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<model>
+	<summary>${lbl:b_messages}</summary>
+	<filter>
+		<row field='msj_asunto' id='msj_asunto' label='${lbl:b_subject}' required='NO' fk='' mSelection='' condiction='Contiene' type='varchar' tableName='smn_mensajes' len='96'/>
+		<row field='msj_fecha_registro' id='msj_fecha_registro_ini' label='${lbl:b_store_date_grater_than}' required='NO' fk='' mSelection='' condiction='Mayor o igual que (&gt;=)' type='date' tableName='smn_mensajes' len='10'/>
+		<row field='msj_fecha_registro' id='msj_fecha_registro_fin' label='${lbl:b_store_date_less_than}' required='NO' fk='' mSelection='' condiction='Menor o igual que (&lt;=)' type='date' tableName='smn_mensajes' len='10'/>
+	</filter>
+	<detail>SI</detail>
+	<insert>SI</insert>
+	<audit>Consulta</audit>
+	<grid>
+		<row field='msj_asunto' label='${lbl:b_subject}' fk='' tableName='smn_mensajes' len='96' type='varchar' align='left'/>
+		<row field='msj_texto' label='${lbl:b_text}' fk='' tableName='smn_mensajes' len='5000' type='varchar' align='left'/>
+		<row field='msj_fecha_registro' label='${lbl:b_store_date}@{${def:date}}' fk='' tableName='smn_mensajes' len='10' type='date' align='center'/>
+		<row field='msj_hora' label='${lbl:s_loginhist_col2}@{${def:time}}' fk='' tableName='smn_mensajes' len='8' type='varchar' align='center'/>
+	</grid>
+	<mobile>false</mobile>
+</model>

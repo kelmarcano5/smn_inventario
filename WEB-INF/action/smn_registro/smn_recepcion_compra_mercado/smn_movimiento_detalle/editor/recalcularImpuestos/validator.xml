@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/ajax" id='validator'>
+	<parameter id="smn_codigos_impuestos_id" type="integer" required="true" label="ID ${lbl:b_tax_code}"/>
+	<parameter id="accion" type="varchar" required="true" label="action" maxlen="2"/>
+</validator>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='smn_tipo_documento_id_name' type='varchar' required='false' label='${lbl:b_document_type}'/>
+	<parameter id='smn_tipo_documento_id' type='integer' required='false' label='${lbl:b_document_type}' maxlen='10'/>
+	<parameter id='doc_codigo' type='varchar' required='false' label='${lbl:b_code}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='doc_codigo' rule='like' />
+	<parameter id='doc_nombre' type='varchar' required='false' label='${lbl:b_name}' maxlen='100'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='doc_nombre' rule='like' />
+	<parameter id='smn_documento_general_rf' type='integer' required='false' label='${lbl:b_general_document}' maxlen='10'/>
+	<parameter id='doc_fecha_registro_ini' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.DateRangeValidator' on-error-label='[${lbl:b_store_date} mayor o igual que] no puede ser mayor que [${lbl:b_store_date} menor o igual que].' date1='doc_fecha_registro_ini' date2='doc_fecha_registro_fin' id='doc_fecha_registro_ini' />
+	<parameter id='doc_fecha_registro_fin' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+</validator>

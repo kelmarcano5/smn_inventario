@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_almacen_rf' type='integer' required='true' label='${lbl:b_zona_rf}' maxlen='10'/>
+	<parameter id='smn_zona_rf' type='integer' required='true' label='${lbl:b_zona_rf}' maxlen='10'/>
+	<parameter id='smn_ruta_id' type='integer' required='true' label='${lbl:b_ruta_id}' maxlen='10'/>
+	<parameter id='smn_transporte_id' type='integer' required='true' label='${lbl:b_transporte_id}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_despacho_id}' maxlen='10'/>
+	<parameter id='smn_direccion_rf' type='integer' required='true' label='${lbl:b_direccion_rf}' maxlen='10'/>
+
+</validator>

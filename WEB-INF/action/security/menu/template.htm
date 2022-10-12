@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+
+<head>
+
+    <title>${lbl:b_menu}</title>
+    <link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+
+	<script type="text/javascript">
+
+		/* invoke service in right-side frame */
+		function gotoLink(url)
+		{
+			top.view.window.location = url;
+		}
+
+		/* show/hide menu items */
+		function showMenu(divID)
+		{
+			var d = document.getElementById(divID)
+			if (d.style.display=="none")
+			{
+				closeItems();
+				d.style.display="";
+			}
+			else
+			{
+				d.style.display="none";
+			}
+
+			var ds = document.getElementById(divID + "_sub")
+			if(ds!=null) {
+				closeMenus();
+				if (ds.style.display=="none" && d.style.display!="none")
+				{
+					ds.style.display="";
+				}
+				else
+				{
+					ds.style.display="none";
+				}
+			}
+		}
+
+		/* close all divs of class "menuItems" */
+		function closeItems()
+		{
+			var m = document.getElementsByTagName("div");
+			for (var i = 0; i < m.length; i++)
+			{
+				if (m[i].className=="menuItems")
+				{
+					m[i].style.display = "none";
+				}
+		    }
+		}
+
+		/* close all divs of class "menuItems" */
+		function closeMenus()
+		{
+			var m = document.getElementsByTagName("div");
+			for (var i = 0; i < m.length; i++)
+			{
+				if (m[i].className=="subMenuContainer")
+				{
+					m[i].style.display = "none";
+				}
+
+		    }
+		}
+
+
+		/* request logout avoiding current frameset */
+		function exitFrame(url)
+		{
+			//avoid displaying this page inside frames
+			if (top.frames.length!=0) {
+			    if (window.location.href.replace)
+			        top.location.replace(url);
+			    else
+			        top.location.href=url;
+			}
+		}
+
+		//inicializacion de la pagina cuando carga
+		onload = function()
+		{
+			document.getElementById('menuBody').style.height=pageHeight()+'px';
+		}
+
+	</script>
+
+</head>
+
+<body class="menuBody" id="menuBody" style="background-image:url('/smn_gip/images/marca_de_agua.png');">
+  <img src="/smn_gip/images/logo.png">
+	<br><br><br>
+
+  <div class="menuContainer" style="margin-left: 25px; width: 80%;">
+		<div align="left" class="menuTitle" onclick="gotoLink('${def:context}/action/security/home/welcome')">
+			${lbl:s_main_menu}
+		</div>
+	</div>
+
+	<!--START MENU-->
+	<div style="margin-left: 25px; width: 80%;">${menu}</div>
+
+	<div class="menuContainer" style="margin-left: 25px; width: 80%;">
+		<div align="left" class="menuTitle" onclick="exitFrame('${def:context}/action/security/exit')">
+			${lbl:s_exit_system}
+		</div>
+	</div>
+	<!--END MENU-->
+
+</body>
+
+</html>

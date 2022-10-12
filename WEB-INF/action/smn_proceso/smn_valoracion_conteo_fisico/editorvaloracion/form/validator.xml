@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/alert" >
+	<parameter id="id" type="integer" required="false" label="ID" maxlen="10" />
+	<parameter id="smn_almacen_rf" type="integer" required="false" label="ID" maxlen="10" />
+	<parameter id="smn_documento_id" type="integer" required="false" label="ID" maxlen="10" />
+	<parameter id='smn_item_id' type='integer' required='false' label='ITEM' maxlen='10'/>
+	<parameter id="vcf_fecha_generacion" type="varchar" required="false" label="ID" maxlen="100" />
+</validator>

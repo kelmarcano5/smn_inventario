@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_conteo_inventario_fisico>
+	<detail>
+		<rows>		
+		<record cfi_fecha_registro="${fld:cfi_fecha_registro}"    cfi_estatus="${fld:cfi_estatus}"    smn_auxiliar_2_rf="${fld:smn_auxiliar_2_rf}"    smn_auxiliar_1_rf="${fld:smn_auxiliar_1_rf}"    cfi_costo="${fld:cfi_costo}"    smn_unidad_medida_almacenaje_id="${fld:smn_unidad_medida_almacenaje_id}"    cfi_cantidad="${fld:cfi_cantidad}"    smn_item_id="${fld:smn_item_id}"    smn_conteo_id="${fld:smn_conteo_id}"    />
+		</rows>
+	</detail>
+</smn_conteo_inventario_fisico>

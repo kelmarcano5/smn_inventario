@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='smn_movimiento_cabecera_id' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_orden_compra_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='crp_numero_documento' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_item_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='crp_cantidad_recibida' type='integer' required='true' maxlen='10'/>
+	<parameter id='crp_fecha_recepcion' type='date' required='true' maxlen='13'/>
+	<parameter id='crp_lote' type='integer' required='false' maxlen='10'/>
+	<parameter id='crp_fecha_vencimiento_lote' type='date' required='false' maxlen='13'/>
+
+
+
+</validator>

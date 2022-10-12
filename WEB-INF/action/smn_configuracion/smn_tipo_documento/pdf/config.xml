@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smntipodocumento.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_document_type}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' />
+	<pdf-file-name>${lbl:b_document_type}.pdf</pdf-file-name>
+
+	<pdf-report 
+		pageSize="letter" 
+		rotate="false"
+		footer="false" 
+		header="true">
+		<record recordset='query-smntipodocumento.sql' width='100' spacingBefore='40'>
+			<col name='tdc_codigo' title='${lbl:b_code}' width='16' align='left' />
+			<col name='tdc_nombre' title='${lbl:b_name}' width='16' align='left' />
+			<col name='tdc_naturaleza_combo' title='${lbl:b_nature}' width='16' align='left' />
+			<col name='tdc_vigencia' title='${lbl:b_validation_date}' width='16' align='left' format='dd-MM-yyyy' />
+			<col name='tdc_estatus_combo' title='${lbl:b_status}' width='16' align='left' />
+			<col name='tdc_fecha_registro' title='${lbl:b_store_date}' width='16' align='left' format='dd-MM-yyyy' />
+
+		</record>
+
+	</pdf-report>
+</config>

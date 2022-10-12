@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='div_codigo' type='varchar' required='false' label='${lbl:b_code}' maxlen='10'/>
+	<parameter id='div_descripcion' type='varchar' required='false' label='${lbl:b_description}' maxlen='100'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='div_descripcion' rule='contains' />
+	<parameter id='div_fecha_registro_ini' type='date' required='false' label='${lbl:b_store_date_greather_than}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.DateRangeValidator' on-error-label='[${lbl:b_store_date_greather_than} mayor o igual que] no puede ser mayor que [${lbl:b_store_date_less_than} menor o igual que].' date1='div_fecha_registro_ini' date2='div_fecha_registro_fin' id='div_fecha_registro_ini' />
+	<parameter id='div_fecha_registro_fin' type='date' required='false' label='${lbl:b_store_date_less_than}' maxlen='10'/>
+</validator>

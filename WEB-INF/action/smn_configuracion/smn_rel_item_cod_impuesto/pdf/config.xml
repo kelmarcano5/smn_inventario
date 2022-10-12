@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnrelitemcodimpuesto.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_relation_item_codigo_imp}</pdf-title>
+	<pdf-logo url='/images/logo-dinamica.png' scale='100' />
+
+	<pdf-report pageSize="letter" rotate="false">
+		<table recordset='query-smnrelitemcodimpuesto.sql' width='100' spacingBefore='40'>
+			<col name='smn_caracteristica_item_combo' title='${lbl:b_caracteristicas_item}' width='50' align='center' format='######' />
+			<col name='smn_codigo_impuesto_rf_combo' title='${lbl:b_tax_code}' width='50' align='center' format='######' />
+		</table>
+
+	</pdf-report>
+</config>

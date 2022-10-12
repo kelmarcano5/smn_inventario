@@ -1,0 +1,14 @@
+select
+		smn_inventario.smn_ubicacion_detalle.smn_ubicacion_cabecera_id,
+	smn_inventario.smn_ubicacion_detalle.smn_divisiones_id,
+	smn_inventario.smn_ubicacion_detalle.smn_subdivisiones_id,
+	smn_inventario.smn_ubicacion_detalle.smn_lote_id,
+	smn_inventario.smn_ubicacion_detalle.ubd_cantidad_inicial,
+	smn_inventario.smn_ubicacion_detalle.ubd_entrada,
+	smn_inventario.smn_ubicacion_detalle.ubd_salida,
+	smn_inventario.smn_ubicacion_detalle.ubd_cantidad_final,
+	smn_inventario.smn_ubicacion_detalle.ubd_fecha_registro
+from
+	smn_inventario.smn_ubicacion_detalle 
+where
+	smn_inventario.smn_ubicacion_detalle.smn_ubicacion_detalle_id = ${fld:id}

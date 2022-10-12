@@ -1,0 +1,23 @@
+SELECT
+	smn_inventario.smn_control_lote.smn_control_lote_id,
+	smn_base.smn_entidades.ent_descripcion_corta AS smn_entidad_rf,
+	smn_base.smn_sucursales.suc_nombre AS smn_sucursal_rf,
+	smn_base.smn_almacen.alm_nombre AS smn_caracteristica_almacen_id,
+	smn_base.smn_item.itm_nombre AS smn_caracteristica_item_id,
+	smn_inventario.smn_control_lote.col_lote,
+	smn_inventario.smn_control_lote.col_fecha_vencimiento,
+	smn_inventario.smn_control_lote.col_cantidad_inicial,
+	smn_inventario.smn_control_lote.col_entradas,
+	smn_inventario.smn_control_lote.col_salidas,
+	smn_inventario.smn_control_lote.col_cantidad_final,
+	smn_inventario.smn_control_lote.col_fecha_registro
+	
+FROM
+	smn_inventario.smn_control_lote
+INNER JOIN smn_base.smn_entidades on smn_base.smn_entidades.smn_entidades_id=smn_inventario.smn_control_lote.smn_entidad_rf
+INNER JOIN smn_inventario.smn_caracteristica_almacen on smn_inventario.smn_caracteristica_almacen.smn_caracteristica_almacen_id=smn_inventario.smn_control_lote.smn_caracteristica_almacen_id
+INNER JOIN smn_base.smn_almacen on smn_base.smn_almacen.smn_almacen_id=smn_inventario.smn_caracteristica_almacen.smn_almacen_rf
+INNER JOIN smn_inventario.smn_caracteristica_item on smn_inventario.smn_caracteristica_item.smn_caracteristica_item_id=smn_inventario.smn_control_lote.smn_caracteristica_item_id
+INNER JOIN smn_base.smn_item on smn_base.smn_item.smn_item_id=smn_inventario.smn_caracteristica_item.smn_item_rf
+LEFT OUTER JOIN smn_base.smn_sucursales on smn_base.smn_sucursales.smn_sucursales_id=smn_inventario.smn_control_lote.smn_sucursal_rf
+ORDER BY smn_inventario.smn_control_lote.col_fecha_registro DESC

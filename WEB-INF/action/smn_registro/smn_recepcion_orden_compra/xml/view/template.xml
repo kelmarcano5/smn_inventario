@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_movimiento_cabecera>
+	<detail>
+		<rows>		
+		<record mca_fecha_registro="${fld:mca_fecha_registro}"    mca_estatus_financiero="${fld:mca_estatus_financiero}"    mca_estatus_proceso="${fld:mca_estatus_proceso}"    mca_fecha_recibida="${fld:mca_fecha_recibida}"    smn_tasa_rf="${fld:smn_tasa_rf}"    smn_moneda_rf="${fld:smn_moneda_rf}"    mcc_monto_neto_ma="${fld:mcc_monto_neto_ma}"    mca_monto_neto_ml="${fld:mca_monto_neto_ml}"    mca_monto_valor_agregado_ma="${fld:mca_monto_valor_agregado_ma}"    mca_monto_valor_agregado_ml="${fld:mca_monto_valor_agregado_ml}"    mca_monto_diminucion_ma="${fld:mca_monto_diminucion_ma}"    mca_monto_diminucion_ml="${fld:mca_monto_diminucion_ml}"    mca_monto_documento_ma="${fld:mca_monto_documento_ma}"    mca_monto_documento_ml="${fld:mca_monto_documento_ml}"    smn_orden_compra_rf="${fld:smn_orden_compra_rf}"    smn_proveedor_rf="${fld:smn_proveedor_rf}"    smn_tipo_documento_pago_id="${fld:smn_tipo_documento_pago_id}"    mca_numero="${fld:mca_numero}"    smn_documento_id="${fld:smn_documento_id}"    mca_numero_documento_origen="${fld:mca_numero_documento_origen}"    smn_documento_origen_rf="${fld:smn_documento_origen_rf}"    smn_modulo_rf="${fld:smn_modulo_rf}"    smn_almacen_rf="${fld:smn_almacen_rf}"    smn_sucursal_rf="${fld:smn_sucursal_rf}"    smn_entidad_rf="${fld:smn_entidad_rf}"    />
+		</rows>
+	</detail>
+</smn_movimiento_cabecera>

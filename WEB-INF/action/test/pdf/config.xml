@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Generar reporte PDF con información y estatus del sistema vía
+		JMX (específico para Tomcat 6)
+	</summary>
+
+	<log>false</log>
+
+	<pdf-title>Estatus del Servlet Container</pdf-title>
+	<pdf-logo>/images/logo-dinamica.png</pdf-logo>
+
+	<transaction>
+		<classname>dinamica.SysInfo</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+	</transaction>
+
+	<output>
+		<classname>dinamica.SysInfoPDF</classname>
+	</output>
+
+</config>

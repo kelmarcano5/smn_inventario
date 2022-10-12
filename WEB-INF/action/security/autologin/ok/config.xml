@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Redirect after sucessful autologin
+	</summary>
+
+	<log>false</log>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>redirect.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/html; charset=iso-8859-1</content-type>
+		<expiration>0</expiration>
+	</output>
+
+</config>

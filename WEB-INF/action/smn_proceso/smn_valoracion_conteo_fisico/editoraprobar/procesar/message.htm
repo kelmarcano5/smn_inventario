@@ -1,0 +1,52 @@
+<div id="encabezado_tabla" class="" style="
+	font-family: sans-serif;
+	font-weight: bold;
+    font-size: 14pt;
+    padding: 5px;
+    color: #ffffff;
+    height: 22px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    text-shadow: 1px 1px 0px #1d1d1d;
+    background: linear-gradient(to right, rgba(160,160,160,1) 0%,rgba(222,224,223,1) 100%); ">
+	Procesando solicitud
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+
+</div>
+
+<div>
+    El proceso se realizo correctamente
+
+    <form id="form2">
+        <input type="hidden" name="movimientoid" id="movimientoid">
+    </form>
+</div>
+ <!--biblioteca generica JS/Dinamica-->
+<script type="text/javascript" src="${def:context}/action/script">
+    onload = function()
+    { 
+        obteneridcab();
+    } 
+    
+    
+    function obteneridcab() {
+        alert("ENTRO EN EL OBTENER ID CABECERA MOVIMIENTO");
+        ajaxCall(httpMethod="GET", 
+            uri="${def:actionroot}/getobteneridcab", 
+            divResponse=null, 
+            divProgress="status", 
+            formName="form2", 
+            afterResponseFn=generar(), //function 'setElementFirstIndex' select first element of combo list
+            onErrorFn=null);                
+    }
+
+    function generar(id){
+
+        uri = "${def:context}${def:actionroot}/procesar_control_item?smn_movimiento_cabecera_id="+ id; 
+        alert(uri);
+        //openDialog("dialog", uri, 350, 100);
+    }
+
+</script>
+
+

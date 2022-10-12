@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Crea HGrid de los campos para la generación del reporte
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query.sql" source="sql" scope="request" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.HGridOutput</classname>
+		<template>template.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/plain; charset=iso-8859-1</content-type>
+	</output>
+
+	<!--hgrid config-->
+	<row-template>row.htm</row-template>
+	<col-template>col.htm</col-template>
+	<cols>3</cols>
+	<hgrid-recordset>query.sql</hgrid-recordset>
+	<!--end hgrid config-->
+
+</config>

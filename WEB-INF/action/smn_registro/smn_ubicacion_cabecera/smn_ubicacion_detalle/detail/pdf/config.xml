@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query.sql" source="session" scope="transaction" />
+
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_location_detail}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' />
+	<pdf-file-name>${lbl:b_location_detail}.pdf</pdf-file-name>
+
+	<pdf-report pageSize="letter" rotate="false" footer="true" header="true">
+		<record recordset='query.sql' title='${lbl:b_location_detail}' width='60' spacingBefore='40'>
+			<col name='smn_ubicacion_cabecera_id' title='${lbl:b_header_location}' align='left' format='######' />
+			<col name='smn_divisiones_id' title='${lbl:b_divisions}' align='left' format='######' />
+			<col name='smn_subdivisiones_id' title='${lbl:b_subdivisions}' align='left' format='######' />
+			<col name='smn_lote_id' title='${lbl:b_lot}' align='left' format='######' />
+			<col name='ubd_cantidad_inicial' title='${lbl:b_initial_amount}' align='left' format='#,###,##0.00' />
+			<col name='ubd_entrada' title='${lbl:b_entry}' align='left' format='#,###,##0.00' />
+			<col name='ubd_salida' title='${lbl:b_exit}' align='left' format='#,###,##0.00' />
+			<col name='ubd_cantidad_final' title='${lbl:b_final_amount}' align='left' format='#,###,##0.00' />
+			<col name='ubd_idioma' title='${lbl:s_profile_lang}' align='left' />
+			<col name='ubd_usuario' title='${lbl:b_users}' align='left' />
+			<col name='ubd_fecha_registro' title='${lbl:b_store_date}' align='left' format='dd-MM-yyyy' />
+			<col name='ubd_hora' title='${lbl:s_loginhist_col2}' align='left' />
+		</record>
+
+
+	</pdf-report>
+</config>

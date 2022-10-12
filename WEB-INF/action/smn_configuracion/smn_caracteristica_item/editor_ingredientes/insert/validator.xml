@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_item_rf' type='integer' required='true' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='cit_codigo_barra' type='varchar' required='false' label='${lbl:b_codigo_barra}' maxlen='100'/>
+	<parameter id='cit_codigo_qr' type='varchar' required='false' label='${lbl:b_codigo_qr}' maxlen='100'/>
+	<parameter id='cit_codigo_alterno' type='varchar' required='false' label='${lbl:b_codigo_alterno}' maxlen='100'/>
+	<parameter id='cit_descripcion_tecnica' type='varchar' required='false' label='${lbl:b_descripcion_tecnica}' maxlen='400'/>
+	<parameter id='smn_unidad_medida_base_rf' type='integer' required='true' label='${lbl:b_unidad_medida_base}' maxlen='10'/>
+	<parameter id='smn_unidad_medida_compra_rf' type='integer' required='true' label='${lbl:b_unidad_medida_compra}' maxlen='10'/>
+	<parameter id='smn_unidad_medida_venta_rf' type='integer' required='true' label='${lbl:b_unidad_medida_venta}' maxlen='10'/>
+	<parameter id='smn_unidad_medida_almacenamiento_rf' type='integer' required='true' label='${lbl:b_unidad_almacenamiento}' maxlen='10'/>
+	<parameter id='smn_unidad_medida_despacho_rf' type='integer' required='true' label='${lbl:b_unidad_despacho}' maxlen='10'/>
+	<parameter id='cit_peso' type='double' required='true' label='${lbl:b_weight}' maxlen='10'/>
+	<parameter id='smn_unidad_medida_peso_rf' type='integer' required='true' label='${lbl:b_measurement_unit_weight}' maxlen='10'/>
+	<parameter id='cit_alto' type='double' required='true' label='${lbl:b_dimension_alto}' maxlen='10'/>
+	<parameter id='smn_unidad_medida_alto_rf' type='integer' required='true' label='${lbl:b_unidad_medida_alto}' maxlen='10'/>
+	<parameter id='cit_ancho' type='double' required='true' label='${lbl:b_dimension_ancho}' maxlen='10'/>
+	<parameter id='smn_unidad_medida_ancho_rf' type='integer' required='true' label='${lbl:b_unidad_medida_ancho}' maxlen='10'/>
+	<parameter id='cit_profundidad' type='double' required='true' label='${lbl:b_dimension_profundidad}' maxlen='10'/>
+	<parameter id='smn_unidad_medida_profundidad_rf' type='integer' required='true' label='${lbl:b_dimension_profundidad}' maxlen='10'/>
+	<parameter id='cit_es_medicamento' type='varchar' required='true' label='${lbl:b_es_medicamento}' maxlen='2'/>
+	<parameter id='smn_principio_activo_rf' type='varchar' required='false' label='${lbl:b_principio_activo}' maxlen='100'/>
+	<parameter id='cit_req_control_lote' type='varchar' required='true' label='${lbl:b_requiere_control_lote}' maxlen='2'/>
+	<parameter id='cit_req_control_vencimiento' type='varchar' required='true' label='${lbl:b_requiere_control_vencimiento}' maxlen='2'/>
+	<parameter id='cit_dias_ant_vencimiento' type='integer' required='false' label='${lbl:b_dias_antelacion_vencimiento}' maxlen='10'/>
+	<parameter id='cit_tipo_costo' type='varchar' required='true' label='${lbl:b_tipo_costo}' maxlen='2'/>
+	<parameter id='cit_valoracion_inventario' type='varchar' required='true' label='${lbl:b_valoracion_inventario}' maxlen='2'/>
+	<parameter id='cit_metodo_despacho' type='varchar' required='true' label='${lbl:b_metodo_despacho}' maxlen='2'/>
+	<parameter id='cit_cant_minima' type='double' required='true' label='${lbl:b_cantidad_minima}' maxlen='10'/>
+	<parameter id='cit_cant_maxima' type='double' required='true' label='${lbl:b_cantidad_maxima}' maxlen='10'/>
+	<parameter id='cit_punto_reorden' type='double' required='true' label='${lbl:b_punto_reorden}' maxlen='10'/>
+	<parameter id='cit_cant_seguridad' type='double' required='true' label='${lbl:b_cantidad_seguridad}' maxlen='10'/>
+	<parameter id='cit_es_reusable' type='varchar' required='true' label='${lbl:b_es_reusable}' maxlen='2'/>
+	<parameter id='cit_reuso_apertura' type='varchar' required='false' label='${lbl:b_reuso_apertura}' maxlen='2'/>
+	<parameter id='cit_cant_reuso' type='double' required='false' label='${lbl:b_cantidad_reuso}' maxlen='10'/>
+	<parameter id='cit_origen_producto' type='varchar' required='true' label='${lbl:b_origen_producto}' maxlen='2'/>
+	<parameter id='cit_descripcion_compra' type='varchar' required='false' label='${lbl:b_descripcion_compra}' maxlen='400'/>
+	<parameter id='cit_codigo_arancel' type='varchar' required='false' label='${lbl:b_codigo_arancel}' maxlen='40'/>
+	<parameter id='cit_dias_entrega' type='double' required='false' label='${lbl:b_dias_entrega}' maxlen='10'/>
+	<parameter id='smn_centro_costo_rf' type='integer' required='true' label='${lbl:b_cost_centers}' maxlen='10'/>
+	<parameter id='cit_item_compuesto' type='varchar' required='true' label='${lbl:b_composed_item}' maxlen='2'/>
+	<parameter id='cit_proveedor_exclusivo' type='varchar' required='true' label='${lbl:b_exclusive_provider}' maxlen='2'/>
+	<parameter id='cit_almacenado' type='varchar' required='true' label='${lbl:b_store}' maxlen='2'/>
+	<parameter id='cit_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='cit_vigencia' type='date' required='false' label='${lbl:b_validation_date}' maxlen='10'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarCodigo.sql'
+			id='cit_codigo_barra'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarCodigo.sql'
+			id='cit_codigo_qr'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarCodigo.sql'
+			id='cit_codigo_alterno'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarDescripcion.sql'
+			id='cit_descripcion_tecnica'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarDescripcion.sql'
+			id='cit_descripcion_compra'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarCodigo.sql'
+			id='cit_codigo_arancel'/>
+
+
+</validator>

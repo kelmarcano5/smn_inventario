@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_tipo_item>
+	<detail>
+		<rows>		
+		<record tip_fecha_registro="${fld:tip_fecha_registro}"    tip_estatus="${fld:tip_estatus}"    tip_descripcion="${fld:tip_descripcion}"    tip_codigo="${fld:tip_codigo}"    />
+		</rows>
+	</detail>
+</smn_tipo_item>

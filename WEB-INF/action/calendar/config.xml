@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Calendario popup de dinámica
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.calendar.DefaultCalendar</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+	</transaction>
+
+	<range>30</range>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>template.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/html</content-type>
+		<expiration>0</expiration>
+		<print mode="table" recordset="years" tag="years" />
+		<print mode="combo" recordset="calconfig" control="month" />
+		<print mode="combo" recordset="calconfig" control="year" />
+	</output>
+
+</config>

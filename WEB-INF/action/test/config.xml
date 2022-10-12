@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Mostrar información y estatus del sistema vía JMX (específico
+		para Tomcat 6)
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.SysInfo</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>output.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/html</content-type>
+		<expiration>0</expiration>
+		<print mode="table" recordset="gc" tag="gc" />
+		<print mode="table" recordset="dbpool" tag="pool" />
+		<print mode="table" recordset="threadpool" tag="thread" />
+		<print mode="table" recordset="webappsinfo" tag="webapp" />
+		<print mode="table" recordset="threaddump" tag="threaddump" />
+		<print mode="table" recordset="rp" tag="rp" />
+		<print mode="form" recordset="serverinfo" />
+	</output>
+
+</config>

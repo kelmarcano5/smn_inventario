@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnmovimientodetalleimpuesto.sql" source="session" scope="transaction" />
+		<recordset id='query-smncodigosimpuestos.sql' source='sql' scope='transaction' />
+	
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_movement_detail_tax}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_movement_detail_tax}">
+				<col id='smn_movimiento_detalle_id' label='${lbl:b_movement_detail}' />
+		<col id='smn_cod_impuesto_deduc_rf' label='${lbl:b_tax_code}' />
+		<col id='mdi_monto_base' label='${lbl:b_base_amount}' />
+		<col id='smn_porcentaje_impuesto_rf' label='${lbl:b_tax_percentage}' />
+		<col id='mdi_sustraendo_rf' label='${lbl:b_subtract}' />
+		<col id='mdi_tipo_movimiento' label='${lbl:b_movement_type}' />
+		<col id='mdi_monto_impuesto_ml' label='${lbl:b_tax_amount_ml}' />
+		<col id='smn_moneda' label='${lbl:b_coins}' />
+		<col id='smn_tasa' label='${lbl:b_exchange_rate}' />
+		<col id='mdi_monto_impuesto_ma' label='${lbl:b_tax_amount_ma}' />
+		<col id='mdi_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+		<sheet recordset='query-smncodigosimpuestos.sql' sheetname=''>
+		<col id='imp_monto_sustraendo' label='${lbl:}' />
+	</sheet>
+
+
+	</excel>
+
+</config>

@@ -1,0 +1,54 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='20%'/>
+	<col width='20%'/>
+	<col width='20%'/>
+	<col width='20%'/>
+	<col width='20%'/>
+	<col width='20%'/>
+	<col width='20%'/>
+	<col width='3%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="10" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_caracteristica_almacen_id","query-smnubicacioncabecera.sql")'>${lbl:b_store}</th>
+		<th class='sortable' onclick='sortBy("cfc_mov","query-smnubicacioncabecera.sql")'>${lbl:b_movement_type}</th>
+		<th class='sortable' onclick='sortBy("mca_numero","query-smnubicacioncabecera.sql")'>${lbl:b_number} ${lbl:b_recepcion}</th>
+		<th class='sortable' onclick='sortBy("smn_caracteristica_item_id","query-smnubicacioncabecera.sql")'>${lbl:b_item}</th>
+		<th class='sortable' onclick='sortBy("smn_movimiento_detalle_id","query-smnubicacioncabecera.sql")'>${lbl:b_detail_movement}</th>
+		<th class='sortable' onclick='sortBy("ubc_estatus","query-smnubicacioncabecera.sql")'>${lbl:b_status}</th>
+		<th class='sortable' onclick='sortBy("ubc_fecha_registro","query-smnubicacioncabecera.sql")'>${lbl:b_store_date}</th>
+		<th>UBD</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_ubicacion_cabecera_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/view-list-details.png"  onclick="changeStatus('${fld:smn_ubicacion_cabecera_id}')" title="${lbl:b_change_status}"></td>
+		<td>${fld:smn_caracteristica_almacen_id}</td>
+		<td>${fld:cfc_mov}</td>
+		<td>${fld:mca_numero}</td>
+		<td>${fld:smn_caracteristica_item_id}</td>
+		<td>${fld:smn_movimiento_detalle_id}</td>
+		<td align='left'>${fld:ubc_estatus}</td>
+		<td>${fld:ubc_fecha_registro@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="relacion('${fld:smn_ubicacion_cabecera_id}','${fld:cfc_nombre}','${fld:cfc_mov}','${fld:cfc_cantidad}')" title="${lbl:b_location_detail}"></td>
+
+	</tr>
+	</rows>
+
+</table>

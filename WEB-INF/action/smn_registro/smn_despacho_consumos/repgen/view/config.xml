@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Ver resultado de la consulta paginada
+	</summary>
+
+	<log>false</log>
+	
+	<set-request-attribute id="controls" value="file:/WEB-INF/action/pagecontrols/controls.htm"/>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query.sql" source="session" scope="transaction" />
+		<recordset id="field.sql" source="session" scope="transaction" />
+		<recordset id="field2.sql" source="session" scope="transaction" />
+		<recordset id="total_width.sql" source="session" scope="transaction" />
+		<recordset id="repgen.filter" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>template.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/plain; charset=iso-8859-1</content-type>
+		<expiration>0</expiration>
+		<print mode="form" recordset="repgen.filter" />
+		<print mode="table" recordset="field.sql" tag="cols1" />
+		<print mode="table" recordset="field2.sql" tag="cols2" />
+		<print mode="form" recordset="total_width.sql" />
+		<print mode="table" recordset="query.sql" tag="rows" alternate-colors="true" />
+	</output>
+
+</config>

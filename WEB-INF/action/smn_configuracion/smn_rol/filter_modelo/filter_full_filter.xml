@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<model>
+	<summary>${lbl:b_rol}</summary>
+	<filter>
+		<row field='smn_usuarios_rf' id='smn_usuarios_rf' label='${lbl:b_users}@{select smn_usuarios_id as id, smn_base.smn_auxiliar.smn_auxiliar_id|| &apos; - &apos; || smn_base.smn_auxiliar.aux_nombres || &apos; &apos; || smn_base.smn_auxiliar.aux_apellidos as item from smn_base.smn_usuarios, smn_base.smn_auxiliar where  smn_base.smn_usuarios.smn_auxiliar_rf = smn_base.smn_auxiliar.smn_auxiliar_id order by  smn_usuarios_id}' required='NO' fk='' mSelection='' condiction='Igual que (=)' type='integer' tableName='smn_rol' len='10'/>
+		<row field='rol_tipo' id='rol_tipo' label='${lbl:b_type}@{AL=${lbl:b_almacenista}|CO=${lbl:b_consumidor}|AP=${lbl:b_approver}}' required='NO' fk='' mSelection='' condiction='Igual que (=)' type='varchar' tableName='smn_rol' len='2'/>
+		<row field='smn_corporaciones_rf' id='smn_corporaciones_rf' label='${lbl:b_corporations}@{select smn_base.smn_corporaciones.smn_corporaciones_id as id, smn_base.smn_corporaciones.crp_codigo|| &apos; - &apos; || smn_base.smn_corporaciones.crp_nombre as item from smn_base.smn_corporaciones order by crp_nombre}' required='NO' fk='' mSelection='' condiction='Igual que (=)' type='integer' tableName='smn_rol' len='10'/>
+		<row field='smn_entidades_rf' id='smn_entidades_rf' label='${lbl:b_entities}@{select smn_base.smn_entidades.smn_entidades_id as id, smn_base.smn_entidades.ent_codigo|| &apos; - &apos; || smn_base.smn_entidades.ent_descripcion_corta as item from smn_base.smn_entidades order by smn_base.smn_entidades.ent_descripcion_corta}' required='NO' fk='' mSelection='' condiction='Igual que (=)' type='integer' tableName='smn_rol' len='10'/>
+		<row field='smn_sucursales_rf' id='smn_sucursales_rf' label='${lbl:b_subsidiaries}@{select smn_base.smn_sucursales.smn_sucursales_id as id, smn_base.smn_sucursales.suc_codigo|| &apos; - &apos; || smn_base.smn_sucursales.suc_nombre as item from smn_base.smn_sucursales order by suc_nombre}' required='NO' fk='' mSelection='' condiction='Igual que (=)' type='integer' tableName='smn_rol' len='10'/>
+		<row field='rol_fecha_registro' id='rol_fecha_registro_ini' label='${lbl:b_store_date_greather_than}' required='NO' fk='' mSelection='' condiction='Mayor o igual que (&gt;=)' type='date' tableName='smn_rol' len='10'/>
+	</filter>
+	<detail>SI</detail>
+	<insert>SI</insert>
+	<edit>SI</edit>
+	<delete>SI</delete>
+	<audit>Consulta</audit>
+	<grid>
+		<row field='smn_usuarios_rf' label='${lbl:b_users}@{select smn_usuarios_id as id, smn_base.smn_auxiliar.smn_auxiliar_id|| &apos; - &apos; || smn_base.smn_auxiliar.aux_nombres || &apos; &apos; || smn_base.smn_auxiliar.aux_apellidos as item from smn_base.smn_usuarios, smn_base.smn_auxiliar where  smn_base.smn_usuarios.smn_auxiliar_rf = smn_base.smn_auxiliar.smn_auxiliar_id order by  smn_usuarios_id}' fk='' tableName='smn_rol' len='10' type='integer' align='center'/>
+		<row field='rol_tipo' label='${lbl:b_type}@{AL=${lbl:b_almacenista}|CO=${lbl:b_consumidor}|AP=${lbl:b_approver}}' fk='' tableName='smn_rol' len='2' type='varchar' align='left'/>
+		<row field='smn_corporaciones_rf' label='${lbl:b_corporations}@{select smn_base.smn_corporaciones.smn_corporaciones_id as id, smn_base.smn_corporaciones.crp_codigo|| &apos; - &apos; || smn_base.smn_corporaciones.crp_nombre as item from smn_base.smn_corporaciones order by crp_nombre}' fk='' tableName='smn_rol' len='10' type='integer' align='center'/>
+		<row field='smn_entidades_rf' label='${lbl:b_entities}@{select smn_base.smn_entidades.smn_entidades_id as id, smn_base.smn_entidades.ent_codigo|| &apos; - &apos; || smn_base.smn_entidades.ent_descripcion_corta as item from smn_base.smn_entidades order by smn_base.smn_entidades.ent_descripcion_corta}' fk='' tableName='smn_rol' len='10' type='integer' align='center'/>
+		<row field='smn_sucursales_rf' label='${lbl:b_subsidiaries}@{select smn_base.smn_sucursales.smn_sucursales_id as id, smn_base.smn_sucursales.suc_codigo|| &apos; - &apos; || smn_base.smn_sucursales.suc_nombre as item from smn_base.smn_sucursales order by suc_nombre}' fk='' tableName='smn_rol' len='10' type='integer' align='center'/>
+		<row field='smn_areas_servicios_rf' label='${lbl:b_service_areas}@{select smn_base.smn_areas_servicios.smn_areas_servicios_id as id, smn_base.smn_areas_servicios.ase_codigo|| &apos; - &apos; || smn_base.smn_areas_servicios.ase_descripcion as item from smn_base.smn_areas_servicios order by ase_descripcion}' fk='' tableName='smn_rol' len='10' type='integer' align='center'/>
+		<row field='smn_unidades_servicios_rf' label='${lbl:b_service_units}@{select smn_base.smn_unidades_servicios.smn_unidades_servicios_id as id, smn_base.smn_unidades_servicios.uns_codigo || &apos; - &apos; || smn_base.smn_unidades_servicios.uns_descripcion as item from smn_base.smn_unidades_servicios order by smn_base.smn_unidades_servicios.uns_descripcion}' fk='' tableName='smn_rol' len='10' type='integer' align='center'/>
+		<row field='rol_posicion_estructura_rf' label='${lbl:b_posicion_estructura}@{select smn_base.smn_estructura_organizacional.smn_estructura_organizacional_id as id, smn_base.smn_estructura_organizacional.eor_codigo|| &apos; - &apos; || smn_base.smn_estructura_organizacional.eor_nombre as item from smn_base.smn_estructura_organizacional order by eor_nombre}' fk='' tableName='smn_rol' len='10' type='integer' align='center'/>
+		<row field='rol_estatus' label='${lbl:b_status}@{AC=${lbl:b_account_type_active}|IN=${lbl:b_inactive}}' fk='' tableName='smn_rol' len='2' type='varchar' align='left'/>
+		<row field='rol_vigencia' label='${lbl:b_validation_date}' fk='' tableName='smn_rol' len='10' type='date' align='center'/>
+		<row field='rol_idioma' label='${lbl:s_profile_lang}@{${def:locale}}' fk='' tableName='smn_rol' len='2' type='varchar' align='left'/>
+		<row field='rol_usuario' label='${lbl:b_users}@{${def:user}}' fk='' tableName='smn_rol' len='10' type='varchar' align='left'/>
+		<row field='rol_fecha_registro' label='${lbl:b_store_date}@{${def:date}}' fk='' tableName='smn_rol' len='10' type='date' align='center'/>
+		<row field='rol_hora' label='${lbl:s_loginhist_col2}@{${def:time}}' fk='' tableName='smn_rol' len='8' type='varchar' align='left'/>
+	</grid>
+	<mobile>false</mobile>
+</model>

@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+
+<head>
+
+<link rel="stylesheet" type="text/css" href="${def:context}/dinamica.css" />
+
+<!--biblioteca generica JS/Dinamica-->
+<script type="text/javascript" src="${def:context}/action/script">
+</script>
+
+</head>
+
+<body>
+
+<!--banner-->
+<div class="banner">
+	${lbl:b_rol}
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+	${req:progress}
+</div>
+
+<form name="form1" onsubmit="return upload()" action="${def:context}${def:actionroot}/upload" 
+		method="POST" enctype="multipart/form-data" target="uploadFrame" style="width:500px;">
+		
+	<!-- titulo -->
+	<h1 id="formTitle">${lbl:b_add_record}</h1>
+
+<table>
+
+	<!--ancho de la columna de etiquetas-->
+	<col width="30%">
+
+	<!--campos-->
+	<tr>
+		<td class="formlabel required">
+			${lbl:b_excel_file}:
+		</td>
+		<td>
+			<input id="file" type="file" name="file" size="30" onchange="setFileInfo('','','','')">
+		</td>
+	</tr>
+
+</table>
+
+
+	<!--botones-->
+	<input type="submit" value="${lbl:s_save}" name="submit" id="grabar"/>
+	<input type="button" value="${lbl:b_clean_button}" class="button" onclick="clearForm('form1')">
+	<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog(); parent.search();" class="button">
+
+	<!-- informacion del archivo temporal -->
+	<input type="hidden" name="_tempfile">
+	<input type="hidden" name="_filename">
+	<input type="hidden" name="_contenttype">
+	<input type="hidden" name="_filesize">
+	
+</form>
+<br>
+<div style="display: inline; float: left; padding-left: 450px; margin-top:2px;">
+	<img src="${def:context}/images/panel/download-excel.png" onclick="openExcelTemplate()" title="${lbl:b_download_template}" style="padding-right:3px;"/>
+</div>
+
+<!--frame invisible para hacer el post del archivo-->
+<iframe name="uploadFrame" style="display:none"></iframe>
+
+<!--panel de respuesta AJAX para el grid paginado-->
+<div id="response" style="display: none; width: 100%" align="center"></div>
+
+</body>
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+	//inicializa cuando se carga la pagina
+	onload = function()
+	{
+		addNew(); //prepara formulario para ingresar nuevo registro 
+	} 
+	
+	//enviar POST del formulario
+	function upload()
+	{	
+		document.getElementById("response").style.display="none";	
+		
+		//determinar si es un insert
+		if (document.form1.file.value=="") {
+			alertBox("${lbl:b_choose_file}.", "${lbl:b_cancel_button}");
+			document.form1.file.focus();
+			return false;
+		}
+		
+		if (document.form1._tempfile.value=="") {
+			document.form1.submit.disabled = true;
+			document.getElementById("status").style.display="";
+			return true;
+		} else {
+			save();
+			return false;
+		}		
+	
+	}
+	
+	//pone los valores del archivo cargado 
+	//en los controles del formulario, es llamada por el iframe escondido
+	function setFileInfo(tempFile, fileName, fileSize, contentType) {
+		document.form1._tempfile.value = tempFile;
+		document.form1._filename.value = fileName;
+		document.form1._filesize.value = fileSize;
+		document.form1._contenttype.value = contentType;
+	}
+
+	//grabar el formulario
+	function save()
+	{
+		ajaxCall(httpMethod="POST", 
+						uri="${def:actionroot}/insert", 
+						divResponse="response", 
+						divProgress="status", 
+						formName="form1", 
+						afterResponseFn=null, 
+						onErrorFn=retryAddnewOrEdit);	 
+	}
+
+	//restaurar el formulario en caso de error
+	function retryAddnewOrEdit() {
+		document.form1.submit.disabled=false;
+		setFocusOnForm("form1");		
+	}
+
+	function addNew() {
+		document.getElementById("formTitle").innerHTML = "${lbl:b_add_record}";
+		clearErrorMessages();
+		document.form1.submit.disabled = false;
+		document.form1.reset();
+		clearForm("form1");
+		setFocusOnForm("form1");
+		document.getElementById("response").style.display="none";	
+	}
+	
+	//funcion de callback del iframe cuando no carga correctamente el documento
+	function uploadError(msg)
+	{
+		document.getElementById("status").style.display="none";	
+		document.form1.submit.disabled = false;
+		alertBox(msg, "Continuar");
+	}
+	
+	//traer la pagina N del grid
+	function viewPage()
+	{
+		var url = "${def:actionroot}/excelerrorview";
+		gotoPage(url);
+	}	
+
+	//invoca la generacion de un PDF en un popup
+	function openPDF()
+	{
+		var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+		var url = "${def:context}${def:actionroot}/pdf?random=" + Math.random();
+		var w = window.open(url, null, features);
+	}
+
+	//invoca la generacion de un Excel en un popup
+	function openExcel()
+	{
+		var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+		var url = "${def:context}${def:actionroot}/excel?random=" + Math.random();
+		var w = window.open(url, null, features);
+	}
+	
+	//invoca la generacion de un Excel en un popup
+	function openExcelTemplate()
+	{
+		var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+		var url = "${def:context}${def:actionroot}/excel/template?random=" + Math.random();
+		var w = window.open(url, null, features);
+	}
+	
+	//exportar a xml
+	function openXml() {
+		var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+		var url = "${def:context}${def:actionroot}/xml/search?random=" + Math.random();
+		var w = window.open(url, null, features);
+	}
+	
+	//exportar a texto
+	function openTxt() {
+		var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+		var url = "${def:context}${def:actionroot}/txt/search?random=" + Math.random();
+		var w = window.open(url, null, features);
+	}
+	
+	//envio de emails
+	function openEmails() {
+		var uri = "${def:context}${def:actionroot}/email/form";					
+		openDialog("editor0", uri, 1050, 620);	
+	}
+	
+</script>
+
+</html>

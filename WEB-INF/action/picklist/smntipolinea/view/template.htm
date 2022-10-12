@@ -1,0 +1,40 @@
+<!--data grid-->
+<table class="datagrid rowhover oneCellRow" style="width:90%;">
+
+	<col width='100%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="8">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th onclick="sortBy('age_codigo','query-smnagenda.sql')" class="sortable" >${lbl:b_code}</th>
+		<th onclick="sortBy('age_descripcion','query-smnagenda.sql')" class="sortable" >${lbl:b_description}</th>
+		<th onclick="sortBy('age_dia_semana','query-smnagenda.sql')" class="sortable" >${lbl:b_weekday}</th>
+		<th onclick="sortBy('age_hora_desde','query-smnagenda.sql')" class="sortable" >${lbl:b_time_since}</th>
+		<th onclick="sortBy('age_jornada_desde','query-smnagenda.sql')" class="sortable" >${lbl:b_working_day}</th>
+		<th onclick="sortBy('age_hora_hasta','query-smnagenda.sql')" class="sortable" >${lbl:b_time_until}</th>
+		<th onclick="sortBy('age_jornada_hasta','query-smnagenda.sql')" class="sortable" >${lbl:b_working_day}</th>
+		<th onclick="sortBy('age_localidad','query-smnagenda.sql')" class="sortable" >${lbl:b_location}</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr onclick="selectItem('${fld:smn_agenda_id}')" >
+		<td style="font-size: 9pt;" align="center"><span id="${fld:smn_agenda_id}">${fld:age_codigo}</span></td>
+		<td style="font-size: 9pt;" align="center">${fld:age_descripcion}</td>
+		<td style="font-size: 9pt;" align="center">${fld:age_dia_semana}</td>
+		<td style="font-size: 9pt;" align="center">${fld:age_hora_desde}</td>
+		<td style="font-size: 9pt;" align="center">${fld:age_jornada_desde}</td>
+		<td style="font-size: 9pt;" align="center">${fld:age_hora_hasta}</td>
+		<td style="font-size: 9pt;" align="center">${fld:age_jornada_hasta}</td>
+		<td style="font-size: 9pt;" align="center">${fld:age_localidad}</td>
+	</tr>
+	</rows>
+
+</table>

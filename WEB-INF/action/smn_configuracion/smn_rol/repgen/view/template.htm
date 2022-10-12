@@ -1,0 +1,53 @@
+<!--parametros de busqueda-->
+<table class="record" style="width:400px;">
+
+	<!--ancho de columna de etiquetas-->
+	<col width="50%">
+	<col width="50%">
+
+	<!--campos-->
+	<tr>
+		<td width="40%">${lbl:b_store_date_grater_than}:</td>
+		<td style="background-color: white">${fld:fdesde@dd-MM-yyyy}</td>
+	</tr>
+	<tr>
+		<td width="40%">${lbl:b_store_date_less_than}:</td>
+		<td style="background-color: white">${fld:fhasta@dd-MM-yyyy}</td>
+	</tr>
+
+</table>
+
+<br>
+
+<!--data grid-->
+<table class="datagrid" width="${fld:width_total}" style="width:96%;">
+
+	<col width='3%'/>
+
+	<!--encabezados-->
+	<tr>
+		<th colspan="8">
+			${req:controls} 
+			<span style="float: center; margin-left: 60px"> 
+				<img src="${def:context}/images/back.gif" onclick="javascript:goBack()" title="${lbl:b_search_again}" class="tool"> 
+			</span>
+		</th>	
+	</tr>
+	<tr>
+		<th colspan="1"></th>
+		<cols1>			
+			<th class='sortable' width="${fld:width_px}" onclick='sortBy("${fld:col}","query.sql")'>${fld:alias}</th>
+		</cols1>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="javascript:getDetail(${fld:smn_rol_id});" title="${lbl:b_view_detail}"></td>
+		<cols2>
+			<td align="${fld:align}">${fld:market}}</td>
+		</cols2>
+	</tr>
+	</rows>
+
+</table>

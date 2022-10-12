@@ -1,0 +1,1176 @@
+<!doctype html>
+<html>
+
+<head>
+
+		<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+		<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+	
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+	<script type="text/javascript" src="${def:context}/action/jquery"></script>
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+</head>
+
+<body>
+
+<!--banner-->
+<div class="bannerDialog" id="encabezado_tabla">
+	${lbl:b_movement_detail}
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+	${req:progress}
+</div>
+
+<!--formulario addnew/edit-->
+<form name="form1" onsubmit="return save()" style="width:500px;">
+
+	<!-- titulo -->
+	<h1 id="formTitle">${lbl:b_add_record}</h1>
+
+	<table>
+
+		<!--ancho de la columna de etiquetas-->
+		<col width="30%">
+
+		<!--campos-->
+		<tr style="display: none;">
+			<td>${lbl:b_movement_head}*</td>
+			<td>
+				<!--almacena el ID del item seleccionado--> 
+				<!-- <input type="hidden" name="smn_movimiento_cabecera_id" id="smn_movimiento_cabecera_id" />  -->
+				<!--almacena el nombre del item seleccionado-->
+				<input type="text" name="smn_movimiento_cabecera_id" id="smn_movimiento_cabecera_id" style="width: 80%;" /> 
+				<!--boton del picklist--> 
+				<!-- <img src="${def:context}/images/dropdown.png" onclick="pickSmnMovimientoCabeceraId();" title="Seleccionar item" /> --> 
+			</td>
+		</tr>
+	<tr>
+		<td>${lbl:b_item}</td>
+		<td>
+			<select name="smn_item_rf" id="smn_item_rf" class="js-example-basic-single" onchange="chgCombo(smn_item_rf.options[smn_item_rf.selectedIndex].text,'smn_item_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_item_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_item_rf_rows>
+			</select> 
+			<input id="smn_item_rf_name" name="smn_item_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_bonus}*</td>
+		<td>
+			<select name="mde_es_bonificacion" id="mde_es_bonificacion">
+				<option value="NO">${lbl:b_not}</option>
+				<option value="SI">${lbl:b_yes}</option>
+			</select> 
+		</td>
+	</tr>
+	<tr style="display: none">
+		<td>${lbl:b_actfij}</td>
+		<td>
+			<select name="smn_activo_fijo_rf" id="smn_activo_fijo_rf" onchange="chgCombo(smn_activo_fijo_rf.options[smn_activo_fijo_rf.selectedIndex].text,'smn_activo_fijo_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_activo_fijo_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_activo_fijo_rf_rows>
+			</select> 
+			<input id="smn_activo_fijo_rf_name" name="smn_activo_fijo_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_received_amount}</td>
+		<td>
+			<input id="mde_cantidad_recibida" onblur="calcularmontoma();calcularmontoml();" name="mde_cantidad_recibida" type="text" maxlength="20" class="numeric">
+		</td>
+	</tr>
+	<tr id="valor_unitario_ml">
+		<td>${lbl:b_unitari_value_ml}*</td>
+		<td>
+			<input id="mde_valor_unitario_ml" name="mde_valor_unitario_ml" type="text" maxlength="20" class="numeric" onblur="calcularmontoml();">
+		</td>
+	</tr>
+	<tr id="moneda">
+		<td>${lbl:b_coins}</td>
+		<td>
+			<select name="smn_moneda_rf" id="smn_moneda_rf" onchange="chgCombo(smn_moneda_rf.options[smn_moneda_rf.selectedIndex].text,'smn_moneda_rf_name');getTasa(smn_moneda_rf.options[smn_moneda_rf.selectedIndex].text,'smn_moneda_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_moneda_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_moneda_rf_rows>
+			</select> 
+			<input id="smn_moneda_rf_name" name="smn_moneda_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr id="tasa">
+		<td>${lbl:b_exchange_rate}</td>
+		<td>
+			<select name="smn_tasa_rf" id="smn_tasa_rf" onchange="chgCombo(smn_tasa_rf.options[smn_tasa_rf.selectedIndex].text,'smn_tasa_rf_name');selectedTasa();">
+				<option value="">[Cualquiera]</option>
+				<smn_tasa_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_tasa_rf_rows>
+			</select> 
+			<input id="smn_tasa_rf_name" name="smn_tasa_rf_name" type="hidden">
+			<input id="value_tasa" name="value_tasa" type="text" hidden>
+		</td>
+	</tr>
+	<tr id="valor_unitario_ma">
+		<td>${lbl:b_unitari_value_ma}</td>
+		<td>
+			<input id="mde_valor_unitario_ma" name="mde_valor_unitario_ma" type="text" maxlength="20" class="numeric" onblur="calcularValor_ml();calcularmontoma();calcularmontoml();">
+		</td>
+	</tr>	
+	<tr id="impuestos">
+		<td>${lbl:b_account_type_tax}</td>
+		<td>
+			<select id="impuesto" name="impuesto" size="5" style="width:95%;"></select>
+			<br>
+	 		<div style="float:right;margin-right:12px; padding-top:7px">
+	 			[<a href="javascript:pickImpuestos()" class="impuestos" style="pointer-events: none;" title="Agregar impuestos a la lista">${lbl:b_add_button}</a>]
+	 			[<a href="javascript:removeImpuestos()" class="impuestos" style="pointer-events: none;" title="Remover un impuesto de la lista">${lbl:b_delete_button}</a>]
+	 		</div>
+	 		<input type="hidden" name="impuestos_id" id="impuestos_id">
+ 		</td>
+	</tr>
+	<tr id="descuentos">
+		<td>${lbl:b_discount}</td>
+		<td>
+			<select id="descuento" name="descuento" size="5" style="width:95%;"></select>
+			<br>
+	 		<div style="float:right;margin-right:12px; padding-top:7px">
+	 			[<a href="javascript:pickDescuentos()" class="descuentos" style="pointer-events: none;" title="Agregar descuento a la lista">${lbl:b_add_button}</a>]
+	 			[<a href="javascript:removeDescuentos()" class="descuentos" style="pointer-events: none;" title="Remover un descuento de la lista">${lbl:b_delete_button}</a>]
+	 		</div>
+	 		<input type="hidden" name="descuentos_id" id="descuentos_id">
+ 		</td>
+	</tr>
+	<tr id="monto_descuento">
+		<td>${lbl:b_free_discount_amount}*</td>
+		<td>
+			<input id="monto_descuento_libre" name="monto_descuento_libre" type="text" maxlength="20" class="numeric">
+		</td>
+	</tr>
+	<tr id="porc_base_descuento">
+		<td>${lbl:b_base_percentage}</td>
+		<td>
+			<input id="porc_base_descuento_libre" name="porc_base_descuento_libre" type="text" maxlength="20" class="numeric">
+		</td>
+	</tr>
+	<tr id="porc_descuento">
+		<td>${lbl:b_calculation_percentage}</td>
+		<td>
+			<input id="porc_descuento_libre" name="porc_descuento_libre" type="text" maxlength="20" class="numeric">
+		</td>
+	</tr>
+	<tr id="centro_costo">
+		<td>${lbl:b_cost_centers}</td>
+		<td>
+			<input hidden id="smn_centro_costo_rf" name="smn_centro_costo_rf" type="text" maxlength="10" class="numeric">
+			<input id="smn_centro_costo_name" name="smn_centro_costo_name" type="text" maxlength="100">
+		</td>
+	</tr>
+		<tr style="display: none" id="lote">
+			<td>${lbl:b_lot}</td>
+			<td>
+				<input id="mde_lote" onblur="validarFecha()" name="mde_lote" type="text" maxlength="10" class="numeric">
+				<input hidden id="requiere_lote" name="requiere_lote" type="text" maxlength="2">
+				<div id="msjLote" style="color:red"></div>
+			</td>
+		</tr>
+		<tr style="display: none" id="fveclote">
+			<td>${lbl:b_expiration_date}</td>
+			<td>
+				<input hidden id="col_fecha_vencimiento" name="col_fecha_vencimiento" type="text" class="date" maxlength="10">
+				<img hidden src="${def:context}/images/dropdown.png" title="Desplegar calendario" onclick="calendarOpen('col_fecha_vencimiento')">
+				<input id="mde_fecha_vencimiento_lote" name="mde_fecha_vencimiento_lote" type="text" class="date" maxlength="10">
+				<img id="calendario_vencimiento" src="${def:context}/images/dropdown.png" title="Desplegar calendario" onclick="calendarOpen('mde_fecha_vencimiento_lote','col_fecha_vencimiento')">
+				<div id="msjFechaVctoLote" style="color:red"></div>
+			</td>
+		</tr>
+		<tr style="display: none">
+			<td>${lbl:b_movement_type}*</td>
+			<td>
+				<select name="mde_tipo_movimiento" id="mde_tipo_movimiento">
+					<option value="EN">${lbl:b_entry}</option>
+					<option value="SA">${lbl:b_exit}</option>
+					<option value="AP">${lbl:b_fit_price}</option>
+					<option value="EA">${lbl:b_input_setting}</option>
+				</select> 
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_description}*</td>
+			<td>
+				<input id="mde_descripcion" name="mde_descripcion" type="text" maxlength="48" >
+			</td>
+		</tr>
+		
+	<tr id="unidad_medida">
+		<td>${lbl:b_measurement_unit}*</td>
+		<td>
+			<select name="smn_unidad_medida_rf" class="js-example-basic-single" id="smn_unidad_medida_rf" onchange="chgCombo(smn_unidad_medida_rf.options[smn_unidad_medida_rf.selectedIndex].text,'smn_unidad_medida_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_unidad_medida_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_unidad_medida_rf_rows>
+			</select> 
+			<input id="smn_unidad_medida_rf_name" name="smn_unidad_medida_rf_name" type="hidden">
+		</td>
+	</tr>
+		<tr id="monto_bruto_ml">
+			<td>${lbl:b_gross_amount_ml}*</td>
+			<td>
+				<input id="mde_monto_bruto_ml" name="mde_monto_bruto_ml" type="text" maxlength="20" class="numeric">
+			</td>
+		</tr>
+		<tr id="monto_bruto_ma">
+			<td>${lbl:b_gross_amount_ma}</td>
+			<td>
+				<input id="mde_monto_bruto_ma" name="mde_monto_bruto_ma" type="text" maxlength="20" class="numeric">
+			</td>
+		</tr>
+		<tr id="monto_disminucion_ml">
+			<td>${lbl:b_decrease_amount_ml}</td>
+			<td>
+				<input id="mde_monto_disminucion_ml" name="mde_monto_disminucion_ml" type="text" maxlength="20" class="numeric">
+			</td>
+		</tr>
+		<tr id="monto_disminucion_ma">
+			<td>${lbl:b_decrease_amount_ma}</td>
+			<td>
+				<input id="mde_monto_disminucion_ma" name="mde_monto_disminucion_ma" type="text" maxlength="20" class="numeric">
+			</td>
+		</tr>
+		<tr id="monto_valor_agregado_ml">
+			<td>${lbl:b_agree_value_amount_ml}</td>
+			<td>
+				<input id="mde_monto_valor_agregado_ml" name="mde_monto_valor_agregado_ml" type="text" maxlength="20" class="numeric" onchange="calcularmontonetoml();">
+			</td>
+		</tr>
+		<tr id="valor_agregado_ma">
+			<td>${lbl:b_agree_value_amount_ma}</td>
+			<td>
+				<input id="mde_monto_valor_agregado_ma" name="mde_monto_valor_agregado_ma" type="text" maxlength="20" class="numeric" onchange="calcularmontonetoma();">
+			</td>
+		</tr>
+		<tr id="monto_neto_ml">
+			<td>${lbl:b_net_document_amount_ml}</td>
+			<td>
+				<input id="mde_monto_neto_ml" name="mde_monto_neto_ml" type="text" maxlength="20" class="numeric">
+				<input id="subtotal_monto_neto_ml" name="subtotal_monto_neto_ml" type="hidden" maxlength="20" class="numeric">
+			</td>
+		</tr>
+		<tr id="monto_neto_ma">
+			<td>${lbl:b_net_document_amount_ma}</td>
+			<td>
+				<input id="mde_monto_neto_ma" name="mde_monto_neto_ma" type="text" maxlength="10" class="numeric">
+				<input id="subtotal_monto_neto_ma" name="subtotal_monto_neto_ma" type="hidden" maxlength="20" class="numeric">
+			</td>
+		</tr>
+		<tr style="display: none">
+			<td>${lbl:b_status}*</td>
+			<td>
+				<select name="mde_estatus" id="mde_estatus">
+				<option value="RE">${lbl:b_registry}</option>
+				<option value="PA">${lbl:b_payment}</option>
+				<option value="DE">${lbl:b_deposity}</option>
+				<option value="CN">${lbl:b_concilied}</option>
+
+				</select> 
+			</td>
+		</tr>
+
+
+	</table>
+
+	<!--botones-->
+	<input id="grabar" type="submit" value="${lbl:b_save_button}" class="button">
+	<input id="limpiar" type="button" value="${lbl:b_clean_button}" onclick="addNew()" class="button">	
+	<input id="copiar" type="button" value="${lbl:b_copy_button}" onclick="getFormValuesToCopy('form1')" class="button">
+	<input id="pegar" type="button" value="${lbl:b_paste_button}" onclick="getFormValuesToPaste('form1')" class="button">
+	<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog(); parent.search();" class="button">	
+	
+	<!-- PK-->
+<input type="hidden" id="smn_requisicion_detalle_id" name="id" value="">
+<input type="hidden" name="lote" value="lote">
+
+</form>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+	onload = function()
+	{ 
+		addNew();
+		document.getElementById("smn_movimiento_cabecera_id").value='${fld:id2}';
+		document.getElementById("smn_movimiento_cabecera_id").disabled=true;
+		document.getElementById("mde_monto_bruto_ml").disabled=true;
+		document.getElementById("mde_monto_bruto_ma").disabled=true;
+		document.getElementById("mde_monto_disminucion_ml").disabled=true;
+		document.getElementById("mde_monto_disminucion_ma").disabled=true;
+		document.getElementById("mde_monto_valor_agregado_ml").disabled=true;
+		document.getElementById("mde_monto_valor_agregado_ma").disabled=true;
+		document.getElementById("mde_monto_neto_ml").disabled=true;
+		document.getElementById("mde_monto_neto_ma").disabled=true;
+		document.getElementById("mde_valor_unitario_ma").disabled=true;
+		document.getElementById("smn_centro_costo_name").disabled=true;
+		document.getElementById("smn_unidad_medida_rf").disabled=false;
+		document.getElementById('moneda').style.display="none";
+		document.getElementById('tasa').style.display="none";
+		document.getElementById('valor_unitario_ma').style.display="none";
+		document.getElementById('monto_bruto_ma').style.display="none";
+		document.getElementById('monto_disminucion_ma').style.display="none";
+		document.getElementById('valor_agregado_ma').style.display="none";
+		document.getElementById('monto_neto_ma').style.display="none";
+		$("#monto_descuento").css("display","none");
+		$("#porc_base_descuento").css("display","none");
+		$("#porc_descuento").css("display","none");
+
+  		$(document).ready(function() {	
+		    $('.js-example-basic-single').select2();
+		});
+  		
+		if (id!="")
+		{
+			var estatus = "<mca_estatus_proceso_rows>${fld:item}</mca_estatus_proceso_rows>";
+
+			if(estatus != 'GE')
+				edit(id);
+			else
+				alertBox("No se puede editar un registro *GENERADO*",'${lbl:b_continue_button}',null,'parent.closeDialog(); parent.search();');
+		}
+	} 
+	
+	function chgCombo(text,id)
+	{
+		document.getElementById(id).value = text;
+	}
+	
+	//configurar formulario para ingresar registro nuevo
+	function addNew()
+	{
+		document.getElementById("formTitle").innerHTML = "${lbl:b_add_record}";
+		document.getElementById("grabar").disabled=false;
+		clearForm("form1");
+		setFocusOnForm("form1");
+	}
+	
+	//retorna al estado previo que corresponde
+	//al estado actual de la pagina, cada llamada Ajax
+	//se encarga de definir cual es la funcion de goBack() que aplica
+	function goBack() 
+	{
+		_goBackFn()			
+	}
+	
+	function search()
+	{
+		addNew();
+		document.getElementById("smn_movimiento_cabecera_id").value='${fld:id2}';
+		document.getElementById("smn_movimiento_cabecera_id").disabled=true;
+		document.getElementById("mde_monto_bruto_ml").disabled=true;
+		document.getElementById("mde_monto_bruto_ma").disabled=true;
+		document.getElementById("mde_monto_disminucion_ml").disabled=true;
+		document.getElementById("mde_monto_disminucion_ma").disabled=true;
+		document.getElementById("mde_monto_valor_agregado_ml").disabled=true;
+		document.getElementById("mde_monto_valor_agregado_ma").disabled=true;
+		document.getElementById("mde_monto_neto_ml").disabled=true;
+		document.getElementById("mde_monto_neto_ma").disabled=true;
+		document.getElementById("mde_valor_unitario_ma").disabled=true;
+		document.getElementById("smn_centro_costo_name").disabled=true;
+		document.getElementById("smn_unidad_medida_rf").disabled=false;
+		document.getElementById('moneda').style.display="none";
+		document.getElementById('tasa').style.display="none";
+		document.getElementById('valor_unitario_ma').style.display="none";
+		document.getElementById('monto_bruto_ma').style.display="none";
+		document.getElementById('monto_disminucion_ma').style.display="none";
+		document.getElementById('valor_agregado_ma').style.display="none";
+		document.getElementById('monto_neto_ma').style.display="none";
+		$("#monto_descuento").css("display","none");
+		$("#porc_base_descuento").css("display","none");
+		$("#porc_descuento").css("display","none");
+
+		listboxClear("impuesto");
+		listboxClear("descuento");
+
+  		$(document).ready(function() {
+		    $('.js-example-basic-single').select2();
+		});
+  		
+		if (id!="")
+		{
+			var estatus = "<mca_estatus_proceso_rows>${fld:item}</mca_estatus_proceso_rows>";
+
+			if(estatus != 'GE')
+				edit(id);
+			else
+				alertBox("No se puede editar un registro *GENERADO*",'${lbl:b_continue_button}',null,'parent.closeDialog(); parent.search();');
+		}
+	}
+
+	//desplegar picklist de seleccion multiple
+	function pickImpuestos()
+	{
+ 		var url = "${def:context}${def:actionroot}/picklist_impuesto/form";
+ 		pickOpen ('impuesto','impuestos_id',url,'600','300',true);
+ 	}
+	
+	//llamada por el picklist para añadir un item al listbox
+	function selectImpuestos(id, title, tipo_codigo, porcentaje_base, porcentaje_calculo, monto_sustraendo) 
+	{
+ 		var registro = listboxAddItem("impuesto", id, title);
+ 		
+ 		if (registro!=false)
+ 		{
+ 			calcularImpuestos(tipo_codigo,porcentaje_base,porcentaje_calculo,monto_sustraendo,'AG');
+ 		}
+ 	}
+
+	//remover un item del listbox
+	function removeImpuestos() 
+	{
+ 		if (document.form1.impuesto.selectedIndex == -1) 
+ 		{
+ 			alertBox('Por favor seleccione el impuesto de la lista que desea remover.', 'Aceptar', null, null);
+ 			return;
+ 		}
+
+ 		var impuesto_id=$("#impuesto option:selected").val();
+ 		var detalle_id=$("#smn_requisicion_detalle_id").val(); 
+
+ 		ajaxCall(httpMethod="GET", 
+					uri="${def:actionroot}/recalcularImpuestos?smn_codigos_impuestos_id="+ impuesto_id +"&accion=EL", 
+					divResponse=null, 
+					divProgress="status", 
+					formName="form1", 
+					afterResponseFn=null, //function 'setElementFirstIndex' select first element of combo list
+					onErrorFn=null);
+
+ 		if(detalle_id!="")
+ 		{
+ 			ajaxCall(httpMethod="GET", 
+					uri="${def:actionroot}/eliminarImpuesto?smn_codigos_impuestos_id="+ impuesto_id + "&smn_movimiento_detalle_id=" + detalle_id, 
+					divResponse=null, 
+					divProgress="status", 
+					formName="form1", 
+					afterResponseFn=null, //function 'setElementFirstIndex' select first element of combo list
+					onErrorFn=null);
+ 		}
+
+ 		listboxRemoveItem("impuesto");
+ 	}
+
+ 	//desplegar picklist de seleccion multiple
+	function pickDescuentos()
+	{
+ 		var url = "${def:context}${def:actionroot}/picklist_descuento/form";
+ 		pickOpen ('descuento','descuentos_id',url,'600','300',true);
+ 	}
+	
+	//llamada por el picklist para añadir un item al listbox
+	function selectDescuentos(id, title, porcentaje_base, porcentaje_descuento, dyr_apli_cant_precio, monto_descuento) 
+	{
+		if(dyr_apli_cant_precio=="TL")
+		{
+			$("#monto_descuento").css("display","");
+			$("#porc_base_descuento_libre").val(porcentaje_base);
+			$("#porc_descuento_libre").val(porcentaje_descuento);
+			$("#monto_descuento_libre").val(monto_descuento);
+		}
+
+ 		var registro = listboxAddItem("descuento", id, title);
+ 		if (registro!=false)
+ 		{
+ 			calcularDescuentos(porcentaje_base,porcentaje_descuento,'AG');
+ 		}
+ 	}
+
+	//remover un item del listbox
+	function removeDescuentos() 
+	{
+ 		if (document.form1.descuento.selectedIndex == -1) 
+ 		{
+ 			alertBox('Por favor seleccione el descuento de la lista que desea remover.', 'Aceptar', null, null);
+ 			return;
+ 		}
+
+ 		var descuento_id=$("#descuento option:selected").val();
+ 		var detalle_id=$("#smn_requisicion_detalle_id").val(); 
+
+ 		ajaxCall(httpMethod="GET", 
+					uri="${def:actionroot}/recalcularDescuentos?smn_descuentos_retenciones_id="+ descuento_id +"&accion=EL", 
+					divResponse=null, 
+					divProgress="status", 
+					formName="form1", 
+					afterResponseFn=null, //function 'setElementFirstIndex' select first element of combo list
+					onErrorFn=null);
+
+ 		if(detalle_id!="")
+ 		{
+ 			ajaxCall(httpMethod="GET", 
+					uri="${def:actionroot}/eliminarDescuento?smn_descuentos_retenciones_id="+ descuento_id + "&smn_movimiento_detalle_id=" + detalle_id, 
+					divResponse=null, 
+					divProgress="status", 
+					formName="form1", 
+					afterResponseFn=null, //function 'setElementFirstIndex' select first element of combo list
+					onErrorFn=null);
+ 		}
+
+ 		listboxRemoveItem("descuento");
+ 	}
+
+	//mostrar la actualizacion de un registro
+	function insert()
+	{	
+		clearErrorMessages();
+		document.getElementById("grabar").disabled=true;
+			
+		//llamada Ajax...
+		return ajaxCall(httpMethod="POST", 
+						uri="${def:actionroot}/insert", 
+						divResponse=null, 
+						divProgress="status", 
+						formName="form1", 
+						afterResponseFn=null, 
+						onErrorFn=retryAddnewOrEdit);
+	}
+
+	//busca el ultimo registro ingresado y lo escribe en el campo id='smn_movimiento_detalle_id'
+	function getReturnId()
+	{
+		//llamada Ajax...
+		return ajaxCall(httpMethod="POST", 
+						uri="${def:actionroot}/insert/returnId", 
+						divResponse=null, 
+						divProgress="status", 
+						formName="form1", 
+						afterResponseFn=null, 
+						onErrorFn=retryAddnewOrEdit);
+	}
+
+
+	//Registra los impuestos y descuentos del detalle creado
+	function saveImpuestosDescuentos()
+	{
+		//llamada Ajax...
+		return ajaxCall(httpMethod="POST", 
+						uri="${def:actionroot}/saveImpuestosDescuentos", 
+						divResponse=null, 
+						divProgress="status", 
+						formName="form1", 
+						afterResponseFn=null, 
+						onErrorFn=retryAddnewOrEdit);
+	}
+
+	//Actualiza los impuestos y descuentos del detalle creado
+	function updateImpuestosDescuentos()
+	{
+		//llamada Ajax...
+		return ajaxCall(httpMethod="POST", 
+						uri="${def:actionroot}/updateImpuestosDescuentos", 
+						divResponse=null, 
+						divProgress="status", 
+						formName="form1", 
+						afterResponseFn=null, 
+						onErrorFn=retryAddnewOrEdit);
+	}
+
+	//restaurar el formulario en caso de error
+	function retryAddnewOrEdit() {
+		document.getElementById("grabar").disabled=false;
+		setFocusOnForm("form1");		
+	}
+	
+	var id = "${fld:id}"
+	
+	//grabar el formulario
+	function save()
+	{
+		//convertir los IDs de los items
+		//del listbox a una lista de valores separados por ";"
+		document.form1.impuestos_id.value = listboxGetItemValues("impuesto");
+		document.form1.descuentos_id.value = listboxGetItemValues("descuento");
+
+		var lote = document.form1.mde_lote.value;
+		var fecha_vcto_lote = document.form1.mde_fecha_vencimiento_lote.value;
+		
+		if(document.form1.requiere_lote.value == 'SI')
+		{
+			if(lote == "")
+			{
+				msjLote.innerHTML="Este valor DEBE ser ingresado";
+				return false;
+			}
+			else
+			if(fecha_vcto_lote == "")
+			{
+				msjFechaVctoLote.innerHTML="Este valor DEBE ser ingresado";
+				return false;
+			}
+			else
+			{
+				msjLote.innerHTML="";
+				msjFechaVctoLote.innerHTML="";
+			}
+		}
+		
+		//determina si es un insert o un update
+		if (document.form1.id.value=="")
+			return insert();
+		else
+			return update();
+	}
+	
+	//editar registro en formulario
+	function edit(id)
+	{
+			clearErrorMessages();
+
+			//llamada Ajax...
+			ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/edit?id=" + id , 
+							divResponse=null, 
+							divProgress="status", 
+							formName=null, 
+							afterResponseFn=null, 
+							onErrorFn=null);	
+	}
+	
+	//actualizar registro en BD
+	function update()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/update", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+
+  function calcularValor_ml()
+  {
+  	var valor_ma = parseInt(document.getElementById("mde_valor_unitario_ma").value);
+  	var tasa = parseInt(document.getElementById("value_tasa").value);
+  	var monto = 0;
+
+  	monto = valor_ma * tasa;
+
+  	document.getElementById("mde_valor_unitario_ml").value = monto;
+  }
+  function calcularmontoml()
+  {
+  	var can = document.getElementById("mde_cantidad_recibida").value;
+  	var precio = document.getElementById("mde_valor_unitario_ml").value;
+  	var monto = 0;
+
+  	monto = can * precio; 
+
+  	document.getElementById("mde_monto_bruto_ml").value = monto;
+  }
+
+  function calcularmontoma()
+  {
+  	var can = document.getElementById("mde_cantidad_recibida").value;
+  	var precio = document.getElementById("mde_valor_unitario_ma").value;
+  	var monto = 0;
+
+  	monto = can * precio; 
+
+
+  	document.getElementById("mde_monto_bruto_ma").value = monto;
+  }
+
+  function calcularmontonetoml()
+  {
+  	var brt= document.getElementById("mde_monto_bruto_ml").value;
+  	var dis = document.getElementById("mde_monto_disminucion_ml").value;
+  	var agr = document.getElementById("mde_monto_valor_agregado_ml").value;
+	var monto = 0;
+
+  	monto = brt - dis + agr; 
+  // alert(monto);
+
+  		document.getElementById("mde_monto_neto_ml").value = monto;
+  }
+  function calcularmontonetoma()
+  {
+  	var brt= document.getElementById("mde_monto_bruto_ma").value;
+  	var dis = document.getElementById("mde_monto_disminucion_ma").value;
+  	var agr = document.getElementById("mde_monto_valor_agregado_ma").value;
+	var monto = 0;
+
+  	monto = brt - dis + agr; 
+  // alert(monto);
+
+  		document.getElementById("mde_monto_neto_ma").value = monto;
+  }
+
+  	//Author     : SIMONE
+	//Description: Get text valueof selected index
+	//Return     : Text associated to index
+	function getSelectedIndex(combo) 
+	{
+	    for (var i = 0; i < combo.options.length; i++) 
+	    {
+	        if (combo.options[i].selected == true) 
+	        {
+	            return combo.options[i].text;
+	        }
+	    }
+	}
+
+	function getIDSelectedIndex(combo) 
+	{
+	    for (var i = 0; i < combo.options.length; i++) 
+	    {
+	        if (combo.options[i].selected == true) 
+	        {
+	            return combo.options[i].value;
+	        }
+	    }
+	}
+
+	$("#smn_item_rf").change(function(){
+		var item_id = $("#smn_item_rf").val();
+  		
+  		$("#smn_unidad_medida_rf").attr("disabled",false);
+
+  		if(item_id != "")
+  		{
+  			ajaxCall(httpMethod="GET", 
+					uri="${def:actionroot}/obtenerlote?id=" + item_id, 
+					divResponse=null, 
+					divProgress="status", 
+					formName="form1", 
+					afterResponseFn=null, 
+					onErrorFn=null);
+
+  			ajaxCall(httpMethod="GET", 
+					uri="${def:actionroot}/getCentroCosto?smn_item_rf=" + item_id, 
+					divResponse=null, 
+					divProgress="status", 
+					formName="form1", 
+					afterResponseFn=null, 
+					onErrorFn=null);
+
+  			ajaxCall(httpMethod="GET", 
+					uri="${def:actionroot}/getUnidadMedida?smn_item_rf=" + item_id,
+					divResponse=null, 
+					divProgress="status", 
+					formName="form1", 
+					afterResponseFn=setElementFirstIndex('smn_unidad_medida_rf'), 
+					onErrorFn=null);
+
+  			ajaxCall(httpMethod="GET", 
+					uri="${def:actionroot}/getValoracion?smn_item_rf=" + item_id,
+					divResponse=null, 
+					divProgress="status", 
+					formName="form1", 
+					afterResponseFn=null, //function 'setElementFirstIndex' select first element of combo list
+					onErrorFn=null);
+  		}
+  		else
+  		{
+  			$("#lote").css("display","none");
+  			$("#fveclote").css("display","none");
+  			$("#centro_costo").css("display","none");
+  			$("#smn_unidad_medida_rf").attr("disabled",true);
+  			$("#smn_unidad_medida_rf").val("");
+  			listboxClear('impuesto');
+  			listboxClear('descuento');
+  		}
+	});
+
+  	function getTasa(text, id) {
+  	//llamada Ajax...
+
+  		document.form1.smn_tasa_rf.disabled=false;
+
+		var combo = document.getElementById('smn_moneda_rf');
+		var valueCombo = getIDSelectedIndex(combo);
+		var movimiento_cabecera_id = document.getElementById("smn_movimiento_cabecera_id").value;
+
+		if(valueCombo != "")
+		{
+			return ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/getTasa?smn_moneda_rf="+valueCombo+"&id="+movimiento_cabecera_id, 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=setElementFirstIndex('smn_tasa_rf'), 
+							onErrorFn=null);	
+		}
+  	}
+
+  	function selectedTasa() 
+  	{
+  		var tasa = document.getElementById('smn_tasa_rf').value;
+
+  		if(tasa != "")
+  			document.getElementById('mde_valor_unitario_ma').disabled = false;
+  		else
+  			document.getElementById('mde_valor_unitario_ma').disabled = true;
+  	}
+
+	function validarFecha()
+  	{
+  		var lote = document.getElementById('mde_lote').value;
+
+		if(lote!="")
+		{
+			var result =  ajaxCall(	
+								httpMethod="GET", 
+								uri="${def:actionroot}/validarFecha?mde_lote="+lote, 
+								divResponse=null, 
+								divProgress="status", 
+								formName="form1", 
+								afterResponseFn=null,
+								onErrorFn=null);
+		}
+  	}
+
+  	function getDateToday()
+	{
+		var date = new Date();
+		var fecha = date.getDate()+'-'+(date.getMonth()+1)+'-'+date.getFullYear();
+
+		return fecha;
+	}
+
+  function setElementFirstIndex(id)
+	{
+		var combo = document.getElementById(id);
+		combo.selectedIndex = 0;
+	}
+
+	function formatear_monto(monto)
+	{
+		var base = monto;
+		base1 = base.replace('.','');
+		base = base1.replace('.','');
+		base1 = base.replace(',','.');
+		
+		return base1;
+	}
+
+	$("#mde_valor_unitario_ml").blur(function() {
+		var mde_valor_unitario_ml = $(this).val();
+		var smn_item_rf=$("#smn_item_rf").val();
+
+		if(mde_valor_unitario_ml != "")
+		{
+			$(".impuestos").css("pointer-events","");
+			$(".descuentos").css("pointer-events","");
+
+			ajaxCall(httpMethod="GET", 
+					uri="${def:actionroot}/getImpuestoItem?smn_item_rf=" + smn_item_rf, 
+					divResponse=null, 
+					divProgress="status", 
+					formName="form1", 
+					afterResponseFn=null, //function 'setElementFirstIndex' select first element of combo list
+					onErrorFn=null);
+
+  			ajaxCall(httpMethod="GET", 
+					uri="${def:actionroot}/getDescuentoItem?smn_item_rf=" + smn_item_rf,
+					divResponse=null, 
+					divProgress="status", 
+					formName="form1", 
+					afterResponseFn=null, //function 'setElementFirstIndex' select first element of combo list
+					onErrorFn=null);
+		}
+		else
+		{
+			$(".impuestos").css("pointer-events","none");
+			$(".descuentos").css("pointer-events","none");
+		}
+	});
+
+	function calcularImpuestos(tipo_codigo,porcentaje_base,porcentaje_calculo,monto_sustraendo,accion) 
+	{
+		var mde_monto_bruto_ml=$("#mde_monto_bruto_ml").val();
+		var mde_monto_bruto_ma=$("#mde_monto_bruto_ma").val();
+		var mde_monto_disminucion_ml=$("#mde_monto_disminucion_ml").val();
+		var mde_monto_disminucion_ma=$("#mde_monto_disminucion_ma").val();
+		var mde_monto_valor_agregado_ml=$("#mde_monto_valor_agregado_ml").val();
+		var mde_monto_valor_agregado_ma=$("#mde_monto_valor_agregado_ma").val();
+		var subtotal_monto_neto_ml=$("#subtotal_monto_neto_ml").val();
+		var subtotal_monto_neto_ma=$("#subtotal_monto_neto_ma").val();
+		var mde_monto_neto_ml=$("#mde_monto_neto_ml").val();
+		var mde_monto_neto_ma=$("#mde_monto_neto_ma").val();
+		var cal_tipo_calculo_costo='${fld:cal_tipo_calculo_costo}';
+		var ent_calcula_redondeo='${fld:ent_calcula_redondeo}';
+		var total_ml;
+		var total_ma;
+
+		if(mde_monto_bruto_ml=="")
+			mde_monto_bruto_ml=0;
+
+		if(mde_monto_bruto_ma=="")
+			mde_monto_bruto_ma=0;
+
+		if(mde_monto_disminucion_ml=="")
+			mde_monto_disminucion_ml=0;
+
+		if(mde_monto_disminucion_ma=="")
+			mde_monto_disminucion_ma=0;
+
+		if(mde_monto_valor_agregado_ml=="")
+			mde_monto_valor_agregado_ml=0;
+
+		if(mde_monto_valor_agregado_ma=="")
+			mde_monto_valor_agregado_ma=0;
+
+		if(mde_monto_neto_ml=="")
+			mde_monto_neto_ml=mde_monto_bruto_ml;
+
+		if(mde_monto_neto_ma=="")
+			mde_monto_neto_ma=mde_monto_bruto_ma;
+
+		if(subtotal_monto_neto_ml=="")
+			subtotal_monto_neto_ml=mde_monto_bruto_ml;
+
+		if(subtotal_monto_neto_ma=="")
+			subtotal_monto_neto_ma=mde_monto_bruto_ma;
+
+		if(porcentaje_base=="")
+			porcentaje_base=0;
+
+		if(porcentaje_calculo=="")
+			porcentaje_calculo=0;
+
+		if(monto_sustraendo=="")
+			monto_sustraendo=0;
+
+		if(cal_tipo_calculo_costo=='DI')
+		{
+			total_ml = (subtotal_monto_neto_ml*porcentaje_base)/100;
+			total_ml = (total_ml*porcentaje_calculo)/100;
+			total_ml = parseFloat(total_ml) - parseFloat(monto_sustraendo);
+			
+			total_ma = (subtotal_monto_neto_ma*porcentaje_base)/100;
+			total_ma = (total_ma*porcentaje_calculo)/100;
+			total_ma = parseFloat(total_ma) - parseFloat(monto_sustraendo);
+		}
+		else
+		{
+			total_ml = (mde_monto_bruto_ml*porcentaje_base)/100;
+			total_ml = (total_ml*porcentaje_calculo)/100;
+			total_ml = parseFloat(total_ml) - parseFloat(monto_sustraendo);
+			
+			total_ma = (mde_monto_bruto_ma*porcentaje_base)/100;
+			total_ma = (total_ma*porcentaje_calculo)/100;
+			total_ma = parseFloat(total_ma) - parseFloat(monto_sustraendo);
+		}
+		
+		if(tipo_codigo == 'RE')
+		{
+			total_ml = total_ml*-1;
+			total_ma = total_ma*-1;
+		}
+
+		if(accion=='AG') //AG=AGREGAR
+		{
+			mde_monto_valor_agregado_ml=parseFloat(mde_monto_valor_agregado_ml)+total_ml;
+			mde_monto_valor_agregado_ma=parseFloat(mde_monto_valor_agregado_ma)+total_ma;
+		}
+		else
+		if(accion=='EL') //EL=ELIMINAR
+		{
+			mde_monto_valor_agregado_ml=parseFloat(mde_monto_valor_agregado_ml)-total_ml;
+			mde_monto_valor_agregado_ma=parseFloat(mde_monto_valor_agregado_ma)-total_ma;
+		}
+
+		mde_monto_neto_ml=parseFloat(mde_monto_bruto_ml)+mde_monto_valor_agregado_ml-parseFloat(mde_monto_disminucion_ml);
+		mde_monto_neto_ma=parseFloat(mde_monto_bruto_ma)+mde_monto_valor_agregado_ma-parseFloat(mde_monto_disminucion_ma);
+
+		if(ent_calcula_redondeo=='SI')
+		{
+			$("#mde_monto_valor_agregado_ml").val(Math.round(mde_monto_valor_agregado_ml));
+			$("#mde_monto_valor_agregado_ma").val(Math.round(mde_monto_valor_agregado_ma));
+			$("#mde_monto_neto_ml").val(Math.round(mde_monto_neto_ml));
+			$("#mde_monto_neto_ma").val(Math.round(mde_monto_neto_ma));
+		}
+		else
+		{
+			$("#mde_monto_valor_agregado_ml").val(mde_monto_valor_agregado_ml.toFixed(2));
+			$("#mde_monto_valor_agregado_ma").val(mde_monto_valor_agregado_ma.toFixed(2));
+			$("#mde_monto_neto_ml").val(mde_monto_neto_ml.toFixed(2));
+			$("#mde_monto_neto_ma").val(mde_monto_neto_ma.toFixed(2));
+		}
+	}
+
+	function calcularDescuentos(porcentaje_base,porcentaje_descuento,accion) 
+	{
+		var mde_monto_bruto_ml=$("#mde_monto_bruto_ml").val();
+		var mde_monto_bruto_ma=$("#mde_monto_bruto_ma").val();
+		var mde_monto_disminucion_ml=$("#mde_monto_disminucion_ml").val();
+		var mde_monto_disminucion_ma=$("#mde_monto_disminucion_ma").val();
+		var mde_monto_neto_ml=$("#mde_monto_neto_ml").val();
+		var mde_monto_neto_ma=$("#mde_monto_neto_ma").val();
+		var ent_calcula_redondeo='${fld:ent_calcula_redondeo}';
+		var impuesto_id;
+
+		if(mde_monto_bruto_ml=="")
+			mde_monto_bruto_ml=0;
+
+		if(mde_monto_bruto_ma=="")
+			mde_monto_bruto_ma=0;
+
+		if(mde_monto_disminucion_ml=="")
+			mde_monto_disminucion_ml=0;
+
+		if(mde_monto_disminucion_ma=="")
+			mde_monto_disminucion_ma=0;
+
+		if(mde_monto_neto_ml=="")
+			mde_monto_neto_ml=mde_monto_bruto_ml;
+
+		if(mde_monto_neto_ma=="")
+			mde_monto_neto_ma=mde_monto_bruto_ma;
+
+		if(porcentaje_base=="")
+			porcentaje_base=0;
+
+		if(porcentaje_descuento=="")
+			porcentaje_descuento=0;
+
+		var total_ml = (mde_monto_bruto_ml*porcentaje_base)/100;
+		total_ml = (total_ml*porcentaje_descuento)/100;
+
+		var total_ma = (mde_monto_bruto_ma*porcentaje_base)/100;
+		total_ma = (total_ma*porcentaje_descuento)/100;
+
+		if(accion=='AG') //AG=AGREGAR
+		{
+			mde_monto_disminucion_ml=parseFloat(mde_monto_disminucion_ml)+total_ml;
+			mde_monto_disminucion_ma=parseFloat(mde_monto_disminucion_ma)+total_ma;
+		}
+		else
+		if(accion=='EL') //EL=ELIMINAR
+		{
+			mde_monto_disminucion_ml=parseFloat(mde_monto_disminucion_ml)-total_ml;
+			mde_monto_disminucion_ma=parseFloat(mde_monto_disminucion_ma)-total_ma;
+		}
+		
+		mde_monto_neto_ml=parseFloat(mde_monto_bruto_ml)-parseFloat(mde_monto_disminucion_ml);
+		mde_monto_neto_ma=parseFloat(mde_monto_bruto_ma)-parseFloat(mde_monto_disminucion_ma);
+
+		if(ent_calcula_redondeo=='SI')
+		{
+			$("#mde_monto_disminucion_ml").val(Math.round(mde_monto_disminucion_ml));
+			$("#mde_monto_disminucion_ma").val(Math.round(mde_monto_disminucion_ma));
+			$("#mde_monto_neto_ml").val(Math.round(mde_monto_neto_ml));
+			$("#mde_monto_neto_ma").val(Math.round(mde_monto_neto_ma));
+			$("#subtotal_monto_neto_ml").val(Math.round(mde_monto_neto_ml));
+			$("#subtotal_monto_neto_ma").val(Math.round(mde_monto_neto_ma));
+		}
+		else
+		{
+			$("#mde_monto_disminucion_ml").val(mde_monto_disminucion_ml.toFixed(2));
+			$("#mde_monto_disminucion_ma").val(mde_monto_disminucion_ma.toFixed(2));
+			$("#mde_monto_neto_ml").val(mde_monto_neto_ml.toFixed(2));
+			$("#mde_monto_neto_ma").val(mde_monto_neto_ma.toFixed(2));
+			$("#subtotal_monto_neto_ml").val(mde_monto_neto_ml.toFixed(2));
+			$("#subtotal_monto_neto_ma").val(mde_monto_neto_ma.toFixed(2));
+		}
+
+		$("#mde_monto_valor_agregado_ml").val(0);
+		$("#mde_monto_valor_agregado_ma").val(0);
+
+		$("#impuesto option").each(function(){
+			impuesto_id=$(this).val();
+			ajaxCall(httpMethod="GET", 
+					uri="${def:actionroot}/recalcularImpuestos?smn_codigos_impuestos_id=" + impuesto_id +"&accion=AG", 
+					divResponse=null, 
+					divProgress="status", 
+					formName="form1", 
+					afterResponseFn=null, //function 'setElementFirstIndex' select first element of combo list
+					onErrorFn=null);
+		});
+	}
+
+	$("#mde_es_bonificacion").change(function() {
+
+		if($(this).val()=="SI")
+		{
+			$("#valor_unitario_ml").css("display","none");
+			$("#impuestos").css("display","none");
+			$("#descuentos").css("display","none");
+			$("#centro_costo").css("display","none");
+			$("#unidad_medida").css("display","");
+			$("#monto_bruto_ml").css("display","none");
+			$("#monto_disminucion_ml").css("display","none");
+			$("#monto_valor_agregado_ml").css("display","none");
+			$("#monto_neto_ml").css("display","none");
+			$("#moneda").css("display","none");
+			$("#tasa").css("display","none");
+			$("#valor_unitario_ma").css("display","none");
+			$("#monto_bruto_ma").css("display","none");
+			$("#monto_disminucion_ma").css("display","none");
+			$("#valor_agregado_ma").css("display","none");
+			$("#monto_neto_ma").css("display","none");
+			$('#mde_tipo_movimiento').val('EA').trigger('change');
+			$("#mde_monto_bruto_ml").val(0);
+			$("#mde_valor_unitario_ml").val(0);
+		}
+		else
+		{
+			$("#valor_unitario_ml").css("display","");
+			$("#impuestos").css("display","");
+			$("#descuentos").css("display","");
+			$("#centro_costo").css("display","");
+			$("#unidad_medida").css("display","");
+			$("#monto_bruto_ml").css("display","");
+			$("#monto_disminucion_ml").css("display","");
+			$("#monto_valor_agregado_ml").css("display","");
+			$("#monto_neto_ml").css("display","");
+			$('#mde_tipo_movimiento').val('EN').trigger('change');
+
+			if($("#smn_item_rf").val()!="")
+			{
+				ajaxCall(httpMethod="GET", 
+					uri="${def:actionroot}/getValoracion?smn_item_rf=" + $("#smn_item_rf").val(),
+					divResponse=null, 
+					divProgress="status", 
+					formName="form1", 
+					afterResponseFn=null, //function 'setElementFirstIndex' select first element of combo list
+					onErrorFn=null);
+			}
+		}
+	});
+
+	$("#monto_descuento_libre").blur(function() {
+		var monto_descuento_libre=$(this).val();
+		var porcentaje_base=$("#porc_base_descuento_libre").val();
+		var monto_base=$("#mde_monto_bruto_ml").val();
+		var porcentaje_descuento=$("#porc_descuento_libre").val();
+
+		if(monto_descuento_libre!="" || monto_descuento_libre!=0)
+		{
+			porcentaje_descuento=(parseFloat(monto_descuento_libre)*100)/parseFloat(monto_base);
+			$("#porc_descuento_libre").val(porcentaje_descuento);
+
+			calcularDescuentos(porcentaje_base,porcentaje_descuento,"AG");
+		}
+		else
+		{
+			calcularDescuentos(porcentaje_base,porcentaje_descuento,"EL");
+			$("#porc_descuento_libre").val("");
+		}
+	});
+
+</script>	
+</body>
+</html>

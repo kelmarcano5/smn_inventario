@@ -1,0 +1,1 @@
+delete from smn_inventario.smn_movimiento_detalle_impuesto where smn_movimiento_detalle_id = ${fld:smn_movimiento_detalle_id} AND smn_cod_impuesto_deduc_rf = ${fld:smn_codigos_impuestos_id};

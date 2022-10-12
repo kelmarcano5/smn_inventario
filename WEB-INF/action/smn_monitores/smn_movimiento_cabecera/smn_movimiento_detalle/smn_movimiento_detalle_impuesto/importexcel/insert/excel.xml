@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='smn_movimiento_detalle_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_cod_impuesto_deduc_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='mdi_monto_base' type='double' required='true' maxlen='10'/>
+	<parameter id='smn_porcentaje_impuesto_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='mdi_sustraendo_rf_desc_ref' type='double' required='false' maxlen='10'/>
+	<parameter id='mdi_tipo_movimiento' type='varchar' required='true' maxlen='2'/>
+	<parameter id='mdi_monto_impuesto_ml' type='double' required='true' maxlen='10'/>
+	<parameter id='smn_moneda' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_tasa' type='integer' required='false' maxlen='10'/>
+	<parameter id='mdi_monto_impuesto_ma' type='double' required='false' maxlen='10'/>
+
+	<parameter id='mdi_sustraendo_rf_ref' type='double' required='false' maxlen='10'/>
+
+
+	<custom-validator 
+		classname='dinamica.validators.GetColValueValidator' 
+		on-error-label='${lbl:b_field_does_not_registered}: mdi_sustraendo_rf' 
+		parameter='mdi_sustraendo_rf_ref' 
+		sql='mdi_sustraendo_rf.sql' 
+		id='mdi_sustraendo_rf_ref'/>
+
+</validator>

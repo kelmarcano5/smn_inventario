@@ -1,0 +1,9 @@
+SELECT
+	imp_monto_sustraendo,
+	imp_porcentaje_calculo,
+	imp_porcentaje_base,
+	imp_tipo_codigo
+FROM
+	smn_base.smn_codigos_impuestos
+WHERE	
+	smn_codigos_impuestos_id=${fld:smn_codigos_impuestos_id}

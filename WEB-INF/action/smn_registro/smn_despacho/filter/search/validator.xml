@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='smn_modulo_rf' type='integer' required='false' label='${lbl:b_modulo_rf}' maxlen='10'/>
+	<parameter id='des_fecha_registro_fin' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<parameter id='des_numero_documento_origen' type='integer' required='false' label='${lbl:b_numero_documento_origen}' maxlen='10'/>
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_documento_id}' maxlen='10'/>
+	<parameter id='des_numero_documento' type='integer' required='false' label='${lbl:b_numero_documento}' maxlen='10'/>
+	<parameter id='smn_entidad_rf' type='integer' required='false' label='${lbl:b_entidad_rf}' maxlen='10'/>
+	<parameter id='smn_almacen_rf' type='integer' required='false' label='${lbl:b_almacen_rf}' maxlen='10'/>
+	<parameter id='smn_clase_auxiliar_rf' type='integer' required='false' label='${lbl:b_clase_auxiliar_rf}' maxlen='10'/>
+	<parameter id='smn_auxiliar_rf' type='integer' required='false' label='${lbl:b_auxiliar_rf}' maxlen='10'/>
+	<parameter id='smn_unidad_organizativa_rf' type='integer' required='false' label='${lbl:b_unidad_organizativa_rf}' maxlen='10'/>
+	<parameter id='des_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='des_fecha_registro_ini' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.DateRangeValidator' on-error-label='[${lbl:b_store_date}@{${def:date}} mayor o igual que] no puede ser mayor que [${lbl:b_store_date}@{${def:date}} menor o igual que].' date1='des_fecha_registro_ini' date2='des_fecha_registro_fin' id='des_fecha_registro_ini' />
+</validator>

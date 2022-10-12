@@ -1,0 +1,58 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='6%'/>
+	<col width='6%'/>
+	<col width='6%'/>
+	<col width='6%'/>
+	<col width='6%'/>
+	<col width='6%'/>
+	<col width='6%'/>
+	<col width='6%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="11" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick="sortBy('smn_entidad_rf','query-smncontrollote.sql')" >${lbl:b_entities}</th>
+		<th class='sortable' onclick="sortBy('smn_sucursal_rf','query-smncontrollote.sql')" >${lbl:b_subsidiaries}</th>
+		<th class='sortable' onclick="sortBy('smn_caracteristica_almacen_id','query-smncontrollote.sql')" >${lbl:b_feature_store}</th>
+		<th class='sortable' onclick="sortBy('smn_caracteristica_item_id','query-smncontrollote.sql')" >${lbl:b_item}</th>
+		<th class='sortable' onclick="sortBy('col_lote','query-smncontrollote.sql')" >${lbl:b_lot}</th>
+		<th class='sortable' onclick="sortBy('col_entradas','query-smncontrollote.sql')" >${lbl:b_input}</th>
+		<th class='sortable' onclick="sortBy('col_salidas','query-smncontrollote.sql')" >${lbl:b_output}</th>
+		<th class='sortable' onclick="sortBy('col_fecha_registro','query-smncontrollote.sql')" >${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_control_lote_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_control_lote_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_control_lote_id}')" title="${lbl:b_edit_button}"></td>
+		<td align="center">${fld:smn_entidad_rf}</td>
+		<td align="center">${fld:smn_sucursal_rf}</td>
+		<td align="center">${fld:smn_caracteristica_almacen_id}</td>
+		<td align="center">${fld:smn_caracteristica_item_id}</td>
+		<td align="left">${fld:col_lote}</td>
+		<td align="right">${fld:col_entradas@#,###,##0.00}</td>
+		<td align="right">${fld:col_salidas@#,###,##0.00}</td>
+		<td align="center">${fld:col_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

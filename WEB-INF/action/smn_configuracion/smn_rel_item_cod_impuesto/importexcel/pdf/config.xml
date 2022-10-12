@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="error.excel" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+
+	<pdf-title>Errores importando archivo Excel</pdf-title>
+	<pdf-logo url='/images/logo-dinamica.png' scale='100' />
+
+	<pdf-report pageSize="letter" rotate="false">
+		<table recordset='error.excel' width='100' spacingBefore='40'>
+			<col name='fila' title='Fila' width='20' align='center' format="#########"/>
+			<col name='columna' title='Columna' width='20' align='center' format="#########"/>
+			<col name='error' title='Descripción del error' width='60' align='left' />
+		</table>
+	</pdf-report>
+</config>

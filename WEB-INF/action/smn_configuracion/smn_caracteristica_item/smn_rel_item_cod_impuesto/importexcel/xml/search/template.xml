@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_rel_item_cod_impuesto>
+	<detail>
+		<rows>		
+		<record smn_codigo_impuesto_rf="${fld:smn_codigo_impuesto_rf}"    smn_caracteristica_item_id="${fld:smn_caracteristica_item_id}"    rii_fecha_registro="${fld:rii_fecha_registro}"    smn_codigos_impuestos_id="${fld:smn_codigos_impuestos_id}"    smn_item_id="${fld:smn_item_id}"    />
+		</rows>
+	</detail>
+</smn_rel_item_cod_impuesto>

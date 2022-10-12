@@ -1,0 +1,1 @@
+delete from smn_inventario.smn_movimiento_detalle_desc_ret where smn_movimiento_detalle_id = ${fld:smn_movimiento_detalle_id} AND smn_codigo_descuento_rf = ${fld:smn_descuentos_retenciones_id};

@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		${lbl:b_movement_detail}
+	</summary>
+
+	<log>false</log>
+	
+	<set-request-attribute id="progress" value="file:/WEB-INF/action/progress/progress.htm"/>
+	<set-request-attribute id="controls" value="file:/WEB-INF/action/pagecontrols/controls.htm"/>
+	
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>true</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id='query-smn_item_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_centro_costo_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-mde_estatus.sql' source='sql' scope='transaction'/>
+		<recordset id='query-recepcionesParciales.sql' source='sql' scope='transaction'/>
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>template.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/html</content-type>
+		<print mode='table' recordset='query-smn_item_rf.sql' tag='smn_item_rf_rows'/>
+		<print mode='table' recordset='query-mde_estatus.sql' tag='mde_estatus_rows'/>
+		<print mode='table' recordset='query-smn_centro_costo_rf.sql' tag='smn_centro_costo_rf_rows'/>
+		<print mode='table' recordset='query-recepcionesParciales.sql' tag='rows' alternate-colors="true"/>
+		<print mode="form" recordset="_request"/> 
+	</output>
+
+</config>

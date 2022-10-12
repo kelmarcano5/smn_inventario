@@ -1,0 +1,55 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="10" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick="sortBy('smn_usuarios_rf_combo','query-smnrol.sql')" >${lbl:b_users}</th>
+		<th class='sortable' onclick="sortBy('rol_tipo_combo','query-smnrol.sql')" >${lbl:b_type}</th>
+		<th class='sortable' onclick="sortBy('smn_corporaciones_rf_combo','query-smnrol.sql')" >${lbl:b_corporations}</th>
+		<th class='sortable' onclick="sortBy('smn_entidades_rf_combo','query-smnrol.sql')" >${lbl:b_entities}</th>
+		<th class='sortable' onclick="sortBy('smn_sucursales_rf_combo','query-smnrol.sql')" >${lbl:b_subsidiaries}</th>
+		<th class='sortable' onclick="sortBy('smn_areas_servicios_rf_combo','query-smnrol.sql')" >${lbl:b_service_areas}</th>
+		<th class='sortable' onclick="sortBy('rol_fecha_registro','query-smnrol.sql')" >${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_rol_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_rol_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_rol_id}')" title="${lbl:b_edit_button}"></td>
+		<td align="center">${fld:smn_usuarios_rf_combo}</td>
+		<td align="left">${fld:rol_tipo_combo}</td>
+		<td align="center">${fld:smn_corporaciones_rf_combo}</td>
+		<td align="center">${fld:smn_entidades_rf_combo}</td>
+		<td align="center">${fld:smn_sucursales_rf_combo}</td>
+		<td align="center">${fld:smn_areas_servicios_rf_combo}</td>
+		<td align="center">${fld:rol_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

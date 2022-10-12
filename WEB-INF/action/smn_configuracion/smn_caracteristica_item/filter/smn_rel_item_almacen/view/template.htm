@@ -1,0 +1,40 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='50%'/>
+	<col width='50%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="5" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_caracteristica_item_id","query-smnrelitemalmacen.sql")'>${lbl:b_caracteristicas_item}</th>
+		<th class='sortable' onclick='sortBy("smn_almacen_rf","query-smnrelitemalmacen.sql")'>${lbl:b_stores}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_rel_item_almacen_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_rel_item_almacen_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_rel_item_almacen_id}')" title="${lbl:b_edit_button}"></td>
+		<td>${fld:smn_caracteristica_item_id}</td>
+		<td>${fld:smn_almacen_rf}</td>
+
+	</tr>
+	</rows>
+
+</table>

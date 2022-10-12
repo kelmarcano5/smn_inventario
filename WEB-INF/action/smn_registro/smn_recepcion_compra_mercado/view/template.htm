@@ -1,0 +1,66 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='3%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="14" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_entidad_rf","query-smnmovimientocabecera.sql")'>${lbl:b_entity}</th>
+		<th class='sortable' onclick='sortBy("smn_almacen_rf","query-smnmovimientocabecera.sql")'>${lbl:b_store_code}</th>
+		<th class='sortable' onclick='sortBy("smn_documento_id","query-smnmovimientocabecera.sql")'>${lbl:b_document}</th>
+		<th class='sortable' onclick='sortBy("mca_numero","query-smnmovimientocabecera.sql")'>${lbl:b_invoice_number}</th>
+		<th class='sortable' onclick='sortBy("mca_recibo","query-smnmovimientocabecera.sql")'>${lbl:b_receipt_number}</th>
+		<th class='sortable' onclick='sortBy("smn_proveedor_combo","query-smnmovimientocabecera.sql")'>${lbl:b_providers}</th>
+		<th class='sortable' onclick='sortBy("mca_monto_neto_ml","query-smnmovimientocabecera.sql")'>${lbl:b_amount_net}</th>
+		<th class='sortable' onclick='sortBy("mca_estatus_proceso","query-smnmovimientocabecera.sql")'>${lbl:b_status_process}</th>
+		<th class='sortable' onclick='sortBy("mca_fecha_registro","query-smnmovimientocabecera.sql")'>${lbl:b_store_date}</th>
+		<th>DT</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_movimiento_cabecera_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_movimiento_cabecera_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_movimiento_cabecera_id}')" title="${lbl:b_edit_button}"></td>
+		<td><img src="${def:context}/images/icongrid/Generar.png" onclick="generar('${fld:smn_movimiento_cabecera_id}')" title="Generar"></td>
+		<td>${fld:smn_entidad_rf}</td>
+		<td>${fld:smn_almacen_rf}</td>
+		<td>${fld:smn_documento_id}</td>
+		<td>${fld:mca_numero}</td>
+		<td>${fld:mca_recibo}</td>
+		<td>${fld:smn_proveedor_combo}</td>
+		<td align="right">${fld:mca_monto_neto_ml@#,###,##0.00}</td>
+		<td>${fld:mca_estatus_proceso}</td>
+		<td>${fld:mca_fecha_registro@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="detalle('${fld:smn_movimiento_cabecera_id}')" title="${lbl:b_movement_detail}"></td>
+
+	</tr>
+	</rows>
+
+</table>

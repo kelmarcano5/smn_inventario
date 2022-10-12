@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/ajax">
+
+	<parameter id="userlogin" type="varchar" required="false" label="Login" maxlen="25" />
+	<parameter id="passwd" type="varchar" required="true" label="${lbl:s_fld_password}" maxlen="25" regexp="\w{6,}?" regexp-error-label="${lbl:s_invalid_password}" />
+	<parameter id="confirm" type="varchar" required="true" label="${lbl:s_fld_confirm}" maxlen="25" />
+	<parameter id="userid" type="integer" required="false" label="User ID (primary key)" />
+
+	<custom-validator classname="dinamica.validators.MatchEqualValidator"
+		on-error-label="${lbl:s_password_nomatch}" value1="passwd" value2="confirm" id="confirm"/>
+
+	<custom-validator classname="dinamica.security.PasswordEncryptor"
+		on-error-label="Error generating the MD5 hash." id="confirm"/>
+
+	<custom-validator classname="dinamica.security.PasswordNotUsed"
+		sql="check-password.sql" on-error-label="${lbl:s_password_used}" id="confirm"/>
+
+</validator>
+

@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnconteoinventariofisico.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_conteo_inventario_fisico}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' />
+	<pdf-file-name>${lbl:b_conteo_inventario_fisico}.pdf</pdf-file-name>
+
+	<pdf-report 
+		pageSize="letter" 
+		rotate="false"
+		footer="false" 
+		header="true">
+		<record recordset='query-smnconteoinventariofisico.sql' width='100' spacingBefore='40'>
+			<col name='smn_conteo_id' title='${lbl:b_conteo}' width='12' align='left' format='######' />
+			<col name='smn_item_id' title='${lbl:b_item}' width='12' align='left' format='######' />
+			<col name='cfi_cantidad' title='${lbl:b_quantity}' width='12' align='left' format='######' />
+			<col name='smn_unidad_medida_almacenaje_id' title='${lbl:b_measurement_unit}' width='12' align='left' format='######' />
+			<col name='cfi_costo' title='${lbl:b_cost}' width='12' align='left' format='#,###,##0.00' />
+			<col name='smn_auxiliar_1_rf' title='${lbl:b_auxiliary}' width='12' align='left' format='######' />
+			<col name='cfi_estatus' title='${lbl:b_status}' width='12' align='left' />
+			<col name='cfi_fecha_registro' title='${lbl:b_store_date}' width='12' align='left' format='dd-MM-yyyy' />
+
+		</record>
+
+	</pdf-report>
+</config>

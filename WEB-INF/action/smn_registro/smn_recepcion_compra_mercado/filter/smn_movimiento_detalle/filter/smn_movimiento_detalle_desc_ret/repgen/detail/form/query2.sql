@@ -1,0 +1,16 @@
+select
+		smn_inventario.smn_movimiento_detalle_desc_ret.smn_descuento_retencion_id,
+	smn_inventario.smn_movimiento_detalle_desc_ret.smn_movimiento_detalle_id,
+	smn_inventario.smn_movimiento_detalle_desc_ret.smn_codigo_descuento_rf,
+	smn_inventario.smn_movimiento_detalle_desc_ret.mdd_monto_base_ml,
+	smn_inventario.smn_movimiento_detalle_desc_ret.smn_porcentaje_rf,
+	smn_inventario.smn_movimiento_detalle_desc_ret.mdd_monto_descuento_ml,
+	smn_inventario.smn_movimiento_detalle_desc_ret.smn_moneda_rf,
+	smn_inventario.smn_movimiento_detalle_desc_ret.smn_tasa_rf,
+	smn_inventario.smn_movimiento_detalle_desc_ret.mdd_monto_base_ma,
+	smn_inventario.smn_movimiento_detalle_desc_ret.mdd_monto_descuento_ma,
+	smn_inventario.smn_movimiento_detalle_desc_ret.mdd_fecha_registro
+from
+	smn_inventario.smn_movimiento_detalle_desc_ret 
+where
+	smn_inventario.smn_movimiento_detalle_desc_ret.smn_movimiento_detalle_desc_ret_id = ${fld:id}

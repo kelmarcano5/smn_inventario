@@ -1,0 +1,76 @@
+
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+	<!-- <col width='3%'/> -->
+	<col width='3%'/>
+	<col width='3%'/>
+	<!-- <col width='7%'/> -->
+	<!-- <col width='7%'/> -->
+	<col width='7%'/>
+	<col width='7%'/>
+	<!-- <col width='7%'/> -->
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='3%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="13" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<!-- <th></th> -->
+		<th>GN</th>
+		<th>NE</th>
+		<!-- <th class='sortable' onclick='sortBy("smn_modulo_rf","query-smndespacho.sql")'>${lbl:b_modulo_rf}</th> -->
+		<!-- <th class='sortable' onclick='sortBy("smn_documento_origen_id","query-smndespacho.sql")'>${lbl:b_documento_origen_id}</th> -->
+		<th class='sortable' onclick='sortBy("smn_documento_id","query-smndespacho.sql")'>${lbl:b_documento_id}</th>
+		<th class='sortable' onclick='sortBy("des_numero_documento_origen","query-smndespacho.sql")'>${lbl:b_numero_documento_origen}</th>		
+		<!-- <th class='sortable' onclick='sortBy("des_numero_documento","query-smndespacho.sql")'>${lbl:b_numero_documento}</th> -->
+		<th class='sortable' onclick='sortBy("des_descripcion","query-smndespacho.sql")'>${lbl:b_descripcion}</th>
+		<!-- <th class='sortable' onclick='sortBy("smn_almacen_rf","query-smndespacho.sql")'>${lbl:b_store}</th> -->
+		<th class='sortable' onclick='sortBy("smn_unidad_organizativa_rf","query-smndespacho.sql")'>${lbl:b_unidad_organizativa_rf}</th>
+		<th class='sortable' onclick='sortBy("smn_clase_auxiliar_rf","query-smndespacho.sql")'>${lbl:b_clase_auxiliar_rf}</th>
+		<th class='sortable' onclick='sortBy("smn_auxiliar_rf","query-smndespacho.sql")'>${lbl:b_auxiliar_rf}</th>
+		<th class='sortable' onclick='sortBy("des_fecha_solicitud","query-smndespacho.sql")'>${lbl:b_fecha_solicitud}</th>
+		<th class='sortable' onclick='sortBy("des_fecha_despacho","query-smndespacho.sql")'>${lbl:b_fecha_despacho}</th>
+		<th class='sortable' onclick='sortBy("des_estatus","query-smndespacho.sql")'>${lbl:b_status}</th>
+		<th class='sortable' onclick='sortBy("des_fecha_registro","query-smndespacho.sql")'>${lbl:b_store_date}</th>
+		<th>DT</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<!-- <td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_despacho_id}')" title="${lbl:b_view_detail}"></td> -->
+		<td><img src="${def:context}/images/icongrid/Generar.png"  onclick="showEditor('${fld:smn_despacho_id}')" title="${lbl:b_edit_button}"></td>
+		<td><img src="${def:context}/images/file-text.png" onclick="notadeentrega1('${fld:smn_despacho_id}')" title="nota de entrega"></td> 
+		<!-- <td>${fld:smn_modulo_rf}</td> -->
+		<!-- <td>${fld:smn_documento_origen_id}</td> -->
+		<td>${fld:smn_documento_id}</td>
+		<td>${fld:des_numero_documento_origen}</td>
+		<!-- <td>${fld:des_numero_documento}</td> -->
+		<td align='left'>${fld:des_descripcion}</td>
+		<!-- <td>${fld:smn_almacen_rf}</td> -->
+		<td>${fld:smn_unidad_organizativa_rf}</td>
+		<td>${fld:smn_clase_auxiliar_rf}</td>
+		<td>${fld:smn_auxiliar_rf}</td>
+		<td>${fld:des_fecha_solicitud@dd-MM-yyyy}</td>
+		<td>${fld:des_fecha_despacho@dd-MM-yyyy}</td>
+		<td align='left'>${fld:des_estatus_combo}</td>
+		<td>${fld:des_fecha_registro@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="relacion('${fld:smn_despacho_id}','${fld:cfc_nombre}')" title="${lbl:b_office_detail}"></td> 
+		
+	</tr>
+	</rows>
+
+</table>

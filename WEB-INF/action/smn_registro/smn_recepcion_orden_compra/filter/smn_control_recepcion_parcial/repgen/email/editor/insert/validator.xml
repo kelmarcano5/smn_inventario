@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='msj_asunto' type='varchar' required='true' label='${lbl:b_subject}' maxlen='96'/>
+	<parameter id='msj_texto' type='varchar' required='true' label='${lbl:b_text}' maxlen='5000'/>
+	<parameter id='smn_contactos_id' type='varchar' required='true' label='Ítems'/>
+	
+	<custom-validator 
+			classname='dinamica.validators.StringToRecordset' 
+			paramName='smn_contactos_id' 
+			recordsetId='query-smn_contactos.sql' 
+			separatorChar=';' 
+			colName='smn_contactos_id' 
+			colType='integer'/>
+</validator>

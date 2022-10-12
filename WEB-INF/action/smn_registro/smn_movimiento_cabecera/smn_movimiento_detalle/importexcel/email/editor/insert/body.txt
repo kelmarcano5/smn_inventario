@@ -1,0 +1,14 @@
+<html>
+	<body style="background-color:#ffffff">
+		<center>
+		<img src="cid:logo-simone-pdf.png" align="left">
+		<h2>${lbl:b_automatized_system}</h2>
+			<table width="400px" cellspacing="0" style="border: 1px lightgrey solid; border-collapse: collapse;">
+				<tr>
+					<td style="border: 1px lightgrey solid;">Este es un correo electrónico automatizado por <b>SIMONE</b> y enviado por el usuario <ins><span>${def:user}</span></ins> desde el <ins><span>${lbl:b_base_module}</span></ins> con información relevante de <ins><span>${lbl:b_financial_entities}</span></ins>.<br><br><ins><span>Nota</ins></span>: Por favor <ins><b>NO RESPONDER</b></ins> este correo electrónico.
+					</td>
+				</tr>
+			</table>
+		</center>
+	</body>
+</html>

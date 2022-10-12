@@ -1,0 +1,1 @@
+select smn_sub_division_id as id, sdi_codigo ||' - '|| sdi_descripcion as item from smn_inventario.smn_sub_division order by smn_sub_division_id

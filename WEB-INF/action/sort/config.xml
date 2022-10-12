@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Ordenar un recordset (en grids paginados Ajax) por la columna
+		recibida en el parametro colname, el recordset vendrá indicado con el parametro rs
+		y debe existir como atributo de sesión. Retorna un bloque de javascript
+		que manda a recargar la pagina actual del grid mostrando el nuevo
+		ordenamiento
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.SortRS</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>script.js</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/javascript; charset=iso-8859-1</content-type>
+		<expiration>0</expiration>
+	</output>
+
+</config>

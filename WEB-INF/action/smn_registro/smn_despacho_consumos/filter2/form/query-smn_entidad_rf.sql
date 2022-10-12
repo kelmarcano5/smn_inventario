@@ -1,0 +1,1 @@
+select smn_entidades_id as id, ent_codigo  ||' - '|| ent_descripcion_corta as item from smn_base.smn_entidades order by smn_entidades_id

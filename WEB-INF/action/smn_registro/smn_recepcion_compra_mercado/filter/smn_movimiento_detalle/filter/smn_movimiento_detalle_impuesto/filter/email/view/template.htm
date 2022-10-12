@@ -1,0 +1,36 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='60%'/>
+	<col width='20%'/>
+	<col width='20%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="4">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+
+
+		<th class='sortable' onclick="sortBy('msj_asunto','query-smnmensajes.sql')" >${lbl:b_subject}</th>
+		<th class='sortable' onclick="sortBy('msj_fecha_registro','query-smnmensajes.sql')" >${lbl:b_store_date}</th>
+		<th class='sortable' onclick="sortBy('msj_hora','query-smnmensajes.sql')" >${lbl:s_loginhist_col2}</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_mensajes_id}')" title="${lbl:b_view_detail}"></td>
+		<td align="left">${fld:msj_asunto}</td>
+		<td align="center">${fld:msj_fecha_registro@dd-MM-yyyy}</td>
+		<td align="center">${fld:msj_hora}</td>
+	</tr>
+	</rows>
+
+</table>

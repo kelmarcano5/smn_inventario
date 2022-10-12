@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validationErrors>
+	<rows>
+	<error id="${fld:id}" message="${fld:message_ajax@xml}"/>
+	</rows>
+</validationErrors>

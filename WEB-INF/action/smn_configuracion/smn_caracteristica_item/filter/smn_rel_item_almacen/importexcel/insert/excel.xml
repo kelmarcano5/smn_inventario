@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='smn_caracteristica_item_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_almacen_rf' type='integer' required='true' maxlen='10'/>
+
+
+
+</validator>

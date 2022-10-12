@@ -1,0 +1,3 @@
+<rows>
+icd_fecha_registro="${fld:icd_fecha_registro}"    icd_vigencia="${fld:icd_vigencia}"    icd_estatus="${fld:icd_estatus}"    smn_unidad_medida_rf="${fld:smn_unidad_medida_rf}"    icd_cantidad="${fld:icd_cantidad}"    smn_item_id="${fld:smn_item_id}"    smn_caracteristica_item_id="${fld:smn_caracteristica_item_id}"    
+</rows>

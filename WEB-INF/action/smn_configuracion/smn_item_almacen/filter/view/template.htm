@@ -1,0 +1,49 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='18%'/>
+	<col width='18%'/>
+	<col width='18%'/>
+	<col width='18%'/>
+	<col width='18%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="8">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick="sortBy('smn_item_rf_combo','query-smnitemalmacen.sql')" >${lbl:b_item}</th>
+		<th class='sortable' onclick="sortBy('smn_almacen_rf_combo','query-smnitemalmacen.sql')" >${lbl:b_stores}</th>
+		<th class='sortable' onclick="sortBy('ria_estatus_combo','query-smnitemalmacen.sql')" >${lbl:b_status}</th>
+		<th class='sortable' onclick="sortBy('ria_vigencia','query-smnitemalmacen.sql')" >${lbl:b_validation_date}</th>
+		<th class='sortable' onclick="sortBy('ria_fecha_registro','query-smnitemalmacen.sql')" >${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_item_almacen_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_item_almacen_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_item_almacen_id}')" title="${lbl:b_edit_button}"></td>
+		<td align="center">${fld:smn_item_rf_combo}</td>
+		<td align="center">${fld:smn_almacen_rf_combo}</td>
+		<td align="left">${fld:ria_estatus_combo}</td>
+		<td align="center">${fld:ria_vigencia@dd-MM-yyyy}</td>
+		<td align="center">${fld:ria_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

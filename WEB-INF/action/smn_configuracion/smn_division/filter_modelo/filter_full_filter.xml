@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<model>
+	<summary>${lbl:b_division}</summary>
+	<filter>
+		<row field='div_codigo' id='div_codigo' label='${lbl:b_code}' required='NO' fk='' mSelection='' condiction='Igual que (=)' type='varchar' tableName='smn_division' len='10'/>
+		<row field='div_descripcion' id='div_descripcion' label='${lbl:b_description}' required='NO' fk='' mSelection='' condiction='Contiene' type='varchar' tableName='smn_division' len='100'/>
+		<row field='div_fecha_registro' id='div_fecha_registro_ini' label='${lbl:b_store_date_greather_than}' required='NO' fk='' mSelection='' condiction='Mayor o igual que (&gt;=)' type='date' tableName='smn_division' len='10'/>
+		<row field='div_fecha_registro' id='div_fecha_registro_fin' label='${lbl:b_store_date_less_than}' required='NO' fk='' mSelection='' condiction='Menor o igual que (&lt;=)' type='date' tableName='smn_division' len='10'/>
+	</filter>
+	<detail>SI</detail>
+	<insert>SI</insert>
+	<edit>SI</edit>
+	<delete>SI</delete>
+	<audit>Consulta</audit>
+	<grid>
+		<row field='div_codigo' label='${lbl:b_code}' fk='' tableName='smn_division' len='10' type='varchar' align='left'/>
+		<row field='div_descripcion' label='${lbl:b_description}' fk='' tableName='smn_division' len='100' type='varchar' align='left'/>
+		<row field='div_estatus' label='${lbl:b_status}@{AC=${lbl:b_account_type_active}|IN=${lbl:b_inactive}|CU=${lbl:b_cuarentena}}' fk='' tableName='smn_division' len='2' type='varchar' align='left'/>
+		<row field='div_vigencia' label='${lbl:b_validation_date}' fk='' tableName='smn_division' len='10' type='date' align='center'/>
+		<row field='div_idioma' label='${lbl:s_profile_lang}@{${def:locale}}' fk='' tableName='smn_division' len='2' type='varchar' align='left'/>
+		<row field='div_usuario' label='${lbl:b_users}@{${def:user}}' fk='' tableName='smn_division' len='10' type='varchar' align='left'/>
+		<row field='div_fecha_registro' label='${lbl:b_store_date}@{${def:date}}' fk='' tableName='smn_division' len='10' type='date' align='center'/>
+		<row field='div_hora' label='${lbl:s_loginhist_col2}@{${def:time}}' fk='' tableName='smn_division' len='8' type='varchar' align='left'/>
+	</grid>
+	<mobile>false</mobile>
+</model>

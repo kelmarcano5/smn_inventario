@@ -1,0 +1,1 @@
+SELECT * FROM smn_inventario.smn_despacho_detalle WHERE smn_despacho_id = ${fld:smn_despacho_id}

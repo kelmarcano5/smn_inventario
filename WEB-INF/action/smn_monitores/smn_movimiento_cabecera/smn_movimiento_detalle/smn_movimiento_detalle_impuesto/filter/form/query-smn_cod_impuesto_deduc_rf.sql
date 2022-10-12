@@ -1,0 +1,3 @@
+select
+	smn_inventario.smn_movimiento_detalle_impuesto
+	left outer join smn_base.smn_codigos_impuestos on smn_base.smn_codigos_impuestos.smn_codigos_impuestos_id = smn_inventario.smn_movimiento_detalle_impuesto.mdi_sustraendo_rf

@@ -1,0 +1,73 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<!-- <col width='3%'/> -->
+
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="15" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<!-- <th></th> -->
+		<th class='sortable' onclick="sortBy('smn_entidad_rf','query-smncontrolitem.sql')" >${lbl:b_entity}</th>
+		<th class='sortable' onclick="sortBy('smn_almacen_rf','query-smncontrolitem.sql')" >${lbl:b_store_code}</th>
+		<th class='sortable' onclick="sortBy('codigo','query-smncontrolitem.sql')" >${lbl:b_code}</th>
+		<th class='sortable' onclick="sortBy('nombre','query-smncontrolitem.sql')" >${lbl:b_name}</th>
+		<th class='sortable' onclick="sortBy('coi_fecha_movimiento','query-smncontrolitem.sql')" >Fecha Movimiento</th>
+		<th class='sortable' onclick="sortBy('coi_costo_promedio','query-smncontrolitem.sql')" >Costo Promedio</th>
+		<th class='sortable' onclick="sortBy('coi_ultimo_costo','query-smncontrolitem.sql')" >Ultimo Costo</th>
+		<th class='sortable' onclick="sortBy('coi_costo_reposicion','query-smncontrolitem.sql')" >Costo Reposicion</th>
+		<th class='sortable' onclick="sortBy('coi_costo_mas_alto','query-smncontrolitem.sql')" >Costo mas Alto</th>
+		<th class='sortable' onclick="sortBy('coi_costo_promedio_ponderado','query-smncontrolitem.sql')" >Costo Promedio Ponderado</th>
+		<th class='sortable' onclick="sortBy('coi_costo_promedio_ma','query-smncontrolitem.sql')" >Costo Promedio MA</th>
+		<th class='sortable' onclick="sortBy('coi_ultimo_costo_ma','query-smncontrolitem.sql')" >Ultimo Costo MA</th>
+		<th class='sortable' onclick="sortBy('coi_costo_reposicion_ma','query-smncontrolitem.sql')" >Costo Reposicion MA</th>
+		<th class='sortable' onclick="sortBy('coi_costo_mas_alto_ma','query-smncontrolitem.sql')" >Costo mas Alto MA</th>
+		<th class='sortable' onclick="sortBy('coi_costo_promedio_ponderado_ma','query-smncontrolitem.sql')" >Costo Promedio Ponderado MA</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<!-- <td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_control_item_id}')" title="${lbl:b_view_detail}"></td> -->
+		<td align="center">${fld:smn_entidad_rf}</td>
+		<td align="center">${fld:smn_almacen_rf}</td>
+		<td align="center">${fld:codigo}</td>
+		<td align="center">${fld:nombre}</td>
+		<td align="center">${fld:coi_fecha_movimiento@dd-MM-yyyy}</td>
+		<td align="right">${fld:coi_costo_promedio@##,###,##0.00}</td>
+		<td align="right">${fld:coi_ultimo_costo@##,###,##0.00}</td>
+		<td align="right">${fld:coi_costo_reposicion@##,###,##0.00}</td>
+		<td align="right">${fld:coi_costo_mas_alto@##,###,##0.00}</td>
+		<td align="right">${fld:coi_costo_promedio_ponderado@##,###,##0.00}</td>
+		<td align="right">${fld:coi_costo_promedio_ma@##,###,##0.00}</td>
+		<td align="right">${fld:coi_ultimo_costo_ma@##,###,##0.00}</td>
+		<td align="right">${fld:coi_costo_reposicion_ma@##,###,##0.00}</td>
+		<td align="right">${fld:coi_costo_mas_alto_ma@##,###,##0.00}</td>
+		<td align="right">${fld:coi_costo_promedio_ponderado_ma@##,###,##0.00}</td>
+	</tr>
+	</rows>
+
+</table>

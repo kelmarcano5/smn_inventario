@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smncontrollote.sql" source="session" scope="transaction" />
+		<recordset id="filter.params" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_control_lot}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' align="left" />
+	<pdf-file-name>${lbl:b_control_lot}.pdf</pdf-file-name>
+
+	<pdf-report pageSize="letter" rotate="false" footer="true" header="true">
+		<record recordset='filter.params' title='${lbl:b_filter_find}' noFilterMsg='-- ${lbl:b_all_message} --' width='55' spacingBefore='15'>
+			<col name='smn_entidad_rf' title='${lbl:b_entities}'  format='######' align='left' />
+			<col name='smn_sucursal_rf' title='${lbl:b_subsidiaries}'  format='######' align='left' />
+			<col name='smn_caracteristica_almacen_id' title='${lbl:b_feature_store}'  format='######' align='left' />
+			<col name='smn_caracteristica_item_id' title='${lbl:b_item}'  format='######' align='left' />
+			<col name='col_lote' title='${lbl:b_lot}'  align='left' />
+			<col name='col_fecha_vencimiento' title='${lbl:b_expiration_date}'  format='dd-MM-yyyy' align='left' />
+			<col name='col_cantidad_inicial' title='${lbl:b_initial_quantity}'  format='#,###,##0.00' align='left' />
+			<col name='col_entradas' title='${lbl:b_input}'  format='#,###,##0.00' align='left' />
+			<col name='col_salidas' title='${lbl:b_output}'  format='#,###,##0.00' align='left' />
+			<col name='col_cantidad_final' title='${lbl:b_final_quantity}'  format='#,###,##0.00' align='left' />
+			<col name='col_fecha_registro_ini' title='${lbl:b_store_date}'  format='dd-MM-yyyy' align='left' />
+			<col name='col_fecha_registro_fin' title='${lbl:b_store_date}'  format='dd-MM-yyyy' align='left' />
+
+		</record>
+		<record recordset='query-smncontrollote.sql' width='100' spacingBefore='10'>
+			<col name='smn_entidad_rf' title='${lbl:b_entities}' width='7' align='left' format='######' />
+			<col name='smn_sucursal_rf' title='${lbl:b_subsidiaries}' width='7' align='left' format='######' />
+			<col name='smn_caracteristica_almacen_id' title='${lbl:b_feature_store}' width='7' align='left' format='######' />
+			<col name='smn_caracteristica_item_id' title='${lbl:b_item}' width='7' align='left' format='######' />
+			<col name='col_lote' title='${lbl:b_lot}' width='7' align='left' />
+			<col name='col_fecha_vencimiento' title='${lbl:b_expiration_date}' width='7' align='left' format='dd-MM-yyyy' />
+			<col name='col_cantidad_inicial' title='${lbl:b_initial_quantity}' width='7' align='left' format='#,###,##0.00' />
+			<col name='col_entradas' title='${lbl:b_input}' width='7' align='left' format='#,###,##0.00' />
+			<col name='col_salidas' title='${lbl:b_output}' width='7' align='left' format='#,###,##0.00' />
+			<col name='col_cantidad_final' title='${lbl:b_final_quantity}' width='7' align='left' format='#,###,##0.00' />
+			<col name='col_idioma' title='${lbl:s_profile_lang}' width='7' align='left' />
+			<col name='col_usuario' title='${lbl:b_users}' width='7' align='left' />
+			<col name='col_fecha_registro' title='${lbl:b_store_date}' width='7' align='left' format='dd-MM-yyyy' />
+			<col name='col_hora' title='${lbl:s_loginhist_col2}' width='7' align='left' />
+
+		</record>
+
+	</pdf-report>
+</config>

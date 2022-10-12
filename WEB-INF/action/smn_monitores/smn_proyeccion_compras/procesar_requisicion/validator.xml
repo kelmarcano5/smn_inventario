@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<validator onerror="/action/error/validation/alert">
+	<parameter id='smn_linea_id' type='integer' required='false' label='${fld:smn_linea_id}' maxlen='10' />
+	<parameter id='smn_naturaleza_id' type='varchar' required='false' label='${fld:smn_naturaleza_id}' maxlen='2' />
+	<parameter id='rrs_producto_encontrado' type='varchar' required='false' label='${fld:rrs_producto_encontrado}' maxlen='2' />
+	<parameter id='smn_contrato_id' type='integer' required='false' label='${fld:smn_contrato_id}' maxlen='10' />
+	<parameter id='rrs_motivo_variacion' type='varchar' required='false' label='${fld:rrs_motivo_variacion}' maxlen='100' />
+	<parameter id='rrs_porcentaje' type='double' required='false' label='${fld:rrs_porcentaje}' maxlen='10' />
+	<parameter id='rss_cantidad' type='double' required='false' label='${fld:rss_cantidad}' maxlen='10' />
+	<parameter id='rrs_precio' type='double' required='false' label='${fld:rrs_precio}' maxlen='10' />
+	<parameter id='rrs_monto' type='double' required='false' label='${fld:rrs_monto}' maxlen='10' />
+	<parameter id='smn_moneda_id' type='integer' required='false' label='${fld:smn_moneda_id}' maxlen='10' />
+	<parameter id='rrs_precio_moneda_alterna' type='double' required='false' label='${fld:rrs_precio_moneda_alterna}' maxlen='10' />
+	<parameter id='rrs_monto_moneda_alterna' type='double' required='false' label='${fld:rrs_monto_moneda_alterna}' maxlen='10' />
+	<parameter id='smn_proveedor_id' type='integer' required='false' label='${fld:smn_proveedor_id}' maxlen='10' />
+	<parameter id='rrs_especificaciones_del_requerimiento' type='varchar' required='false' label='${fld:rrs_especificaciones_del_requerimiento}' maxlen='256' />
+	<parameter id='rrs_fecha_de_requerido' type='date' required='false' label='${fld:rrs_fecha_de_requerido}' maxlen='10' />
+	<parameter id='rrs_observaciones' type='varchar' required='false' label='${fld:rrs_observaciones}' maxlen='256' />
+	
+	<parameter id='smn_sucursal_rf' type='integer' required='false' label='${lbl:b_subsidiary}' maxlen='10'/>
+	<parameter id='smn_entidad_rf' type='integer' required='false' label='${lbl:b_entity}' maxlen='10'/>
+	
+</validator>

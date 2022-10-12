@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+
+<head>
+
+	<title>Información del Sistema</title>
+
+	<LINK REL="stylesheet" type="text/css" href="${def:context}/dinamica.css" />
+
+	<style>
+		.grid TD.label {
+			background-color: #F7F7F7;
+			font-weight: bold;
+			text-align: right;
+			font-family: "Trebuchet MS", Verdana, Arial;
+			font-size: 10pt;
+			padding-right: 5px;
+	}
+	</style>
+
+</head>
+
+<body>
+
+<br>
+
+<!--data grid-->
+<table class="datagrid" width="400px">
+
+	<!--encabezados-->
+	<tr>
+		<th colspan="3">Archivos de Log</th>
+	</tr>
+	
+	<tr>
+		<th width="3%"></th>
+		<th width="80%">Archivo</th>
+		<th width="17%">Tamaño</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr ${fld:_rowStyle}>
+		<td align="center"><img src="${def:context}/images/download.png" onclick="download('${fld:filename}')" title="Descargar archivo"></td>
+		<td align="center">${fld:filename}</td>
+		<td align="right">${fld:length@#,###,###} KB</td>
+	</tr>
+	</rows>
+
+</table>
+
+<script type="text/javascript">
+
+//invoca un popup para descargar los documentos
+function download(id)
+{
+	var url = "${def:context}${def:actionroot}/log/download?file=" + id
+	var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+	window.location = url;
+}
+
+</script>
+
+</body>
+</html>

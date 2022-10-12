@@ -1,0 +1,473 @@
+/* mobile */
+form .mobileText {
+	width: 180px;
+}
+
+.mobileMenu {
+	margin: 0 auto;
+	border-radius:7px 7px 7px 7px;
+	background-color: #f4f4f4;
+	box-shadow: 1px 1px 7px #7c7c7c;
+}
+
+.mobileMenu div {
+	border-bottom: 1px dotted #bcbcbc;
+	color: black;
+	font-size: 12pt;
+	font-weight: bold;
+	padding-left: 6px;
+	padding-top: 7px;
+	height: 27px;	
+}
+
+.mobileMenu div:last-child {
+	border-bottom: 0px;
+}
+
+.mobileMenu div:hover {
+	cursor: pointer;
+	background-color: #dcdedd;
+	color: black;
+}
+
+/* page title banner mobile*/
+.mobileBanner {
+	font-weight: bold;
+	font-size: 14pt;
+	padding: 5px;
+	color: #ffffff;
+	height: 25px; 
+	margin-bottom: 0px;
+	margin-top: 0px;
+	text-shadow: 1px 1px 0px #1d1d1d;
+	background: -webkit-linear-gradient(left, rgba(160,160,160,1) 0%,rgba(222,224,223,1) 100%); /* Safari 5.x */ 
+	background: linear-gradient(to right, rgba(160,160,160,1) 0%,rgba(222,224,223,1) 100%);
+	text-align:center;
+}
+
+.mobileBanner img {
+	float:right; 
+	margin-right:10px;
+	cursor: pointer;
+}
+
+/* end mobile */
+
+
+/* html, body with margin=0 and height=100% are important to support lightbox on IE8 */
+html, body {
+	height:100%; 
+	margin: 0px;
+	font-size: 11pt;
+	font-family: 'Segoe UI', sans-serif;
+} 
+
+/* popup html alert/confirm box */
+.alertbox {
+	border-radius: 7px;
+	box-shadow: 0px 0px 15px 3px #61606c;
+	background-color: #ebebeb;
+	width: 250px;
+	height: 150px;
+	text-align: center;
+	behavior: url(/smn_base/pie.htc); /* IE8 */
+}
+
+.alertbox div {
+	height: 100px;
+	width: 250px;
+	background-color: #ffffff;
+	border-radius: 7px 7px 0px 0px;
+	display: table-cell;
+	vertical-align: middle;
+	padding-left: 5px;
+	padding-right: 5px;
+	behavior: url(/smn_base/pie.htc); /* IE8 */
+}
+
+.alertbox button {
+	margin-top: 13px;
+}
+
+/* data entry forms */
+form {
+	background-color: #f4f4f4;
+	text-align: center;
+	padding-left: 0px;
+	padding-bottom: 5px;
+	margin: 0 auto;
+	border-radius: 5px;
+	box-shadow: 1px 1px 7px #7c7c7c;
+	behavior: url(/smn_base/pie.htc); /* IE8 */
+}
+
+form h1 {
+	padding-top:5px;
+	padding-left: 5px;
+	font-size: 12pt;
+	font-weight: bold;
+	text-align: left;
+}
+
+form table {
+	width:100%;
+	margin: 0px;
+	border-collapse:collapse;
+	text-align: left;
+}
+
+form table td {
+	padding-left: 5px;
+	padding-top: 5px;
+	vertical-align: top;
+	font-size: 10pt;
+}
+
+form table td:first-child {
+	text-align:right;
+}
+
+label {
+	display:block;
+}
+
+input, select, textarea {
+ margin:0px;
+ width: 95%;
+} 
+
+form input[type="submit"], input[type="button"] {
+	width: 90px;
+	margin: 0 auto;
+	margin-top: 5px;
+}
+
+form .errormsg {
+	color: #ff0000;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+form .date {
+	width: 90px;
+}
+
+form .numeric {
+	width: 110px;
+	text-align: right;
+}
+
+form img {
+	cursor: pointer;
+}
+
+/** data grid **/
+.datagrid {
+	font-size: 10pt;
+	background-color: #dadada;
+	text-align: center;
+	padding: 0px;
+	margin: 0 auto;
+	border-radius: 5px;
+	box-shadow: 1px 1px 7px #7c7c7c;
+	border-spacing: 1px;
+	margin-top:10px; 
+	layout: fixed;
+	behavior: url(/smn_base/pie.htc); /* IE8 */		
+}
+
+.datagrid tr:first-child th:first-child {
+	border-radius:5px 5px 0px 0px;
+	font-weight: normal;
+	font-size: 12px;
+}
+
+.datagrid tr:last-child td:last-child {
+	border-radius:0px 0px 5px 0px;
+}		
+
+.datagrid tr:last-child td:first-child {
+	border-radius:0px 0px 0px 5px;
+}		
+
+/* alternate row colors */
+.datagrid tr:nth-child(even) td {
+	background-color: #f3f2fd;
+}
+
+.datagrid th {
+	background-color: #f4f4f4;
+	padding: 3px;
+}
+
+.datagrid th.sortable:hover {
+	background-color: #c7c7c7;
+	color: #ffffff;
+	cursor: pointer;
+}
+	
+.datagrid td {
+	background-color: #ffffff;
+	padding: 3px;
+}
+
+.datagrid img {
+	cursor: pointer;
+}
+
+/* para añadir barra señalizadora al grid */
+.rowhover tr:hover td {
+	background-color: #c7c7c7;
+	color: #ffffff;
+	cursor: pointer;
+}
+
+/* caso especial grid de picklist con una sola celda por row */
+.oneCellRow tr:last-child td:first-child {
+	border-radius:0px 0px 5px 5px;
+}
+
+/** end data grid **/
+
+/* lightbox */
+.overlay {
+	display: none;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: #b5b5b5;
+	z-index: 1001;
+	opacity: .50;
+	filter: alpha(opacity = 50);
+}
+
+/* page title banner */
+.banner {
+	font-weight: bold;
+	font-size: 14pt;
+	padding: 5px;
+	color: #ffffff;
+	height: 22px; 
+	margin-bottom: 0px;
+	margin-top: 0px;
+	text-shadow: 1px 1px 0px #1d1d1d;
+	background: -webkit-linear-gradient(left, rgba(160,160,160,1) 0%,rgba(222,224,223,1) 100%); /* Safari 5.x */ 
+	background: linear-gradient(to right, rgba(160,160,160,1) 0%,rgba(222,224,223,1) 100%);
+	-pie-background: linear-gradient(left, rgba(160,160,160,1) 0%,rgba(222,224,223,1) 100%); /* IE8 */
+	behavior: url(/smn_base/pie.htc); /* IE8 */	
+	
+	/* SIMONE */
+	text-align: center;
+	position: relative;
+}
+
+/* SIMONE */
+.banner_div_left {
+	position: absolute;
+	float: left;
+}
+
+/* popup con iframe */
+.dialogbox {
+	box-shadow: 0px 0px 15px 3px #61606c;
+	behavior: url(/smn_base/pie.htc); /* IE8 */
+}
+
+.info {
+	width:100%; color:red; font-weight:bold; text-align:center;	
+}
+
+.bannerDialog {
+	font-weight: bold;
+	font-size: 11pt;
+	padding: 5px;
+	padding-top:0px;
+	color: #ffffff;
+	height: 18px; 
+	margin-bottom: 0px;
+	margin-top: 0px;
+	text-shadow: 1px 1px 0px #1d1d1d;
+	background: -webkit-linear-gradient(left, rgba(160,160,160,1) 0%,rgba(222,224,223,1) 100%); /* Safari 5.x */ 
+	background: linear-gradient(to right, rgba(160,160,160,1) 0%,rgba(222,224,223,1) 100%);
+	-pie-background: linear-gradient(left, rgba(160,160,160,1) 0%,rgba(222,224,223,1) 100%); /* IE8 */
+	behavior: url(/smn_base/pie.htc); /* IE8 */	
+}
+
+.bannerDialog img {
+	margin-top:3px;
+}
+
+
+/* menu */
+.menuBody {
+	margin-left: 0px;
+	margin-right: 0px;
+	border-right: dotted 1px silver;
+}
+
+.menuContainer {
+	width: 100%;
+	border-bottom: dotted 1px silver;
+}
+
+.menuTitle {
+	background-color: white;
+	color: black;
+	font-size: 10pt;
+	font-weight: bold;
+	padding-left: 6px;
+	padding-top: 7px;
+	height: 24px;
+}
+
+.submenuTitle {
+	background-color: white;
+	color: black;
+	font-size: 10pt;
+	font-weight: bold;
+	padding-left: 16px;
+	padding-top: 0px;
+	height: 24px;
+}
+
+.menuItems {
+	text-align: left;
+	background-color: white;
+}
+
+.menuItem {
+	padding-left: 16px;
+	color: black;
+	font-size: 10pt;
+	font-weight: normal;
+}
+
+div.menuTitle:hover,div.menuItem:hover,div.submenuTitle:hover {
+	cursor: pointer;
+	background-color: #e6e6ff;
+	color: blue;
+}
+
+/* panel iconografico */
+.panel {
+	border-radius: 7px;
+	font-size: 10pt;
+	background-color: #dadada;
+	padding: 0px;
+	margin: 0 auto;
+	box-shadow: 1px 1px 7px #7c7c7c;
+	border-spacing: 1px;
+	margin-top: 20px;
+	margin-bottom: 20px;	
+	width: 600px;
+	behavior: url(/smn_base/pie.htc); /* IE8 */	
+}
+
+.panel tr:first-child td:last-child {
+	border-radius:0px 7px 0px 0px;
+}		
+
+.panel tr:first-child td:first-child {
+	border-radius:7px 0px 0px 0px;
+}
+
+.panel tr:last-child td:last-child {
+	border-radius:0px 0px 7px 0px;
+}		
+
+.panel tr:last-child td:first-child {
+	border-radius:0px 0px 0px 7px;
+}
+
+.panel td {
+	background-color: #fcfcfc;
+	padding: 3px;
+	text-align: center;
+	height: 90px;
+	width: 25%;
+}
+
+.panel td:hover {
+	background-color: #e6e6ff;
+	cursor: pointer;
+}
+
+/* galeria de imagenes */
+
+.hgrid td {
+	padding: 5px; 
+	vertical-align: top; 
+	height: 140px; 
+	width: 160px; 
+	padding-top: 10px; 
+	font-size: 8pt;
+}
+
+.hgrid td img {
+	box-shadow: 0px 0px 15px 1px #61606c;
+	border-radius: 5px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 100px;
+	height: 80px;
+	padding: 5px;
+}
+
+
+.record {
+	background-color: #f4f4f4;
+	padding: 0px;
+	margin: 0 auto;
+	margin-top: 10px;
+	box-shadow: 1px 1px 7px #7c7c7c;
+}
+
+.record tr td:first-child {
+	text-align:right;
+	font-weight: bold;
+	padding-right: 5px;
+}
+
+.record tr td:last-child  {
+	background-color: #ffffff;
+	padding-left: 5px;
+}
+
+.exportPDF {
+		padding-left:5px; 
+		background-origin:content-box; 
+		display:block; 
+		margin:0 auto; 
+		height: 25px; 
+		width:150px; 
+		background-image:url('/smn_base/images/pdf.png'); 
+		background-repeat:no-repeat; 
+		background-position:left center;
+}
+
+/* SIMONE */
+.image_left {
+	padding-left:3%; 
+	float: left;
+}
+
+.image_right {
+	padding-right:3%; 
+	float: right;
+}
+
+.alert {
+	text-align: center;
+	color: blue;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #CCCCCC;
+	width: 600px;
+	background-color: #F7F7F7;
+	padding: 5px;
+	font-family: "Trebuchet MS", Verdana, Arial;
+	font-size: 10pt;
+	margin-left: 230px;
+}

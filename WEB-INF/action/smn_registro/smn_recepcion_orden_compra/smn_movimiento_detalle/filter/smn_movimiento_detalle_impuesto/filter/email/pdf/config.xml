@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnmensajes.sql" source="session" scope="transaction" />
+		<recordset id="filter.params" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_messages}</pdf-title>
+	<pdf-logo url='/images/logo-dinamica.png' scale='100' />
+
+	<pdf-report pageSize="letter" rotate="false">
+		<record recordset='filter.params' title='${lbl:b_filter_find}' noFilterMsg='-- ${lbl:b_all_message} --' width='55' spacingBefore='15'>
+			<col name='msj_asunto' title='${lbl:b_subject}'  align='center' />
+			<col name='msj_fecha_registro_ini' title='${lbl:b_store_date_grater_than}'  format='dd-MM-yyyy' align='center' />
+			<col name='msj_fecha_registro_fin' title='${lbl:b_store_date_less_than}'  format='dd-MM-yyyy' align='center' />
+		</record>
+		<table recordset='query-smnmensajes.sql' width='100' spacingBefore='10'>
+			<col name='msj_asunto' title='${lbl:b_subject}' width='30' align='left' />
+			<col name='msj_texto' title='${lbl:b_subject}' width='46' align='left' />
+			<col name='msj_fecha_registro' title='${lbl:b_store_date}' width='12' align='center' format='dd-MM-yyyy' />
+			<col name='msj_hora' title='${lbl:s_loginhist_col2}' width='12' align='center' />
+		</table>
+
+	</pdf-report>
+</config>

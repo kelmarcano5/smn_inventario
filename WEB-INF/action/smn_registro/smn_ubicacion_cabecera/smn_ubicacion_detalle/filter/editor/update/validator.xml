@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_ubicacion_cabecera_id' type='integer' required='true' label='${lbl:b_header_location}' maxlen='10'/>
+	<parameter id='smn_divisiones_id' type='integer' required='true' label='${lbl:b_divisions}' maxlen='10'/>
+	<parameter id='smn_subdivisiones_id' type='integer' required='true' label='${lbl:b_subdivisions}' maxlen='10'/>
+	<parameter id='smn_lote_id' type='integer' required='true' label='${lbl:b_lot}' maxlen='10'/>
+	<parameter id='ubd_cantidad_inicial' type='double' required='true' label='${lbl:b_initial_amount}' maxlen='10'/>
+	<parameter id='ubd_entrada' type='double' required='true' label='${lbl:b_entry}' maxlen='10'/>
+	<parameter id='ubd_salida' type='double' required='true' label='${lbl:b_exit}' maxlen='10'/>
+	<parameter id='ubd_cantidad_final' type='double' required='true' label='${lbl:b_final_amount}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_location_detail}' maxlen='10'/>
+
+
+</validator>

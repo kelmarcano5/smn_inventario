@@ -1,0 +1,16 @@
+select
+	smn_inventario.smn_documento.smn_documento_id,
+	smn_inventario.smn_tipo_documento.smn_tipo_documento_id,
+	smn_inventario.smn_tipo_documento.tdc_codigo as tdc_codigo_pl0,
+	smn_inventario.smn_documento.smn_tipo_documento_id,
+	smn_inventario.smn_documento.doc_codigo,
+	smn_inventario.smn_documento.doc_nombre,
+	smn_inventario.smn_documento.smn_documento_general_rf,
+	smn_inventario.smn_documento.doc_secuencia,
+	smn_inventario.smn_documento.doc_fecha_registro
+	
+from
+	smn_inventario.smn_tipo_documento,
+	smn_inventario.smn_documento
+where
+	smn_inventario.smn_tipo_documento.smn_tipo_documento_id=smn_inventario.smn_documento.smn_tipo_documento_id

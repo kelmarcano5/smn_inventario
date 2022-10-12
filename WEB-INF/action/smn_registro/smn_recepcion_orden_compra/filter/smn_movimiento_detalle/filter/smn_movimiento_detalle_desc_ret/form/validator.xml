@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax' id='detalledescuento'>
+	<parameter id='id3' type='integer' required='false' label='${lbl:b_retention_discount}' maxlen='10'/>
+	<parameter id='id2' type='integer' required='false' label='${lbl:b_retention_discount}' maxlen='10'/>
+		<parameter id='monto_bruto' type='double' required='false' label='${lbl:b_gross_amount_ml}' maxlen='100'/>
+	<!-- <parameter id='codigo' type='varchar' required='false' label='${lbl:b_code}' maxlen='100'/>
+	<parameter id='nombre' type='varchar' required='false' label='${lbl:b_name}' maxlen='100'/> -->
+	
+</validator>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>${lbl:b_codigo_barra}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />	
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript" src="${def:context}/action/script"></script>
+	<script type="text/javascript" src="${def:context}/action/jquery"></script>
+   	<script type="text/javascript" src="${def:context}/action/jqueryi"></script>
+	<script type="text/javascript" src="${def:context}/action/jquery_bar"></script>
+</head>
+<body>
+	
+	<form id="barcode_1" style="width:1000px;">
+		<div align="center">
+			<label>${lbl:b_item}: ${fld:itm_nombre}</label>
+			<!--<label>${lbl:s_loginhist_col1}: ${fld:fecha_actual@dd-MM-yyyy}</label>-->
+		</div>
+		<table id="tabla" style="border-collapse: separate;border-spacing: 30px;">
+		
+		</table>
+	</form>
+</body>
+</html>
+
+<script type="text/javascript">
+	var cod = '${fld:itm_codigo}';
+	var nom = '${fld:itm_nombre}';
+
+  	onload = function() {
+  		$(document).ready(function() {
+  			for (var f = 0; f < 2; f++) {
+  				$("#tabla").append("<tr id='fila"+f+"'></tr>");
+  				for (var c = 0; c < 5; c++) {
+  					$("#fila"+f).append("<td><div id='barcode"+f+"_"+c+"'></div></td>");
+  					$("#barcode"+f+"_"+c).barcode(
+						cod, // Valor del codigo de barras
+						"code128" // tipo (cadena)
+					);
+  				}
+  			}
+  		});
+		$('#barcode_1').printThis();
+  	}
+</script>
+
+

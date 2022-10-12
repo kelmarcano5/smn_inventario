@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Servicio TXT de consulta de data
+	</summary>
+
+	<log>false</log>
+
+	<on-error>/action/error/general</on-error>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="error.excel" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>template.txt</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/plain</content-type>
+		<expiration>0</expiration>
+		<print mode="table" recordset="error.excel" tag="rows" />
+	</output>
+
+</config>

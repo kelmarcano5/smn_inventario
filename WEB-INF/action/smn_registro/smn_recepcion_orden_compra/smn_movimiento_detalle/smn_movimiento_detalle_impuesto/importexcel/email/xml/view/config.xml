@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Respuesta en formato XML
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.XmlReportOutput</classname>
+		<template>template.xml</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/xml</content-type>
+		<expiration>0</expiration>
+		<print mode="table" recordset="query.sql" tag="rows" alternate-colors="true" />
+	</output>
+
+</config>

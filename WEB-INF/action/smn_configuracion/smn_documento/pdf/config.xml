@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smndocumento.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_document}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' />
+	<pdf-file-name>${lbl:b_document}.pdf</pdf-file-name>
+
+	<pdf-report 
+		pageSize="letter" 
+		rotate="false"
+		footer="false" 
+		header="true">
+		<record recordset='query-smndocumento.sql' width='100' spacingBefore='40'>
+			<col name='smn_tipo_documento_id' title='${lbl:b_document_type}' width='16' align='left' format='######' />
+			<col name='doc_codigo' title='${lbl:b_code}' width='16' align='left' />
+			<col name='doc_nombre' title='${lbl:b_name}' width='16' align='left' />
+			<col name='smn_documento_general_rf' title='${lbl:b_general_document}' width='16' align='left' format='######' />
+			<col name='doc_secuencia' title='${lbl:b_sequence}' width='16' align='left' format='######' />
+			<col name='doc_fecha_registro' title='${lbl:b_store_date}' width='16' align='left' format='dd-MM-yyyy' />
+
+		</record>
+
+	</pdf-report>
+</config>

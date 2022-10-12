@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='repgen.filter' onerror='/action/error/validation/ajax'>
+
+	<parameter id='fdesde' type='date' required='false' label='Fecha desde'/>
+	<parameter id='fhasta' type='date' required='false' label='Fecha hasta'/>
+	
+	<parameter id='smn_modulo_rf' type='integer' required='false' label='${lbl:b_modulo_rf}' maxlen='10'/>
+	<parameter id='smn_documento_origen_id' type='integer' required='false' label='${lbl:b_documento_origen_id}' maxlen='10'/>
+	<parameter id='des_numero_documento_origen' type='integer' required='false' label='${lbl:b_numero_documento_origen}' maxlen='10'/>
+	<parameter id='smn_usuario_solicitante_rf' type='integer' required='false' label='${lbl:b_usuario_solicitante_rf}' maxlen='10'/>
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_documento_id}' maxlen='10'/>
+	<parameter id='des_numero_documento' type='integer' required='false' label='${lbl:b_numero_documento}' maxlen='10'/>
+	<parameter id='des_descripcion' type='varchar' required='false' label='${lbl:b_descripcion}' maxlen='200'/>
+	<parameter id='smn_entidad_rf' type='integer' required='false' label='${lbl:b_entidad_rf}' maxlen='10'/>
+	<parameter id='smn_sucursal_rf' type='integer' required='false' label='${lbl:b_sucursal_rf}' maxlen='10'/>
+	<parameter id='smn_almacen_rf' type='integer' required='false' label='${lbl:b_almacen_rf}' maxlen='10'/>
+	<parameter id='smn_clase_auxiliar_rf' type='integer' required='false' label='${lbl:b_clase_auxiliar_rf}' maxlen='10'/>
+	<parameter id='smn_auxiliar_rf' type='integer' required='false' label='${lbl:b_auxiliar_rf}' maxlen='10'/>
+	<parameter id='smn_unidad_organizativa_rf' type='integer' required='false' label='${lbl:b_unidad_organizativa_rf}' maxlen='10'/>
+	<parameter id='smn_centro_costo_rf' type='integer' required='false' label='${lbl:b_centro_costo_rf}' maxlen='10'/>
+	<parameter id='smn_direccion_rf' type='integer' required='false' label='${lbl:b_direccion_rf}' maxlen='10'/>
+	<parameter id='smn_zona_rf ' type='integer' required='false' label='${lbl:b_zona_rf}' maxlen='10'/>
+	<parameter id='smn_ruta_id' type='integer' required='false' label='${lbl:b_ruta_id}' maxlen='10'/>
+	<parameter id='smn_usuario_transportista_rf' type='integer' required='false' label='${lbl:b_usuario_transportista_rf}' maxlen='10'/>
+	<parameter id='smn_transporte_id' type='integer' required='false' label='${lbl:b_transporte_id}' maxlen='10'/>
+	<parameter id='des_chofer' type='varchar' required='false' label='${lbl:b_chofer}' maxlen='100'/>
+	<parameter id='des_fecha_solicitud' type='date' required='false' label='${lbl:b_fecha_solicitud}' maxlen='10'/>
+	<parameter id='des_fecha_despacho' type='date' required='false' label='${lbl:b_fecha_despacho}' maxlen='10'/>
+	<parameter id='des_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+parameter='des_descripcion'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='des_chofer'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='des_estatus'
+		rule='contains' />
+
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarDescripcion.sql'
+			id='des_descripcion'/>
+
+
+	<custom-validator
+			classname='dinamica.validators.ArrayNotEmptyValidator'
+			on-error-label='Seleccione al menos un campo para la generación del reporte.'
+			parameter-name='field_id' 
+			id='field_id' />
+
+	<custom-validator 
+			classname='dinamica.validators.ArrayToRecordset'
+			paramName='field_id' 
+			recordsetId='fields' 
+			colName='field_id' 
+			colType='integer' />
+				
+</validator>

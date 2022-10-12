@@ -1,0 +1,28 @@
+select
+		smn_inventario.smn_movimiento_cabecera.smn_modulo_rf,
+	smn_inventario.smn_movimiento_cabecera.smn_documento_rf,
+	smn_inventario.smn_movimiento_cabecera.mca_numero,
+	smn_inventario.smn_movimiento_cabecera.smn_proveedor_rf,
+	smn_inventario.smn_movimiento_cabecera.smn_orden_compra_rf,
+	smn_inventario.smn_movimiento_cabecera.smn_almacen_rf,
+	smn_inventario.smn_movimiento_cabecera.smn_sucursal_rf,
+	smn_inventario.smn_movimiento_cabecera.smn_entidad_rf,
+	smn_inventario.smn_movimiento_cabecera.mca_recibo,
+	smn_inventario.smn_movimiento_cabecera.mca_monto_documento_ml,
+	smn_inventario.smn_movimiento_cabecera.mca_monto_documento_ma,
+	smn_inventario.smn_movimiento_cabecera.mca_monto_diminucion_ml,
+	smn_inventario.smn_movimiento_cabecera.mca_monto_diminucion_ma,
+	smn_inventario.smn_movimiento_cabecera.mca_monto_valor_agregado_ml,
+	smn_inventario.smn_movimiento_cabecera.mca_monto_valor_agregado_ma,
+	smn_inventario.smn_movimiento_cabecera.mca_monto_neto_ml,
+	smn_inventario.smn_movimiento_cabecera.mcc_monto_neto_ma,
+	smn_inventario.smn_movimiento_cabecera.smn_moneda_rf,
+	smn_inventario.smn_movimiento_cabecera.smn_tasa_rf,
+	smn_inventario.smn_movimiento_cabecera.mca_fecha_operacion,
+	smn_inventario.smn_movimiento_cabecera.mca_estatus_proceso,
+	smn_inventario.smn_movimiento_cabecera.mca_estatus_financiero,
+	smn_inventario.smn_movimiento_cabecera.mca_fecha_registro
+from
+	smn_inventario.smn_movimiento_cabecera 
+where
+	smn_inventario.smn_movimiento_cabecera.smn_movimiento_cabecera_id = ${fld:id}

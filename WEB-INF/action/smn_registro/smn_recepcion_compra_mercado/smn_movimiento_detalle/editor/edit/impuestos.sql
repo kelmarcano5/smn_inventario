@@ -1,0 +1,13 @@
+SELECT
+	smn_base.smn_codigos_impuestos.smn_codigos_impuestos_id AS id,
+	smn_base.smn_codigos_impuestos.imp_descripcion AS item,
+	smn_base.smn_codigos_impuestos.imp_tipo_codigo,
+	smn_base.smn_codigos_impuestos.imp_porcentaje_base,
+	smn_inventario.smn_movimiento_detalle_impuesto.smn_porcentaje_impuesto_rf,
+	smn_base.smn_codigos_impuestos.imp_monto_sustraendo
+FROM
+	smn_inventario.smn_movimiento_detalle_impuesto
+INNER JOIN
+	smn_base.smn_codigos_impuestos ON smn_inventario.smn_movimiento_detalle_impuesto.smn_cod_impuesto_deduc_rf = smn_base.smn_codigos_impuestos.smn_codigos_impuestos_id
+WHERE
+	smn_movimiento_detalle_id = ${fld:id}

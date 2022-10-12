@@ -1,0 +1,13 @@
+SELECT
+	smn_base.smn_descuentos_retenciones.smn_descuentos_retenciones_id AS id,
+	smn_base.smn_descuentos_retenciones.dyr_descripcion AS item,
+	smn_base.smn_descuentos_retenciones.dyr_porcentaje_base,
+	smn_inventario.smn_movimiento_detalle_desc_ret.smn_porcentaje_rf,
+	smn_inventario.smn_movimiento_detalle_desc_ret.mdd_monto_descuento_ml,
+	smn_base.smn_descuentos_retenciones.dyr_apli_cant_precio
+FROM
+	smn_inventario.smn_movimiento_detalle_desc_ret
+INNER JOIN
+	smn_base.smn_descuentos_retenciones ON smn_inventario.smn_movimiento_detalle_desc_ret.smn_codigo_descuento_rf = smn_base.smn_descuentos_retenciones.smn_descuentos_retenciones_id
+WHERE
+	smn_movimiento_detalle_id = ${fld:id}

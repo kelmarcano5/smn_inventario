@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Servicio XML de consulta de data
+	</summary>
+
+	<log>false</log>
+
+	<on-error>/action/error/xml/error</on-error>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query.sql" source="sql" scope="session" on-empty-return="1" />
+	</transaction>
+
+	<on-exit return-code="0" forward-to="${def:actionroot}/view" />
+	<on-exit return-code="1" forward-to="${def:actionroot}/notfound" />
+
+</config>

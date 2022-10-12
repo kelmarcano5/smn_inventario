@@ -1,0 +1,18 @@
+SELECT
+	smn_inventario.smn_movimiento_detalle.mde_monto_bruto_ml,
+	smn_inventario.smn_movimiento_detalle.mde_monto_bruto_ma,
+	smn_inventario.smn_movimiento_detalle_desc_ret.smn_descuento_retencion_id,
+	smn_base.smn_descuentos_retenciones.dyr_porcentaje_base,
+	smn_base.smn_descuentos_retenciones.dyr_porcentaje_descuento
+FROM
+	smn_inventario.smn_movimiento_detalle
+INNER JOIN
+	smn_inventario.smn_movimiento_detalle_desc_ret
+	ON
+	smn_inventario.smn_movimiento_detalle.smn_movimiento_detalle_id = smn_inventario.smn_movimiento_detalle_desc_ret.smn_movimiento_detalle_id
+INNER JOIN
+	smn_base.smn_descuentos_retenciones
+	ON
+	smn_base.smn_descuentos_retenciones.smn_descuentos_retenciones_id = smn_inventario.smn_movimiento_detalle_desc_ret.smn_codigo_descuento_rf
+WHERE
+	smn_inventario.smn_movimiento_detalle.smn_movimiento_detalle_id = ${fld:smn_movimiento_detalle_id}

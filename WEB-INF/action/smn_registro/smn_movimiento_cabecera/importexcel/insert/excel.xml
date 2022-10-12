@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='smn_modulo_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_documento_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='mca_numero' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_proveedor_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_orden_compra_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_almacen_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_sucursal_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_entidad_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='mca_recibo' type='integer' required='true' maxlen='10'/>
+	<parameter id='mca_monto_documento_ml' type='double' required='true' maxlen='10'/>
+	<parameter id='mca_monto_documento_ma' type='double' required='false' maxlen='10'/>
+	<parameter id='mca_monto_diminucion_ml' type='double' required='true' maxlen='10'/>
+	<parameter id='mca_monto_diminucion_ma' type='double' required='false' maxlen='10'/>
+	<parameter id='mca_monto_valor_agregado_ml' type='double' required='true' maxlen='10'/>
+	<parameter id='mca_monto_valor_agregado_ma' type='double' required='false' maxlen='10'/>
+	<parameter id='mca_monto_neto_ml' type='double' required='true' maxlen='10'/>
+	<parameter id='mcc_monto_neto_ma' type='double' required='false' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='mca_fecha_operacion' type='date' required='true' maxlen='10'/>
+	<parameter id='mca_estatus_proceso' type='varchar' required='true' maxlen='2'/>
+	<parameter id='mca_estatus_financiero' type='varchar' required='true' maxlen='2'/>
+
+
+
+</validator>

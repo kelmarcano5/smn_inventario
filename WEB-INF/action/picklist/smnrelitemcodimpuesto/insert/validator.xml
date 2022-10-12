@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/ajax">
+
+
+	<parameter id='smn_caracteristica_item_id' type='integer' required='false' label='${lbl:b_caracteristicas_item}' maxlen='10'/>
+	<parameter id='smn_codigo_impuesto_rf' type='integer' required='false' label='${lbl:b_tax_code}' maxlen='10'/>
+
+
+
+</validator>
+
+

@@ -1,0 +1,1 @@
+select smn_direccion_id as id, dir_codigo  ||' - '|| dir_descripcion as item from smn_base.smn_direccion order by smn_direccion_id

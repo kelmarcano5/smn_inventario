@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_modulo_rf' type='integer' required='true' label='${lbl:b_modules}' maxlen='10'/>
+	<parameter id='smn_documento_rf' type='integer' required='true' label='${lbl:b_purchasing_documents}' maxlen='10'/>
+	<parameter id='mca_numero' type='integer' required='false' label='${lbl:b_number}' maxlen='10'/>
+	<parameter id='smn_proveedor_rf' type='integer' required='false' label='${lbl:b_providers}' maxlen='10'/>
+	<parameter id='smn_orden_compra_rf' type='integer' required='true' label='${lbl:b_purchase_order_header}' maxlen='10'/>
+	<parameter id='smn_almacen_rf' type='integer' required='true' label='${lbl:b_store_code}' maxlen='10'/>
+	<parameter id='smn_sucursal_rf' type='integer' required='true' label='${lbl:b_subsidiary}' maxlen='10'/>
+	<parameter id='smn_entidad_rf' type='integer' required='true' label='${lbl:b_entity}' maxlen='10'/>
+	<parameter id='mca_recibo' type='integer' required='true' label='${lbl:b_receipt}' maxlen='10'/>
+	<parameter id='mca_monto_documento_ml' type='double' required='true' label='${lbl:b_document_amount_ml}' maxlen='10'/>
+	<parameter id='mca_monto_documento_ma' type='double' required='false' label='${lbl:b_document_amount_ma}' maxlen='10'/>
+	<parameter id='mca_monto_diminucion_ml' type='double' required='true' label='${lbl:b_decrease_amount_ml}' maxlen='10'/>
+	<parameter id='mca_monto_diminucion_ma' type='double' required='false' label='${lbl:b_decrease_amount_ma}' maxlen='10'/>
+	<parameter id='mca_monto_valor_agregado_ml' type='double' required='true' label='${lbl:b_agree_value_amount_ml}' maxlen='10'/>
+	<parameter id='mca_monto_valor_agregado_ma' type='double' required='false' label='${lbl:b_agree_value_amount_ma}' maxlen='10'/>
+	<parameter id='mca_monto_neto_ml' type='double' required='true' label='${lbl:b_net_document_amount_ml}' maxlen='10'/>
+	<parameter id='mcc_monto_neto_ma' type='double' required='false' label='${lbl:b_net_document_amount_ma}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_exchange_rate}' maxlen='10'/>
+	<parameter id='mca_fecha_operacion' type='date' required='true' label='${lbl:b_date_operation}' maxlen='10'/>
+	<parameter id='mca_estatus_proceso' type='varchar' required='true' label='${lbl:b_status_process}' maxlen='2'/>
+	<parameter id='mca_estatus_financiero' type='varchar' required='true' label='${lbl:b_status_financial}' maxlen='2'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_movement_head}' maxlen='10'/>
+
+
+</validator>

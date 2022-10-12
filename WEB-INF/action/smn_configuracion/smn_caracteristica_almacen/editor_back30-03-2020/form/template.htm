@@ -1,0 +1,296 @@
+<!doctype html>
+<html>
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica.css" />
+	
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+
+</head>
+
+<body>
+
+<!--banner-->
+<div class="bannerDialog">
+	${lbl:b_caracteristicas_almacen}
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+	${req:progress}
+</div>
+
+<!--formulario addnew/edit-->
+<form name="form1" onsubmit="return save()" style="width:500px;">
+
+	<!-- titulo -->
+	<h1 id="formTitle">${lbl:b_add_record}</h1>
+
+	<table>
+
+		<!--ancho de la columna de etiquetas-->
+		<col width="30%">
+
+		<!--campos-->
+			<tr>
+		<td>${lbl:b_stores}*</td>
+		<td>
+			<select name="smn_almacen_rf" id="smn_almacen_rf" onchange="chgCombo(smn_almacen_rf.options[smn_almacen_rf.selectedIndex].text,'smn_almacen_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_almacen_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_almacen_rf_rows>
+			</select> 
+			<input id="smn_almacen_rf_name" name="smn_almacen_rf_name" type="hidden">
+		</td>
+		<!-- Incorporado manualmente para mostrar icono de inclusion de elementos al combo -->
+		<td>
+			<img src="${def:context}/images/list-add2.png" align="left" class="button" onclick="stores()" title="${lbl:b_stores}" >
+		</td>
+		<td>
+			&nbsp;&nbsp;
+		</td>				
+	</tr>
+		<tr>
+			<td>${lbl:b_tipo_almacen}*</td>
+			<td>
+				<select name="cal_tipo_almacen" id="cal_tipo_almacen">
+				<option value="PR">${lbl:b_produccion}</option>
+				<option value="DE">${lbl:b_despacho}</option>
+				<option value="VI">${lbl:b_ventas_internet}</option>
+				<option value="PP">${lbl:b_productos_procesos}</option>
+				<option value="TR">${lbl:b_transferencia}</option>
+				<option value="RE">${lbl:b_recepcion}</option>
+				<option value="AL">${lbl:b_almacenaje}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_capacidad_almacenaje}*</td>
+			<td>
+				<input id="cal_capacidad_almacenaje" name="cal_capacidad_almacenaje" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+	<tr>
+		<td>${lbl:b_unidad_medida_capacidad_almacenaje}*</td>
+		<td>
+			<select name="smn_unidad_medida_rf" id="smn_unidad_medida_rf" onchange="chgCombo(smn_unidad_medida_rf.options[smn_unidad_medida_rf.selectedIndex].text,'smn_unidad_medida_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_unidad_medida_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_unidad_medida_rf_rows>
+			</select> 
+			<input id="smn_unidad_medida_rf_name" name="smn_unidad_medida_rf_name" type="hidden">
+		</td>
+		<!-- Incorporado manualmente para mostrar icono de inclusion de elementos al combo -->
+		<td>
+			<img src="${def:context}/images/list-add2.png" align="left" class="button" onclick="unidad_medida_capacidad_almacenaje()" title="${lbl:b_unidad_medida_capacidad_almacenaje}" >
+		</td>
+		<td>
+			&nbsp;&nbsp;
+		</td>				
+	</tr>
+		<tr>
+			<td>${lbl:b_espacio_fisico}*</td>
+			<td>
+				<input id="cal_espacio_fisico" name="cal_espacio_fisico" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+	<tr>
+		<td>${lbl:b_unidad_medida_espacio_fisico}*</td>
+		<td>
+			<select name="smn_unidad_medida_espacio_fisico_rf" id="smn_unidad_medida_espacio_fisico_rf" onchange="chgCombo(smn_unidad_medida_espacio_fisico_rf.options[smn_unidad_medida_espacio_fisico_rf.selectedIndex].text,'smn_unidad_medida_espacio_fisico_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_unidad_medida_espacio_fisico_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_unidad_medida_espacio_fisico_rf_rows>
+			</select> 
+			<input id="smn_unidad_medida_espacio_fisico_rf_name" name="smn_unidad_medida_espacio_fisico_rf_name" type="hidden">
+		</td>
+		<!-- Incorporado manualmente para mostrar icono de inclusion de elementos al combo -->
+		<td>
+			<img src="${def:context}/images/list-add2.png" align="left" class="button" onclick="unidad_medida_espacio_fisico()" title="${lbl:b_unidad_medida_espacio_fisico}" >
+		</td>
+		<td>
+			&nbsp;&nbsp;
+		</td>						
+	</tr>
+		<tr>
+			<td>${lbl:b_politica_recepcion}*</td>
+			<td>
+				<select name="cal_politica_recepcion" id="cal_politica_recepcion">
+				<option value="FC">${lbl:b_factura}</option>
+				<option value="NE">${lbl:b_nota_entrada}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_status}*</td>
+			<td>
+				<select name="cal_estatus" id="cal_estatus">
+				<option value="AC">${lbl:b_account_type_active}</option>
+				<option value="IN">${lbl:b_inactive}</option>
+				<option value="CU">${lbl:b_cuarentena}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_validation_date_from}*</td>
+			<td>
+				<input id="cal_vigencia_desde" name="cal_vigencia_desde" type="text" class="date" maxlength="10">
+				<img src="${def:context}/images/dropdown.png" title="Desplegar calendario" onclick="calendarOpen('cal_vigencia_desde')">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_validation_date_until}*</td>
+			<td>
+				<input id="cal_vigencia_hasta" name="cal_vigencia_hasta" type="text" class="date" maxlength="10">
+				<img src="${def:context}/images/dropdown.png" title="Desplegar calendario" onclick="calendarOpen('cal_vigencia_hasta')">
+			</td>
+		</tr>
+
+
+	</table>
+
+	<!--botones-->
+	<input id="grabar" type="submit" value="${lbl:b_save_button}" class="button">
+	<input id="limpiar" type="button" value="${lbl:b_clean_button}" onclick="addNew()" class="button">	
+	<input id="copiar" type="button" value="${lbl:b_copy_button}" onclick="getFormValuesToCopy('form1')" class="button">
+	<input id="pegar" type="button" value="${lbl:b_paste_button}" onclick="getFormValuesToPaste('form1')" class="button">
+	<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog(); parent.search();" class="button">	
+	
+	<!-- PK-->
+<input type="hidden" name="id" value="">
+
+</form>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+	onload = function()
+	{ 
+		addNew();
+
+		if (id!="")
+			edit(id);
+	} 
+	
+	function chgCombo(text,id)
+	{
+		document.getElementById(id).value = text;
+	}
+	
+	//configurar formulario para ingresar registro nuevo
+	function addNew()
+	{
+		document.getElementById("formTitle").innerHTML = "${lbl:b_add_record}";
+		document.getElementById("grabar").disabled=false;
+		clearForm("form1");
+		setFocusOnForm("form1");
+	}
+	
+	//retorna al estado previo que corresponde
+	//al estado actual de la pagina, cada llamada Ajax
+	//se encarga de definir cual es la funcion de goBack() que aplica
+	function goBack() 
+	{
+		_goBackFn()			
+	}
+	
+	//mostrar la actualizacion de un registro
+	function insert()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/insert", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+	
+	//restaurar el formulario en caso de error
+	function retryAddnewOrEdit() {
+		document.getElementById("grabar").disabled=false;
+		setFocusOnForm("form1");		
+	}
+	
+	var id = "${fld:id}"
+	
+	//grabar el formulario
+	function save()
+	{
+		//determina si es un insert o un update
+		if (document.form1.id.value=="")
+			return insert();
+		else
+			return update();
+	}
+	
+	//editar registro en formulario
+	function edit(id)
+	{
+			clearErrorMessages();
+
+			//llamada Ajax...
+			ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/edit?id=" + id , 
+							divResponse=null, 
+							divProgress="status", 
+							formName=null, 
+							afterResponseFn=null, 
+							onErrorFn=null);	
+	}
+	
+	//actualizar registro en BD
+	function update()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/update", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+
+   //Este codigo fue creado por SIMONE y ajustado por Kelvin Marcano y Yelitza Pineda para los botones de añadir un maestro
+    
+    function stores()
+    {
+    	//alert ('Colocar su código aquí­.')
+    		var uri = "/smn_base/action/smn_configuracion/smn_entidades/smn_almacen/editor/form";	
+    		openDialog("editor20", uri, 650, 580);
+   	}
+
+    function unidad_medida_capacidad_almacenaje()
+	{
+	//alert ('Colocar su código aquí­.')
+		var uri = "/smn_base/action/smn_configuracion/smn_financiera/smn_unidad_medida/editor/form";	
+		openDialog("editor20", uri, 650, 580);
+	}
+
+	function unidad_medida_espacio_fisico()
+	{
+	//alert ('Colocar su código aquí­.')
+		var uri = "/smn_base/action/smn_configuracion/smn_financiera/smn_unidad_medida/editor/form";	
+		openDialog("editor20", uri, 650, 580);
+	}
+	
+</script>	
+</body>
+</html>

@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/ajax">
+
+	<parameter id="lname" type="varchar" required="false" label="${lbl:s_profile_lname}" maxlen="25" />
+	<parameter id="fname" type="varchar" required="false" label="${lbl:s_profile_fname}" maxlen="25" />
+	<parameter id="email" type="varchar" required="false" label="${lbl:s_profile_email}" maxlen="80" />
+	<parameter id="locale" type="varchar" required="false" label="${lbl:s_profile_lang}" />
+
+</validator>
+

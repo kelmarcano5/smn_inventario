@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Insertar registro 
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTableManager</classname>
+		<validator>true</validator>
+		<transaction>true</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="nextval.sql" source="sql" scope="transaction" />
+		<recordset id="query-smn_contactos.sql" source="request" scope="transaction" />
+		<recordset id="query.sql" source="sql" scope="transaction" />
+	</transaction>
+
+	<query>insert.sql</query>
+	<query params="query-smn_contactos.sql">insert-query-smn_mensajes_contactos.sql</query>
+
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>script.js</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/javascript</content-type>
+		<expiration>0</expiration>
+		<print mode="form" recordset="_request" />
+		<print mode="form" recordset="nextval.sql" />
+	</output>
+	
+	<!-- Envio de email declarativo -->
+	<mail enabled="true">
+		<subject>SIMONE - ${lbl:b_financial_entities}</subject>
+		<mail-to recordset="query.sql" colname="cnt_email"></mail-to>
+		<body html="true" images="logo-simone-pdf.png">body.txt</body>
+		<attach contentType="application/pdf" path="/action/financiera/entidad_financiera/pdf" filename="${lbl:b_financial_entities}.pdf"/>
+	</mail>
+
+</config>

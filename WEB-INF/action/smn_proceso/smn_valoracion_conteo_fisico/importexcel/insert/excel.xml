@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='smn_almacen_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_conteo_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_documento_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='vcf_numero_documento' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_item_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='vcf_cantidad_contada' type='double' required='true' maxlen='10'/>
+	<parameter id='vcf_cantidad_existencia' type='double' required='true' maxlen='10'/>
+	<parameter id='vcf_cantidad_diferencia' type='double' required='true' maxlen='10'/>
+	<parameter id='smn_unidad_medida_almacenaje_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='vcf_costo_ml' type='double' required='true' maxlen='10'/>
+	<parameter id='vcf_costo_ma' type='double' required='false' maxlen='10'/>
+	<parameter id='vcf_monto_ml' type='double' required='true' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='vcf_monto_ma' type='double' required='false' maxlen='10'/>
+	<parameter id='vcf_estatus' type='varchar' required='true' maxlen='2'/>
+
+
+
+</validator>

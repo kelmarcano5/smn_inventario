@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generador de imagenes CAPTCHA,
+		almacena la palabra generada en sesión bajo
+		el nombre de atributo: dinamica.security.captcha
+	</summary>
+	
+	<log>false</log>
+
+	<output>
+		<classname>dinamica.CaptchaOutput</classname>
+	</output>
+
+	<!--Configuracion de la imagen CAPTCHA-->
+	<font>Helvetica</font>
+	<fontsize>22</fontsize>
+	<min-width>150</min-width>
+	<padding-x>10</padding-x>
+	<padding-y>10</padding-y>
+
+</config>

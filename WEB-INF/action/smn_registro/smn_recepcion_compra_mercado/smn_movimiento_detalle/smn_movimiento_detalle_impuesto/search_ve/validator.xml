@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='mdi_fecha_registro_ini' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.DateRangeValidator' on-error-label='[${lbl:b_store_date}@{${def:date}} mayor o igual que] no puede ser mayor que [${lbl:b_store_date}@{${def:date}} menor o igual que].' date1='mdi_fecha_registro_ini' date2='mdi_fecha_registro_fin' id='mdi_fecha_registro_ini' />
+	<parameter id='mdi_tipo_movimiento' type='varchar' required='true' label='${lbl:b_movement_type}' maxlen='2'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='mdi_tipo_movimiento' rule='like' />
+	<parameter id='smn_porcentaje_impuesto_rf' type='integer' required='false' label='${lbl:b_tax_percentage}' maxlen='10'/>
+	<parameter id='smn_cod_impuesto_deduc_rf' type='integer' required='false' label='${lbl:b_tax_code}' maxlen='10'/>
+	<parameter id='mdi_fecha_registro_fin' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+</validator>

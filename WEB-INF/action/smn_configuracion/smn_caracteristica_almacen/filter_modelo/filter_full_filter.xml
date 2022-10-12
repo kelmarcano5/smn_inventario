@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<model>
+	<summary>${lbl:b_caracteristicas_almacen}</summary>
+	<filter>
+		<row field='smn_almacen_rf' id='smn_almacen_rf' label='${lbl:b_stores}@{select smn_base.smn_almacen .smn_almacen _id as id, smn_base.smn_almacen .alm_codigo|| &apos; - &apos; || smn_base.smn_almacen .alm_nombre as item from smn_base.smn_almacen  order by alm_nombre}' required='NO' fk='' mSelection='' condiction='Igual que (=)' type='integer' tableName='smn_caracteristica_almacen' len='10'/>
+		<row field='cal_tipo_almacen' id='cal_tipo_almacen' label='${lbl:b_tipo_almacen}@{PR=${lbl:b_produccion}|DE=${lbl:b_despacho}|VI=${lbl:b_ventas_internet}|PP=${lbl:b_productos_procesos}|TR=${lbl:b_transferencia}|RE=${lbl:b_recepcion}|AL=${lbl:b_almacenaje}}' required='NO' fk='' mSelection='' condiction='Igual que (=)' type='varchar' tableName='smn_caracteristica_almacen' len='2'/>
+		<row field='cal_fecha_registro' id='cal_fecha_registro_ini' label='${lbl:b_store_date_greather_than}' required='NO' fk='' mSelection='' condiction='Mayor o igual que (&gt;=)' type='date' tableName='smn_caracteristica_almacen' len='10'/>
+		<row field='cal_fecha_registro' id='cal_fecha_registro_fin' label='${lbl:b_store_date_less_than}' required='NO' fk='' mSelection='' condiction='Menor o igual que (&lt;=)' type='date' tableName='smn_caracteristica_almacen' len='10'/>
+	</filter>
+	<detail>SI</detail>
+	<insert>SI</insert>
+	<edit>SI</edit>
+	<delete>SI</delete>
+	<audit>Consulta</audit>
+	<grid>
+		<row field='smn_almacen_rf' label='${lbl:b_stores}@{select smn_base.smn_almacen .smn_almacen _id as id, smn_base.smn_almacen .alm_codigo|| &apos; - &apos; || smn_base.smn_almacen .alm_nombre as item from smn_base.smn_almacen  order by alm_nombre}' fk='' tableName='smn_caracteristica_almacen' len='10' type='integer' align='center'/>
+		<row field='cal_tipo_almacen' label='${lbl:b_tipo_almacen}@{PR=${lbl:b_produccion}|DE=${lbl:b_despacho}|VI=${lbl:b_ventas_internet}|PP=${lbl:b_productos_procesos}|TR=${lbl:b_transferencia}|RE=${lbl:b_recepcion}|AL=${lbl:b_almacenaje}}' fk='' tableName='smn_caracteristica_almacen' len='2' type='varchar' align='left'/>
+		<row field='cal_capacidad_almacenaje' label='${lbl:b_capacidad_almacenaje}' fk='' tableName='smn_caracteristica_almacen' len='10' type='double' align='right'/>
+		<row field='smn_unidad_medida_rf' label='${lbl:b_unidad_medida_capacidad_almacenaje}@{select smn_base.smn_unidad_medida.smn_unidad_medida_id as id, smn_base.smn_unidad_medida.unm_codigo|| &apos; - &apos; || smn_base.smn_unidad_medida.unm_descripcion as item from smn_base.smn_unidad_medida order by unm_descripcion}' fk='' tableName='smn_caracteristica_almacen' len='10' type='integer' align='center'/>
+		<row field='cal_espacio_fisico' label='${lbl:b_espacio_fisico}' fk='' tableName='smn_caracteristica_almacen' len='10' type='double' align='right'/>
+		<row field='smn_unidad_medida_espacio_fisico_rf' label='${lbl:b_unidad_medida_espacio_fisico}@{select smn_base.smn_unidad_medida.smn_unidad_medida_id as id, smn_base.smn_unidad_medida.unm_codigo|| &apos; - &apos; || smn_base.smn_unidad_medida.unm_descripcion as item from smn_base.smn_unidad_medida order by unm_descripcion}' fk='' tableName='smn_caracteristica_almacen' len='10' type='integer' align='center'/>
+		<row field='cal_politica_recepcion' label='${lbl:b_politica_recepcion}@{FC=${lbl:b_factura}|NE=${lbl:b_nota_entrada}}' fk='' tableName='smn_caracteristica_almacen' len='2' type='varchar' align='left'/>
+		<row field='cal_estatus' label='${lbl:b_status}@{AC=${lbl:b_account_type_active}|IN=${lbl:b_inactive}|CU=${lbl:b_cuarentena}}' fk='' tableName='smn_caracteristica_almacen' len='2' type='varchar' align='left'/>
+		<row field='cal_vigencia_desde' label='${lbl:b_validation_date_from}' fk='' tableName='smn_caracteristica_almacen' len='10' type='date' align='center'/>
+		<row field='cal_vigencia_hasta' label='${lbl:b_validation_date_until}' fk='' tableName='smn_caracteristica_almacen' len='10' type='date' align='center'/>
+		<row field='cal_idioma' label='${lbl:s_profile_lang}@{${def:locale}}' fk='' tableName='smn_caracteristica_almacen' len='2' type='varchar' align='left'/>
+		<row field='cal_usuario' label='${lbl:b_users}@{${def:user}}' fk='' tableName='smn_caracteristica_almacen' len='10' type='varchar' align='left'/>
+		<row field='cal_fecha_registro' label='${lbl:b_store_date}@{${def:date}}' fk='' tableName='smn_caracteristica_almacen' len='10' type='date' align='center'/>
+		<row field='cal_hora' label='${lbl:s_loginhist_col2}@{${def:time}}' fk='' tableName='smn_caracteristica_almacen' len='8' type='varchar' align='left'/>
+	</grid>
+	<mobile>false</mobile>
+</model>

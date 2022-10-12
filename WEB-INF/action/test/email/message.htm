@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+
+<head>
+
+<link rel="stylesheet" type="text/css" href="${def:context}/dinamica.css" />
+
+<title>Envío de información del sistema</title>
+
+<script language="javascript">
+	
+	function goBack()
+	{
+		if (window.opener==null)
+			history.back();
+		else
+			window.close();
+	}
+	</script>
+</head>
+
+<body>
+
+<!--banner-->
+<div class="banner">Envío de información del sistema</div>
+
+
+<div class="info">
+La información y estatus del sistema fue enviada exitosamente.
+</div>
+
+<div style="width:100%; text-align:center; margin-top:10px;">
+	<button onclick="goBack();">${lbl:button_back}</button>
+</div>
+
+
+</body>
+
+</html>

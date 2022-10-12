@@ -1,0 +1,10 @@
+SELECT
+	smn_inventario.smn_control_lote.col_cantidad_final
+FROM
+	smn_inventario.smn_control_lote
+INNER JOIN
+	smn_inventario.smn_movimiento_detalle
+ON
+	smn_inventario.smn_control_lote.smn_control_lote_id = smn_inventario.smn_movimiento_detalle.mde_lote
+WHERE
+	smn_inventario.smn_movimiento_detalle.smn_movimiento_detalle_id = ${fld:smn_movimiento_detalle_id}

@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='mde_es_bonificacion' type='varchar' required='false' label='${lbl:b_bonus}' maxlen='2'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='mde_es_bonificacion' rule='like' />
+	<parameter id='mde_tipo_movimiento' type='varchar' required='false' label='${lbl:b_movement_type}' maxlen='2'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='mde_tipo_movimiento' rule='like' />
+	<parameter id='mde_lote' type='integer' required='false' label='${lbl:b_lot}' maxlen='10'/>
+	<parameter id='smn_item_rf' type='integer' required='false' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='id2' type='integer' required='false' label='${lbl:b_movement_head}' maxlen='10'/>
+</validator>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/ajax">
+
+	<parameter id="userlogin2" type="varchar" required="true" label="Login" maxlen="25" regexp="\w{5,}?" regexp-error-label="Use solo letras y números, sin espacios (al menos 5 caracteres)." />
+	<parameter id="email" type="varchar" required="true" label="Email" maxlen="80" regexp="^([\w-]+\.)*?[\w-]+@[\w-]+\.([\w-]+\.)*?[\w]+$" regexp-error-label="Formato incorrecto xxxx@xxxxxx.xxx" />
+	<parameter id="captcha" type="varchar" required="true" label="Protección Anti-Spam"/>
+	<parameter id="passwd" type="varchar" required="false" label="Password" maxlen="25" />
+	<parameter id="passwd_clear" type="varchar" required="false" label="Password" />
+
+	<custom-validator
+		classname='dinamica.validators.NoRecordsFound'
+		on-error-label='No se ha podido ubicar su registro de usuario que corresponda al identificador y al email ingresados por usted.'
+		sql='find.sql' id="userlogin2"/>
+
+	<custom-validator
+		classname="dinamica.validators.CaptchaValidator"
+		on-error-label="Los caracteres Anti-Spam no pudieron ser verificados."
+		param="captcha" ignoreCase="true" id="captcha"/>
+		
+</validator>
+

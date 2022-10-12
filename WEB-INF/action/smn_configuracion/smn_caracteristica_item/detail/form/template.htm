@@ -1,0 +1,248 @@
+<!doctype html>
+<html>
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+	
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+
+	<script type="text/javascript">
+		//invoca la generacion de un PDF en un popup
+		function openPDF()
+		{
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/pdf?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a excel
+		function openExcel() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/excel?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a xml
+		function openXml(id) {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/xml/search?id=" + id;
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a texto
+		function openTxt(id) {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/txt/search?id=" + id;
+			var w = window.open(url, null, features);
+		}
+		
+		//envio de emails
+		function openEmails() {
+			var uri = "${def:context}${def:actionroot}/email/form";					
+			openDialog("editor0", uri, 980, 600);	
+		}
+	</script>
+
+</head>
+
+<body>
+
+	<!--banner-->
+	<div class="bannerDialog" id="encabezado_tabla">
+		${lbl:b_caracteristicas_item}
+		<img src="${def:context}/images/pdf.png" onclick="openPDF()" title="${lbl:b_export_pdf}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/excel.png" onclick="openExcel()" title="${lbl:b_export_excel}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog()" title="${lbl:b_close_button}" style="float:right; cursor:pointer;"/>
+	</div>
+
+	<table class="record" style="width:500px;">
+		<tr>
+			<td width="40%">${lbl:b_item}</td>
+			<td style="background-color: white">${fld:smn_item_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_codigo_barra}</td>
+			<td style="background-color: white">${fld:cit_codigo_barra}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_codigo_qr}</td>
+			<td style="background-color: white">${fld:cit_codigo_qr}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_codigo_alterno}</td>
+			<td style="background-color: white">${fld:cit_codigo_alterno}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_descripcion_tecnica}</td>
+			<td style="background-color: white">${fld:cit_descripcion_tecnica}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_unidad_medida_base}</td>
+			<td style="background-color: white">${fld:smn_unidad_medida_base_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_unidad_medida_compra}</td>
+			<td style="background-color: white">${fld:smn_unidad_medida_compra_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_unidad_medida_venta}</td>
+			<td style="background-color: white">${fld:smn_unidad_medida_venta_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_unidad_almacenamiento}</td>
+			<td style="background-color: white">${fld:smn_unidad_medida_almacenamiento_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_unidad_despacho}</td>
+			<td style="background-color: white">${fld:smn_unidad_medida_despacho_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_weight}</td>
+			<td style="background-color: white">${fld:cit_peso@#,###,##0.00}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_measurement_unit_weight}</td>
+			<td style="background-color: white">${fld:smn_unidad_medida_peso_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_dimension_alto}</td>
+			<td style="background-color: white">${fld:cit_alto@#,###,##0.00}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_unidad_medida_alto}</td>
+			<td style="background-color: white">${fld:smn_unidad_medida_alto_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_dimension_ancho}</td>
+			<td style="background-color: white">${fld:cit_ancho@#,###,##0.00}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_unidad_medida_ancho}</td>
+			<td style="background-color: white">${fld:smn_unidad_medida_ancho_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_dimension_profundidad}</td>
+			<td style="background-color: white">${fld:cit_profundidad@#,###,##0.00}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_dimension_profundidad}</td>
+			<td style="background-color: white">${fld:smn_unidad_medida_profundidad_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_es_medicamento}</td>
+			<td style="background-color: white">${fld:cit_es_medicamento}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_principio_activo}</td>
+			<td style="background-color: white">${fld:smn_principio_activo_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_requiere_control_lote}</td>
+			<td style="background-color: white">${fld:cit_req_control_lote}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_requiere_control_vencimiento}</td>
+			<td style="background-color: white">${fld:cit_req_control_vencimiento}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_dias_antelacion_vencimiento}</td>
+			<td style="background-color: white">${fld:cit_dias_ant_vencimiento}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_tipo_costo}</td>
+			<td style="background-color: white">${fld:cit_tipo_costo}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_valoracion_inventario}</td>
+			<td style="background-color: white">${fld:cit_valoracion_inventario}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_metodo_despacho}</td>
+			<td style="background-color: white">${fld:cit_metodo_despacho}</td>
+		</tr>
+	<!-- 	<tr>
+			<td width="40%">${lbl:b_cantidad_minima}</td>
+			<td style="background-color: white">${fld:cit_cant_minima@#,###,##0.00}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_cantidad_maxima}</td>
+			<td style="background-color: white">${fld:cit_cant_maxima@#,###,##0.00}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_punto_reorden}</td>
+			<td style="background-color: white">${fld:cit_punto_reorden@#,###,##0.00}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_cantidad_seguridad}</td>
+			<td style="background-color: white">${fld:cit_cant_seguridad@#,###,##0.00}</td>
+		</tr> -->
+		<tr>
+			<td width="40%">${lbl:b_es_reusable}</td>
+			<td style="background-color: white">${fld:cit_es_reusable}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_reuso_apertura}</td>
+			<td style="background-color: white">${fld:cit_reuso_apertura}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_cantidad_reuso}</td>
+			<td style="background-color: white">${fld:cit_cant_reuso@#,###,##0.00}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_origen_producto}</td>
+			<td style="background-color: white">${fld:cit_origen_producto}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_descripcion_compra}</td>
+			<td style="background-color: white">${fld:cit_descripcion_compra}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_codigo_arancel}</td>
+			<td style="background-color: white">${fld:cit_codigo_arancel}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_dias_entrega}</td>
+			<td style="background-color: white">${fld:cit_dias_entrega@#,###,##0.00}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_cost_centers}</td>
+			<td style="background-color: white">${fld:smn_centro_costo_rf}</td>
+		</tr>
+		<tr>
+				<td width="40%">${lbl:b_composed_item}</td>
+				<td style="background-color: white">${fld:cit_item_compuesto}</td>
+			</tr>
+		<tr>
+			<td width="40%">${lbl:b_exclusive_provider}</td>
+			<td style="background-color: white">${fld:cit_proveedor_exclusivo}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_stored}</td>
+			<td style="background-color: white">${fld:cit_almacenado}</td>
+		</tr>
+		<!-- <tr>
+			<td width="40%">${lbl:b_status}</td>
+			<td style="background-color: white">${fld:cit_estatus}</td>
+		</tr> -->
+		<tr>
+			<td width="40%">${lbl:b_validation_date}</td>
+			<td style="background-color: white">${fld:cit_vigencia@dd-MM-yyyy}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_store_date}</td>
+			<td style="background-color: white">${fld:cit_fecha_registro@dd-MM-yyyy}</td>
+		</tr>
+
+	</table>
+
+	<br>
+	<div  align="center">
+		<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog()" class="button">
+	</div>
+
+</body>
+
+</html>

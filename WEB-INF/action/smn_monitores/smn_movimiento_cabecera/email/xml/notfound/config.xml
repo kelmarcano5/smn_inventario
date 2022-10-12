@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Respuesta de un servicio XML cuando no hay data
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>template.xml</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/xml</content-type>
+		<expiration>0</expiration>
+	</output>
+
+</config>

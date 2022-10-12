@@ -1,0 +1,350 @@
+<!doctype html>
+<html>
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica.css" />
+	
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+
+</head>
+
+<body>
+
+<!--banner-->
+<div class="bannerDialog">
+	${lbl:b_movement_detail}
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+	${req:progress}
+</div>
+
+<!--formulario addnew/edit-->
+<form name="form1" onsubmit="return save()" style="width:500px;">
+
+	<!-- titulo -->
+	<h1 id="formTitle">${lbl:b_add_record}</h1>
+
+	<table>
+
+		<!--ancho de la columna de etiquetas-->
+		<col width="30%">
+
+		<!--campos-->
+				<tr>
+			<td>${lbl:b_movement_head}*</td>
+			<td>
+				<input id="smn_movimiento_cabecera_id" name="smn_movimiento_cabecera_id" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+	<tr>
+		<td>${lbl:b_item}</td>
+		<td>
+			<select name="smn_item_rf" id="smn_item_rf" onchange="chgCombo(smn_item_rf.options[smn_item_rf.selectedIndex].text,'smn_item_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_item_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_item_rf_rows>
+			</select> 
+			<input id="smn_item_rf_name" name="smn_item_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_actfij}</td>
+		<td>
+			<select name="smn_activo_fijo_rf" id="smn_activo_fijo_rf" onchange="chgCombo(smn_activo_fijo_rf.options[smn_activo_fijo_rf.selectedIndex].text,'smn_activo_fijo_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_activo_fijo_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_activo_fijo_rf_rows>
+			</select> 
+			<input id="smn_activo_fijo_rf_name" name="smn_activo_fijo_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_cost_centers}*</td>
+		<td>
+			<select name="smn_centro_costo_rf" id="smn_centro_costo_rf" onchange="chgCombo(smn_centro_costo_rf.options[smn_centro_costo_rf.selectedIndex].text,'smn_centro_costo_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_centro_costo_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_centro_costo_rf_rows>
+			</select> 
+			<input id="smn_centro_costo_rf_name" name="smn_centro_costo_rf_name" type="hidden">
+		</td>
+	</tr>
+		<tr>
+			<td>${lbl:b_bonus}*</td>
+			<td>
+				<select name="mde_es_bonificacion" id="mde_es_bonificacion">
+				<option value="SI">${lbl:b_yes}</option>
+				<option value="NO">${lbl:b_not}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_quantity}</td>
+			<td>
+				<input id="mde_cantidad" name="mde_cantidad" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_lot}</td>
+			<td>
+				<input id="mde_lote" name="mde_lote" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_elaboration_date}</td>
+			<td>
+				<input id="mde_fecha_elaboracion_lote" name="mde_fecha_elaboracion_lote" type="text" class="date" maxlength="10">
+				<img src="${def:context}/images/dropdown.png" title="Desplegar calendario" onclick="calendarOpen('mde_fecha_elaboracion_lote')">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_expiration_date}</td>
+			<td>
+				<input id="mde_fecha_vencimiento_lote" name="mde_fecha_vencimiento_lote" type="text" class="date" maxlength="10">
+				<img src="${def:context}/images/dropdown.png" title="Desplegar calendario" onclick="calendarOpen('mde_fecha_vencimiento_lote')">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_description}*</td>
+			<td>
+				<input id="mde_descripcion" name="mde_descripcion" type="text" maxlength="48" >
+			</td>
+		</tr>
+	<tr>
+		<td>${lbl:b_measurement_unit}*</td>
+		<td>
+			<select name="smn_unidad_medida_rf" id="smn_unidad_medida_rf" onchange="chgCombo(smn_unidad_medida_rf.options[smn_unidad_medida_rf.selectedIndex].text,'smn_unidad_medida_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_unidad_medida_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_unidad_medida_rf_rows>
+			</select> 
+			<input id="smn_unidad_medida_rf_name" name="smn_unidad_medida_rf_name" type="hidden">
+		</td>
+	</tr>
+		<tr>
+			<td>${lbl:b_price}*</td>
+			<td>
+				<input id="smn_precio_ml" name="smn_precio_ml" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+	<tr>
+		<td>${lbl:b_exchange_rate}*</td>
+		<td>
+			<select name="smn_tasa_rf" id="smn_tasa_rf" onchange="chgCombo(smn_tasa_rf.options[smn_tasa_rf.selectedIndex].text,'smn_tasa_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_tasa_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_tasa_rf_rows>
+			</select> 
+			<input id="smn_tasa_rf_name" name="smn_tasa_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_coins}</td>
+		<td>
+			<select name="smn_moneda_rf" id="smn_moneda_rf" onchange="chgCombo(smn_moneda_rf.options[smn_moneda_rf.selectedIndex].text,'smn_moneda_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_moneda_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_moneda_rf_rows>
+			</select> 
+			<input id="smn_moneda_rf_name" name="smn_moneda_rf_name" type="hidden">
+		</td>
+	</tr>
+		<tr>
+			<td>${lbl:b_coins_altern_price}</td>
+			<td>
+				<input id="smn_precio_ma" name="smn_precio_ma" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_document_amount_ml}*</td>
+			<td>
+				<input id="mde_monto_documento_ml" name="mde_monto_documento_ml" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_document_amount_ma}</td>
+			<td>
+				<input id="mde_monto_documento_ma" name="mde_monto_documento_ma" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_decrease_amount_ml}</td>
+			<td>
+				<input id="mde_monto_disminucion_ml" name="mde_monto_disminucion_ml" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_decrease_amount_ma}</td>
+			<td>
+				<input id="mde_monto_disminucion_ma" name="mde_monto_disminucion_ma" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_agree_value_amount_ml}</td>
+			<td>
+				<input id="mde_monto_valor_agregado_ml" name="mde_monto_valor_agregado_ml" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_agree_value_amount_ma}</td>
+			<td>
+				<input id="mde_monto_valor_agregado_ma" name="mde_monto_valor_agregado_ma" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_net_document_amount_ml}</td>
+			<td>
+				<input id="mde_monto_neto_ml" name="mde_monto_neto_ml" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_net_document_amount_ma}</td>
+			<td>
+				<input id="mde_monto_neto_ma" name="mde_monto_neto_ma" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_status}*</td>
+			<td>
+				<select name="mde_estatus" id="mde_estatus">
+				<option value="RE">${lbl:b_registry}</option>
+				<option value="PA">${lbl:b_payment}</option>
+				<option value="DE">${lbl:b_deposity}</option>
+				<option value="CN">${lbl:b_concilied}</option>
+
+				</select> 
+			</td>
+		</tr>
+
+
+	</table>
+
+	<!--botones-->
+	<input id="grabar" type="submit" value="${lbl:b_save_button}" class="button">
+	<input id="limpiar" type="button" value="${lbl:b_clean_button}" onclick="addNew()" class="button">	
+	<input id="copiar" type="button" value="${lbl:b_copy_button}" onclick="getFormValuesToCopy('form1')" class="button">
+	<input id="pegar" type="button" value="${lbl:b_paste_button}" onclick="getFormValuesToPaste('form1')" class="button">
+	<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog(); parent.search();" class="button">	
+	
+	<!-- PK-->
+<input type="hidden" name="id" value="">
+
+</form>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+	onload = function()
+	{ 
+		addNew();
+
+		if (id!="")
+			edit(id);
+	} 
+	
+	function chgCombo(text,id)
+	{
+		document.getElementById(id).value = text;
+	}
+	
+	//configurar formulario para ingresar registro nuevo
+	function addNew()
+	{
+		document.getElementById("formTitle").innerHTML = "${lbl:b_add_record}";
+		document.getElementById("grabar").disabled=false;
+		clearForm("form1");
+		setFocusOnForm("form1");
+	}
+	
+	//retorna al estado previo que corresponde
+	//al estado actual de la pagina, cada llamada Ajax
+	//se encarga de definir cual es la funcion de goBack() que aplica
+	function goBack() 
+	{
+		_goBackFn()			
+	}
+	
+	//mostrar la actualizacion de un registro
+	function insert()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/insert", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+	
+	//restaurar el formulario en caso de error
+	function retryAddnewOrEdit() {
+		document.getElementById("grabar").disabled=false;
+		setFocusOnForm("form1");		
+	}
+	
+	var id = "${fld:id}"
+	
+	//grabar el formulario
+	function save()
+	{
+		//determina si es un insert o un update
+		if (document.form1.id.value=="")
+			return insert();
+		else
+			return update();
+	}
+	
+	//editar registro en formulario
+	function edit(id)
+	{
+			clearErrorMessages();
+
+			//llamada Ajax...
+			ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/edit?id=" + id , 
+							divResponse=null, 
+							divProgress="status", 
+							formName=null, 
+							afterResponseFn=null, 
+							onErrorFn=null);	
+	}
+	
+	//actualizar registro en BD
+	function update()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/update", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+
+	
+</script>	
+</body>
+</html>

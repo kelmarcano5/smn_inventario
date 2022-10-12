@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='smn_estructura_codigo_id' type='integer' required='false' label='${lbl:b_structure_code}' maxlen='10'/>
+	<parameter id='smn_item_rf' type='integer' required='false' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='smn_centro_costo_rf' type='integer' required='false' label='${lbl:b_cost_centers}' maxlen='10'/>
+	<parameter id='cit_descripcion_tecnica' type='varchar' required='false' label='${lbl:b_descripcion_tecnica}' maxlen='400'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='cit_descripcion_tecnica' rule='contains' />
+	<parameter id='cit_fecha_registro_ini' type='date' required='false' label='${lbl:b_store_date_greather_than}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.DateRangeValidator' on-error-label='[${lbl:b_store_date_greather_than} mayor o igual que] no puede ser mayor que [${lbl:b_store_date_less_than} menor o igual que].' date1='cit_fecha_registro_ini' date2='cit_fecha_registro_fin' id='cit_fecha_registro_ini' />
+	<parameter id='cit_fecha_registro_fin' type='date' required='false' label='${lbl:b_store_date_less_than}' maxlen='10'/>
+	<parameter id='cit_tipo_producto' type='varchar' required='false' label='${lbl:b_tipo_producto}' maxlen='400'/>
+	<!-- <custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='cit_tipo_producto' rule='contains' /> -->
+	<parameter id='cit_item_compuesto' type='varchar' required='false' label='${lbl:b_composed_item}' maxlen='400'/>
+	<!-- <custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='cit_item_compuesto' rule='contains' /> -->
+</validator>

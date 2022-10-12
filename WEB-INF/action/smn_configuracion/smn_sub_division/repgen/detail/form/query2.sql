@@ -1,0 +1,19 @@
+select
+		smn_inventario.smn_sub_division.smn_almacen_rf,
+	smn_inventario.smn_sub_division.smn_division_id,
+	smn_inventario.smn_sub_division.sdi_codigo,
+	smn_inventario.smn_sub_division.sdi_descripcion,
+	smn_inventario.smn_sub_division.sdi_es_ubicacion,
+	smn_inventario.smn_sub_division.sdi_alto,
+	smn_inventario.smn_sub_division.smn_unidad_medida_alto_rf,
+	smn_inventario.smn_sub_division.sdi_ancho,
+	smn_inventario.smn_sub_division.smn_unidad_medida_ancho_rf,
+	smn_inventario.smn_sub_division.sdi_profundidad,
+	smn_inventario.smn_sub_division.smn_unidad_medida_prof_rf,
+	smn_inventario.smn_sub_division.sdi_estatus,
+	smn_inventario.smn_sub_division.sdi_vigencia,
+	smn_inventario.smn_sub_division.sdi_fecha_registro
+from
+	smn_inventario.smn_sub_division 
+where
+	smn_inventario.smn_sub_division.smn_sub_division_id = ${fld:id}

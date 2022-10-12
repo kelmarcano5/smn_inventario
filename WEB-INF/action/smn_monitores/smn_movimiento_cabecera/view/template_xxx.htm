@@ -1,0 +1,53 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="10" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_entidad_rf","query-smnmovimientocabecera.sql")'>${lbl:b_entity}</th>
+		<th class='sortable' onclick='sortBy("smn_sucursal_rf","query-smnmovimientocabecera.sql")'>${lbl:b_subsidiary}</th>
+		<th class='sortable' onclick='sortBy("smn_almacen_rf","query-smnmovimientocabecera.sql")'>${lbl:b_store_code}</th>
+		<th class='sortable' onclick='sortBy("smn_modulo_rf","query-smnmovimientocabecera.sql")'>${lbl:b_modules}</th>
+		<th class='sortable' onclick='sortBy("mca_estatus_proceso","query-smnmovimientocabecera.sql")'>${lbl:b_status_process}</th>
+		<th class='sortable' onclick='sortBy("mca_estatus_financiero","query-smnmovimientocabecera.sql")'>${lbl:b_status_financial}</th>
+		<th class='sortable' onclick='sortBy("mca_fecha_registro","query-smnmovimientocabecera.sql")'>${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_movimiento_cabecera_id}')" title="${lbl:b_view_detail}"></td>
+		<!--<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_movimiento_cabecera_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_movimiento_cabecera_id}')" title="${lbl:b_edit_button}"></td>-->
+		<td>${fld:smn_entidad_rf}</td>
+		<td>${fld:smn_sucursal_rf}</td>
+		<td>${fld:smn_almacen_rf}</td>
+		<td>${fld:smn_modulo_rf}</td>
+		<td align='left'>${fld:mca_estatus_proceso}</td>
+		<td align='left'>${fld:mca_estatus_financiero}</td>
+		<td>${fld:mca_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

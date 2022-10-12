@@ -1,0 +1,197 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<html>
+  <head>
+
+        <title>Modulo de Inventario</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+
+
+      	<!--biblioteca generica JS/Dinamica-->
+      	<script type="text/javascript" src="action/script">
+      	</script>
+
+      	<script type="text/javascript">
+
+      		if (top.frames.length!=0) {
+      		    if (window.location.href.replace)
+      		        top.location.replace(self.location.href);
+      		    else
+      		        top.location.href=self.document.href;
+      		}
+
+      		onload = function() {
+      			displayLogin();
+      		}
+
+      		//ejecutar login
+      		function login() {
+      			clearErrorMessages();
+      			document.getElementById("loginbutton").disabled=true;
+      			return ajaxCall(	httpMethod="POST",
+      								uri="/action/security/login",
+      								divResponse="form_error",
+      								divProgress="status",
+      								formName="form1",
+      								afterResponseFn=null,
+      								onErrorFn=enableLoginButton);
+      		}
+
+      		//rehabilitar boton de login en caso de error
+      		function enableLoginButton() {
+      			document.getElementById("loginbutton").disabled=false;
+      		}
+
+      		//mostrar form de login
+      		function displayLogin() {
+      			document.getElementById("form1").style.display="";
+      			document.getElementById("form2").style.display="none";
+      			setFocusOnForm("form1");
+      		}
+
+      		//mostrar form de forgot password
+      		function displayForgotPass() {
+      			document.getElementById("grabar").disabled=false;
+      			document.getElementById("form1").style.display="none";
+      			document.getElementById("form2").style.display="";
+      			clearForm("form2");
+      			setFocusOnForm("form2");
+      		}
+
+      		//regenerar password
+      		function getNewPassword() {
+
+      			document.getElementById("grabar").disabled=true;
+      			clearErrorMessages();
+
+      			//llamada Ajax...
+      			return ajaxCall(httpMethod="POST",
+      								uri="/action/security/forgotpass/generate",
+      								divResponse=null,
+      								divProgress="status2",
+      								formName="form2",
+      								afterResponseFn=null,
+      								onErrorFn=newPasswordFail);
+      		}
+
+      		//esconder formulario de nuevo login
+      		function newPasswordOK() {
+      			document.getElementById("form2").style.display="none";
+      		}
+
+      		//rehabilitar boton de regenerar password en caso de error
+      		function newPasswordFail() {
+      			document.getElementById("grabar").disabled=false;
+      		}
+
+      		//mostrar imagen y esconder su indicador de progreso de carga
+      		function displayCaptcha(captchaID) {
+      			document.getElementById("status2").style.display='none';
+      			document.getElementById(captchaID).style.display='';
+      		}
+
+      		//regenerar captcha
+      		function reloadCaptcha(captchaID) {
+      			document.getElementById("status2").style.display='';
+      			document.getElementById(captchaID).src = "action/security/getcaptcha?dummy=" + Math.random();
+      		}
+
+      		function openPopUp(doc)
+      		{
+      			var features = "height=400,width=700,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+      			var w = window.open(doc, null, features);
+      		}
+      	</script>
+
+  </head>
+
+  <body>
+    	<!-- recuadro principal -->
+      <div class="content">
+          <div class="logoPrincipal"><a href="#"><img src="images/mainFolder/logoSimone.png"></a></div><!--logoPrincipal-->
+          <div class="formulario formMod">
+              <div class="formCont">
+                  <div class="formImg"><h2>Modulo de Inventario</h2></div><!--formImg-->
+                  <h3>${lbl:s_login_system}</h3>
+                  <form id="form1"  name="form1" onsubmit="return login()">
+                      <img id="status" style="float:right;margin-right:20px;margin-top:15px;display:none" src="images/progress.gif">
+                      <div class="campo">
+                          <label for="identificador">${lbl:s_profile_login}</label>
+                          <input name="userlogin" id="userlogin" type="text" maxlength="100" autocomplete="off">
+                      </div><!--campo-->
+                      <div class="campo last">
+                          <label for="contrasena">${lbl:s_fld_password}</label>
+                          <input name="passwd" id="passwd" type="password" maxlength="40" autocomplete="off">
+                      </div><!--campo-->
+                      <div id="form_error" class="errormsg"></div>
+                      <div class="campo less">
+                          <input id="loginbutton" type="submit" value="${lbl:s_enter}" class="ingresarBtn">
+                      </div><!--campo-->
+                      <a href="#" onclick="displayForgotPass()">${lbl:s_fld_forgot_my_password}</a>
+
+                      <!--URI to navigate after sucessful login-->
+            					<input type="hidden" name="uri" value="/action/security/home">
+
+                  </form>
+                  <!--password form-->
+                  <form id="form2"  name="form2" onsubmit="return getNewPassword()">
+                      <div class="campo">
+                          <label for="usuario">${lbl:s_profile_login}</label>
+                          <input name="userlogin2" id="userlogin2" type="text" maxlength="100" autocomplete="off">
+                      </div><!--campo-->
+                      <div class="campo">
+                          <label for="email">${lbl:s_profile_email}</label>
+                          <input name="email" id="email" type="text" maxlength="100" autocomplete="off">
+                      </div><!--campo-->
+                      <div class="campo">
+                        <img id="captchaimg" src="action/security/getcaptcha" border="1" onload="displayCaptcha('captchaimg')"
+                        onclick="reloadCaptcha('captchaimg')" style="display:block;" title="${lbl:s_click_regenerate_image}">
+                      </div><!--campo-->
+                      <div class="campo">
+                          <label for="antispam">${lbl:s_anti_spam}</label>
+                          <input name="antispam" id="antispam" type="text" maxlength="100" style="display:block;">
+                          <div style="font-size:9pt;">${lbl:s_type_characters_to_regenerate_image}.</div>
+                      </div><!--campo-->
+                      <div id="form_error" class="errormsg"></div>
+                      <div class="campo less">
+                          <input id="grabar" type="submit" value="${lbl:b_save_button}" class="ingresarBtn">
+                      </div><!--campo-->
+                      <a id="cancelar" href="#" onclick="displayLogin()">${lbl:b_cancel_button}</a>
+
+                      <!--URI to navigate after sucessful login-->
+            					<input type="hidden" name="uri" value="/action/security/home">
+
+                  </form>
+          				<!-- end password form -->
+
+              </div><!--formCont-->
+          </div><!--formulario formMod-->
+
+
+          <button class="crearCuenta"><span>Crear una cuenta</span></button>
+
+
+          <a class="terminos" href="javascript:openPopUp('terminos.htm')">${lbl:b_terms_use_privacy}</a>
+
+          <p class="simone">C.SIMONE12015,C.A</p>
+
+      </div><!--content-->
+
+      <script type="text/javascript" src="js/vendor/jquery-1.11.2.min.js"></script>
+      <script src="js/vendor/bootstrap.min.js"></script>
+  </body>
+
+</html>

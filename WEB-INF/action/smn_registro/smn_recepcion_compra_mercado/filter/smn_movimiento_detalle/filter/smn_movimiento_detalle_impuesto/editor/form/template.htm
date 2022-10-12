@@ -1,0 +1,401 @@
+<!doctype html>
+<html>
+
+<head>
+
+		<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+		<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+	
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+	<script type="text/javascript" src="${def:context}/action/jquery"></script>
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+</head>
+
+<body>
+
+<!--banner-->
+<div class="bannerDialog" id="encabezado_tabla">
+	${lbl:b_movement_detail_tax}
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+	${req:progress}
+</div>
+
+<!--formulario addnew/edit-->
+<form name="form1" onsubmit="return save()" style="width:500px;">
+
+	<!-- titulo -->
+	<h1 id="formTitle">${lbl:b_add_record}</h1>
+
+	<table>
+
+		<!--ancho de la columna de etiquetas-->
+		<col width="30%">
+
+		<!--campos-->
+	<tr id="mde_id">
+		<td>${lbl:b_movement_detail}*</td>
+		<td>
+			<select name="smn_movimiento_detalle_id" id="smn_movimiento_detalle_id" onchange="chgCombo(smn_movimiento_detalle_id.options[smn_movimiento_detalle_id.selectedIndex].text,'smn_movimiento_detalle_id_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_movimiento_detalle_id_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_movimiento_detalle_id_rows>
+			</select> 
+			<input id="smn_movimiento_detalle_id_name" name="smn_movimiento_detalle_id_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_tax_code}</td>
+		<td>
+			<select name="smn_cod_impuesto_deduc_rf" class="js-example-basic-single" id="smn_cod_impuesto_deduc_rf" onchange="chgCombo1(smn_cod_impuesto_deduc_rf.options[smn_cod_impuesto_deduc_rf.selectedIndex].text,'smn_cod_impuesto_deduc_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_cod_impuesto_deduc_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_cod_impuesto_deduc_rf_rows>
+			</select> 
+			<input id="smn_cod_impuesto_deduc_rf_name" name="smn_cod_impuesto_deduc_rf_name" type="hidden">
+		</td>
+	</tr>
+		<tr>
+			<td>${lbl:b_base_amount} *</td>
+			<td>
+				<input id="mdi_monto_base" name="mdi_monto_base" type="text" maxlength="20" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_tax_percentage}*</td>
+			<td>
+				<input id="smn_porcentaje_impuesto_rf" name="smn_porcentaje_impuesto_rf" type="text" maxlength="10" class="numeric">
+				<input hidden id="porcentaje_impuesto_rf" name="porcentaje_impuesto_rf" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_subtract}*</td>
+			<td>
+				<input id="mdi_sustraendo_rf" name="mdi_sustraendo_rf" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr style="display: none;">
+			<td>${lbl:b_movement_type}*</td>
+			<td>
+				<select name="mdi_tipo_movimiento" id="mdi_tipo_movimiento">
+				<option value="DE">${lbl:b_debit}</option>
+				<option value="CR">${lbl:b_credit}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_tax_amount_ml}*</td>
+			<td>
+				<input id="mdi_monto_impuesto_ml" name="mdi_monto_impuesto_ml" type="text" maxlength="10" class="numeric">
+				<input hidden id="monto_impuesto_ml" name="monto_impuesto_ml" type="text" maxlength="20" class="numeric">
+			</td>
+		</tr>
+	<tr>
+		<td>${lbl:b_coins}</td>
+		<td>
+			<select name="smn_moneda" id="smn_moneda" onchange="chgCombo(smn_moneda.options[smn_moneda.selectedIndex].text,'smn_moneda_name');monedaalterna();getTasa(smn_moneda.options[smn_moneda.selectedIndex].value);">
+				<option value="">[Cualquiera]</option>
+				<smn_moneda_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_moneda_rows>
+			</select> 
+			<input id="smn_moneda_name" name="smn_moneda_name" type="hidden">
+		</td>
+	</tr>
+	<tr style="display: none" id="tasa">
+		<td>${lbl:b_exchange_rate}</td>
+		<td>
+			<select name="smn_tasa" id="smn_tasa" onchange="chgCombo(smn_tasa.options[smn_tasa.selectedIndex].text,'smn_tasa_name');getMontoTasa(smn_tasa.options[smn_tasa.selectedIndex].value);">
+				<option value="">[Cualquiera]</option>
+				<smn_tasa_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_tasa_rows>
+			</select> 
+			<input id="smn_tasa_name" name="smn_tasa_name" type="hidden">
+		</td>
+	</tr>
+		<tr style="display: none" id="mt_ma">
+			<td>${lbl:b_tax_amount_ma}</td>
+			<td>
+				<input id="mdi_monto_impuesto_ma" name="mdi_monto_impuesto_ma" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+
+
+	</table>
+
+	<!--botones-->
+	<input id="grabar" type="submit" value="${lbl:b_save_button}" class="button">
+	<input id="limpiar" type="button" value="${lbl:b_clean_button}" onclick="addNew()" class="button">	
+	<input id="copiar" type="button" value="${lbl:b_copy_button}" onclick="getFormValuesToCopy('form1')" class="button">
+	<input id="pegar" type="button" value="${lbl:b_paste_button}" onclick="getFormValuesToPaste('form1')" class="button">
+	<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog(); parent.search();" class="button">	
+	
+	<!-- PK-->
+<input type="hidden" name="id" value="">
+
+</form>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+	onload = function()
+	{ 
+		addNew();
+
+		document.getElementById("smn_movimiento_detalle_id").value='${fld:id2}';
+		document.getElementById("smn_movimiento_detalle_id").disabled=true;
+		document.getElementById("mde_id").style.display='none';
+
+		if('${fld:cal_tipo_calculo_costo}'=='DI')
+		{
+			document.getElementById("mdi_monto_base").value=formatear_monto('${fld:monto_bruto@#,###,##0.00}')-'${fld:sum_monto_descuento_ml}';
+		}
+		else
+		{
+			document.getElementById("mdi_monto_base").value=formatear_monto('${fld:monto_bruto@#,###,##0.00}');
+		}
+		
+		document.getElementById("mdi_monto_base").disabled=true;
+		document.getElementById("smn_porcentaje_impuesto_rf").disabled=true;
+		document.getElementById("mdi_monto_impuesto_ml").disabled=false;
+		document.getElementById("mdi_sustraendo_rf").disabled=true;
+		$(document).ready(function() {
+		    $('.js-example-basic-single').select2();
+		});
+
+		if (id!="")
+			edit(id);
+	} 
+
+	function search()
+	{
+		addNew();
+
+		document.getElementById("smn_movimiento_detalle_id").value='${fld:id2}';
+		document.getElementById("smn_movimiento_detalle_id").disabled=true;
+		document.getElementById("mde_id").style.display='none';
+		if('${fld:cal_tipo_calculo_costo}'=='DI')
+		{
+			document.getElementById("mdi_monto_base").value=formatear_monto('${fld:monto_bruto@#,###,##0.00}')-'${fld:sum_monto_descuento_ml}';
+		}
+		else
+		{
+			document.getElementById("mdi_monto_base").value=formatear_monto('${fld:monto_bruto@#,###,##0.00}');
+		}
+		document.getElementById("mdi_monto_base").disabled=true;
+		document.getElementById("smn_porcentaje_impuesto_rf").disabled=true;
+		document.getElementById("mdi_monto_impuesto_ml").disabled=false;
+		document.getElementById("mdi_sustraendo_rf").disabled=true;
+		$(document).ready(function() {
+		    $('.js-example-basic-single').select2();
+		});
+
+		if (id!="")
+			edit(id);
+	}
+
+	function monedaalterna() {
+		var moneda = document.getElementById("smn_moneda").value;
+		if (moneda =='360') {
+			document.getElementById("tasa").style.display='none';
+			document.getElementById("mt_ma").style.display='none';
+		} else {
+			document.getElementById("tasa").style.display='';
+			document.getElementById("mt_ma").style.display='';
+		} 
+	}
+	
+	function chgCombo(text,id)
+	{
+		document.getElementById(id).value = text;
+	}
+	
+	//configurar formulario para ingresar registro nuevo
+	function addNew()
+	{
+		document.getElementById("formTitle").innerHTML = "${lbl:b_add_record}";
+		document.getElementById("grabar").disabled=false;
+		clearForm("form1");
+		setFocusOnForm("form1");
+	}
+	
+	//retorna al estado previo que corresponde
+	//al estado actual de la pagina, cada llamada Ajax
+	//se encarga de definir cual es la funcion de goBack() que aplica
+	function goBack() 
+	{
+		_goBackFn()			
+	}
+	
+	//mostrar la actualizacion de un registro
+	function insert()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/insert", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+	
+	//restaurar el formulario en caso de error
+	function retryAddnewOrEdit() {
+		document.getElementById("grabar").disabled=false;
+		setFocusOnForm("form1");		
+	}
+	
+	var id = "${fld:id}"
+	
+	//grabar el formulario
+	function save()
+	{
+		//determina si es un insert o un update
+		if (document.form1.id.value=="")
+			return insert();
+		else
+			return update();
+	}
+	
+	//editar registro en formulario
+	function edit(id)
+	{
+			clearErrorMessages();
+
+			//llamada Ajax...
+			ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/edit?id=" + id , 
+							divResponse=null, 
+							divProgress="status", 
+							formName=null, 
+							afterResponseFn=null, 
+							onErrorFn=null);	
+	}
+	
+	//actualizar registro en BD
+	function update()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/update", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+
+		//Este codigo fue creado por SIMONE y ajustado en este crud por Kelvin Marcano
+	var geo_idr = null;
+	function chgCombo1()
+	{		
+		var geo_idr = document.getElementById("smn_cod_impuesto_deduc_rf").value; 
+		var detalle_id = document.getElementById('smn_movimiento_detalle_id').value;
+		//alert("rif: "+geo_idr);
+		//findLocation(geo_id0, '');
+		
+		if (geo_idr!=null && geo_idr!="") 
+		{
+			
+			return ajaxCall(	
+							httpMethod="GET", 
+							uri="${def:actionroot}/getDatosimpuestos?id=" + geo_idr + "&id2="+detalle_id, 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							onErrorFn=null);				
+		}	
+	}
+
+	function formatear_monto(monto)
+	{
+		var base = monto;
+		base1 = base.replace('.','');
+		base = base1.replace('.','');
+		base1 = base.replace(',','.');
+		
+		return base1;
+	}
+
+	function getTasa(id)
+	{		
+		if (id!=null && id!="") 
+		{
+			return ajaxCall(	
+						httpMethod="GET", 
+						uri="${def:actionroot}/getTasa?id=" + id, 
+						divResponse=null, 
+						divProgress="status", 
+						formName="form1", 
+						onErrorFn=null);
+		}
+	}
+
+	function getMontoTasa(id)
+	{		
+		if (id!=null && id!="") 
+		{
+			return ajaxCall(	
+							httpMethod="GET", 
+							uri="${def:actionroot}/getMontoTasa?id=" + id, 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							onErrorFn=null);				
+		}
+		else
+		{
+			document.getElementById('mdi_monto_impuesto_ma').value="";
+		}
+	}
+	
+	$("#mdi_monto_impuesto_ml").blur(function() {
+		
+		var monto_base = $("#mdi_monto_base").val();
+		var monto_impuesto_base = $("#monto_impuesto_ml").val();
+		var monto_impuesto = $(this).val();
+		var porcentaje_impuesto_base = $("#porcentaje_impuesto_rf").val();
+		var monto_imp_dif;
+		var porcentaje;
+		var unoPorciento;
+
+		monto_imp_dif = monto_impuesto_base-monto_impuesto;
+
+		if(monto_imp_dif<0)
+			monto_imp_dif=monto_imp_dif*-1;
+
+		unoPorciento = monto_impuesto_base/100;
+
+		if(monto_imp_dif>unoPorciento)
+		{
+			alertBox ('${lbl:b_error_uno_porciento}', '${lbl:b_continue_button}', null, null);
+			$(this).val(monto_impuesto_base);
+			$("#smn_porcentaje_impuesto_rf").val(porcentaje_impuesto_base);
+		}
+		else
+		{
+			porcentaje = (monto_impuesto*100)/monto_base;
+			$("#smn_porcentaje_impuesto_rf").val(porcentaje.toFixed(2));
+		}
+	});
+
+</script>	
+</body>
+</html>

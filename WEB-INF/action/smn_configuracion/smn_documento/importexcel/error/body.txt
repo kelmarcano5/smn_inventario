@@ -1,0 +1,22 @@
+Dear Support Administrator:
+
+An exception was triggered by this application.
+
+These are the details of the exception:
+
+Date: ${def:date}
+Time: ${def:time}
+Context: ${req:dinamica.error.context}
+URL: ${req:dinamica.error.url}
+Referer: ${req:dinamica.error.referer}
+User: ${req:dinamica.error.user}
+Remote IP: ${req:dinamica.error.remote_addr}
+Host: ${def:host}
+
+Stack trace:
+---------------
+${req:dinamica.error.stacktrace}
+
+For additional support please visit:
+http://www.martincordova.com
+

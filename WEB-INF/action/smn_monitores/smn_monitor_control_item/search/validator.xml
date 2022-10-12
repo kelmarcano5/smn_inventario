@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='smn_item_rf' type='integer' required='false' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='smn_sucursal_rf' type='integer' required='false' label='${lbl:b_subsidiary}' maxlen='10'/>
+	<parameter id='smn_almacen_rf' type='integer' required='false' label='${lbl:b_store_code}' maxlen='10'/>
+	<parameter id='smn_entidad_rf' type='integer' required='false' label='${lbl:b_entity}' maxlen='10'/>
+	<parameter id='coi_fecha_movimiento_fin' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<parameter id='coi_fecha_movimiento_ini' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.DateRangeValidator' on-error-label='[${lbl:b_store_date}@{${def:date}} mayor o igual que] no puede ser mayor que [${lbl:b_store_date}@{${def:date}} menor o igual que].' date1='coi_fecha_movimiento_ini' date2='coi_fecha_movimiento_fin' id='coi_fecha_movimiento_ini' />
+
+	<parameter id='itm_codigo' type='varchar' required='false' label='${lbl:b_code} Item' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='itm_codigo' rule='like' />
+	<parameter id='itm_nombre' type='varchar' required='false' label='${lbl:b_description} Item' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='itm_nombre' rule='like' />
+</validator>

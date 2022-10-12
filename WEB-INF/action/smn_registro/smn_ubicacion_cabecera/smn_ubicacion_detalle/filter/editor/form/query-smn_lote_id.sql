@@ -1,0 +1,1 @@
+select smn_control_lote_id as id, col_lote as item from smn_inventario.smn_control_lote order by smn_control_lote_id

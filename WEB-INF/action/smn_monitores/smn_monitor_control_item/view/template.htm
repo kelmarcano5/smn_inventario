@@ -1,0 +1,56 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<!-- <col width='3%'/> -->
+
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="9" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<!-- <th></th> -->
+		<th class='sortable' onclick="sortBy('smn_entidad_rf','query-smncontrolitem.sql')" >${lbl:b_entity}</th>
+		<th class='sortable' onclick="sortBy('smn_almacen_rf','query-smncontrolitem.sql')" >${lbl:b_store_code}</th>
+		<th class='sortable' onclick="sortBy('smn_item_rf','query-smncontrolitem.sql')" >${lbl:b_item}</th>
+		<th class='sortable' onclick="sortBy('coi_saldo_inicial_existencia','query-smncontrolitem.sql')" >Saldo Inicial</th>
+		<th class='sortable' onclick="sortBy('coi_cantidad_entradas','query-smncontrolitem.sql')" >Cantidad Entrada</th>
+		<th class='sortable' onclick="sortBy('coi_cantidad_salidas','query-smncontrolitem.sql')" >Cantidad Salida</th>
+		<th class='sortable' onclick="sortBy('coi_cantidad_reservada','query-smncontrolitem.sql')" >Cantidad Reservada</th>
+		<th class='sortable' onclick="sortBy('coi_saldo_final_existencia','query-smncontrolitem.sql')" >Saldo Final</th>
+		<th class='sortable' onclick="sortBy('coi_fecha_movimiento','query-smncontrolitem.sql')" >Fecha Movimiento</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<!-- <td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_control_item_id}')" title="${lbl:b_view_detail}"></td> -->
+		<td align="center">${fld:smn_entidad_rf}</td>
+		<td align="center">${fld:smn_almacen_rf}</td>
+		<td align="center">${fld:smn_item_rf}</td>
+		<td align="right">${fld:coi_saldo_inicial_existencia}</td>
+		<td align="right">${fld:coi_cantidad_entradas}</td>
+		<td align="right">${fld:coi_cantidad_salidas}</td>
+		<td align="right">${fld:coi_cantidad_reservada}</td>
+		<td align="right">${fld:coi_saldo_final_existencia}</td>
+		<td align="center">${fld:coi_fecha_movimiento@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

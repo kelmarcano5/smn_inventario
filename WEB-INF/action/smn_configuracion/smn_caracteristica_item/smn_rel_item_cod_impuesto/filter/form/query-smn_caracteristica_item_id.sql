@@ -1,0 +1,1 @@
+select smn_inventario.smn_caracteristica_item.smn_caracteristica_item_id as id, smn_inventario.smn_caracteristica_item.cit_descripcion_tecnica as item from smn_inventario.smn_caracteristica_item

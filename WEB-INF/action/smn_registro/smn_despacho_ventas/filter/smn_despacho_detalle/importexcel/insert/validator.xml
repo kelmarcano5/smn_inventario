@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='_contenttype' type='varchar' required='false' label='${lbl:b_format}' maxlen='150'/>
+	<parameter id='_filename' type='varchar' required='false' label='${lbl:b_file}' maxlen='400'/>
+	<parameter id='_filesize' type='integer' required='false' label='${lbl:b_size}'/>
+	<parameter id='_tempfile' type='varchar' required='false' label='${lbl:b_file_path}'/>
+	<parameter id='_filenametemp' type='varchar' required='false' label='${lbl:b_filename}'/>
+	
+	<!-- 
+	<custom-validator 
+			classname="dinamica.validators.ExcelFormatValidator" 
+			on-error-label="${lbl:b_excel_file_not_recognized}."  
+			parameter-tempfile="_tempfile" id="file"/>
+	-->
+	
+</validator>

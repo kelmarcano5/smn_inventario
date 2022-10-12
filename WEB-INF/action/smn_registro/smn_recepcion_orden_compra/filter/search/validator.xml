@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='smn_proveedor_rf' type='integer' required='false' label='${lbl:b_provider}' maxlen='10'/>
+	<parameter id='smn_entidad_rf' type='integer' required='false' label='${lbl:b_entity}' maxlen='10'/>
+	<parameter id='mca_estatus_proceso' type='varchar' required='false' label='${lbl:b_status_process}' maxlen='2'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='mca_estatus_proceso' rule='like' />
+	<parameter id='occ_numero_orden_compra' type='integer' required='false' label='${lbl:b_numero_orden_compra}' maxlen='10'/>
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='mca_fecha_registro' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+</validator>

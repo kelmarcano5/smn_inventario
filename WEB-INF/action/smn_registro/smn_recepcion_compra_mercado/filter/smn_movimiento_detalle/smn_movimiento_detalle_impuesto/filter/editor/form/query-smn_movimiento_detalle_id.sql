@@ -1,0 +1,1 @@
+select smn_inventario.smn_movimiento_detalle.smn_movimiento_detalle_id as id, smn_inventario.smn_movimiento_detalle.smn_movimiento_detalle_id as item from smn_inventario.smn_movimiento_detalle

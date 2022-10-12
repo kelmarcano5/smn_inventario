@@ -1,0 +1,566 @@
+<!doctype html>
+<html>
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+	
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+
+</head>
+
+<body id=>
+
+<!--banner-->
+<div class="bannerDialog" id="encabezado_tabla">
+	Compras
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+	${req:progress}
+</div>
+
+<!--formulario addnew/edit-->
+<form name="form1" onsubmit="return save()" style="width:500px;">
+
+	<!-- titulo -->
+	<h1 id="formTitle">${lbl:b_add_record}</h1>
+
+	<table>
+
+		<!--ancho de la columna de etiquetas-->
+		<col width="30%">
+
+		<!--campos-->
+	<tr style="display:none">
+		<td>${lbl:b_item}*</td>
+		<td>
+			<select name="smn_item_rf" id="smn_item_rf" onchange="chgCombo(smn_item_rf.options[smn_item_rf.selectedIndex].text,'smn_item_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_item_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_item_rf_rows>
+			</select> 
+			<input id="smn_item_rf_name" name="smn_item_rf_name" type="hidden">
+		</td>
+	</tr>
+		<tr style="display:none">
+			<td>${lbl:b_codigo_barra}</td>
+			<td>
+				<input id="cit_codigo_barra" name="cit_codigo_barra" type="text" maxlength="100" >
+			</td>
+		</tr>
+		<tr style="display:none">
+			<td>${lbl:b_codigo_qr}</td>
+			<td>
+				<input id="cit_codigo_qr" name="cit_codigo_qr" type="text" maxlength="100" >
+			</td>
+		</tr>
+		<tr style="display:none">
+			<td>${lbl:b_codigo_alterno}</td>
+			<td>
+				<input id="cit_codigo_alterno" name="cit_codigo_alterno" type="text" maxlength="100" >
+			</td>
+		</tr>
+		<tr style="display:none">
+			<td>${lbl:b_descripcion_tecnica}</td>
+			<td>
+				<textarea id="cit_descripcion_tecnica" name="cit_descripcion_tecnica" cols="30" rows="3"></textarea>
+			</td>
+		</tr>
+	<tr style="display:none">
+		<td>${lbl:b_unidad_medida_base}*</td>
+		<td>
+			<select name="smn_unidad_medida_base_rf" id="smn_unidad_medida_base_rf" onchange="chgCombo(smn_unidad_medida_base_rf.options[smn_unidad_medida_base_rf.selectedIndex].text,'smn_unidad_medida_base_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_unidad_medida_base_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_unidad_medida_base_rf_rows>
+			</select> 
+			<input id="smn_unidad_medida_base_rf_name" name="smn_unidad_medida_base_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_unidad_medida_compra}*</td>
+		<td>
+			<select name="smn_unidad_medida_compra_rf" id="smn_unidad_medida_compra_rf" onchange="chgCombo(smn_unidad_medida_compra_rf.options[smn_unidad_medida_compra_rf.selectedIndex].text,'smn_unidad_medida_compra_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_unidad_medida_compra_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_unidad_medida_compra_rf_rows>
+			</select> 
+			<input id="smn_unidad_medida_compra_rf_name" name="smn_unidad_medida_compra_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr style="display:none">
+		<td>${lbl:b_unidad_medida_venta}*</td>
+		<td>
+			<select name="smn_unidad_medida_venta_rf" id="smn_unidad_medida_venta_rf" onchange="chgCombo(smn_unidad_medida_venta_rf.options[smn_unidad_medida_venta_rf.selectedIndex].text,'smn_unidad_medida_venta_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_unidad_medida_venta_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_unidad_medida_venta_rf_rows>
+			</select> 
+			<input id="smn_unidad_medida_venta_rf_name" name="smn_unidad_medida_venta_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr style="display:none">
+		<td>${lbl:b_unidad_almacenamiento}*</td>
+		<td>
+			<select name="smn_unidad_medida_almacenamiento_rf" id="smn_unidad_medida_almacenamiento_rf" onchange="chgCombo(smn_unidad_medida_almacenamiento_rf.options[smn_unidad_medida_almacenamiento_rf.selectedIndex].text,'smn_unidad_medida_almacenamiento_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_unidad_medida_almacenamiento_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_unidad_medida_almacenamiento_rf_rows>
+			</select> 
+			<input id="smn_unidad_medida_almacenamiento_rf_name" name="smn_unidad_medida_almacenamiento_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr style="display:none">
+		<td>${lbl:b_unidad_despacho}*</td>
+		<td>
+			<select name="smn_unidad_medida_despacho_rf" id="smn_unidad_medida_despacho_rf" onchange="chgCombo(smn_unidad_medida_despacho_rf.options[smn_unidad_medida_despacho_rf.selectedIndex].text,'smn_unidad_medida_despacho_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_unidad_medida_despacho_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_unidad_medida_despacho_rf_rows>
+			</select> 
+			<input id="smn_unidad_medida_despacho_rf_name" name="smn_unidad_medida_despacho_rf_name" type="hidden">
+		</td>
+	</tr>
+		<tr style="display:none">
+			<td>${lbl:b_weight}*</td>
+			<td>
+				<input id="cit_peso" name="cit_peso" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+	<tr style="display:none">
+		<td>${lbl:b_measurement_unit_weight}*</td>
+		<td>
+			<select name="smn_unidad_medida_peso_rf" id="smn_unidad_medida_peso_rf" onchange="chgCombo(smn_unidad_medida_peso_rf.options[smn_unidad_medida_peso_rf.selectedIndex].text,'smn_unidad_medida_peso_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_unidad_medida_peso_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_unidad_medida_peso_rf_rows>
+			</select> 
+			<input id="smn_unidad_medida_peso_rf_name" name="smn_unidad_medida_peso_rf_name" type="hidden">
+		</td>
+	</tr>
+		<tr style="display:none">
+			<td>${lbl:b_dimension_alto}*</td>
+			<td>
+				<input id="cit_alto" name="cit_alto" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+	<tr style="display:none">
+		<td>${lbl:b_unidad_medida_alto}*</td>
+		<td>
+			<select name="smn_unidad_medida_alto_rf" id="smn_unidad_medida_alto_rf" onchange="chgCombo(smn_unidad_medida_alto_rf.options[smn_unidad_medida_alto_rf.selectedIndex].text,'smn_unidad_medida_alto_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_unidad_medida_alto_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_unidad_medida_alto_rf_rows>
+			</select> 
+			<input id="smn_unidad_medida_alto_rf_name" name="smn_unidad_medida_alto_rf_name" type="hidden">
+		</td>
+	</tr>
+		<tr style="display:none">
+			<td>${lbl:b_dimension_ancho}*</td>
+			<td>
+				<input id="cit_ancho" name="cit_ancho" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+	<tr style="display:none">
+		<td>${lbl:b_unidad_medida_ancho}*</td>
+		<td>
+			<select name="smn_unidad_medida_ancho_rf" id="smn_unidad_medida_ancho_rf" onchange="chgCombo(smn_unidad_medida_ancho_rf.options[smn_unidad_medida_ancho_rf.selectedIndex].text,'smn_unidad_medida_ancho_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_unidad_medida_ancho_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_unidad_medida_ancho_rf_rows>
+			</select> 
+			<input id="smn_unidad_medida_ancho_rf_name" name="smn_unidad_medida_ancho_rf_name" type="hidden">
+		</td>
+	</tr>
+		<tr style="display:none">
+			<td>${lbl:b_dimension_profundidad}*</td>
+			<td>
+				<input id="cit_profundidad" name="cit_profundidad" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+	<tr style="display:none">
+		<td>${lbl:b_dimension_profundidad}*</td>
+		<td>
+			<select name="smn_unidad_medida_profundidad_rf" id="smn_unidad_medida_profundidad_rf" onchange="chgCombo(smn_unidad_medida_profundidad_rf.options[smn_unidad_medida_profundidad_rf.selectedIndex].text,'smn_unidad_medida_profundidad_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_unidad_medida_profundidad_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_unidad_medida_profundidad_rf_rows>
+			</select> 
+			<input id="smn_unidad_medida_profundidad_rf_name" name="smn_unidad_medida_profundidad_rf_name" type="hidden">
+		</td>
+	</tr>
+		<tr style="display:none">
+			<td>${lbl:b_es_medicamento}*</td>
+			<td>
+				<select name="cit_es_medicamento" id="cit_es_medicamento">
+				<option value="SI">${lbl:b_yes}</option>
+				<option value="NO">${lbl:b_not}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr style="display:none">
+			<td>${lbl:b_principio_activo}</td>
+			<td>
+				<select name="smn_principio_activo_rf" id="smn_principio_activo_rf" onchange="chgCombo(smn_principio_activo_rf.options[smn_principio_activo_rf.selectedIndex].text,'smn_principio_activo_rf_name');">
+					<option value="">[Cualquiera]</option>
+					<smn_principio_activo_rf_rows>
+					<option value="${fld:id}">${fld:item}</option>
+			
+					</smn_principio_activo_rf_rows>
+				</select> 
+				<input id="smn_principio_activo_rf_name" name="smn_principio_activo_rf_name" type="hidden">
+			</td>
+		</tr>
+		<tr style="display:none">
+			<td>${lbl:b_requiere_control_lote}*</td>
+			<td>
+				<select name="cit_req_control_lote" id="cit_req_control_lote">
+				<option value="SI">${lbl:b_yes}</option>
+				<option value="NO">${lbl:b_not}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr style="display:none">
+			<td>${lbl:b_requiere_control_vencimiento}*</td>
+			<td>
+				<select name="cit_req_control_vencimiento" id="cit_req_control_vencimiento">
+				<option value="SI">${lbl:b_yes}</option>
+				<option value="NO">${lbl:b_not}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr style="display:none">
+			<td>${lbl:b_dias_antelacion_vencimiento}</td>
+			<td>
+				<input id="cit_dias_ant_vencimiento" name="cit_dias_ant_vencimiento" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+
+		<tr style="display:none">
+			<td>${lbl:b_valoracion_inventario}*</td>
+			<td>
+				<select name="cit_valoracion_inventario" id="cit_valoracion_inventario">
+				<option value="FI">${lbl:b_fifo}</option>
+				<option value="LI">${lbl:lifo}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr style="display:none">
+			<td>${lbl:b_metodo_despacho}*</td>
+			<td>
+				<select name="cit_metodo_despacho" id="cit_metodo_despacho">
+				<option value="FI">${lbl:b_fifo}</option>
+				<option value="LI">${lbl:lifo}</option>
+				<option value="VL">${lbl:b_vencimiento_lote}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr style="display:none">
+			<td>${lbl:b_cantidad_minima}*</td>
+			<td>
+				<input id="cit_cant_minima" name="cit_cant_minima" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr style="display:none">
+			<td>${lbl:b_cantidad_maxima}*</td>
+			<td>
+				<input id="cit_cant_maxima" name="cit_cant_maxima" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr style="display:none">
+			<td>${lbl:b_punto_reorden}*</td>
+			<td>
+				<input id="cit_punto_reorden" name="cit_punto_reorden" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr style="display:none">
+			<td>${lbl:b_cantidad_seguridad}*</td>
+			<td>
+				<input id="cit_cant_seguridad" name="cit_cant_seguridad" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr style="display:none">
+			<td>${lbl:b_es_reusable}*</td>
+			<td>
+				<select name="cit_es_reusable" id="cit_es_reusable">
+				<option value="SI">${lbl:b_yes}</option>
+				<option value="NO">${lbl:b_not}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr style="display:none">
+			<td>${lbl:b_reuso_apertura}</td>
+			<td>
+				<select name="cit_reuso_apertura" id="cit_reuso_apertura">
+				<option value="SI">${lbl:b_yes}</option>
+				<option value="NO">${lbl:b_not}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr style="display:none">
+			<td>${lbl:b_cantidad_reuso}</td>
+			<td>
+				<input id="cit_cant_reuso" name="cit_cant_reuso" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr style="display:none">
+			<td>${lbl:b_origen_producto}*</td>
+			<td>
+				<select name="cit_origen_producto" id="cit_origen_producto">
+				<option value="NA">${lbl:b_nacional}</option>
+				<option value="{IM">${lbl:b_importado}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_descripcion_compra}</td>
+			<td>
+				<textarea id="cit_descripcion_compra" name="cit_descripcion_compra" cols="30" rows="3"></textarea>
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_codigo_arancel}</td>
+			<td>
+				<input id="cit_codigo_arancel" name="cit_codigo_arancel" type="text" maxlength="40" >
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_dias_entrega}</td>
+			<td>
+				<input id="cit_dias_entrega" name="cit_dias_entrega" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+	<tr style="display:none">
+		<td>${lbl:b_cost_centers}*</td>
+		<td>
+			<select name="smn_centro_costo_rf" id="smn_centro_costo_rf" onchange="chgCombo(smn_centro_costo_rf.options[smn_centro_costo_rf.selectedIndex].text,'smn_centro_costo_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_centro_costo_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_centro_costo_rf_rows>
+			</select> 
+			<input id="smn_centro_costo_rf_name" name="smn_centro_costo_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr style="display:none">
+		<td>${lbl:b_composed_item}*</td>
+		<td>
+			<select name="cit_item_compuesto" id="cit_item_compuesto">
+				<option value="SI">${lbl:b_yes}</option>
+				<option value="NO">${lbl:b_not}</option>
+
+			</select> 
+		</td>
+	</tr>
+	<tr id="proexc">
+		<td>${lbl:b_exclusive_provider}*</td>
+		<td>
+			<select name="cit_proveedor_exclusivo" id="cit_proveedor_exclusivo" onchange="chgCombo(cit_proveedor_exclusivo.options[cit_proveedor_exclusivo.selectedIndex].text,'cit_proveedor_exclusivo_name');">
+			<option value="">${lbl:b_not}</option>
+			<smn_proveedor_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+			</smn_proveedor_rf_rows>
+			</select> 
+			<input id="cit_proveedor_exclusivo_name" name="cit_proveedor_exclusivo_name" type="hidden">
+		</td>
+	</tr>
+		<!-- <tr>
+			<td>${lbl:b_exclusive_provider}*</td>
+			<td>
+				<select name="cit_proveedor_exclusivo" id="cit_proveedor_exclusivo">
+					<option value="SI">${lbl:b_yes}</option>
+					<option value="NO">${lbl:b_not}</option>
+
+				</select> 
+			</td>
+		</tr> -->
+		<tr>
+			<td>${lbl:b_tipo_costo}*</td>
+			<td>
+				<select name="cit_tipo_costo" id="cit_tipo_costo">
+					<option value="PR">${lbl:b_promedio}</option>
+					<option value="CM">Costo mas Alto</option>
+					<option value="PP">Promedio Ponderado</option>
+					<option value="Uc">Ultimo Costo</option>
+				</select> 
+			</td>
+		</tr>
+		<tr style="display:none">
+			<td>${lbl:b_stored}*</td>
+			<td>
+				<select name="cit_almacenado" id="cit_almacenado">
+					<option value="SI">${lbl:b_yes}</option>
+					<option value="NO">${lbl:b_not}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr style="display: none">
+			<td>${lbl:b_status}*</td>
+			<td>
+				<select name="cit_estatus" id="cit_estatus">
+					<option value="AC">${lbl:b_account_type_active}</option>
+					<option value="IN">${lbl:b_inactive}</option>
+					<option value="CU">${lbl:b_cuarentena}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr style="display: none">
+			<td>${lbl:b_validation_date}*</td>
+			<td>
+				<input id="cit_vigencia" name="cit_vigencia" type="text" class="date" maxlength="10">
+				<img src="${def:context}/images/dropdown.png" title="Desplegar calendario" onclick="calendarOpen('cit_vigencia')">
+			</td>
+		</tr>
+
+
+	</table>
+
+	<!--botones-->
+	<input id="grabar" type="submit" value="${lbl:b_save_button}" class="button">
+	<input id="limpiar" type="button" value="${lbl:b_clean_button}" onclick="addNew()" class="button">	
+	<input id="copiar" type="button" value="${lbl:b_copy_button}" onclick="getFormValuesToCopy('form1')" class="button">
+	<input id="pegar" type="button" value="${lbl:b_paste_button}" onclick="getFormValuesToPaste('form1')" class="button">
+	<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog(); parent.search();" class="button">	
+	
+	<!-- PK-->
+<input type="hidden" name="id" value="">
+
+</form>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+	onload = function()
+	{ 
+		addNew();
+
+		if (id!="")
+			edit(id);
+	} 
+	
+	function chgCombo(text,id)
+	{
+		document.getElementById(id).value = text;
+	}
+	
+	//configurar formulario para ingresar registro nuevo
+	function addNew()
+	{
+		document.getElementById("formTitle").innerHTML = "${lbl:b_add_record}";
+		document.getElementById("grabar").disabled=false;
+		clearForm("form1");
+		setFocusOnForm("form1");
+	}
+	
+	//retorna al estado previo que corresponde
+	//al estado actual de la pagina, cada llamada Ajax
+	//se encarga de definir cual es la funcion de goBack() que aplica
+	function goBack() 
+	{
+		_goBackFn()			
+	}
+	
+	//mostrar la actualizacion de un registro
+	function insert()
+	{	
+		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/insert", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+	
+	//restaurar el formulario en caso de error
+	function retryAddnewOrEdit() {
+		document.getElementById("grabar").disabled=false;
+		setFocusOnForm("form1");		
+	}
+	
+	var id = "${fld:id}"
+	
+	//grabar el formulario
+	function save()
+	{
+		//determina si es un insert o un update
+		if (document.form1.id.value=="")
+			return insert();
+		else
+			return update();
+	}
+	
+	//editar registro en formulario
+	function edit(id)
+	{
+			clearErrorMessages();
+
+			//llamada Ajax...
+			ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/edit?id=" + id , 
+							divResponse=null, 
+							divProgress="status", 
+							formName=null, 
+							afterResponseFn=null, 
+							onErrorFn=null);	
+	}
+	
+	//actualizar registro en BD
+	function update()
+	{		
+		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/update", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+
+	
+</script>	
+</body>
+</html>

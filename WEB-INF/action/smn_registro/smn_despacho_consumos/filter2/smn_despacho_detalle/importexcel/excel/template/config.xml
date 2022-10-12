@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smndespachodetalle.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_office_detail}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_office_detail}">
+				<col id='smn_despacho_cabecera_id' label='${lbl:b_office_headboard}' />
+		<col id='smn_item_rf' label='${lbl:b_item}' />
+		<col id='dde_cantidad_solicitada' label='${lbl:b_requested_amount}' />
+		<col id='dde_cantidad_despachada' label='${lbl:b_delivered_amount}' />
+		<col id='dde_costo_ml' label='${lbl:b_cost_ml}' />
+		<col id='dde_costo_ma' label='${lbl:b_cost_ma}' />
+		<col id='dde_motivo' label='${lbl:b_reason}' />
+		<col id='smn_usuario_aprobador_rf' label='${lbl:b_approving_user}' />
+		<col id='dde_fecha_aprobacion' label='${lbl:b_approval_date}' />
+		<col id='dde_fecha_cierre' label='${lbl:b_closing_date}' />
+		<col id='dde_estatus_transaccion' label='${lbl:b_transaction_status}' />
+		<col id='dde_idioma' label='${lbl:s_profile_lang}' />
+		<col id='dde_usuario' label='${lbl:b_users}' />
+		<col id='dde_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

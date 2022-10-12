@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_almacen_rf' type='integer' required='true' label='${lbl:b_stores}' maxlen='10'/>
+	<parameter id='smn_division_id_name' type='varchar' required='true' label='${lbl:b_division}'/>
+	<parameter id='smn_division_id' type='integer' required='false' label='${lbl:b_division}' maxlen='10'/>
+	<parameter id='sdi_codigo' type='varchar' required='true' label='${lbl:b_code}' maxlen='10'/>
+	<parameter id='sdi_descripcion' type='varchar' required='true' label='${lbl:b_description}' maxlen='100'/>
+	<parameter id='sdi_es_ubicacion' type='varchar' required='true' label='${lbl:b_es_ubicacion}' maxlen='2'/>
+	<parameter id='sdi_alto' type='double' required='false' label='${lbl:b_dimension_alto}' maxlen='10'/>
+	<parameter id='smn_unidad_medida_alto_rf' type='integer' required='false' label='${lbl:b_unidad_medida_alto}' maxlen='10'/>
+	<parameter id='sdi_ancho' type='double' required='false' label='${lbl:b_dimension_ancho}' maxlen='10'/>
+	<parameter id='smn_unidad_medida_ancho_rf' type='integer' required='false' label='${lbl:b_unidad_medida_ancho}' maxlen='10'/>
+	<parameter id='sdi_profundidad' type='double' required='false' label='${lbl:b_profundidad}' maxlen='10'/>
+	<parameter id='smn_unidad_medida_prof_rf' type='integer' required='false' label='${lbl:b_unidad_medida_profundidad}' maxlen='10'/>
+	
+	
+	<parameter id='sdi_estatus' type='varchar' required='true' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='sdi_vigencia' type='date' required='true' label='${lbl:b_validation_date}' maxlen='10'/>
+	
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarCodigo.sql'
+			id='sdi_codigo'/>
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarDescripcion.sql'
+			id='sdi_descripcion'/>
+
+
+</validator>

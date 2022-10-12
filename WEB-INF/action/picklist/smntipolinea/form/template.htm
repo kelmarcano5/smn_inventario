@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+
+<head>
+
+<link rel="stylesheet" type="text/css" href="${def:context}/dinamica.css" />
+
+<!--biblioteca generica JS/Dinamica-->
+<script type="text/javascript" src="${def:context}/action/script">
+</script>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+		//inicializacion de la pagina cuando carga
+		onload = function()
+		{ 
+			document.form1.elements[0].focus();
+			document.getElementById("status").style.display='none';
+			
+			
+		} 
+		
+		//mostrar filtro de busqueda
+		function showFilter()
+		{
+			document.form1.elements[0].focus();			
+		}
+
+		//ejecutar consulta
+		function search()
+		{
+
+			//llamada Ajax...
+			return ajaxCall(	httpMethod="POST", 
+								uri="${def:actionroot}/search", 
+								divResponse="response", 
+								divProgress="status", 
+								formName="form1", 
+								afterResponseFn=showFilter, 
+								onErrorFn=showFilter);
+		
+		}
+	
+		//leer una pagina del grid
+		function viewPage()
+		{
+			var url = "${def:actionroot}/view";
+			gotoPage(url);
+		}
+
+		//retornar el item seleccionado a la pagina que llamo al picklist
+		function selectItem(id) {
+			var description = document.getElementById(id).innerHTML;
+			parent.selectSmnAgendaId(id, description);
+			document.form1.elements[0].value = '';
+			document.form1.elements[0].focus();
+		}
+		
+</script>
+
+</head>
+
+<body>
+
+<!--banner-->
+<div class="bannerDialog">
+	Seleccionar un registro
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.pickClose()" title="Cerrar" style="float:right; cursor:pointer;">
+	<img id="status" src="${def:context}/images/progbar.gif" style="display:inline; float:right;">
+</div>
+
+<!--formulario de filtro-->
+<form id="form" name="form1" onsubmit="return search()" style="width:90%; margin-top:10px;">
+	<table>
+
+	<!--ancho de la columna de etiquetas-->
+	<col width="30%">
+
+	<!--campos-->
+		<tr>
+		<td>${lbl:b_code}</td>
+			<td>
+				<input id="lin_codigo2" name="lin_codigo2" type="text" maxlength="16" >
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_description}</td>
+			<td>
+				<input id="lin_descripcion2" name="lin_descripcion2" type="text" maxlength="48" >
+			</td>
+		</tr>
+	<!--<tr>
+		<td>${lbl:b_weekday}</td>
+		<td>
+			<select name="age_dia_semana2" id="age_dia_semana2">
+				<option value="LU">${lbl:b_monday}</option>
+				<option value="MA">${lbl:b_tuesday}</option>
+				<option value="MI">${lbl:b_wednesday}</option>
+				<option value="JU">${lbl:b_thursday}</option>
+				<option value="VI">${lbl:b_friday}</option>
+				<option value="SA">${lbl:b_saturday}</option>
+				<option value="DO">${lbl:b_sunday}</option>
+
+			</select> 
+		</td>
+	</tr>
+		<tr>
+			<td>${lbl:b_time_since}</td>
+			<td>
+				<input id="age_hora_desde2" name="age_hora_desde2" type="text" maxlength="5" >
+			</td>
+		</tr>
+	<tr>
+		<td>${lbl:b_working_day}</td>
+		<td>
+			<select name="age_jornada_desde2" id="age_jornada_desde2">
+				<option value="AM">${lbl:b_schedule_am}</option>
+				<option value="PM">${lbl:b_schedule_pm}</option>
+
+			</select> 
+		</td>
+	</tr>
+		<tr>
+			<td>${lbl:b_time_until}</td>
+			<td>
+				<input id="age_hora_hasta2" name="age_hora_hasta2" type="text" maxlength="5" >
+			</td>
+		</tr>
+	<tr>
+		<td>${lbl:b_working_day}</td>
+		<td>
+			<select name="age_jornada_hasta2" id="age_jornada_hasta2">
+				<option value="AM">${lbl:b_schedule_am}</option>
+				<option value="PM">${lbl:b_schedule_pm}</option>
+
+			</select> 
+		</td>
+	</tr>
+		<tr>
+			<td>${lbl:b_location}</td>
+			<td>
+				<input id="age_localidad2" name="age_localidad2" type="text" maxlength="56" >
+			</td>
+		</tr>-->
+
+	
+	</table>
+	<input type="submit" value="Buscar" class="button" style="font-size: 9pt">	
+</form>
+
+<!--panel de respuesta AJAX-->
+<div id="response" style="display: none; width:100%; margin-top:15px;">
+</div>
+
+</body>
+
+</html>

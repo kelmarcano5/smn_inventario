@@ -1,0 +1,1 @@
+select smn_inventario.smn_division.smn_division_id as id, smn_inventario.smn_division.div_codigo|| ' - ' || smn_inventario.smn_division.div_descripcion as item from smn_inventario.smn_division order by div_descripcion

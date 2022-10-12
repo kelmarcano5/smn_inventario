@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnmovimientocabecera.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="4" cellStep="0" name="${lbl:b_inventory_movement}"/>
+	
+	<excel 
+		recordset='query-smnmovimientocabecera.sql' 
+		sheetname='${lbl:b_inventory_movement}' 
+		filename='${lbl:b_inventory_movement}.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='smn_entidad_rf' label='${lbl:b_entity}' />
+		<col id='smn_almacen_rf' label='${lbl:b_store_code}' />
+		<col id='smn_modulo_rf' label='${lbl:b_modules}' />
+		<col id='smn_documento_origen_rf' label='${lbl:b_origin_document}' />
+		<col id='mca_numero_documento_origen' label='${lbl:b_document_number_origin}' />
+		<col id='smn_documento_id' label='${lbl:b_document}' />
+		<col id='mca_numero' label='${lbl:b_number}' />
+		<col id='mca_estatus_proceso' label='${lbl:b_status_process}' />
+		<col id='mca_fecha_registro' label='${lbl:b_store_date}' />
+
+	</excel>
+
+</config>

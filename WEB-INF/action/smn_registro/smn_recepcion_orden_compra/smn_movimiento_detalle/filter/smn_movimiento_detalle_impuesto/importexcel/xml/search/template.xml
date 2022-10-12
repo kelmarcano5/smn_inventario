@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_movimiento_detalle_impuesto>
+	<detail>
+		<rows>		
+		<record mdi_fecha_registro="${fld:mdi_fecha_registro}"    mdi_monto_impuesto_ma="${fld:mdi_monto_impuesto_ma}"    smn_tasa="${fld:smn_tasa}"    smn_moneda="${fld:smn_moneda}"    mdi_monto_impuesto_ml="${fld:mdi_monto_impuesto_ml}"    mdi_tipo_movimiento="${fld:mdi_tipo_movimiento}"    mdi_sustraendo_rf="${fld:mdi_sustraendo_rf}"    smn_porcentaje_impuesto_rf="${fld:smn_porcentaje_impuesto_rf}"    mdi_monto_base="${fld:mdi_monto_base}"    smn_cod_impuesto_deduc_rf="${fld:smn_cod_impuesto_deduc_rf}"    smn_movimiento_detalle_id="${fld:smn_movimiento_detalle_id}"    smn_mov_det_impuesto_id="${fld:smn_mov_det_impuesto_id}"    />
+		</rows>
+	</detail>
+</smn_movimiento_detalle_impuesto>

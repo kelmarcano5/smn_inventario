@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/ajax">
+	<parameter id="id" type="varchar" required="true" label="ID ${lbl:b_auxiliary_class}"/>
+	<parameter id="id2" type="varchar" required="true" label="ID ${lbl:b_movement_detail}"/>
+	<parameter id="sustraendo" type="double" required="false" label="ID ${lbl:b_auxiliary_class}" maxlen='10'/>
+	<parameter id="porcentaje" type="double" required="false" label="ID ${lbl:b_auxiliary_class}" maxlen='10'/>
+	<parameter id='monto_bruto' type='double' required='false' label='${lbl:b_gross_amount_ml}' maxlen='10'/>
+</validator>

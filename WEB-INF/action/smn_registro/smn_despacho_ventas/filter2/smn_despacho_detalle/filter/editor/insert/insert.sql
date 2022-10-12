@@ -1,0 +1,38 @@
+INSERT INTO smn_inventario.smn_despacho_detalle
+(
+	smn_despacho_detalle_id,
+	smn_despacho_id,
+	smn_item_rf,
+	dde_cantidad_solicitada,
+	dde_cantidad_despachada,
+	dde_costo_ml,
+	dde_costo_ma,
+	dde_motivo,
+	smn_usuario_aprobador_rf,
+	dde_fecha_aprobacion,
+	dde_fecha_cierre,
+	dde_estatus_transaccion,
+	dde_idioma,
+	dde_usuario,
+	dde_fecha_registro,
+	dde_hora
+)
+VALUES
+(
+	${seq:currval@smn_inventario.seq_smn_despacho_detalle},
+	${fld:smn_despacho_id},
+	${fld:smn_item_rf},
+	${fld:dde_cantidad_solicitada},
+	${fld:dde_cantidad_despachada},
+	${fld:dde_costo_ml},
+	${fld:dde_costo_ma},
+	${fld:dde_motivo},
+	${fld:smn_usuario_aprobador_rf},
+	${fld:dde_fecha_aprobacion},
+	${fld:dde_fecha_cierre},
+	${fld:dde_estatus_transaccion},
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+)

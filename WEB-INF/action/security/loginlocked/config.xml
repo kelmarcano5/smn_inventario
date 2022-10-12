@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Alert message after account-locked 
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.security.LoginFailedAlert</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>script.js</template>
+		<set-http-headers>true</set-http-headers>
+		<http-status>400</http-status>
+		<content-type>text/javascript; charset=iso-8859-1</content-type>
+		<expiration>0</expiration>
+	</output>
+
+	<!--
+		customise if you want to send email alerts on login errors
+	-->
+	<mail enabled="false">
+		<subject>Alerta de intento de login con cuenta bloqueada</subject>
+		<mail-to>martin.cordova@gmail.com</mail-to>
+		<body>body.txt</body>
+	</mail>
+
+</config>

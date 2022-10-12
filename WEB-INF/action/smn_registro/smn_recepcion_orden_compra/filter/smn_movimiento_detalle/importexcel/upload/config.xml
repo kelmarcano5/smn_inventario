@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Upload de un archivo y retorna la ruta del temporal mas el tamaño, formato y nombre original
+		para que puedar guardarse en campos escondidos del formulario.
+	</summary>
+	
+	<log>false</log>
+
+	<on-error>${def:actionroot}/error</on-error>
+
+	<transaction>
+		<classname>dinamica.upload.UploadTransaction</classname>
+		<validator>true</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>template.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/html</content-type>
+		<expiration>0</expiration>
+		<print mode="form" recordset="_request"/>
+	</output>
+
+</config>

@@ -1,0 +1,29 @@
+<!--data grid-->
+<table class="datagrid rowhover oneCellRow" style="width:95%;">
+
+	<col width='30%'/>
+	<col width='40%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="2" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th onclick="sortBy('dyr_codigo','query-smncodigosdescuentos.sql')" class="sortable">${lbl:b_code}</th>
+		<th onclick="sortBy('dyr_descripcion','query-smncodigosdescuentos.sql')" class="sortable">${lbl:b_description}</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+		<tr onclick="selectDescuento('${fld:smn_descuentos_retenciones_id}','${fld:dyr_porcentaje_base}','${fld:dyr_porcentaje_descuento}','${fld:dyr_apli_cant_precio}');">
+			<td align="center">${fld:dyr_codigo}</td>
+			<td align="center"><span id="${fld:smn_descuentos_retenciones_id}">${fld:dyr_descripcion}</span></td>
+		</tr>
+	</rows>
+
+</table>
+

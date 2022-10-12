@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='smn_ubicacion_cabecera_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_divisiones_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_subdivisiones_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_lote_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='ubd_cantidad_inicial' type='double' required='true' maxlen='10'/>
+	<parameter id='ubd_entrada' type='double' required='true' maxlen='10'/>
+	<parameter id='ubd_salida' type='double' required='true' maxlen='10'/>
+	<parameter id='ubd_cantidad_final' type='double' required='true' maxlen='10'/>
+
+
+
+</validator>

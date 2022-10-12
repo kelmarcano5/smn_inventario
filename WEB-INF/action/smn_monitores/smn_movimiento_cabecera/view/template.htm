@@ -1,0 +1,67 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<!-- <col width='11%'/>
+	<col width='11%'/> -->
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+	<col width='11%'/>
+		<col width='11%'/>
+	<col width='3%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="13" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+	<!-- 	<th class='sortable' onclick='sortBy("smn_entidad_rf","query-smnmovimientocabecera.sql")'>${lbl:b_entity}</th>
+		<th class='sortable' onclick='sortBy("smn_sucursal_rf","query-smnmovimientocabecera.sql")'>${lbl:b_subsidiary}</th> -->
+		<th class='sortable' onclick='sortBy("smn_almacen_rf","query-smnmovimientocabecera.sql")'>${lbl:b_store_code}</th>
+		<th class='sortable' onclick='sortBy("item","query-smnmovimientocabecera.sql")'>${lbl:b_item}</th>
+		<th class='sortable' onclick='sortBy("smn_documento_origen_rf","query-smnmovimientocabecera.sql")'>${lbl:b_origin_document}</th>
+		<th class='sortable' onclick='sortBy("mca_numero_documento_origen","query-smnmovimientocabecera.sql")'>${lbl:b_document_number_origin}</th>
+		<th class='sortable' onclick='sortBy("lote","query-smnmovimientocabecera.sql")'>${lbl:b_lot}</th>
+		<th class='sortable' onclick='sortBy("mde_cantidad_recibida","query-smnmovimientocabecera.sql")'>Cantidad Entrada</th>
+		<th class='sortable' onclick='sortBy("mde_cantidad_solicitada","query-smnmovimientocabecera.sql")'>Cantidad Salida</th>
+		<th class='sortable' onclick='sortBy("mca_estatus_proceso","query-smnmovimientocabecera.sql")'>${lbl:b_status_process}</th>
+		<th class='sortable' onclick='sortBy("mca_fecha_recibida","query-smnmovimientocabecera.sql")'>Fecha Recibida</th>
+		<th class='sortable' onclick='sortBy("mca_fecha_registro","query-smnmovimientocabecera.sql")'>${lbl:b_store_date}</th>
+		<th>DT</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_movimiento_cabecera_id}')" title="${lbl:b_view_detail}"></td>
+		<!-- <td>${fld:smn_entidad_rf}</td>
+		<td>${fld:smn_sucursal_rf}</td> -->
+		<td>${fld:smn_almacen_rf}</td>
+		<td>${fld:item}</td>
+		<td>${fld:smn_documento_origen_rf}</td>
+		<td align='center'>${fld:mca_numero_documento_origen}</td>
+		<td align='center'>${fld:lote}</td>
+		<td align='center'>${fld:mde_cantidad_recibida}</td>
+		<td align='center'>${fld:mde_cantidad_solicitada}</td>
+		<td align='left'>${fld:mca_estatus_proceso}</td>
+		<td>${fld:mca_fecha_recibida@dd-MM-yyyy}</td>
+		<td>${fld:mca_fecha_registro@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="detalle('${fld:smn_movimiento_cabecera_id}')" title="${lbl:b_movement_detail}"></td>
+
+	</tr>
+	</rows>
+
+</table>

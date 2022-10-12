@@ -1,0 +1,11 @@
+#fila tr.datarow:hover td {
+   
+}
+
+#tabla {
+	
+	border-collapse: separate; 
+	border-spacing: 75px 100px;
+	 margin-top: 10px;
+	margin-bottom: 10px;
+}

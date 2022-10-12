@@ -1,0 +1,55 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="10" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick="sortBy('smn_item_rf','query-smnmovimientodetalle.sql')" >${lbl:b_item}</th>
+		<th class='sortable' onclick="sortBy('mde_lote','query-smnmovimientodetalle.sql')" >${lbl:b_lot}</th>
+		<th class='sortable' onclick="sortBy('mde_tipo_movimiento','query-smnmovimientodetalle.sql')" >${lbl:b_movement_type}</th>
+		<th class='sortable' onclick="sortBy('mde_cantidad_recibida','query-smnmovimientodetalle.sql')" >${lbl:b_received_amount}</th>
+		<th class='sortable' onclick="sortBy('mde_es_bonificacion','query-smnmovimientodetalle.sql')" >${lbl:b_bonus}</th>
+		<th class='sortable' onclick="sortBy('smn_unidad_medida_rf','query-smnmovimientodetalle.sql')" >${lbl:b_measurement_unit}</th>
+		<th class='sortable' onclick="sortBy('mde_fecha_registro','query-smnmovimientodetalle.sql')" >${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_movimiento_detalle_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_movimiento_detalle_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_movimiento_detalle_id}')" title="${lbl:b_edit_button}"></td>
+		<td align="center">${fld:smn_item_rf}</td>
+		<td align="center">${fld:mde_lote}</td>
+		<td align="left">${fld:mde_tipo_movimiento}</td>
+		<td align="center">${fld:mde_cantidad_recibida}</td>
+		<td align="left">${fld:mde_es_bonificacion}</td>
+		<td align="center">${fld:smn_unidad_medida_rf}</td>
+		<td align="center">${fld:mde_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

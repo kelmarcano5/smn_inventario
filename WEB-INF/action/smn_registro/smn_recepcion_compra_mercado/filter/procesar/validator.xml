@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/alert">
+	
+	<!-- valores de la tabla smn_movimiento_cabecera -->
+	
+	<parameter id='smn_movimiento_cabecera_id' type='integer' required='true' label='${lbl:b_header_mov}' maxlen='10'/>
+	<parameter id='smn_almacen_rf' type='integer' required='false' label='${lbl:b_almacen}' maxlen='10'/>
+	<parameter id='smn_entidad_rf' type='integer' required='false' label='${fld:smn_entidad_rf}' maxlen='10'/>
+	<parameter id='smn_sucursal_rf' type='integer' required='false' label='${fld:smn_sucursal_rf}' maxlen='10'/>
+	<parameter id='mca_fecha_recibida' type='date' required='false' label='${fld:mca_fecha_recibida}' maxlen='10'/>
+	<parameter id='smn_documento_id' type='integer' required='false' label='${fld:smn_documento_id}' maxlen='10'/>
+	<parameter id='smn_auxiliar_rf' type='integer' required='false' label='${fld:smn_auxiliar_rf}' maxlen='10' />
+	<parameter id='mca_fecha_registro' type='date' required='false' label='${fld:mca_fecha_registro}' maxlen='10' />
+	<parameter id='mca_numero' type='integer' required='false' label='${fld:mca_numero}' maxlen='10' />
+	<parameter id='smn_proveedor_rf' type='integer' required='false' label='${fld:smn_proveedor_rf}' maxlen='10' />
+	<parameter id='mca_monto_documento_ml' type='double' required='false' label='${fld:mca_monto_documento_ml}' maxlen='10' />
+	<parameter id='mca_monto_documento_ma' type='double' required='false' label='${fld:mca_monto_documento_ma}' maxlen='10' />
+	
+	<!-- valores de la tabla smn_movimiento_detalle -->
+	
+	<parameter id='smn_movimiento_detalle_id' type='integer' required='false' label='${lbl:b_movimiento_detalle_id}' maxlen='10'/>
+	<parameter id='smn_item_rf' type='integer' required='false' label='${fld:smn_item_rf}' maxlen='10'/>
+	<parameter id='mde_lote' type='integer' required='false' label='${fld:mde_lote}' maxlen='10'/>
+	<parameter id='mde_cantidad_recibida' type='double' required='false' label='${fld:mde_cantidad_recibida}' maxlen='50'/>
+	<parameter id='mde_fecha_vencimiento_lote' type='date' required='false' label='${fld:mde_fecha_vencimiento_lote}' maxlen='10'/>
+	<parameter id='mde_monto_bruto_ml' type='double' required='false' label='${fld:mde_monto_bruto_ml}' maxlen='10' />
+	<parameter id='mde_monto_bruto_ma' type='double' required='false' label='${fld:mde_monto_bruto_ma}' maxlen='10' />
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${fld:smn_moneda_rf}' maxlen='10' />
+	<parameter id='smn_tasa_rf'   type='integer' required='false' label='${fld:smn_tasa_rf}'   maxlen='10' />
+	
+	<!-- valores de la tabla smn_caracteristica_item -->
+	
+	<parameter id='smn_caracteristica_item_id' type='integer' required='false' label='${fld:smn_caracteristica_item_id}' maxlen='10'/>
+	
+	<!-- valores de la tabla smn_caracteristica_almacen -->
+	
+	<parameter id='smn_caracteristica_almacen_id' type='integer' required='false' label='${fld:smn_caracteristica_almacen_id}' maxlen='10'/>
+	
+	<!-- valores de la tabla smn_control_item -->
+	
+	<parameter id='coi_fecha_movimiento' type='date' required='false' label='${lbl:b_fecha_movimiento}' maxlen='10'/>
+	<parameter id='smn_control_item_id' type='integer' required='false' label='${lbl:b_control_item}' maxlen='10'/>
+	<parameter id='coi_precio' type='double' required='false' label='${lbl:b_precio}' maxlen='10'/>
+	<parameter id='coi_saldo_inicial_existencia' type='double' required='false' label='${lbl:b_saldo_inicial_existencia}' maxlen='10'/>
+	<parameter id='coi_cantidad_entradas' type='double' required='false' label='${lbl:b_cantidad_entradas}' maxlen='10'/>
+	<parameter id='coi_cantidad_salidas' type='double' required='false' label='${lbl:b_cantidad_salidas}' maxlen='10'/>
+	<parameter id='coi_saldo_final_existencia' type='double' required='false' label='${lbl:b_saldo_final_existencia}' maxlen='10'/>
+	<parameter id='coi_valor_inicial' type='double' required='false' label='${lbl:b_valor_inicial}' maxlen='10'/>
+  	<parameter id='coi_valor_entrada' type='double' required='false' label='${lbl:b_valor_entrada}' maxlen='10'/>
+  	<parameter id='coi_valor_salida' type='double' required='false' label='${lbl:b_valor_salida}' maxlen='10'/>
+  	<parameter id='coi_valor_final' type='double' required='false' label='${lbl:b_valor_final}' maxlen='10'/>
+  	<parameter id='coi_costo_promedio' type='double' required='false' label='${lbl:b_costo_promedio}' maxlen='10'/>
+  	<parameter id='coi_ultimo_costo' type='double' required='false' label='${lbl:b_ultimo_costo}' maxlen='10'/>
+  	<parameter id='coi_costo_reposicion' type='double' required='false' label='${lbl:b_costo_reposicion}' maxlen='10'/>
+  	<parameter id='coi_costo_mas_alto' type='double' required='false' label='${lbl:b_costo_mas_alto}' maxlen='10'/>
+   	<parameter id='coi_costo_promedio_ponderado' type='double' required='false' label='${lbl:b_costo_promedio_ponderado}' maxlen='10'/>
+
+   	<parameter id='coi_precio_ma' type='double' required='false' label='${lbl:b_precio}' maxlen='10'/>
+   	<parameter id='coi_valor_inicial_ma' type='double' required='false' label='${lbl:b_valor_inicial}' maxlen='10'/>
+  	<parameter id='coi_valor_entrada_ma' type='double' required='false' label='${lbl:b_valor_entrada}' maxlen='10'/>
+  	<parameter id='coi_valor_salida_ma' type='double' required='false' label='${lbl:b_valor_salida}' maxlen='10'/>
+  	<parameter id='coi_valor_final_ma' type='double' required='false' label='${lbl:b_valor_final}' maxlen='10'/>
+  	<parameter id='coi_costo_promedio_ma' type='double' required='false' label='${lbl:b_costo_promedio}' maxlen='10'/>
+  	<parameter id='coi_ultimo_costo_ma' type='double' required='false' label='${lbl:b_ultimo_costo}' maxlen='10'/>
+  	<parameter id='coi_costo_reposicion_ma' type='double' required='false' label='${lbl:b_costo_reposicion}' maxlen='10'/>
+  	<parameter id='coi_costo_mas_alto_ma' type='double' required='false' label='${lbl:b_costo_mas_alto}' maxlen='10'/>
+   	<parameter id='coi_costo_promedio_ponderado_ma' type='double' required='false' label='${lbl:b_costo_promedio_ponderado}' maxlen='10'/>
+ 	 
+ 	<!-- valores de la tabla smn_control_item -->
+ 	 
+ 	<parameter id='col_cantidad_final' type='double' required='false' label='${fld:col_cantidad_final}' maxlen='10'/>
+ 	 
+ 	<!-- valores de la tabla smn_ubicacion_cabecera -->
+ 	
+ 	<parameter id='smn_ubicacion_cabecera_id' type='integer' required='false' label='${fld:smn_ubicacion_cabecera_id}' maxlen='10'/>
+ 	
+ 	<!-- valores de la tabla smn_cont_financiera.smn_documento -->
+	
+	<parameter id='smn_documento_cabecera_id' type='integer' required='false' label='${fld:smn_documento_cabecera_id}' maxlen='10'/>
+	
+	<!-- otros valores -->
+	
+	<parameter id='mensaje' type='varchar' required='false' label='${fld:b_mensaje}' maxlen='100'/>
+	<parameter id='total_monto_bruto_ml' type='double' required='false' label='${fld:total_monto_bruto_ml}' maxlen='10'/>
+	<parameter id='total_monto_bruto_ma' type='double' required='false' label='${fld:total_monto_bruto_ma}' maxlen='10'/>
+	<parameter id='total_monto_disminucion_ml' type='double' required='false' label='${fld:total_monto_disminucion_ml}' maxlen='10'/>
+	<parameter id='total_monto_disminucion_ma' type='double' required='false' label='${fld:total_monto_disminucion_ma}' maxlen='10'/>
+	<parameter id='total_monto_valor_agregado_ml' type='double' required='false' label='${fld:total_monto_valor_agregado_ml}' maxlen='10'/>
+	<parameter id='total_monto_valor_agregado_ma' type='double' required='false' label='${fld:total_monto_valor_agregado_ma}' maxlen='10'/>
+	<parameter id='total_monto_neto_ml' type='double' required='false' label='${fld:total_monto_neto_ml}' maxlen='10'/>
+	<parameter id='total_monto_neto_ma' type='double' required='false' label='${fld:total_monto_neto_ma}' maxlen='10'/>
+	<parameter id='smn_modulos_id' type='integer' required='false' label='${fld:smn_modulos_id}' maxlen='10' />
+	<parameter id='smn_documento_general_rf' type='integer' required='false' label='${fld:smn_documento_general_rf}' maxlen='10' />
+	<parameter id='smn_tipo_documento_id' type='integer' required='false' label='${fld:smn_tipo_documento_id}' maxlen='10' />
+	<parameter id='mca_recibo' type='integer' required='false' label='${fld:mca_recibo}' maxlen='10' />
+	<parameter id='smn_clase_auxiliar_rf' type='integer' required='false' label='${fld:smn_clase_auxiliar_rf}' maxlen='10' />
+	<parameter id='smn_centro_costo_rf' type='integer' required='false' label='${fld:smn_centro_costo_rf}' maxlen='10' />
+	<parameter id='mcc_tipo_comp' type='integer' required='false' label='${fld:mcc_tipo_comp}' maxlen='10' />
+	<parameter id='doc_descripcion' type='varchar' required='false' label='${fld:doc_descripcion}' maxlen='100' />
+	<parameter id='campo' type='varchar' required='false' label='${fld:campo}' maxlen='50' />
+	<parameter id='tabla' type='varchar' required='false' label='${fld:tabla}' maxlen='50' />
+	<parameter id='smn_diccionario_id' type='integer' required='false' label='${fld:smn_diccionario_id}' maxlen='10' />
+	<parameter id='smn_tipo_elemento_id' type='integer' required='false' label='${fld:smn_tipo_elemento_id}' maxlen='10' />
+	<parameter id='elemento' type='integer' required='false' label='${fld:elemento}' maxlen='10' />
+	<parameter id='smn_centro_costo_rf_elemento' type='integer' required='false' label='${fld:smn_centro_costo_rf_elemento}' maxlen='10' />
+	<parameter id='smn_tasa' type='double' required='false' label='${fld:smn_tasa}' maxlen='10' />
+	<parameter id='smn_usuario_rf' type='integer' required='false' label='${fld:smn_usuario_rf}' maxlen='10' />
+	<parameter id='doc_fecha_vcto' type='string' required='false' label='${fld:doc_fecha_vcto}' maxlen='10' />
+	
+</validator>

@@ -1,0 +1,2 @@
+ and
+ 	smn_inventario.smn_movimiento_detalle_impuesto.smn_cod_impuesto_deduc_rf=${fld:smn_cod_impuesto_deduc_rf}

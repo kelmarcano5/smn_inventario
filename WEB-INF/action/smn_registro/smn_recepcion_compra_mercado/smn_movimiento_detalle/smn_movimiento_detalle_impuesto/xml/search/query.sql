@@ -1,0 +1,25 @@
+select
+	imp_monto_sustraendo,
+		smn_inventario.smn_movimiento_detalle_impuesto.smn_movimiento_detalle_impuesto_id,
+select
+		smn_inventario.smn_movimiento_detalle_impuesto.smn_movimiento_detalle_impuesto_id,
+select
+		smn_inventario.smn_movimiento_detalle_impuesto.smn_movimiento_detalle_impuesto_id,
+select
+		smn_inventario.smn_movimiento_detalle_impuesto.smn_movimiento_detalle_impuesto_id,
+	case
+	when smn_inventario.smn_movimiento_detalle_impuesto.mdi_tipo_movimiento='DE' then '${lbl:b_debit}'
+	when smn_inventario.smn_movimiento_detalle_impuesto.mdi_tipo_movimiento='CR' then '${lbl:b_credit}'
+	end as mdi_tipo_movimiento,
+	smn_inventario.smn_movimiento_detalle_impuesto.smn_cod_impuesto_deduc_rf,
+	smn_inventario.smn_movimiento_detalle_impuesto.mdi_monto_base,
+	smn_inventario.smn_movimiento_detalle_impuesto.smn_porcentaje_impuesto_rf,
+	smn_inventario.smn_movimiento_detalle_impuesto.mdi_sustraendo_rf,
+	smn_inventario.smn_movimiento_detalle_impuesto.mdi_tipo_movimiento,
+	smn_inventario.smn_movimiento_detalle_impuesto.mdi_monto_impuesto_ml,
+	smn_inventario.smn_movimiento_detalle_impuesto.mdi_monto_impuesto_ma,
+	smn_inventario.smn_movimiento_detalle_impuesto.mdi_fecha_registro
+	
+from
+	smn_inventario.smn_movimiento_detalle_impuesto
+	left outer join smn_base.smn_codigos_impuestos on smn_base.smn_codigos_impuestos.smn_codigos_impuestos_id = smn_inventario.smn_movimiento_detalle_impuesto.mdi_sustraendo_rf

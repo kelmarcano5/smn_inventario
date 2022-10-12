@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/alert'>
+	<parameter id='id' type='integer' required='false' label='ID' maxlen='10' />
+	<parameter id='smn_almacen_rf' type='integer' required='false' label='ID' maxlen='10' />
+	<parameter id='smn_documento_id' type='integer' required='false' label='ID' maxlen='10' />
+	<parameter id='vcf_fecha_generacion' type='varchar' required='false' label='ID' maxlen='100' />
+	<parameter id='smn_almacen_rf' type='integer' required='false' label='${lbl:b_store_code}' maxlen='10'/>
+	<parameter id='smn_conteo_id' type='integer' required='false' label='${lbl:b_conteo}' maxlen='10'/>
+	<parameter id='smn_item_id' type='integer' required='false' label='ITEM' maxlen='10'/>
+	<parameter id='cfi_cantidad' type='double' required='false' label='${lbl:b_quatity_count}' maxlen='10'/>
+	<parameter id='coi_saldo_final_existencia' type='double' required='false' label='${lbl:b_quatity_existency}' maxlen='10'/>
+	<parameter id='coi_costo_promedio' type='double' required='false' label='${lbl:b_quatity_different}' maxlen='10'/>
+	<parameter id='smn_unidad_medida_almacenaje_id' type='integer' required='false' label='${lbl:b_unidad_almacenamiento}' maxlen='10'/>
+	<parameter id='vcf_costo_ml' type='double' required='false' label='${lbl:b_cost_ml}' maxlen='10'/>
+	<parameter id='vcf_monto_ml' type='double' required='false' label='${lbl:b_amount_ml}' maxlen='10'/>
+	<parameter id='vcf_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+	<!-- <parameter id='vcf_fecha_generacion' type='date' required='false' label='Fecha Generacion' maxlen='10'/> -->
+</validator>

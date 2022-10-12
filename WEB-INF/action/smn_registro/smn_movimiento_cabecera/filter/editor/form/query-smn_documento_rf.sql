@@ -1,0 +1,1 @@
+select smn_compras.smn_documentos.smn_documentos_id as id, smn_compras.smn_documentos.dcc_codigo|| ' - ' || smn_compras.smn_documentos.dcc_nombre as item from smn_compras.smn_documentos

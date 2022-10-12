@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/ajax">
+	<parameter id="entidad_id" type="integer" required="true" label="ID ${lbl:b_entities}" />
+	<parameter id="sucursal_id" type="integer" required="false" label="ID ${lbl:b_subsidiaries}" />
+	<parameter id="almacen_id" type="integer" required="true" label="ID ${lbl:b_store}" />
+</validator>

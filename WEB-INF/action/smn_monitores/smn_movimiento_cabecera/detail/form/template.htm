@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+	
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+
+	<script type="text/javascript">
+		//invoca la generacion de un PDF en un popup
+		function openPDF()
+		{
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/pdf?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a excel
+		function openExcel() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/excel?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a xml
+		function openXml(id) {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/xml/search?id=" + id;
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a texto
+		function openTxt(id) {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/txt/search?id=" + id;
+			var w = window.open(url, null, features);
+		}
+		
+		//envio de emails
+		function openEmails() {
+			var uri = "${def:context}${def:actionroot}/email/form";					
+			openDialog("editor0", uri, 980, 600);	
+		}
+	</script>
+
+</head>
+
+<body>
+
+	<!--banner-->
+	<div class="bannerDialog" id="encabezado_tabla">
+		${lbl:b_inventory_movement}
+		<img src="${def:context}/images/pdf.png" onclick="openPDF()" title="${lbl:b_export_pdf}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/excel.png" onclick="openExcel()" title="${lbl:b_export_excel}" style="cursor:pointer; margin-left:3px;"/>
+	<!-- 	<img src="${def:context}/images/file-xml4.png" onclick="openXml('${fld:smn_movimiento_cabecera_id}')" title="${lbl:b_export_xml}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/file-text.png" onclick="openTxt('${fld:smn_movimiento_cabecera_id}')" title="${lbl:b_export_txt}" style="cursor:pointer; margin-left:3px;"/>
+		<img src="${def:context}/images/emails.png" onclick="openEmails()" title="${lbl:s_profile_email}" style="cursor:pointer; margin-left:3px;"/> -->
+		<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog()" title="${lbl:b_close_button}" style="float:right; cursor:pointer;"/>
+	</div>
+
+	<table class="record" style="width:500px;">
+		<tr>
+			<td width="40%">${lbl:b_entity}</td>
+			<td style="background-color: white">${fld:smn_entidad_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_subsidiary}</td>
+			<td style="background-color: white">${fld:smn_sucursal_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_store_code}</td>
+			<td style="background-color: white">${fld:smn_almacen_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_modules}</td>
+			<td style="background-color: white">${fld:smn_modulo_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_origin_document}</td>
+			<td style="background-color: white">${fld:smn_documento_origen_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_document_number_origin}</td>
+			<td style="background-color: white">${fld:mca_numero_documento_origen}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_document}</td>
+			<td style="background-color: white">${fld:smn_documento_id}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_number}</td>
+			<td style="background-color: white">${fld:mca_numero}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_document_type}</td>
+			<td style="background-color: white">${fld:smn_tipo_documento_pago_id}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_providers}</td>
+			<td style="background-color: white">${fld:smn_proveedor_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_purchase_order_header}</td>
+			<td style="background-color: white">${fld:smn_orden_compra_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_receipt}</td>
+			<td style="background-color: white">${fld:mca_recibo}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_document_amount_ml}</td>
+			<td style="background-color: white">${fld:mca_monto_documento_ml@#,###,##0.00}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_document_amount_ma}</td>
+			<td style="background-color: white">${fld:mca_monto_documento_ma@#,###,##0.00}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_decrease_amount_ml}</td>
+			<td style="background-color: white">${fld:mca_monto_diminucion_ml@#,###,##0.00}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_decrease_amount_ma}</td>
+			<td style="background-color: white">${fld:mca_monto_diminucion_ma@#,###,##0.00}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_agree_value_amount_ml}</td>
+			<td style="background-color: white">${fld:mca_monto_valor_agregado_ml@#,###,##0.00}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_agree_value_amount_ma}</td>
+			<td style="background-color: white">${fld:mca_monto_valor_agregado_ma@#,###,##0.00}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_net_document_amount_ml}</td>
+			<td style="background-color: white">${fld:mca_monto_neto_ml@#,###,##0.00}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_net_document_amount_ma}</td>
+			<td style="background-color: white">${fld:mcc_monto_neto_ma@#,###,##0.00}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_coins}</td>
+			<td style="background-color: white">${fld:smn_moneda_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_exchange_rate}</td>
+			<td style="background-color: white">${fld:smn_tasa_rf}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_date_received}</td>
+			<td style="background-color: white">${fld:mca_fecha_recibida@dd-MM-yyyy}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_status_process}</td>
+			<td style="background-color: white">${fld:mca_estatus_proceso}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_status_financial}</td>
+			<td style="background-color: white">${fld:mca_estatus_financiero}</td>
+		</tr>
+		<tr>
+			<td width="40%">${lbl:b_store_date}</td>
+			<td style="background-color: white">${fld:mca_fecha_registro@dd-MM-yyyy}</td>
+		</tr>
+
+	</table>
+
+	<br>
+	<div  align="center">
+		<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog()" class="button">
+	</div>
+
+</body>
+
+</html>

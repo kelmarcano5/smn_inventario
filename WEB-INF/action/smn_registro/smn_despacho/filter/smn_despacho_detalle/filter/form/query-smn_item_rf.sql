@@ -1,0 +1,1 @@
+select smn_item_id as id, itm_codigo ||' - '|| itm_nombre as item from smn_base.smn_item order by smn_item_id

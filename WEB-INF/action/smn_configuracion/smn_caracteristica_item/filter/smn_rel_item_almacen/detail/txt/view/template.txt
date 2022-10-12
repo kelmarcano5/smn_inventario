@@ -1,0 +1,3 @@
+<rows>
+smn_almacen_rf="${fld:smn_almacen_rf}"    smn_caracteristica_item_id="${fld:smn_caracteristica_item_id}"    
+</rows>

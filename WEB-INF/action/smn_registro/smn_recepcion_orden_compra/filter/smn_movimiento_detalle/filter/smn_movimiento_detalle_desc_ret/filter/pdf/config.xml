@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnmovimientodetalledescret.sql" source="session" scope="transaction" />
+		<recordset id="filter.params" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_retention_discount}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' align="left" />
+	<pdf-file-name>${lbl:b_retention_discount}.pdf</pdf-file-name>
+
+	<pdf-report pageSize="letter" rotate="false" footer="true" header="true">
+		<record recordset='filter.params' title='${lbl:b_filter_find}' noFilterMsg='-- ${lbl:b_all_message} --' width='55' spacingBefore='15'>
+			<col name='smn_codigo_descuento_rf' title='${lbl:b_code_discount}'  format='######' align='left' />
+			<col name='mdd_monto_base_ml' title='${lbl:b_base_amount_ml}'  format='#,###,##0.00' align='left' />
+
+		</record>
+		<record recordset='query-smnmovimientodetalledescret.sql' width='100' spacingBefore='10'>
+			<col name='smn_codigo_descuento_rf' title='${lbl:b_code_discount}' width='33' align='left' format='######' />
+			<col name='mdd_monto_base_ml' title='${lbl:b_base_amount_ml}' width='33' align='left' format='#,###,##0.00' />
+			<col name='smn_porcentaje_rf' title='${lbl:b_percentage}' width='33' align='left' format='#,###,##0.00' />
+
+		</record>
+
+	</pdf-report>
+</config>

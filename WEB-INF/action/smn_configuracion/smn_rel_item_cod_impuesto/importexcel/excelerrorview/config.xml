@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Ver resultado de errores paginado
+	</summary>
+
+	<log>false</log>
+	
+	<set-request-attribute id="controls" value="file:/WEB-INF/action/pagecontrols/controls.htm"/>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="error.excel" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>template.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/plain; charset=iso-8859-1</content-type>
+		<print mode="table" recordset="error.excel" tag="rows" alternate-colors="true" />
+	</output>
+
+</config>

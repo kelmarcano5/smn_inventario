@@ -1,0 +1,29 @@
+<!--data grid-->
+<table class="datagrid rowhover oneCellRow" style="width:95%;">
+
+	<col width='30%'/>
+	<col width='40%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="2" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th onclick="sortBy('imp_codigo','query-smncodigosimpuestos.sql')" class="sortable">${lbl:b_code}</th>
+		<th onclick="sortBy('imp_descripcion','query-smncodigosimpuestos.sql')" class="sortable">${lbl:b_description}</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+		<tr onclick="selectImpuesto('${fld:smn_codigos_impuestos_id}','${fld:imp_tipo_codigo}','${fld:imp_porcentaje_base}','${fld:imp_porcentaje_calculo}','${fld:imp_monto_sustraendo}')">
+			<td align="center">${fld:imp_codigo}</td>
+			<td align="center"><span id="${fld:smn_codigos_impuestos_id}">${fld:imp_descripcion}</span></td>
+		</tr>
+	</rows>
+
+</table>
+

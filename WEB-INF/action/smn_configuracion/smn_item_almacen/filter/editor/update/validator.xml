@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_item_rf' type='integer' required='true' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='smn_almacen_rf' type='integer' required='true' label='${lbl:b_stores}' maxlen='10'/>
+	<parameter id='ria_estatus' type='varchar' required='true' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='ria_vigencia' type='date' required='true' label='${lbl:b_validation_date}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_relacion_item_almacen}' maxlen='10'/>
+
+
+</validator>

@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='smn_entidad_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_sucursal_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_caracteristica_almacen_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_caracteristica_item_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='col_lote' type='varchar' required='true' maxlen='50'/>
+	<parameter id='col_fecha_vencimiento' type='date' required='true' maxlen='10'/>
+	<parameter id='col_cantidad_inicial' type='double' required='true' maxlen='10'/>
+	<parameter id='col_entradas' type='double' required='true' maxlen='10'/>
+	<parameter id='col_salidas' type='double' required='true' maxlen='10'/>
+	<parameter id='col_cantidad_final' type='double' required='true' maxlen='10'/>
+
+
+
+</validator>

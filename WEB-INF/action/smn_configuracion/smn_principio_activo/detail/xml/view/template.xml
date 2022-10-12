@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_principio_activo>
+	<detail>
+		<rows>		
+		<record pac_fecha_registro="${fld:pac_fecha_registro}"    pac_fecha_vigencia="${fld:pac_fecha_vigencia}"    pac_estatus="${fld:pac_estatus}"    pac_descripcion_completa="${fld:pac_descripcion_completa}"    pac_descripcion="${fld:pac_descripcion}"    pac_codigo="${fld:pac_codigo}"    />
+		</rows>
+	</detail>
+</smn_principio_activo>

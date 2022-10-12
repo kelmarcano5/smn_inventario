@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='smn_almacen_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='cal_tipo_almacen' type='varchar' required='true' maxlen='2'/>
+	<parameter id='cal_capacidad_almacenaje' type='double' required='true' maxlen='10'/>
+	<parameter id='smn_unidad_medida_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='cal_espacio_fisico' type='double' required='true' maxlen='10'/>
+	<parameter id='smn_unidad_medida_espacio_fisico_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='cal_politica_recepcion' type='varchar' required='true' maxlen='2'/>
+	<parameter id='cal_estatus' type='varchar' required='true' maxlen='2'/>
+	<parameter id='cal_vigencia_desde' type='date' required='true' maxlen='10'/>
+	<parameter id='cal_vigencia_hasta' type='date' required='true' maxlen='10'/>
+
+
+
+</validator>

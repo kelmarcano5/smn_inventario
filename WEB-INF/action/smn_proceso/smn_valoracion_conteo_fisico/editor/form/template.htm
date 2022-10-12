@@ -1,0 +1,461 @@
+<!doctype html>
+<html>
+
+<head>
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+	
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+
+</head>
+
+<body>
+
+<!--banner-->
+<div class="bannerDialog" id="encabezado_tabla">
+	${lbl:smn_valoration_count_physic}
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+	${req:progress}
+</div>
+
+<!--formulario addnew/edit-->
+<form name="form1" onsubmit="return save()" style="width:500px;">
+
+	<!-- titulo -->
+	<h1 id="formTitle">${lbl:b_add_record}</h1>
+
+	<table>
+
+		<!--ancho de la columna de etiquetas-->
+		<col width="30%">
+
+		<!--campos-->
+			<tr>
+		<td>${lbl:b_store_code}*</td>
+		<td>
+			<select name="smn_almacen_rf" id="smn_almacen_rf" onchange="chgCombo(smn_almacen_rf.options[smn_almacen_rf.selectedIndex].text,'smn_almacen_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_almacen_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_almacen_rf_rows>
+			</select> 
+			<input id="smn_almacen_rf_name" name="smn_almacen_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_conteo}*</td>
+		<td>
+			<select name="smn_conteo_id" id="smn_conteo_id" onchange="chgCombo(smn_conteo_id.options[smn_conteo_id.selectedIndex].text,'smn_conteo_id_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_conteo_id_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_conteo_id_rows>
+			</select> 
+			<input id="smn_conteo_id_name" name="smn_conteo_id_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_purchasing_documents}*</td>
+		<td>
+			<select name="smn_documento_id" id="smn_documento_id" onchange="chgCombo(smn_documento_id.options[smn_documento_id.selectedIndex].text,'smn_documento_id_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_documento_id_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_documento_id_rows>
+			</select> 
+			<input id="smn_documento_id_name" name="smn_documento_id_name" type="hidden">
+		</td>
+	</tr>
+		<tr>
+			<td>${lbl:b_number_document}*</td>
+			<td>
+				<input id="vcf_numero_documento" name="vcf_numero_documento" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+	<tr>
+		<td>${lbl:b_item}*</td>
+		<td>
+			<select name="smn_item_id" id="smn_item_id" onchange="chgCombo(smn_item_id.options[smn_item_id.selectedIndex].text,'smn_item_id_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_item_id_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_item_id_rows>
+			</select> 
+			<input id="smn_item_id_name" name="smn_item_id_name" type="hidden">
+		</td>
+	</tr>
+		<tr>
+			<td>${lbl:b_quatity_count}*</td>
+			<td>
+				<input id="vcf_cantidad_contada" name="vcf_cantidad_contada" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_quatity_existency}*</td>
+			<td>
+				<input id="vcf_cantidad_existencia" name="vcf_cantidad_existencia" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_quatity_different}*</td>
+			<td>
+				<input id="vcf_cantidad_diferencia" name="vcf_cantidad_diferencia" type="text" maxlength="10" class="numeric" >
+			</td>
+		</tr>
+	<tr>
+		<td>${lbl:b_unidad_almacenamiento}*</td>
+		<td>
+			<select name="smn_unidad_medida_almacenaje_id" id="smn_unidad_medida_almacenaje_id" onchange="chgCombo(smn_unidad_medida_almacenaje_id.options[smn_unidad_medida_almacenaje_id.selectedIndex].text,'smn_unidad_medida_almacenaje_id_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_unidad_medida_almacenaje_id_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_unidad_medida_almacenaje_id_rows>
+			</select> 
+			<input id="smn_unidad_medida_almacenaje_id_name" name="smn_unidad_medida_almacenaje_id_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_coins}</td>
+		<td>
+			<select name="smn_moneda_rf" id="smn_moneda_rf" onchange="chgCombo1(smn_moneda_rf.options[smn_moneda_rf.selectedIndex].text,'smn_moneda_rf_name');cambiarmoneda();">
+				<option value="">[Cualquiera]</option>
+				<smn_moneda_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_moneda_rf_rows>
+			</select> 
+			<input id="smn_moneda_rf_name" name="smn_moneda_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr style="display: none" id="tasa">
+		<td>${lbl:b_exchange_rate}</td>
+		<td>
+			<select name="smn_tasa_rf" id="smn_tasa_rf" onchange="chgCombo(smn_tasa_rf.options[smn_tasa_rf.selectedIndex].text,'smn_tasa_rf_name');seteartasa(smn_tasa_rf.options[smn_tasa_rf.selectedIndex].text,'smn_tasa_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_tasa_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_tasa_rf_rows>
+			</select> 
+			<input id="smn_tasa_rf_name" name="smn_tasa_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr style="display: none" id="costoma">
+		<td>${lbl:b_cost_ma}</td>
+		<td>
+			<input id="vcf_costo_ma" name="vcf_costo_ma" type="text" maxlength="10" class="numeric" onchange="calcularmontoma()">
+		</td>
+	</tr>
+	<tr style="display: none" id="montoma">
+		<td>${lbl:b_amount_ma}</td>
+		<td>
+			<input id="vcf_monto_ma" name="vcf_monto_ma" type="text" maxlength="10" class="numeric">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_cost_ml}*</td>
+		<td>
+			<input id="vcf_costo_ml" name="vcf_costo_ml" type="text" maxlength="10" class="numeric" onchange="calcularmontoml()">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_amount_ml}*</td>
+		<td>
+			<input id="vcf_monto_ml" name="vcf_monto_ml" type="text" maxlength="10" class="numeric">
+		</td>
+	</tr>
+	<tr style="display: none">
+		<td>${lbl:b_status}*</td>
+		<td>
+			<select name="vcf_estatus" id="vcf_estatus">
+			<option value="GE">${lbl:b_generated}</option>
+			<option value="VL">${lbl:b_valoration}</option>
+
+			</select> 
+		</td>
+	</tr>
+
+
+	</table>
+
+	<!--botones-->
+	<input id="grabar" type="submit" value="${lbl:b_save_button}" class="button">
+	<input id="limpiar" type="button" value="${lbl:b_clean_button}" onclick="addNew()" class="button">	
+	<input id="copiar" type="button" value="${lbl:b_copy_button}" onclick="getFormValuesToCopy('form1')" class="button">
+	<input id="pegar" type="button" value="${lbl:b_paste_button}" onclick="getFormValuesToPaste('form1')" class="button">
+	<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog(); parent.search();" class="button">	
+	
+	<!-- PK-->
+<input type="hidden" name="id" value="">
+<!-- <input type="hidden" name="id_pago" id="id_pago"> -->
+<input type="hidden" name="divisa" id="divisa">
+
+</form>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+	onload = function()
+	{ 
+		addNew();
+
+		if (id!="")
+			edit(id);
+	} 
+
+	function calcularmontoml() {
+		var cantc = document.getElementById('vcf_cantidad_contada').value;
+		var cante = document.getElementById('vcf_cantidad_existencia').value;
+		var cantd = document.getElementById('vcf_cantidad_diferencia').value;
+		var costml = document.getElementById('vcf_costo_ml').value;
+		//var totalml = 0
+//alert(cantc);
+		totalml = parseFloat(cantd) * costml;
+
+		//alert(totalml);
+		document.getElementById('vcf_monto_ml').value = totalml;
+		document.getElementById('vcf_monto_ml').disabled = true;
+	}
+
+	function calcularmontoma() {
+		var cantc = document.getElementById('vcf_cantidad_contada').value;
+		var cante = document.getElementById('vcf_cantidad_existencia').value;
+		var cantd = document.getElementById('vcf_cantidad_diferencia').value;
+		var costma = document.getElementById('vcf_costo_ma').value;
+		var div = document.getElementById('divisa').value
+		//var totalml = 0
+		//alert(div);
+		totalma = parseFloat(cantd) * parseFloat(costma);
+
+		//alert(totalml);
+		document.getElementById('vcf_monto_ma').value = totalma.toFixed(8);
+		document.getElementById('vcf_monto_ma').disabled = true;
+	}
+
+	function cambiarmoneda() {
+		var mon = document.getElementById('smn_moneda_rf').value;
+
+		//alert(mon);
+
+		if (mon != '360') {
+			document.getElementById('costoma').style.display='';
+			document.getElementById('montoma').style.display='';
+			document.getElementById('tasa').style.display='';
+		}else{
+			document.getElementById('costoma').style.display='none';
+			document.getElementById('montoma').style.display='none';
+			document.getElementById('tasa').style.display='none';
+		}
+	}
+	
+	function chgCombo(text,id)
+	{
+		document.getElementById(id).value = text;
+	}
+	
+	//configurar formulario para ingresar registro nuevo
+	function addNew()
+	{
+		document.getElementById("formTitle").innerHTML = "${lbl:b_add_record}";
+		document.getElementById("grabar").disabled=false;
+		clearForm("form1");
+		setFocusOnForm("form1");
+	}
+	
+	//retorna al estado previo que corresponde
+	//al estado actual de la pagina, cada llamada Ajax
+	//se encarga de definir cual es la funcion de goBack() que aplica
+	function goBack() 
+	{
+		_goBackFn()			
+	}
+	
+	//mostrar la actualizacion de un registro
+	function insert()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/insert", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+	
+	//restaurar el formulario en caso de error
+	function retryAddnewOrEdit() {
+		document.getElementById("grabar").disabled=false;
+		setFocusOnForm("form1");		
+	}
+	
+	var id = "${fld:id}"
+	
+	//grabar el formulario
+	function save()
+	{
+		//determina si es un insert o un update
+		if (document.form1.id.value=="")
+			return insert();
+		else
+			return update();
+	}
+	
+	//editar registro en formulario
+	function edit(id)
+	{
+			clearErrorMessages();
+
+			//llamada Ajax...
+			ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/edit?id=" + id , 
+							divResponse=null, 
+							divProgress="status", 
+							formName=null, 
+							afterResponseFn=null, 
+							onErrorFn=null);	
+	}
+	
+	//actualizar registro en BD
+	function update()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/update", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+
+		//Author     : SIMONE
+	//Description: Set first element as selected value
+	//Return     : None
+	function setElementFirstIndex(id)
+	{
+		var combo = document.getElementById(id);
+		combo.selectedIndex = 0;
+	}
+
+
+	//Author     : SIMONE
+	//Description: Add new value to combo box
+	//Return     : None
+	function addValueToCombo(code, description, field) 
+	{
+	    var combo = document.getElementById(field);	    
+	   insertComboBox(code, combo, description, field);
+	}
+	
+
+	// CODIGO NUEVOOOO VEHICULO 
+	//Author     : SIMONE
+	//Description: Insert new value into combo box
+	//Return     : None
+	function insertComboBox(code, combo, description, field) {
+		var valueText = code;
+		if (description != null)
+		{
+			valueText = description;
+			//valueText = valueText + '' + description;
+		}
+       
+       //combo.options[combo.options.length] = new Option(valueText);
+		var option = document.createElement("option");
+		option.text = valueText; 
+		option.value = bdID;
+		//alert("valor: "+valueText+"id: "+bdID);
+		
+	}
+	//Author     : SIMONE
+	//Description: Set selected index into combo box
+	//Return     : None
+	function setSelectedIndex(code, combo, description) 
+	{
+	    for (var i = 0; i < combo.options.length; i++) 
+	    {
+			var valueText = code;
+			if (description != null)
+			{
+				valueText = valueText + ' - ' + description;
+			}
+	        if (combo.options[i].text == valueText) 
+	        {
+	        	combo.options[i].selected = true;
+	            return;
+	        }
+	    }
+	}
+
+	function getIDSelectedIndex(combo) 
+	{
+	    for (var i = 0; i < combo.options.length; i++) 
+	    {
+	        if (combo.options[i].selected == true) 
+	        {
+	            return combo.options[i].value;
+	        }
+	    }
+	}
+
+	var geo_id1 = null;
+	function chgCombo1(text,id){		
+		document.form1.smn_tasa_rf.disabled=false;
+		
+		var combo = document.getElementById('smn_moneda_rf');
+		var valueCombo = getIDSelectedIndex(combo);
+		geo_id1 = valueCombo.split("-").pop().trim();
+		
+		if (id!=null && id!=""){
+			return ajaxCall(	
+							httpMethod="GET", 
+							uri="${def:actionroot}/gettasa?id=" + geo_id1, 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=setElementFirstIndex('smn_tasa_rf'), //function 'setElementFirstIndex' select first element of combo list
+							onErrorFn=null);				
+		}
+		
+	}
+
+
+	function seteartasa(text, id) {
+
+			//Este codigo fue creado por SIMONE y ajustado en este crud por Kelvin Marcano
+		var combo = document.getElementById('smn_tasa_rf');
+		var valueCombo = getIDSelectedIndex(combo);
+		//geo_idt = valueCombo.split("-").pop().trim();
+		//alert(valueCombo);
+		if (id!=null && id!="") 
+		{	
+			return ajaxCall(	
+							httpMethod="GET", 
+							uri="${def:actionroot}/gettasa_value?id=" + valueCombo, 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, //function 'setElementFirstIndex' select first element of combo list
+							onErrorFn=null); 				
+		}
+	}
+
+	
+</script>	
+</body>
+</html>

@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Insertar registro 
+	</summary>
+
+	<log>false</log>
+
+	<!--soporte de auditoria-->
+	<audit>
+		<!--de donde saca los datos, por defecto es "_request"-->
+		<recordset></recordset>
+		<!--que campos extrae para el registro descriptivo-->
+		<cols>
+			<colname>smn_item_rf</colname>
+			<colname>cit_codigo_barra</colname>
+			<colname>cit_codigo_qr</colname>
+			<colname>cit_codigo_alterno</colname>
+			<colname>cit_descripcion_tecnica</colname>
+			<colname>smn_unidad_medida_base_rf</colname>
+			<colname>smn_unidad_medida_compra_rf</colname>
+			<colname>smn_unidad_medida_venta_rf</colname>
+			<colname>smn_unidad_medida_almacenamiento_rf</colname>
+			<colname>smn_unidad_medida_despacho_rf</colname>
+			<colname>cit_peso</colname>
+			<colname>smn_unidad_medida_peso_rf</colname>
+			<colname>cit_alto</colname>
+			<colname>smn_unidad_medida_alto_rf</colname>
+			<colname>cit_ancho</colname>
+			<colname>smn_unidad_medida_ancho_rf</colname>
+			<colname>cit_profundidad</colname>
+			<colname>smn_unidad_medida_profundidad_rf</colname>
+			<colname>cit_es_medicamento</colname>
+			<colname>smn_principio_activo_rf</colname>
+			<colname>cit_req_control_lote</colname>
+			<colname>cit_req_control_vencimiento</colname>
+			<colname>cit_dias_ant_vencimiento</colname>
+			<colname>cit_tipo_costo</colname>
+			<colname>cit_valoracion_inventario</colname>
+			<colname>cit_metodo_despacho</colname>
+			<colname>cit_cant_minima</colname>
+			<colname>cit_cant_maxima</colname>
+			<colname>cit_punto_reorden</colname>
+			<colname>cit_cant_seguridad</colname>
+			<colname>cit_es_reusable</colname>
+			<colname>cit_reuso_apertura</colname>
+			<colname>cit_cant_reuso</colname>
+			<colname>cit_origen_producto</colname>
+			<colname>cit_descripcion_compra</colname>
+			<colname>cit_codigo_arancel</colname>
+			<colname>cit_dias_entrega</colname>
+			<colname>smn_centro_costo_rf</colname>
+			<colname>cit_estatus</colname>
+			<colname>cit_vigencia</colname>
+		
+		</cols>
+		<table>smn_inventario.smn_caracteristica_item</table>
+		<oper>A�ADIR</oper>
+		<area>Carga de datos</area>
+		<!--
+			query para obtener el ID generado o nombre de 
+			la columna que contiene el pkey, si es query, 
+			el alias del campo debe ser "id"
+		-->
+		<pkey>select ${seq:currval@smn_inventario.seq_smn_caracteristica_item} as id</pkey>
+	</audit>
+
+	<transaction>
+		<classname>dinamica.audit.AuditableTransaction</classname>
+		<validator>true</validator>
+		<transaction>true</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="nextval.sql" source="sql" scope="transaction" />
+		<recordset id="query-smn_almacen_rf.sql" source="request" scope="transaction" />
+		<recordset id="query-smn_codigo_impuesto_rf.sql" source="request" scope="transaction" />
+	</transaction>
+
+	<query>insert.sql</query>
+	<query params="query-smn_almacen_rf.sql">insert-query-smn_rel_item_almacen.sql</query>
+	<query params="query-smn_codigo_impuesto_rf.sql">insert-query-smn_rel_item_codigo_impuesto.sql</query>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>script.js</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/javascript</content-type>
+		<expiration>0</expiration>
+		<print mode="form" recordset="_request" />
+		<print mode="form" recordset="nextval.sql" />
+	</output>
+	
+	<!-- Envio de email declarativo -->
+	<mail enabled="false">
+		<subject>Subject</subject>
+		<mail-to>martin.cordova@gmail.com</mail-to>
+		<body>body.txt</body>
+	</mail>
+
+</config>

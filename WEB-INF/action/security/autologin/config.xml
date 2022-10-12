@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Login into security system
+	</summary>
+
+	<log>false</log>
+	
+	<login-log>true</login-log>
+
+	<set-request-attribute id="dinamica.security.uri" value="/action/security/home"/>
+
+	<transaction>
+		<classname>dinamica.security.AutoLogin</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="get-session.sql" source="sql" scope="transaction" max-rows="1"/>
+	</transaction>
+
+	<on-exit return-code="0" forward-to="${def:actionroot}/autologin/ok" />
+	<on-exit return-code="1" forward-to="${def:actionroot}/autologin/fail" />
+
+</config>

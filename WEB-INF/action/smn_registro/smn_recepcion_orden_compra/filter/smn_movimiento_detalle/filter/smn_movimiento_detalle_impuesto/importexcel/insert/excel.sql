@@ -1,0 +1,30 @@
+INSERT INTO smn_inventario.smn_movimiento_detalle_impuesto
+(
+	smn_mov_det_impuesto_id,
+	smn_movimiento_detalle_id,
+	smn_cod_impuesto_deduc_rf,
+	mdi_monto_base,
+	smn_porcentaje_impuesto_rf,
+	mdi_sustraendo_rf,
+	mdi_tipo_movimiento,
+	mdi_monto_impuesto_ml,
+	smn_moneda,
+	smn_tasa,
+	mdi_monto_impuesto_ma,
+	mdi_fecha_registro
+)
+VALUES
+(
+	${seq:nextval@smn_inventario.seq_smn_movimiento_detalle_impuesto},
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	{d '${def:date}'}
+)

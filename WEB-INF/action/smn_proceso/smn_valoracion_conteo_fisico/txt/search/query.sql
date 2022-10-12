@@ -1,0 +1,20 @@
+select
+		smn_inventario.smn_valoracion_conteo_fisico.smn_valoracion_conteo_fisico_id,
+select
+		smn_inventario.smn_valoracion_conteo_fisico.smn_valoracion_conteo_fisico_id,
+select
+		smn_inventario.smn_valoracion_conteo_fisico.smn_valoracion_conteo_fisico_id,
+select
+		smn_inventario.smn_valoracion_conteo_fisico.smn_valoracion_conteo_fisico_id,
+select
+		smn_inventario.smn_valoracion_conteo_fisico.smn_valoracion_conteo_fisico_id,
+	smn_inventario.smn_valoracion_conteo_fisico.smn_almacen_rf,
+	smn_inventario.smn_valoracion_conteo_fisico.smn_conteo_id,
+	smn_inventario.smn_valoracion_conteo_fisico.smn_documento_id,
+	smn_inventario.smn_valoracion_conteo_fisico.vcf_numero_documento,
+	smn_inventario.smn_valoracion_conteo_fisico.smn_item_id,
+	smn_inventario.smn_valoracion_conteo_fisico.vcf_cantidad_contada,
+	smn_inventario.smn_valoracion_conteo_fisico.vcf_fecha_registro
+	
+from
+	smn_inventario.smn_valoracion_conteo_fisico

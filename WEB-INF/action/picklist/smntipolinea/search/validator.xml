@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/crud'>
+	<parameter id='lin_codigo' type='varchar' required='false' label='${lbl:b_code}' maxlen='16'/>
+	<parameter id='lin_descripcion' type='varchar' required='false' label='${lbl:b_description}' maxlen='48'/>
+	<custom-validator classname="dinamica.validators.SQLPatternTransformer" parameter="age_codigo" rule="contains" />
+	<custom-validator classname="dinamica.validators.SQLPatternTransformer" parameter="age_descripcion" rule="contains" />
+
+</validator>

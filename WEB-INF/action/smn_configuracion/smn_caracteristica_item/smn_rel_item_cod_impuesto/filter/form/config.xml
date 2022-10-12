@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		${lbl:b_relation_item_codigo_imp}
+	</summary>
+
+	<log>false</log>
+	
+	<set-request-attribute id="progress" value="file:/WEB-INF/action/progress/progress.htm"/>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id='query-smn_caracteristica_item_id.sql' source='sql' scope='transaction'/><recordset id='query-smn_codigo_impuesto_rf.sql' source='sql' scope='transaction'/>
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>template.htm</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/html</content-type>
+		<print mode='table' recordset='query-smn_caracteristica_item_id.sql' tag='smn_caracteristica_item_id_rows'/><print mode='table' recordset='query-smn_codigo_impuesto_rf.sql' tag='smn_codigo_impuesto_rf_rows'/>
+	</output>
+
+</config>

@@ -1,0 +1,358 @@
+<!doctype html>
+<html>
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica.css" />
+	
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+
+</head>
+
+<body>
+
+<!--banner-->
+<div class="bannerDialog">
+	${lbl:b_movement_head}
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+	${req:progress}
+</div>
+
+<!--formulario addnew/edit-->
+<form name="form1" onsubmit="return save()" style="width:500px;">
+
+	<!-- titulo -->
+	<h1 id="formTitle">${lbl:b_add_record}</h1>
+
+	<table>
+
+		<!--ancho de la columna de etiquetas-->
+		<col width="30%">
+
+		<!--campos-->
+			<tr>
+		<td>${lbl:b_modules}*</td>
+		<td>
+			<select name="smn_modulo_rf" id="smn_modulo_rf" onchange="chgCombo(smn_modulo_rf.options[smn_modulo_rf.selectedIndex].text,'smn_modulo_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_modulo_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_modulo_rf_rows>
+			</select> 
+			<input id="smn_modulo_rf_name" name="smn_modulo_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_purchasing_documents}*</td>
+		<td>
+			<select name="smn_documento_rf" id="smn_documento_rf" onchange="chgCombo(smn_documento_rf.options[smn_documento_rf.selectedIndex].text,'smn_documento_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_documento_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_documento_rf_rows>
+			</select> 
+			<input id="smn_documento_rf_name" name="smn_documento_rf_name" type="hidden">
+		</td>
+	</tr>
+		<tr>
+			<td>${lbl:b_number}</td>
+			<td>
+				<input id="mca_numero" name="mca_numero" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+	<tr>
+		<td>${lbl:b_providers}</td>
+		<td>
+			<select name="smn_proveedor_rf" id="smn_proveedor_rf" onchange="chgCombo(smn_proveedor_rf.options[smn_proveedor_rf.selectedIndex].text,'smn_proveedor_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_proveedor_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_proveedor_rf_rows>
+			</select> 
+			<input id="smn_proveedor_rf_name" name="smn_proveedor_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_purchase_order_header}*</td>
+		<td>
+			<select name="smn_orden_compra_rf" id="smn_orden_compra_rf" onchange="chgCombo(smn_orden_compra_rf.options[smn_orden_compra_rf.selectedIndex].text,'smn_orden_compra_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_orden_compra_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_orden_compra_rf_rows>
+			</select> 
+			<input id="smn_orden_compra_rf_name" name="smn_orden_compra_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_store_code}*</td>
+		<td>
+			<select name="smn_almacen_rf" id="smn_almacen_rf" onchange="chgCombo(smn_almacen_rf.options[smn_almacen_rf.selectedIndex].text,'smn_almacen_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_almacen_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_almacen_rf_rows>
+			</select> 
+			<input id="smn_almacen_rf_name" name="smn_almacen_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_subsidiary}*</td>
+		<td>
+			<select name="smn_sucursal_rf" id="smn_sucursal_rf" onchange="chgCombo(smn_sucursal_rf.options[smn_sucursal_rf.selectedIndex].text,'smn_sucursal_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_sucursal_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_sucursal_rf_rows>
+			</select> 
+			<input id="smn_sucursal_rf_name" name="smn_sucursal_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_entity}*</td>
+		<td>
+			<select name="smn_entidad_rf" id="smn_entidad_rf" onchange="chgCombo(smn_entidad_rf.options[smn_entidad_rf.selectedIndex].text,'smn_entidad_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_entidad_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_entidad_rf_rows>
+			</select> 
+			<input id="smn_entidad_rf_name" name="smn_entidad_rf_name" type="hidden">
+		</td>
+	</tr>
+		<tr>
+			<td>${lbl:b_receipt}*</td>
+			<td>
+				<input id="mca_recibo" name="mca_recibo" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_document_amount_ml}*</td>
+			<td>
+				<input id="mca_monto_documento_ml" name="mca_monto_documento_ml" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_document_amount_ma}</td>
+			<td>
+				<input id="mca_monto_documento_ma" name="mca_monto_documento_ma" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_decrease_amount_ml}*</td>
+			<td>
+				<input id="mca_monto_diminucion_ml" name="mca_monto_diminucion_ml" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_decrease_amount_ma}</td>
+			<td>
+				<input id="mca_monto_diminucion_ma" name="mca_monto_diminucion_ma" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_agree_value_amount_ml}*</td>
+			<td>
+				<input id="mca_monto_valor_agregado_ml" name="mca_monto_valor_agregado_ml" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_agree_value_amount_ma}</td>
+			<td>
+				<input id="mca_monto_valor_agregado_ma" name="mca_monto_valor_agregado_ma" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_net_document_amount_ml}*</td>
+			<td>
+				<input id="mca_monto_neto_ml" name="mca_monto_neto_ml" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_net_document_amount_ma}</td>
+			<td>
+				<input id="mcc_monto_neto_ma" name="mcc_monto_neto_ma" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+	<tr>
+		<td>${lbl:b_coins}</td>
+		<td>
+			<select name="smn_moneda_rf" id="smn_moneda_rf" onchange="chgCombo(smn_moneda_rf.options[smn_moneda_rf.selectedIndex].text,'smn_moneda_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_moneda_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_moneda_rf_rows>
+			</select> 
+			<input id="smn_moneda_rf_name" name="smn_moneda_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_exchange_rate}</td>
+		<td>
+			<select name="smn_tasa_rf" id="smn_tasa_rf" onchange="chgCombo(smn_tasa_rf.options[smn_tasa_rf.selectedIndex].text,'smn_tasa_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_tasa_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_tasa_rf_rows>
+			</select> 
+			<input id="smn_tasa_rf_name" name="smn_tasa_rf_name" type="hidden">
+		</td>
+	</tr>
+		<tr>
+			<td>${lbl:b_date_operation}*</td>
+			<td>
+				<input id="mca_fecha_operacion" name="mca_fecha_operacion" type="text" class="date" maxlength="10">
+				<img src="${def:context}/images/dropdown.png" title="Desplegar calendario" onclick="calendarOpen('mca_fecha_operacion')">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_status_process}*</td>
+			<td>
+				<select name="mca_estatus_proceso" id="mca_estatus_proceso">
+				<option value="PE">${lbl:b_pending}</option>
+				<option value="AP">${lbl:b_aprobated}</option>
+				<option value="RE">${lbl:b_refused}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_status_financial}*</td>
+			<td>
+				<select name="mca_estatus_financiero" id="mca_estatus_financiero">
+				<option value="PE">${lbl:b_pending}</option>
+				<option value="PA">${lbl:b_payment}</option>
+				<option value="PP">${lbl:b_partial_payment}</option>
+
+				</select> 
+			</td>
+		</tr>
+
+
+	</table>
+
+	<!--botones-->
+	<input id="grabar" type="submit" value="${lbl:b_save_button}" class="button">
+	<input id="limpiar" type="button" value="${lbl:b_clean_button}" onclick="addNew()" class="button">	
+	<input id="copiar" type="button" value="${lbl:b_copy_button}" onclick="getFormValuesToCopy('form1')" class="button">
+	<input id="pegar" type="button" value="${lbl:b_paste_button}" onclick="getFormValuesToPaste('form1')" class="button">
+	<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog(); parent.search();" class="button">	
+	
+	<!-- PK-->
+<input type="hidden" name="id" value="">
+
+</form>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+	onload = function()
+	{ 
+		addNew();
+
+		if (id!="")
+			edit(id);
+	} 
+	
+	function chgCombo(text,id)
+	{
+		document.getElementById(id).value = text;
+	}
+	
+	//configurar formulario para ingresar registro nuevo
+	function addNew()
+	{
+		document.getElementById("formTitle").innerHTML = "${lbl:b_add_record}";
+		document.getElementById("grabar").disabled=false;
+		clearForm("form1");
+		setFocusOnForm("form1");
+	}
+	
+	//retorna al estado previo que corresponde
+	//al estado actual de la pagina, cada llamada Ajax
+	//se encarga de definir cual es la funcion de goBack() que aplica
+	function goBack() 
+	{
+		_goBackFn()			
+	}
+	
+	//mostrar la actualizacion de un registro
+	function insert()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/insert", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+	
+	//restaurar el formulario en caso de error
+	function retryAddnewOrEdit() {
+		document.getElementById("grabar").disabled=false;
+		setFocusOnForm("form1");		
+	}
+	
+	var id = "${fld:id}"
+	
+	//grabar el formulario
+	function save()
+	{
+		//determina si es un insert o un update
+		if (document.form1.id.value=="")
+			return insert();
+		else
+			return update();
+	}
+	
+	//editar registro en formulario
+	function edit(id)
+	{
+			clearErrorMessages();
+
+			//llamada Ajax...
+			ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/edit?id=" + id , 
+							divResponse=null, 
+							divProgress="status", 
+							formName=null, 
+							afterResponseFn=null, 
+							onErrorFn=null);	
+	}
+	
+	//actualizar registro en BD
+	function update()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/update", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+
+	
+</script>	
+</body>
+</html>

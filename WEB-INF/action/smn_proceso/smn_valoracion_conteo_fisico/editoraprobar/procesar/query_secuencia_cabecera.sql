@@ -1,0 +1,70 @@
+SELECT smn_inventario.smn_movimiento_cabecera.smn_movimiento_cabecera_id, 
+smn_inventario.smn_movimiento_cabecera.smn_entidad_rf, 
+smn_inventario.smn_movimiento_cabecera.smn_sucursal_rf, 
+smn_inventario.smn_movimiento_cabecera.smn_almacen_rf,
+smn_inventario.smn_movimiento_cabecera.smn_modulo_rf,
+smn_inventario.smn_movimiento_cabecera.smn_tipo_documento_pago_id,
+smn_inventario.smn_movimiento_cabecera.mca_numero,
+smn_inventario.smn_movimiento_cabecera.mca_numero_documento_origen,
+smn_inventario.smn_movimiento_cabecera.smn_documento_origen_rf,
+smn_inventario.smn_movimiento_cabecera.smn_documento_id,
+case
+	when smn_inventario.smn_movimiento_cabecera.smn_proveedor_rf is null then 0 ELSE smn_inventario.smn_movimiento_cabecera.smn_proveedor_rf
+end as smn_proveedor_rf,
+case
+	when smn_inventario.smn_movimiento_cabecera.smn_orden_compra_rf is null then 0 ELSE smn_inventario.smn_movimiento_cabecera.smn_orden_compra_rf
+end as smn_orden_compra_rf,
+case
+	when smn_inventario.smn_movimiento_cabecera.mca_recibo is null then 0 ELSE smn_inventario.smn_movimiento_cabecera.mca_recibo
+end as mca_recibo,
+case
+	when smn_inventario.smn_movimiento_cabecera.mca_monto_documento_ml is null then 0 ELSE smn_inventario.smn_movimiento_cabecera.mca_monto_documento_ml
+end as mca_monto_documento_ml,
+case
+	when smn_inventario.smn_movimiento_cabecera.mca_monto_documento_ml is null then 0 ELSE smn_inventario.smn_movimiento_cabecera.mca_monto_documento_ml
+end as mca_monto_documento_ml,
+case
+	when smn_inventario.smn_movimiento_cabecera.mca_monto_documento_ma is null then 0 ELSE smn_inventario.smn_movimiento_cabecera.mca_monto_documento_ma
+end as mca_monto_documento_ma,
+case
+	when smn_inventario.smn_movimiento_cabecera.mca_monto_diminucion_ml is null then 0 ELSE smn_inventario.smn_movimiento_cabecera.mca_monto_diminucion_ml
+end as mca_monto_diminucion_ml,
+case
+	when smn_inventario.smn_movimiento_cabecera.mca_monto_diminucion_ma is null then 0 ELSE smn_inventario.smn_movimiento_cabecera.mca_monto_diminucion_ma
+end as mca_monto_diminucion_ma,
+case
+	when smn_inventario.smn_movimiento_cabecera.mca_monto_valor_agregado_ml is null then 0 ELSE smn_inventario.smn_movimiento_cabecera.mca_monto_valor_agregado_ml
+end as mca_monto_valor_agregado_ml,
+case
+	when smn_inventario.smn_movimiento_cabecera.mca_monto_valor_agregado_ma is null then 0 ELSE smn_inventario.smn_movimiento_cabecera.mca_monto_valor_agregado_ma
+end as mca_monto_valor_agregado_ma,
+case
+	when smn_inventario.smn_movimiento_cabecera.mca_monto_neto_ml is null then 0 ELSE smn_inventario.smn_movimiento_cabecera.mca_monto_neto_ml
+end as mca_monto_neto_ml,
+case
+	when smn_inventario.smn_movimiento_cabecera.mcc_monto_neto_ma is null then 0 ELSE smn_inventario.smn_movimiento_cabecera.mcc_monto_neto_ma
+end as mcc_monto_neto_ma,
+case
+	when smn_inventario.smn_movimiento_cabecera.smn_moneda_rf is null then 0 ELSE smn_inventario.smn_movimiento_cabecera.smn_moneda_rf
+end as smn_moneda_rf,
+case
+	when smn_inventario.smn_movimiento_cabecera.smn_tasa_rf is null then 0 ELSE smn_inventario.smn_movimiento_cabecera.smn_tasa_rf
+end as smn_tasa_rf,
+case
+	when smn_inventario.smn_movimiento_cabecera.smn_tasa_rf is null then 0 ELSE smn_inventario.smn_movimiento_cabecera.smn_tasa_rf
+end as smn_tasa_rf,
+case
+	when smn_inventario.smn_movimiento_cabecera.smn_tasa_rf is null then 0 ELSE smn_inventario.smn_movimiento_cabecera.smn_tasa_rf
+end as smn_tasa_rf,
+case
+	when smn_inventario.smn_movimiento_cabecera.mca_fecha_recibida is null then CURRENT_DATE ELSE smn_inventario.smn_movimiento_cabecera.mca_fecha_recibida
+end as mca_fecha_recibida,
+smn_inventario.smn_movimiento_cabecera.mca_estatus_proceso,
+smn_inventario.smn_movimiento_cabecera.mca_estatus_financiero,
+smn_inventario.smn_movimiento_cabecera.smn_auxiliar_rf,
+smn_inventario.smn_movimiento_cabecera.mca_fecha_registro
+FROM smn_inventario.smn_movimiento_cabecera WHERE 
+	smn_movimiento_cabecera_id = (select last_value as smn_movimiento_cabecera_id from smn_inventario.seq_smn_movimiento_cabecera)
+	AND
+	(mca_estatus_proceso = 'GE' OR mca_estatus_proceso = 'PR')
+	

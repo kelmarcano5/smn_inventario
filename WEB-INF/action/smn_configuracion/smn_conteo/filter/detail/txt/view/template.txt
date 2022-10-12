@@ -1,0 +1,3 @@
+<rows>
+con_fecha_registro="${fld:con_fecha_registro}"    con_fecha_vigencia="${fld:con_fecha_vigencia}"    con_estatus="${fld:con_estatus}"    smn_rol_2_id="${fld:smn_rol_2_id}"    smn_rol_1_id="${fld:smn_rol_1_id}"    smn_ubicacion_id="${fld:smn_ubicacion_id}"    smn_almacen_rf="${fld:smn_almacen_rf}"    con_descripcion="${fld:con_descripcion}"    con_codigo="${fld:con_codigo}"    
+</rows>

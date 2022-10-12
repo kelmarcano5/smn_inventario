@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_movimiento_detalle_id' type='integer' required='true' label='${lbl:b_movement_detail}' maxlen='10'/>
+	<parameter id='smn_cod_impuesto_deduc_rf' type='integer' required='false' label='${lbl:b_tax_code}' maxlen='10'/>
+	<parameter id='mdi_monto_base' type='double' required='true' label='${lbl:b_base_amount} ' maxlen='10'/>
+	<parameter id='smn_porcentaje_impuesto_rf' type='double' required='false' label='${lbl:b_tax_percentage}' maxlen='10'/>
+	<parameter id='mdi_sustraendo_rf' type='double' required='false' label='${lbl:b_subtract}' maxlen='10'/>
+	<parameter id='mdi_tipo_movimiento' type='varchar' required='true' label='${lbl:b_movement_type}' maxlen='2'/>
+	<parameter id='mdi_monto_impuesto_ml' type='double' required='true' label='${lbl:b_tax_amount_ml}' maxlen='10'/>
+	<parameter id='smn_moneda' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='smn_tasa' type='integer' required='false' label='${lbl:b_exchange_rate}' maxlen='10'/>
+	<parameter id='mdi_monto_impuesto_ma' type='double' required='false' label='${lbl:b_tax_amount_ma}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_movement_detail_tax}' maxlen='10'/>
+
+
+</validator>

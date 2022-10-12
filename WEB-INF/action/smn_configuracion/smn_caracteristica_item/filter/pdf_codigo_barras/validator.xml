@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/alert">
+	<parameter id="id" type="integer" required="false" label="ID caracteristicas de Item" maxlen="10" />
+		<parameter id="itm_codigo" type="varchar" required="false" label="ID caracteristicas de Item" maxlen="30" />
+			<parameter id="itm_nombre" type="varchar" required="false" label="ID caracteristicas de Item" maxlen="30" />
+</validator>

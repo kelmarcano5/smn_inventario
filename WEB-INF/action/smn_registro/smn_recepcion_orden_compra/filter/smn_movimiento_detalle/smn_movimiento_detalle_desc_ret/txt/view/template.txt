@@ -1,0 +1,3 @@
+<rows>
+mdd_fecha_registro="${fld:mdd_fecha_registro}"    mdd_monto_descuento_ma="${fld:mdd_monto_descuento_ma}"    mdd_monto_base_ma="${fld:mdd_monto_base_ma}"    smn_tasa_rf="${fld:smn_tasa_rf}"    smn_moneda_rf="${fld:smn_moneda_rf}"    mdd_monto_descuento_ml="${fld:mdd_monto_descuento_ml}"    smn_porcentaje_rf="${fld:smn_porcentaje_rf}"    mdd_monto_base_ml="${fld:mdd_monto_base_ml}"    smn_codigo_descuento_rf="${fld:smn_codigo_descuento_rf}"    smn_movimiento_detalle_id="${fld:smn_movimiento_detalle_id}"    smn_descuento_retencion_id="${fld:smn_descuento_retencion_id}"    
+</rows>

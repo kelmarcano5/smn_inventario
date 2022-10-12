@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnproyeccioncompras.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>Proyecciones de Compras</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' />
+	<pdf-file-name>Proyecciones de Compras.pdf</pdf-file-name>
+
+	<pdf-report 
+		pageSize="letter" 
+		rotate="false"
+		footer="false" 
+		header="true">
+		<record recordset='query-smnproyeccioncompras.sql' width='100' spacingBefore='40'>
+			<col name='itm_codigo' title='${lbl:b_code} ${lbl:b_item}' width='14' align='left'/>
+			<col name='itm_nombre' title='${lbl:b_description} ${lbl:b_item}' width='14' align='left'/>
+			<col name='ventas' title='Ventas' width='14' align='left' format='######' />
+			<col name='pedidos_registrados' title='Pedidos Registrados' width='14' align='left' format='######' />
+			<col name='consumos' title='Consumos' width='14' align='left' format='######' />
+			<col name='existencia' title='Existencia' width='14' align='left' format='#,###,##0.00' />
+			<col name='compras_colocadas' title='Compras Colocadas' width='14' align='left' format='######' />
+			<col name='sugerencia' title='Sugerencia' width='14' align='left' format='######' />
+			<col name='decision_compras' title='Decision Compra' width='14' align='left' format='######' />
+		</record>
+
+	</pdf-report>
+</config>

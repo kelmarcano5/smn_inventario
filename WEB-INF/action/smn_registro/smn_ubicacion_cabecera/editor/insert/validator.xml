@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_movimiento_detalle_id' type='integer' required='true' label='${lbl:b_detail_movement}' maxlen='10'/>
+	<parameter id='smn_caracteristica_almacen_id' type='integer' required='true' label='${lbl:b_feature_store}' maxlen='10'/>
+	<parameter id='smn_caracteristica_item_id' type='integer' required='true' label='${lbl:b_item}' maxlen='10'/>
+	<parameter id='ubc_estatus' type='varchar' required='true' label='${lbl:b_status}' maxlen='2'/>
+
+
+</validator>

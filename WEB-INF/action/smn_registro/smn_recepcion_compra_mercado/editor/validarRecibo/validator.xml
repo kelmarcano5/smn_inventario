@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/ajax">
+	<parameter id="mca_recibo" type="varchar" required="true" label="ID ${lbl:b_receipt}" />
+	<parameter id="smn_proveedor_rf" type="varchar" required="true" label="ID ${lbl:b_provider}" />
+	<parameter id="id" type="integer" required="false" label="ID" />
+</validator>

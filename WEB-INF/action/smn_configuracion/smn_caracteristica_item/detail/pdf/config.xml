@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query.sql" source="session" scope="transaction" />
+
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_caracteristicas_item}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' />
+	<pdf-file-name>${lbl:b_caracteristicas_item}.pdf</pdf-file-name>
+
+	<pdf-report pageSize="letter" rotate="false" footer="true" header="true">
+		<record recordset='query.sql' title='${lbl:b_caracteristicas_item}' width='60' spacingBefore='40'>
+			<col name='smn_item_rf' title='${lbl:b_item}' align='left' format='######' />
+			<col name='cit_codigo_barra' title='${lbl:b_codigo_barra}' align='left' />
+			<col name='cit_codigo_qr' title='${lbl:b_codigo_qr}' align='left' />
+			<col name='cit_codigo_alterno' title='${lbl:b_codigo_alterno}' align='left' />
+			<col name='cit_descripcion_tecnica' title='${lbl:b_descripcion_tecnica}' align='left' />
+			<col name='smn_unidad_medida_base_rf' title='${lbl:b_unidad_medida_base}' align='left' format='######' />
+			<col name='smn_unidad_medida_compra_rf' title='${lbl:b_unidad_medida_compra}' align='left' format='######' />
+			<col name='smn_unidad_medida_venta_rf' title='${lbl:b_unidad_medida_venta}' align='left' format='######' />
+			<col name='smn_unidad_medida_almacenamiento_rf' title='${lbl:b_unidad_almacenamiento}' align='left' format='######' />
+			<col name='smn_unidad_medida_despacho_rf' title='${lbl:b_unidad_despacho}' align='left' format='######' />
+			<col name='cit_peso' title='${lbl:b_weight}' align='left' format='#,###,##0.00' />
+			<col name='smn_unidad_medida_peso_rf' title='${lbl:b_measurement_unit_weight}' align='left' format='######' />
+			<col name='cit_alto' title='${lbl:b_dimension_alto}' align='left' format='#,###,##0.00' />
+			<col name='smn_unidad_medida_alto_rf' title='${lbl:b_unidad_medida_alto}' align='left' format='######' />
+			<col name='cit_ancho' title='${lbl:b_dimension_ancho}' align='left' format='#,###,##0.00' />
+			<col name='smn_unidad_medida_ancho_rf' title='${lbl:b_unidad_medida_ancho}' align='left' format='######' />
+			<col name='cit_profundidad' title='${lbl:b_dimension_profundidad}' align='left' format='#,###,##0.00' />
+			<col name='smn_unidad_medida_profundidad_rf' title='${lbl:b_dimension_profundidad}' align='left' format='######' />
+			<col name='cit_es_medicamento' title='${lbl:b_es_medicamento}' align='left' />
+			<col name='smn_principio_activo_rf' title='${lbl:b_principio_activo}' align='left' />
+			<col name='cit_req_control_lote' title='${lbl:b_requiere_control_lote}' align='left' />
+			<col name='cit_req_control_vencimiento' title='${lbl:b_requiere_control_vencimiento}' align='left' />
+			<col name='cit_dias_ant_vencimiento' title='${lbl:b_dias_antelacion_vencimiento}' align='left' format='######' />
+			<col name='cit_tipo_costo' title='${lbl:b_tipo_costo}' align='left' />
+			<col name='cit_valoracion_inventario' title='${lbl:b_valoracion_inventario}' align='left' />
+			<col name='cit_metodo_despacho' title='${lbl:b_metodo_despacho}' align='left' />
+			<col name='cit_cant_minima' title='${lbl:b_cantidad_minima}' align='left' format='#,###,##0.00' />
+			<col name='cit_cant_maxima' title='${lbl:b_cantidad_maxima}' align='left' format='#,###,##0.00' />
+			<col name='cit_punto_reorden' title='${lbl:b_punto_reorden}' align='left' format='#,###,##0.00' />
+			<col name='cit_cant_seguridad' title='${lbl:b_cantidad_seguridad}' align='left' format='#,###,##0.00' />
+			<col name='cit_es_reusable' title='${lbl:b_es_reusable}' align='left' />
+			<col name='cit_reuso_apertura' title='${lbl:b_reuso_apertura}' align='left' />
+			<col name='cit_cant_reuso' title='${lbl:b_cantidad_reuso}' align='left' format='#,###,##0.00' />
+			<col name='cit_origen_producto' title='${lbl:b_origen_producto}' align='left' />
+			<col name='cit_descripcion_compra' title='${lbl:b_descripcion_compra}' align='left' />
+			<col name='cit_codigo_arancel' title='${lbl:b_codigo_arancel}' align='left' />
+			<col name='cit_dias_entrega' title='${lbl:b_dias_entrega}' align='left' format='#,###,##0.00' />
+			<col name='smn_centro_costo_rf' title='${lbl:b_cost_lefts}' align='left' format='######' />
+			<col name='cit_proveedor_exclusivo' title='${lbl:b_exclusive_provider}' align='left'/>
+			<col name='cit_almacenado' title='${lbl:b_store}' align='left'/>
+			<col name='cit_estatus' title='${lbl:b_status}' align='left' />
+			<col name='cit_vigencia' title='${lbl:b_validation_date}' align='left' format='dd-MM-yyyy' />
+			<col name='cit_idioma' title='${lbl:s_profile_lang}' align='left' />
+			<col name='cit_usuario' title='${lbl:b_users}' align='left' />
+			<col name='cit_fecha_registro' title='${lbl:b_store_date}' align='left' format='dd-MM-yyyy' />
+			<col name='cit_hora' title='${lbl:s_loginhist_col2}' align='left' />
+		</record>
+
+
+	</pdf-report>
+</config>

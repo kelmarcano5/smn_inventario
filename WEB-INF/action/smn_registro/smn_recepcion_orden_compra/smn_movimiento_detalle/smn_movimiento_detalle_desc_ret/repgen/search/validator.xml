@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='repgen.filter' onerror='/action/error/validation/ajax'>
+
+	<parameter id='fdesde' type='date' required='false' label='Fecha desde'/>
+	<parameter id='fhasta' type='date' required='false' label='Fecha hasta'/>
+	
+	<parameter id='smn_movimiento_detalle_id' type='integer' required='false' label='${lbl:b_movement_detail}' maxlen='10'/>
+	<parameter id='smn_codigo_descuento_rf' type='integer' required='false' label='${lbl:b_code_discount}' maxlen='10'/>
+	<parameter id='mdd_monto_base_ml' type='double' required='false' label='${lbl:b_base_amount_ml}' maxlen='10'/>
+	<parameter id='smn_porcentaje_rf' type='double' required='false' label='${lbl:b_percentage}' maxlen='10'/>
+	<parameter id='mdd_monto_descuento_ml' type='double' required='false' label='${lbl:b_discount_amount_ml}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_exchange_rate}' maxlen='10'/>
+	<parameter id='mdd_monto_base_ma' type='double' required='false' label='${lbl:b_base_amount_ma}' maxlen='10'/>
+	<parameter id='mdd_monto_descuento_ma' type='double' required='false' label='${lbl:b_discount_amount_ma}' maxlen='10'/>
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='smn_codigo_descuento_rf'
+		rule='contains' />
+
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarCodigo.sql'
+			id='smn_codigo_descuento_rf'/>
+
+
+	<custom-validator
+			classname='dinamica.validators.ArrayNotEmptyValidator'
+			on-error-label='Seleccione al menos un campo para la generación del reporte.'
+			parameter-name='field_id' 
+			id='field_id' />
+
+	<custom-validator 
+			classname='dinamica.validators.ArrayToRecordset'
+			paramName='field_id' 
+			recordsetId='fields' 
+			colName='field_id' 
+			colType='integer' />
+				
+</validator>

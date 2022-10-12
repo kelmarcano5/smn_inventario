@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+
+<head>
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica.css" />
+	<title>Sistema de Seguridad</title>
+</head>
+
+<body>
+
+<div class="info" style="color:black; font-weight:bold; margin-top:10px;">
+Bienvenid@ ${fld:fname} ${fld:lname}
+</div>
+
+<!--include al menu iconografico-->
+${inc:${def:actionroot}/panel/view}
+
+<!--tabla de ultimos logins-->
+<table class="datagrid" width="50%">
+
+	<tr>
+		<th colspan="4" style="font-weight:bold; font-size:10pt;">Sus últimos accesos al servidor</th>
+	</tr>
+
+	<tr>
+		<th width="25%">Fecha</th>
+		<th width="25%">Hora</th>
+		<th width="25%">Dirección IP</th>
+		<th width="25%">Aplicación</th>
+	</tr>
+
+	<rows>
+	<tr ${fld:_rowStyle}>
+		<td align="center">${fld:login_date}</td>
+		<td align="center">${fld:login_time}</td>
+		<td align="center">${fld:remote_addr}</td>
+		<td align="center">${fld:context}</td>
+	</tr>
+	</rows>
+
+</table>
+
+<br/>
+
+<table class="datagrid" width="50%">
+
+	<tr>
+		<th colspan="4" style="color:red; font-weight:bold; font-size:10pt;">Ingresos fallidos usando su Identificador</th>
+	</tr>
+
+	<tr>
+		<th width="25%">Fecha</th>
+		<th width="25%">Hora</th>
+		<th width="25%">Dirección IP</th>
+		<th width="25%">Aplicación</th>
+	</tr>
+
+	<rows2>
+	<tr ${fld:_rowStyle}>
+		<td align="center">${fld:login_date}</td>
+		<td align="center">${fld:login_time}</td>
+		<td align="center">${fld:remote_addr}</td>
+		<td align="center">${fld:context}</td>
+	</tr>
+	</rows2>
+
+</table>
+
+</body>
+
+</html>

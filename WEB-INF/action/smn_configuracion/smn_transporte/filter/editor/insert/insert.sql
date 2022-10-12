@@ -1,0 +1,30 @@
+INSERT INTO smn_inventario.smn_transporte
+(
+	smn_transporte_id,
+	tra_codigo,
+	tra_descripcion_transporte,
+	tra_tipo_transporte,
+	smn_activo_rf,
+	smn_proveedor_rf,
+	tra_estatus,
+	tra_vigencia,
+	tra_idioma,
+	tra_usuario,
+	tra_fecha_registro,
+	tra_hora
+)
+VALUES
+(
+	${seq:currval@smn_inventario.seq_smn_transporte},
+	${fld:tra_codigo},
+	${fld:tra_descripcion_transporte},
+	${fld:tra_tipo_transporte},
+	${fld:smn_activo_rf},
+	${fld:smn_proveedor_rf},
+	${fld:tra_estatus},
+	${fld:tra_vigencia},
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+)

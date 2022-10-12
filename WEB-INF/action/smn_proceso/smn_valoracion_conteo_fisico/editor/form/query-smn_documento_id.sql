@@ -1,0 +1,1 @@
+select smn_inventario.smn_documento.smn_documento_id as id, smn_inventario.smn_documento.doc_codigo|| ' - ' || smn_inventario.smn_documento.doc_nombre as item from smn_inventario.smn_documento

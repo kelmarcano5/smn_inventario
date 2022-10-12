@@ -1,0 +1,261 @@
+<!doctype html>
+<html>
+
+<head>
+
+		<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+		<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+	
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+
+</head>
+
+<body>
+
+<!--banner-->
+<div class="bannerDialog" id="encabezado_tabla">
+	${lbl:b_document}
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+	${req:progress}
+</div>
+
+<!--formulario addnew/edit-->
+<form name="form1" onsubmit="return save()" style="width:500px;">
+
+	<!-- titulo -->
+	<h1 id="formTitle">${lbl:b_add_record}</h1>
+
+	<table>
+
+		<!--ancho de la columna de etiquetas-->
+		<col width="30%">
+
+		<!--campos-->
+			<tr>
+		<td>${lbl:b_document_type}*</td>
+		<td>
+			<select name="smn_tipo_documento_id" id="smn_tipo_documento_id" onchange="chgCombo(smn_tipo_documento_id.options[smn_tipo_documento_id.selectedIndex].text,'smn_tipo_documento_id_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_tipo_documento_id_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_tipo_documento_id_rows>
+			</select> 
+			<input id="smn_tipo_documento_id_name" name="smn_tipo_documento_id_name" type="hidden">
+		</td>
+	</tr>
+		<tr>
+			<td>${lbl:b_code}*</td>
+			<td>
+				<input id="doc_codigo" name="doc_codigo" type="text" maxlength="10" >
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_name}*</td>
+			<td>
+				<input id="doc_nombre" name="doc_nombre" type="text" maxlength="100" >
+			</td>
+		</tr>
+	<tr>
+		<td>${lbl:b_general_document}*</td>
+		<td>
+			<select name="smn_documento_general_rf" id="smn_documento_general_rf" onchange="chgCombo(smn_documento_general_rf.options[smn_documento_general_rf.selectedIndex].text,'smn_documento_general_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_documento_general_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_documento_general_rf_rows>
+			</select> 
+			<input id="smn_documento_general_rf_name" name="smn_documento_general_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_source_module}*</td>
+		<td>
+			<select name="smn_modulo_origen_rf" id="smn_modulo_origen_rf" onchange="chgCombo(smn_modulo_origen_rf.options[smn_modulo_origen_rf.selectedIndex].text,'smn_modulo_origen_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_modulo_origen_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_modulo_origen_rf_rows>
+			</select> 
+			<input id="smn_modulo_origen_rf_name" name="smn_modulo_origen_rf_name" type="hidden">
+		</td>
+	</tr>
+		<tr>
+			<td>${lbl:b_internal_office_consumption}*</td>
+			<td>
+				<select name="doc_despacho_int_consumo" id="doc_despacho_int_consumo">
+				<option value="SI">${lbl:b_yes} </option>
+				<option value=" NO">${lbl:b_no}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_internal_office_transfer}*</td>
+			<td>
+				<select name="doc_despacho_int_transferencia" id="doc_despacho_int_transferencia">
+				<option value="SI">${lbl:b_yes} </option>
+				<option value=" NO">${lbl:b_no}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_sales_office}*</td>
+			<td>
+				<select name="doc_despacho_venta" id="doc_despacho_venta">
+				<option value="SI">${lbl:b_yes} </option>
+				<option value=" NO">${lbl:b_no}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_movement_type}</td>
+			<td>
+				<select name="doc_tipo_movimiento" id="doc_tipo_movimiento">
+				<option value="PI">${lbl:b_internal_order}</option>
+				<option value="PE">${lbl:b_external_order}</option>
+				<option value="TR">${lbl:b_transfer}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_document_type_payment}</td>
+			<td>
+				<select name="doc_tipo_documento_pago" id="doc_tipo_documento_pago">
+				<option value="DP">${lbl:b_payment_document}</option>
+				<option value="NE">${lbl:b_entry_note}</option>
+
+				</select> 
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_validation_date}*</td>
+			<td>
+				<input id="doc_vigencia" name="doc_vigencia" type="text" class="date" maxlength="10">
+				<img src="${def:context}/images/dropdown.png" title="Desplegar calendario" onclick="calendarOpen('doc_vigencia')">
+			</td>
+		</tr>
+		
+	</table>
+
+	<!--botones-->
+	<input id="grabar" type="submit" value="${lbl:b_save_button}" class="button">
+	<input id="limpiar" type="button" value="${lbl:b_clean_button}" onclick="addNew()" class="button">	
+	<input id="copiar" type="button" value="${lbl:b_copy_button}" onclick="getFormValuesToCopy('form1')" class="button">
+	<input id="pegar" type="button" value="${lbl:b_paste_button}" onclick="getFormValuesToPaste('form1')" class="button">
+	<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog(); parent.search();" class="button">	
+	
+	<!-- PK-->
+<input type="hidden" name="id" value="">
+
+</form>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+	onload = function()
+	{ 
+		addNew();
+
+		if (id!="")
+			edit(id);
+	} 
+	
+	function chgCombo(text,id)
+	{
+		document.getElementById(id).value = text;
+	}
+	
+	//configurar formulario para ingresar registro nuevo
+	function addNew()
+	{
+		document.getElementById("formTitle").innerHTML = "${lbl:b_add_record}";
+		document.getElementById("grabar").disabled=false;
+		clearForm("form1");
+		setFocusOnForm("form1");
+	}
+	
+	//retorna al estado previo que corresponde
+	//al estado actual de la pagina, cada llamada Ajax
+	//se encarga de definir cual es la funcion de goBack() que aplica
+	function goBack() 
+	{
+		_goBackFn()			
+	}
+	
+	//mostrar la actualizacion de un registro
+	function insert()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/insert", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+	
+	//restaurar el formulario en caso de error
+	function retryAddnewOrEdit() {
+		document.getElementById("grabar").disabled=false;
+		setFocusOnForm("form1");		
+	}
+	
+	var id = "${fld:id}"
+	
+	//grabar el formulario
+	function save()
+	{
+		//determina si es un insert o un update
+		if (document.form1.id.value=="")
+			return insert();
+		else
+			return update();
+	}
+	
+	//editar registro en formulario
+	function edit(id)
+	{
+			clearErrorMessages();
+
+			//llamada Ajax...
+			ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/edit?id=" + id , 
+							divResponse=null, 
+							divProgress="status", 
+							formName=null, 
+							afterResponseFn=null, 
+							onErrorFn=null);	
+	}
+	
+	//actualizar registro en BD
+	function update()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/update", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+
+	
+</script>	
+</body>
+</html>
