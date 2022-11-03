@@ -21,9 +21,9 @@
 	</output>
 		
 	<excel 
-		filename='${lbl:b_movement_head}.xls' >
+		filename='${lbl:b_movement_head_2}.xls' >
 		
-	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_movement_head}">
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_movement_head_2}">
 				<col id='smn_modulo_rf' label='${lbl:b_modules}' />
 		<col id='smn_documento_rf' label='${lbl:b_purchasing_documents}' />
 		<col id='mca_numero' label='${lbl:b_number}' />

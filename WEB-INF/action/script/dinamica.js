@@ -1661,5 +1661,86 @@ function CheckIdleTime() {
 	}
 }
 
+var wdt = document.documentElement.scrollWidth-30;
+var hgt = document.documentElement.scrollHeight;
 
+window.onresize = setWindowSize;
+
+function setWindowSize() {
+    wdt = document.documentElement.scrollWidth-30;
+    hgt = document.documentElement.scrollHeight;
+}
+
+
+function showToast(icon,msg) {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    });
+
+    //ICONS: success, error, warning, info, question
+
+    Toast.fire({
+        icon: icon,
+        title: msg
+    })
+}
+
+function setSelect2() {
+    $('.select2').select2();
+}
+
+function showMessage(tittle, message, icon) {
+    //ICONS: success, error, warning, info, question
+    //Swal.fire(tittle, message, icon);
+    Swal.fire({
+        title: tittle,
+        text: message,
+        icon: icon,
+        confirmButtonText: 'Ok',
+        confirmButtonColor: '#0f3c6a',
+    });
+}
+
+function clearSelect2() {
+    $('.select2').val(0).change();
+}
+
+function setDataSelect2(id,value) {
+    if(_.isEmpty(value) || value == 0){
+        $('#'+id).val(0).change();
+        return;
+    }
+    $('#'+id).val(value).change();
+}
+
+function changeMoneda() {
+    let option = $('input[name=changeMoneda]:checked').val();
+
+    switch (option) {
+        case 'ML':
+            $('.ML').show();
+            $('.MA').hide();
+            break;
+        case 'MA':
+            $('.ML').hide();
+            $('.MA').show();
+            break;
+        default:
+            $('.ML').show();
+            $('.MA').hide();
+            break;
+    }
+}
+
+function formatear_monto(monto){
+    return monto.replace('.','').replace('.','').replace(',','.');
+}
 

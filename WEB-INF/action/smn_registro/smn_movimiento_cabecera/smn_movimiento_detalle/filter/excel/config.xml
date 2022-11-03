@@ -28,7 +28,7 @@
 		filename='${lbl:b_movement_detail}.xls' 
 		date-format='dd-MM-yyyy'
 		header-background='true'>
-		<col id='smn_movimiento_cabecera_id' label='${lbl:b_movement_head}' />
+		<col id='smn_movimiento_cabecera_id' label='${lbl:b_movement_head_2}' />
 		<col id='mde_es_bonificacion_combo' label='${lbl:b_bonus}' />
 		<col id='mde_cantidad' label='${lbl:b_quantity}' />
 		<col id='mde_lote' label='${lbl:b_lot}' />

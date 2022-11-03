@@ -1,3 +1,0 @@
-<rows>
-<cols>${fld:alias}=${fld:market}}     </cols>
-</rows>

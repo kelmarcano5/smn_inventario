@@ -29,7 +29,7 @@
 		footer="false" 
 		header="true">
 		<record recordset='query-smnmovimientodetalle.sql' width='100' spacingBefore='40'>
-			<col name='smn_movimiento_cabecera_id' title='${lbl:b_movement_head}' width='11' align='left' format='######' />
+			<col name='smn_movimiento_cabecera_id' title='${lbl:b_movement_head_2}' width='11' align='left' format='######' />
 			<col name='mde_es_bonificacion_combo' title='${lbl:b_bonus}' width='11' align='left' />
 			<col name='mde_cantidad' title='${lbl:b_quantity}' width='11' align='left' format='######' />
 			<col name='mde_lote' title='${lbl:b_lot}' width='11' align='left' format='######' />

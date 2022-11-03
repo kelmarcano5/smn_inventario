@@ -2,7 +2,7 @@
 <config nodb="true">
 
 	<summary>
-		${lbl:b_movement_head}
+		${lbl:b_movement_head_2}
 	</summary>
 
 	<log>false</log>

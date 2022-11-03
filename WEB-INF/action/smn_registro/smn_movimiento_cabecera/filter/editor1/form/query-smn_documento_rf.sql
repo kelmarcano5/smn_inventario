@@ -1,1 +1,0 @@
-select smn_inventario.smn_documentos.smn_documentos_id as id, smn_inventario.smn_documentos.dcc_codigo|| ' - ' || smn_inventario.smn_documentos.dcc_nombre as item from smn_inventario.smn_documentos

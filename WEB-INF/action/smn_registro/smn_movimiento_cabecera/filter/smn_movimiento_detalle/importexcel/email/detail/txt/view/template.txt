@@ -1,3 +1,0 @@
-<rows>
-time_stored="${fld:rsp_hora}"     date_stored="${fld:rsp_fecha_registro}"     response="${fld:rsp_texto}"
-</rows>

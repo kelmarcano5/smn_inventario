@@ -307,10 +307,10 @@
     $.fn.printThis.defaults = {
         debug: false,               // show the iframe for debugging
         importCSS: true,            // import parent page css
-        importStyle: false,         // import style tags
+        importStyle: true,         // import style tags
         printContainer: true,       // print outer container/$.selector
-        loadCSS: "",                // path to additional css file - use an array [] for multiple
-        pageTitle: "",              // add title to print page
+        loadCSS: "/pdf.ccs",                // path to additional css file - use an array [] for multiple
+        pageTitle: "Factura",              // add title to print page
         removeInline: false,        // remove inline styles from print elements
         removeInlineSelector: "*",  // custom selectors to filter inline styles. removeInline must be true
         printDelay: 333,            // variable print delay

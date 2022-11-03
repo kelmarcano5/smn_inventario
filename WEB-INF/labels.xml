@@ -11672,6 +11672,14 @@
 		<value language="pt">Supplier Supplier</value>
 		<value language="it">Supplier Supplier</value>
 	</label>
+	<label id="b_movement_head_2">
+		<value language="es">Movimiento Inventario</value>
+		<value language="en">Inventory Movement</value>
+		<value language="fr">Inventory Movement</value>
+		<value language="de">Inventory Movement</value>
+		<value language="pt">Inventory Movement</value>
+		<value language="it">Inventory Movement</value>
+	</label>
 
 	
 	

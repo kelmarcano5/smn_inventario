@@ -1,1 +1,0 @@
-select smn_inventario.smn_proveedor.smn_proveedor_id as id, smn_inventario.smn_proveedor.prv_usuario_id|| ' - ' || smn_inventario.smn_proveedor.smn_auxiliar_rf as item from smn_inventario.smn_proveedor

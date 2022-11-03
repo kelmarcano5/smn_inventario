@@ -2,8 +2,8 @@
 <table class="datagrid" style="width:95%;">
 
 	<col width='3%'/>
-	<col width='3%'/>
-	<col width='3%'/>
+	<!-- <col width='3%'/>
+	<col width='3%'/> -->
 	<col width='11%'/>
 	<col width='11%'/>
 	<col width='11%'/>
@@ -17,7 +17,7 @@
 
 	<!--toolbar-->
 	<tr>
-		<th colspan="12">
+		<th colspan="10" id="encabezado_tabla">
 			${req:controls} 
 		</th>
 	</tr>
@@ -25,9 +25,9 @@
 	<!--encabezados-->
 	<tr>
 		<th></th>
-		<th></th>
-		<th></th>
-		<th class='sortable' onclick='sortBy("smn_movimiento_cabecera_id","query-smnmovimientodetalle.sql")'>${lbl:b_movement_head}</th>
+		<!-- <th></th>
+		<th></th> -->
+		<th class='sortable' onclick='sortBy("smn_movimiento_cabecera_id","query-smnmovimientodetalle.sql")'>${lbl:b_movement_head_2}</th>
 		<th class='sortable' onclick='sortBy("mde_es_bonificacion_combo","query-smnmovimientodetalle.sql")'>${lbl:b_bonus}</th>
 		<th class='sortable' onclick='sortBy("mde_cantidad","query-smnmovimientodetalle.sql")'>${lbl:b_quantity}</th>
 		<th class='sortable' onclick='sortBy("mde_lote","query-smnmovimientodetalle.sql")'>${lbl:b_lot}</th>
@@ -43,11 +43,11 @@
 	<rows>
 	<tr>
 		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_movimiento_detalle_id}')" title="${lbl:b_view_detail}"></td>
-		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_movimiento_detalle_id}')" title="${lbl:b_delete_button}"></td>
-		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_movimiento_detalle_id}')" title="${lbl:b_edit_button}"></td>
+	<!-- 	<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_movimiento_detalle_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_movimiento_detalle_id}')" title="${lbl:b_edit_button}"></td> -->
 		<td>${fld:smn_movimiento_cabecera_id}</td>
 		<td align='left'>${fld:mde_es_bonificacion_combo}</td>
-		<td>${fld:mde_cantidad}</td>
+		<td>${fld:mde_cantidad_recibida}</td>
 		<td>${fld:mde_lote}</td>
 		<td align='left'>${fld:mde_descripcion}</td>
 		<td align='right'>${fld:smn_precio_ml@#,###,##0.00}</td>

@@ -12,7 +12,7 @@ select
 	end as mde_estatus_combo,
 	smn_inventario.smn_movimiento_detalle.smn_movimiento_cabecera_id,
 	smn_inventario.smn_movimiento_detalle.mde_es_bonificacion,
-	smn_inventario.smn_movimiento_detalle.mde_cantidad,
+	smn_inventario.smn_movimiento_detalle.mde_cantidad_recibida,
 	smn_inventario.smn_movimiento_detalle.mde_lote,
 	smn_inventario.smn_movimiento_detalle.mde_descripcion,
 	smn_inventario.smn_movimiento_detalle.smn_precio_ml,
@@ -22,3 +22,5 @@ select
 	
 from
 	smn_inventario.smn_movimiento_detalle
+where 
+    smn_inventario.smn_movimiento_detalle.smn_movimiento_cabecera_id=${fld:id2}

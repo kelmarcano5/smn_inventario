@@ -20,12 +20,12 @@
 	</output>
 	
 	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
-	<title cellPosY="1" cellPosX="3" cellStep="0" name="${lbl:b_movement_head}"/>
+	<title cellPosY="1" cellPosX="3" cellStep="0" name="${lbl:b_movement_head_2}"/>
 	
 	<excel 
 		recordset='query.sql' 
-		sheetname='${lbl:b_movement_head}' 
-		filename='${lbl:b_movement_head}.xls' 
+		sheetname='${lbl:b_movement_head_2}' 
+		filename='${lbl:b_movement_head_2}.xls' 
 		date-format='dd-MM-yyyy'
 		header-background='true'>
 		<col id='smn_modulo_rf' label='${lbl:b_modules}' />

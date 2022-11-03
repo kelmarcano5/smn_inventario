@@ -3,10 +3,18 @@
 
 <head>
 
-	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica.css" />
-	
-	<script type="text/javascript" src="${def:context}/action/script">
-	</script>
+    <link rel="stylesheet" type="text/css" href="${def:context}/boostrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+    <link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+    <link rel="stylesheet" type="text/css" href="${def:context}/select2.min.css" />
+    <link rel="stylesheet" type="text/css" href="${def:context}/sweetalert.css" />
+    <!--biblioteca generica JS/Dinamica-->
+    <script type="text/javascript" src="${def:context}/action/script"></script>
+    <script type="text/javascript" src="${def:context}/action/jquery"></script>
+    <script type="text/javascript" src="${def:context}/action/select2"></script>
+    <script type="text/javascript" src="${def:context}/action/sweetalert"></script>
+    <script type="text/javascript" src="${def:context}/action/lodash"></script>
+    <script type="text/javascript" src="${def:context}/action/boostrap"></script>
 
 	<!--codigo especifico de este modulo--> 
 	<script type="text/javascript">
@@ -133,12 +141,21 @@
 		}
 
 		function detalle(id2, id3){
-			//&source=smn_clase_auxiliar_rf  alert(id,clase);
-			//alert(id2);
-			//alert(id2);
 			uri = "${def:context}${def:actionroot}/smn_movimiento_detalle/form?id2="+ id2 + "&id3=" + id3;	
 			openDialog("dialog", uri, 1150, 650);
 		}
+
+
+		function procesar_control_item(id2, estatus){
+			if (estatus=='Recibido') {
+				alertBox('No se puede generar este registro porque ya se genero', 'Continuar', null, null)
+			}else{
+				uri = "${def:context}${def:actionroot}/procesar_control_item?smn_movimiento_cabecera_id="+ id2;	
+			    openDialog("dialog", uri, 650, 650);
+			}
+			
+		}
+
 		
 	</script>
 
@@ -147,27 +164,26 @@
 <body>
 
 	<!--banner-->
-	<div class="banner">
-		<div class="banner_div_left">${lbl:b_movement_head}</div>
+	<div class="welcome" style="padding-right:50px; margin-top: 20px;"><br>
+        <b>${lbl:b_welcome}</b> ${fld:fname} ${fld:lname} ${req:progress}
+        <div class="" style="width: 100%; border-bottom: solid 6px #1d61a0; border-radius: 30px; margin-top: 4px;">
+        </div>
+    </div>
+    <br>
+    <div class="titulo-negocios">
+        <div style="padding-top: 15px;">${lbl:b_movement_head_2}</div>
+    </div>
+		
+	<!-- <div class="banner">
+		<div class="banner_div_left">${lbl:b_movement_head_2}</div>
 		${fld:fname} ${fld:lname}
 		${req:progress}
-	</div>
+	</div> -->
 	
 	<!--incluir el menu iconografico de SIMONE-->
 	${inc:${def:actionroot}/panel/view}
 	
-	<div>
-		<div class="image_left">
-			<a href="${def:httpserver}${def:context}/action/..." title="">
-				<img src="${def:context}/images/arrow_left9.png" width="30" height="30">
-			</a>
-		</div>
-		<div class="image_right">
-			<a href="${def:httpserver}${def:context}/action/..." title="">
-				<img src="${def:context}/images/arrow_right9.png" width="30" height="30">
-			</a>
-		</div>
-	</div>
+	
 	<br>
 	<br>
 	

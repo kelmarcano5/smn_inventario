@@ -103,7 +103,8 @@
 	</table>
 
 	<!--botones-->
-	<input id="grabar" type="button" value="Procesar" class="button" onclick="aprobar()"><!-- 
+	<input id="grabar" type="button" value="Aprobar" class="button" onclick="aprobar();">
+	<input id="generar" type="button" value="Procesar" class="button" onclick="generar2();"><!-- 
 	<input id="limpiar" type="button" value="${lbl:b_clean_button}" onclick="addNew()" class="button">	
 	<input id="copiar" type="button" value="${lbl:b_copy_button}" onclick="getFormValuesToCopy('form1')" class="button">
 	<input id="pegar" type="button" value="${lbl:b_paste_button}" onclick="getFormValuesToPaste('form1')" class="button"> -->
@@ -121,7 +122,9 @@
 	{ 
 		addNew();
 
+
 		document.getElementById("grabar").disabled=true;
+		document.getElementById("generar").disabled=true;
 
 		if (id!="")
 			edit(id);
@@ -290,7 +293,8 @@
 			var almacen = document.getElementById('smn_almacen_rf').value;
 				var documento = document.getElementById('smn_documento_id').value;
 					var fecha = document.getElementById('vcf_fecha_generacion').value;
-		//alert("CONTEO ID: "+cont);
+
+		// //alert("CONTEO ID: "+cont);
 		var uri="${def:actionroot}/aprobarstatus?id=" + cont+"&almacen="+almacen+"&documento="+documento+"&fecha="+fecha;
 		//alert(uri);
 		 ajaxCall(httpMethod="POST", 
@@ -302,6 +306,7 @@
 					onErrorFn=null);	
 
 		//(cont);
+		
 	}
 
 
@@ -324,6 +329,26 @@
 							onErrorFn=null); 				
 		}
 	}
+
+
+	function generarOk(){
+				document.getElementById("generar").disabled=false;
+				document.getElementById("grabar").disabled=true;
+	}
+
+	function generar2(){
+
+		var cont = document.getElementById('smn_conteo_id').value;
+			var almacen = document.getElementById('smn_almacen_rf').value;
+				var documento = document.getElementById('smn_documento_id').value;
+					var fecha = document.getElementById('vcf_fecha_generacion').value;
+
+		uri = "${def:context}${def:actionroot}/procesar?conteo="+ cont+"&almacen="+almacen+"&documento="+documento+"&fecha="+fecha; 
+		alert(uri);
+		openDialog("dialog", uri, 350, 100);
+	}
+
+
 
 	
 </script>	

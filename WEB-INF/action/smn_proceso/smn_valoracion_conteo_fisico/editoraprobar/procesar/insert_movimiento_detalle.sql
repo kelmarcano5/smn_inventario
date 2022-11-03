@@ -27,7 +27,13 @@ INSERT INTO smn_inventario.smn_movimiento_detalle
 	mde_idioma,
 	mde_usuario,
 	mde_fecha_registro,
-	mde_hora
+	mde_hora,
+	mde_cantidad_solicitada,
+	mde_cantidad_por_recibir,
+	mde_valor_unitario_ml_origen,
+	mde_cantidad,
+	smn_precio_ml,
+	smn_precio_ma
 )
 VALUES
 (
@@ -58,7 +64,14 @@ VALUES
 	'${def:locale}',
 	'${def:user}',
 	{d '${def:date}'},
-	'${def:time}'
+	'${def:time}',
+	(case when ${fld:vcf_cantidad_contada} is null then 0 else ${fld:vcf_cantidad_contada} end),
+	0,
+	0,
+	(case when ${fld:vcf_cantidad_contada} is null then 0 else ${fld:vcf_cantidad_contada} end),
+	0,
+	0
+
 );
 
 

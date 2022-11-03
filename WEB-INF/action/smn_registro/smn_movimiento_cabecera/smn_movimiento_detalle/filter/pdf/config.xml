@@ -26,7 +26,7 @@
 
 	<pdf-report pageSize="letter" rotate="false" footer="true" header="true">
 		<record recordset='filter.params' title='${lbl:b_filter_find}' noFilterMsg='-- ${lbl:b_all_message} --' width='55' spacingBefore='15'>
-			<col name='smn_movimiento_cabecera_id' title='${lbl:b_movement_head}'  format='######' align='left' />
+			<col name='smn_movimiento_cabecera_id' title='${lbl:b_movement_head_2}'  format='######' align='left' />
 			<col name='smn_item_rf' title='${lbl:b_item}'  format='######' align='left' />
 			<col name='smn_activo_fijo_rf' title='${lbl:b_actfij}'  format='######' align='left' />
 			<col name='smn_centro_costo_rf' title='${lbl:b_cost_lefts}'  format='######' align='left' />
@@ -37,7 +37,7 @@
 
 		</record>
 		<record recordset='query-smnmovimientodetalle.sql' width='100' spacingBefore='10'>
-			<col name='smn_movimiento_cabecera_id' title='${lbl:b_movement_head}' width='10' align='left' format='######' />
+			<col name='smn_movimiento_cabecera_id' title='${lbl:b_movement_head_2}' width='10' align='left' format='######' />
 			<col name='mde_es_bonificacion_combo' title='${lbl:b_bonus}' width='10' align='left' />
 			<col name='mde_cantidad' title='${lbl:b_quantity}' width='10' align='left' format='######' />
 			<col name='mde_lote' title='${lbl:b_lot}' width='10' align='left' format='######' />

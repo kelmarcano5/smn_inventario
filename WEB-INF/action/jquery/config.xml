@@ -15,7 +15,7 @@
 	</transaction>
 	<output>
 		<classname>dinamica.GenericOutput</classname>
-		<template>jquery.min.js</template>	
+		<template>jquery.min.js</template>
 		<set-http-headers>true</set-http-headers>
 		<content-type>text/javascript</content-type>
 		<expiration>180</expiration>

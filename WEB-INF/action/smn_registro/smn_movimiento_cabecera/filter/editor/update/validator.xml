@@ -22,7 +22,7 @@
 	<parameter id='mca_fecha_operacion' type='date' required='true' label='${lbl:b_date_operation}' maxlen='10'/>
 	<parameter id='mca_estatus_proceso' type='varchar' required='true' label='${lbl:b_status_process}' maxlen='2'/>
 	<parameter id='mca_estatus_financiero' type='varchar' required='true' label='${lbl:b_status_financial}' maxlen='2'/>
-	<parameter id='id' type='integer' required='true' label='${lbl:b_movement_head}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_movement_head_2}' maxlen='10'/>
 
 
 </validator>

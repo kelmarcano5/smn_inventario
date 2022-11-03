@@ -23,14 +23,13 @@
 </div>
  <!--biblioteca generica JS/Dinamica-->
 <script type="text/javascript" src="${def:context}/action/script">
-    onload = function()
-    { 
+    onload = function(){ 
         obteneridcab();
     } 
     
     
     function obteneridcab() {
-        alert("ENTRO EN EL OBTENER ID CABECERA MOVIMIENTO");
+       // alert("ENTRO EN EL OBTENER ID CABECERA MOVIMIENTO");
         ajaxCall(httpMethod="GET", 
             uri="${def:actionroot}/getobteneridcab", 
             divResponse=null, 
@@ -43,7 +42,7 @@
     function generar(id){
 
         uri = "${def:context}${def:actionroot}/procesar_control_item?smn_movimiento_cabecera_id="+ id; 
-        alert(uri);
+        // alert(uri);
         //openDialog("dialog", uri, 350, 100);
     }
 

@@ -14,7 +14,7 @@
 
 	<transaction>
 		<classname>dinamica.GenericTransaction</classname>
-		<validator>false</validator>
+		<validator>true</validator>
 		<transaction>false</transaction>
 		<jdbc-log>false</jdbc-log>
 		<recordset id="query-smnmovimientodetalle.sql" source="sql" scope="session" on-empty-return="1" />

@@ -27,5 +27,5 @@ from
 	inner join smn_seguridad.s_user on smn_seguridad.s_user.userlogin= 'admin'
 	inner join smn_base.smn_usuarios on smn_base.smn_usuarios.smn_user_rf = smn_seguridad.s_user.user_id
 	inner join smn_inventario.smn_rol on smn_inventario.smn_rol.smn_usuarios_rf = smn_base.smn_usuarios.smn_usuarios_id
---where 
-	--smn_inventario.smn_rol.rol_tipo='CT'
+where 
+	smn_inventario.smn_valoracion_conteo_fisico.vcf_estatus!='CE'

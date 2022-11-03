@@ -25,7 +25,7 @@
 		<content-type>text/javascript; charset=iso-8859-1</content-type>
 		<expiration>0</expiration>
 		<print mode="form" recordset="smn_detalle_id"/>
-		<!-- <print mode="form" recordset="query.sql" /> -->
 	</output>
 
 </config>
+

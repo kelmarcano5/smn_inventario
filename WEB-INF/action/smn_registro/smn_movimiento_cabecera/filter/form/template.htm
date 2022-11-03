@@ -3,19 +3,26 @@
 
 <head>
 
-<link rel="stylesheet" type="text/css" href="${def:context}/dinamica.css" />
-
-<!--biblioteca generica JS/Dinamica-->
-<script type="text/javascript" src="${def:context}/action/script">
-</script>
+    <link rel="stylesheet" type="text/css" href="${def:context}/boostrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+    <link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+    <link rel="stylesheet" type="text/css" href="${def:context}/select2.min.css" />
+    <link rel="stylesheet" type="text/css" href="${def:context}/sweetalert.css" />
+    <!--biblioteca generica JS/Dinamica-->
+    <script type="text/javascript" src="${def:context}/action/script"></script>
+    <script type="text/javascript" src="${def:context}/action/jquery"></script>
+    <script type="text/javascript" src="${def:context}/action/select2"></script>
+    <script type="text/javascript" src="${def:context}/action/sweetalert"></script>
+    <script type="text/javascript" src="${def:context}/action/lodash"></script>
+    <script type="text/javascript" src="${def:context}/action/boostrap"></script>
 
 </head>
 
 <body>
 
 <!--banner-->
-<div class="banner">
-	${lbl:b_movement_head}
+<div class="banner" id="encabezado_tabla">
+	${lbl:b_movement_head_2}
 	<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
 	${req:progress}
 </div>
@@ -131,8 +138,8 @@
 	onload = function()
 	{ 
 		showFilter();
-		document.form1.mca_fecha_registro_ini.onkeypress = keypressDate;
-	document.form1.mca_fecha_registro_fin.onkeypress = keypressDate;
+		//document.form1.mca_fecha_registro_ini.onkeypress = keypressDate;
+	//document.form1.mca_fecha_registro_fin.onkeypress = keypressDate;
 
 		search();
 	} 
@@ -266,12 +273,20 @@
 	}
 
 	function detalle(id2, id3){
-			//&source=smn_clase_auxiliar_rf  alert(id,clase);
-			//alert(id2);
-			//alert(id2);
-			uri = "${def:context}${def:actionroot}/smn_movimiento_detalle/form?id2="+ id2 + "&id3=" + id3;	
-			openDialog("dialog", uri, 1150, 650);
+
+		uri = "${def:context}${def:actionroot}/../smn_movimiento_detalle/form?id2="+ id2 + "&id3=" + id3;	
+		openDialog("dialog", uri, 1150, 650);
+	}
+
+	function procesar_control_item(id2, estatus){
+		if (estatus=='Recibido') {
+			alertBox('No se puede generar este registro porque ya se genero', 'Continuar', null, null)
+		}else{
+			uri = "${def:context}${def:actionroot}/../procesar_control_item?smn_movimiento_cabecera_id="+ id2;	
+		    openDialog("dialog", uri, 650, 650);
 		}
+		
+	}
 
 			
 </script>

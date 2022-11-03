@@ -26,7 +26,7 @@
 
 	<pdf-report pageSize="letter" rotate="false" footer="true" header="true">
 		<record recordset='query.sql' title='${lbl:b_movement_detail}' width='60' spacingBefore='40'>
-			<col name='smn_movimiento_cabecera_id' title='${lbl:b_movement_head}' align='left' format='######' />
+			<col name='smn_movimiento_cabecera_id' title='${lbl:b_movement_head_2}' align='left' format='######' />
 			<col name='mde_es_bonificacion_combo' title='${lbl:b_bonus}' align='left' />
 			<col name='mde_cantidad' title='${lbl:b_quantity}' align='left' format='######' />
 			<col name='mde_lote' title='${lbl:b_lot}' align='left' format='######' />

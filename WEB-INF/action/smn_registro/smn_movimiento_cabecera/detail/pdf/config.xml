@@ -20,12 +20,12 @@
 		<classname>dinamica.PDFGenericReport</classname>
 	</output>
 	
-	<pdf-title>${lbl:b_movement_head}</pdf-title>
+	<pdf-title>${lbl:b_movement_head_2}</pdf-title>
 	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' />
-	<pdf-file-name>${lbl:b_movement_head}.pdf</pdf-file-name>
+	<pdf-file-name>${lbl:b_movement_head_2}.pdf</pdf-file-name>
 
 	<pdf-report pageSize="letter" rotate="false" footer="true" header="true">
-		<record recordset='query.sql' title='${lbl:b_movement_head}' width='60' spacingBefore='40'>
+		<record recordset='query.sql' title='${lbl:b_movement_head_2}' width='60' spacingBefore='40'>
 			<col name='smn_modulo_rf' title='${lbl:b_modules}' align='left' format='######' />
 			<col name='smn_documento_rf' title='${lbl:b_purchasing_documents}' align='left' format='######' />
 			<col name='mca_numero' title='${lbl:b_number}' align='left' format='######' />

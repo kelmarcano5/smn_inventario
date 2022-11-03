@@ -19,9 +19,9 @@
 		<classname>dinamica.PDFGenericReport</classname>
 	</output>
 	
-	<pdf-title>${lbl:b_movement_head}</pdf-title>
+	<pdf-title>${lbl:b_movement_head_2}</pdf-title>
 	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' />
-	<pdf-file-name>${lbl:b_movement_head}.pdf</pdf-file-name>
+	<pdf-file-name>${lbl:b_movement_head_2}.pdf</pdf-file-name>
 
 	<pdf-report 
 		pageSize="letter" 

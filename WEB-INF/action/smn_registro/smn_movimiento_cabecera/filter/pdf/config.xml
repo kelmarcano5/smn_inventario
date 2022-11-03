@@ -20,9 +20,9 @@
 		<classname>dinamica.PDFGenericReport</classname>
 	</output>
 	
-	<pdf-title>${lbl:b_movement_head}</pdf-title>
+	<pdf-title>${lbl:b_movement_head_2}</pdf-title>
 	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' align="left" />
-	<pdf-file-name>${lbl:b_movement_head}.pdf</pdf-file-name>
+	<pdf-file-name>${lbl:b_movement_head_2}.pdf</pdf-file-name>
 
 	<pdf-report pageSize="letter" rotate="false" footer="true" header="true">
 		<record recordset='filter.params' title='${lbl:b_filter_find}' noFilterMsg='-- ${lbl:b_all_message} --' width='55' spacingBefore='15'>
