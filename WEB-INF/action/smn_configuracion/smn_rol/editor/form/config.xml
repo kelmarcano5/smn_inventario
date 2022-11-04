@@ -21,6 +21,7 @@
 		<recordset id='query-smn_areas_servicios_rf.sql' source='sql' scope='transaction'/>
 		<recordset id='query-smn_unidades_servicios_rf.sql' source='sql' scope='transaction'/>
 		<recordset id='query-rol_posicion_estructura_rf.sql' source='sql' scope='transaction'/>
+		<recordset id='query-smn_almacen_rf.sql' source='sql' scope='transaction'/>
 	</transaction>
 
 	<output>
@@ -35,6 +36,7 @@
 		<print mode='table' recordset='query-smn_areas_servicios_rf.sql' tag='smn_areas_servicios_rf_rows'/>
 		<print mode='table' recordset='query-smn_unidades_servicios_rf.sql' tag='smn_unidades_servicios_rf_rows'/>
 		<print mode='table' recordset='query-rol_posicion_estructura_rf.sql' tag='rol_posicion_estructura_rf_rows'/>
+		<print mode='table' recordset='query-smn_almacen_rf.sql' tag='smn_almacen_rf_rows'/>
 		<print mode="form" recordset="_request" /> 
 	</output>
 

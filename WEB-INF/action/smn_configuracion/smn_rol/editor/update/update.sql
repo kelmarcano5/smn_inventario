@@ -12,7 +12,8 @@ UPDATE smn_inventario.smn_rol SET
 	rol_idioma='${def:locale}',
 	rol_usuario='${def:user}',
 	rol_fecha_registro={d '${def:date}'},
-	rol_hora='${def:time}'
+	rol_hora='${def:time}',
+	smn_almacen_rf=${fld:smn_almacen_rf}
 
 WHERE
 	smn_rol_id=${fld:id}

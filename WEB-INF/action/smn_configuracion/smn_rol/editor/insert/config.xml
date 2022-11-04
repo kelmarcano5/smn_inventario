@@ -23,6 +23,7 @@
 			<colname>rol_posicion_estructura_rf</colname>
 			<colname>rol_estatus</colname>
 			<colname>rol_vigencia</colname>
+			<colname>smn_almacen_rf</colname>
 		
 		</cols>
 		<table>smn_inventario.smn_rol</table>

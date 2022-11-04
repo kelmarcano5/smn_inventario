@@ -180,6 +180,19 @@
 			<input id="rol_posicion_estructura_rf_name" name="rol_posicion_estructura_rf_name" type="hidden">
 		</td>
 	</tr>
+	<tr>
+		<td>${lbl:b_almacen_rf}</td>
+		<td>
+			<select name="smn_almacen_rf" id="smn_almacen_rf" onchange="chgCombo(smn_almacen_rf.options[smn_almacen_rf.selectedIndex].text,'smn_almacen_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_almacen_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_almacen_rf_rows>
+			</select> 
+			<input id="smn_almacen_rf_name" name="smn_almacen_rf_name" type="hidden">
+		</td>
+	</tr>
 		<tr>
 			<td>${lbl:b_status}*</td>
 			<td>

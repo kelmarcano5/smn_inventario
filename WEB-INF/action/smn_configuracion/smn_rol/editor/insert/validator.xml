@@ -10,6 +10,6 @@
 	<parameter id='rol_posicion_estructura_rf' type='integer' required='false' label='${lbl:b_posicion_estructura}' maxlen='10'/>
 	<parameter id='rol_estatus' type='varchar' required='true' label='${lbl:b_status}' maxlen='2'/>
 	<parameter id='rol_vigencia' type='date' required='true' label='${lbl:b_validation_date}' maxlen='10'/>
-
+	<parameter id='smn_almacen_rf' type='integer' required='true' label='${lbl:b_almacen_rf}' maxlen='10'/>
 
 </validator>

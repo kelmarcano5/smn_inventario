@@ -10,6 +10,7 @@ setComboValue('smn_areas_servicios_rf','${fld:smn_areas_servicios_rf}','form1');
 setComboValue('smn_unidades_servicios_rf','${fld:smn_unidades_servicios_rf}','form1');
 setComboValue('rol_posicion_estructura_rf','${fld:rol_posicion_estructura_rf}','form1');
 setComboValue('rol_estatus','${fld:rol_estatus}','form1');
+setComboValue('smn_almacen_rf','${fld:smn_almacen_rf}','form1');
 document.form1.rol_vigencia.value='${fld:rol_vigencia@dd-MM-yyyy}';
 document.form1.id.value='${fld:smn_rol_id@#,###,###}';
  

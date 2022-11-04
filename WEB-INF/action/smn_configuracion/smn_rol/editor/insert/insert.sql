@@ -14,7 +14,8 @@ INSERT INTO smn_inventario.smn_rol
 	rol_idioma,
 	rol_usuario,
 	rol_fecha_registro,
-	rol_hora
+	rol_hora,
+	smn_almacen_rf
 )
 VALUES
 (
@@ -32,5 +33,6 @@ VALUES
 	'${def:locale}',
 	'${def:user}',
 	{d '${def:date}'},
-	'${def:time}'
+	'${def:time}',
+	${fld:smn_almacen_rf},
 )
