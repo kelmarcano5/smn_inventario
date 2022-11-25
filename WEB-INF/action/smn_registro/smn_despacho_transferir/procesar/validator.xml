@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<validator onerror="/action/error/validation/alert">
+	
+	<parameter id='smn_despacho_id' type='integer' required='true' label='${fld:smn_despacho_id}' maxlen='10'/>
+	
+	<parameter id='smn_entidad_rf' type='integer' required='false' label='${fld:smn_entidad_rf}' maxlen='10'/>
+	<parameter id='smn_sucursal_rf' type='integer' required='false' label='${fld:smn_sucursal_rf}' maxlen='10'/>
+	<parameter id='smn_almacen_rf' type='integer' required='false' label='${fld:smn_almacen_rf}' maxlen='10'/>
+	<parameter id='smn_almacen_solicitante' type='integer' required='false' label='${fld:b_applicant_warehouse}' maxlen='10'/>
+	
+	<parameter id='smn_modulo_rf' type='integer' required='false' label='${fld:smn_modulo_rf}' maxlen='10'/>
+	<parameter id='smn_documento_origen_id' type='integer' required='false' label='${fld:smn_documento_origen_id}' maxlen='10'/>
+	<parameter id='des_numero_documento_origen' type='integer' required='false' label='${fld:des_numero_documento_origen}' maxlen='10'/>
+	<parameter id='smn_documento_id' type='integer' required='false' label='${fld:smn_documento_id}' maxlen='10'/>
+	<parameter id='des_numero_documento' type='integer' required='false' label='${fld:des_numero_documento}' maxlen='10'/>
+	<parameter id='des_monto_pedido_ml' type='double' required='false' label='${fld:des_monto_pedido_ml}' maxlen='10'/>
+	<parameter id='des_monto_pedido_ma' type='double' required='false' label='${fld:des_monto_pedido_ma}' maxlen='10'/>
+	<parameter id='des_monto_descuento_ml' type='double' required='false' label='${fld:des_monto_descuento_ml}' maxlen='10'/>
+	<parameter id='des_monto_descuento_ma' type='double' required='false' label='${fld:des_monto_descuento_ma}' maxlen='10'/>
+	<parameter id='des_monto_impuesto_ml' type='double' required='false' label='${fld:des_monto_impuesto_ml}' maxlen='10'/>
+	<parameter id='des_monto_bonificacion_ml' type='double' required='false' label='${fld:des_monto_bonificacion_ml}' maxlen='10'/>
+	<parameter id='des_monto_impuesto_ma' type='double' required='false' label='${fld:des_monto_impuesto_ma}' maxlen='10'/>
+	<parameter id='des_monto_bonificacion_ma' type='double' required='false' label='${fld:des_monto_bonificacion_ma}' maxlen='10'/>
+	<parameter id='des_monto_neto_ml' type='double' required='false' label='${fld:des_monto_neto_ml}' maxlen='10'/>
+	<parameter id='des_monto_neto_ma' type='double' required='false' label='${fld:des_monto_neto_ma}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${fld:smn_moneda_rf}' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${fld:smn_tasa_rf}' maxlen='10'/>
+	<parameter id='smn_item_rf' type='integer' required='false' label='${fld:smn_item_rf}' maxlen='10'/>
+	<parameter id='dde_cantidad_despachada' type='integer' required='false' label='${fld:dde_cantidad_despachada}' maxlen='10'/>
+	<parameter id='cantidad_despachada' type='double' required='false' label='${fld:cantidad_despachada}' maxlen='20'/>
+	<parameter id='dde_costo_ml' type='integer' required='false' label='${fld:dde_costo_ml}' maxlen='10'/>
+	<parameter id='dde_costo_ma' type='integer' required='false' label='${fld:dde_costo_ma}' maxlen='10'/>
+	<parameter id='des_estatus' type='varchar' required='false' label='${fld:des_estatus}' maxlen='2'/>
+	<parameter id='mca_monto_valor_agregado_ml' type='double' required='false' label='${fld:mca_monto_valor_agregado_ml}' maxlen='10' />
+	<parameter id='mca_monto_valor_agregado_ma' type='double' required='false' label='${fld:mca_monto_valor_agregado_ma}' maxlen='10' />
+	
+	<parameter id='smn_despacho_detalle_id' type='integer' required='false' label='${fld:smn_despacho_detalle_id}' maxlen='10'/>
+	<parameter id='smn_movimiento_cabecera_id' type='integer' required='false' label='${fld:smn_movimiento_cabecera_id}' maxlen='10'/>
+	<parameter id='smn_movimiento_cabecera_id_sol' type='integer' required='false' label='${fld:smn_movimiento_cabecera_id}' maxlen='10'/>
+	<parameter id='smn_item_rf' type='integer' required='false' label='${fld:smn_item_rf}' maxlen='10'/>
+	<parameter id='dde_cantidad_despachada' type='double' required='false' label='${fld:dde_cantidad_despachada}' maxlen='10'/>
+	<parameter id='dde_costo_ml' type='double' required='false' label='${fld:dde_costo_ml}' maxlen='10'/>
+	<parameter id='dde_costo_ma' type='double' required='false' label='${fld:dde_costo_ma}' maxlen='10'/>
+	<parameter id='mde_monto_bruto_ml' type='double' required='false' label='${fld:mde_monto_bruto_ml}' maxlen='10'/>
+	<parameter id='mde_monto_bruto_ma' type='double' required='false' label='${fld:mde_monto_bruto_ma}' maxlen='10'/>
+	
+	<parameter id='mde_lote' type='integer' required='false' label='${fld:mde_lote}' maxlen='10'/>
+	<parameter id='mde_fecha_vencimiento_lote' type='date' required='false' label='${fld:mde_fecha_vencimiento_lote}' maxlen='10'/>
+	
+	<!-- <parameter id='smn_zona_rf' type='integer' required='true' label='${fld:smn_zona_rf}' maxlen='10'/>
+	<parameter id='smn_ruta_id' type='integer' required='true' label='${fld:smn_ruta_id}' maxlen='10'/>
+	<parameter id='smn_transporte_id' type='integer' required='true' label='${fld:smn_transporte_id}' maxlen='10'/> -->
+	<parameter id='smn_centro_costo_rf' type='integer' required='false' label='${fld:smn_centro_costo_rf}' maxlen='10'/>
+	<parameter id='smn_unidad_medida_venta_rf' type='integer' required='false' label='${fld:smn_unidad_medida_venta_rf}' maxlen='10'/>
+	<parameter id='cit_tipo_costo' type='integer' required='false' label='${fld:cit_tipo_costo}' maxlen='10'/>
+	<parameter id='coi_fecha_movimiento'         type='date'    required='false' label='${lbl:b_fecha_movimiento}'         maxlen='10'/>
+	<parameter id='smn_control_item_id'          type='integer' required='false' label='${lbl:b_control_item}'             maxlen='10'/>
+	<parameter id='coi_precio'                   type='double'  required='false' label='${lbl:b_precio}'                   maxlen='20'/>
+	<parameter id='coi_saldo_inicial_existencia' type='double'  required='false' label='${lbl:b_saldo_inicial_existencia}' maxlen='20'/>
+	<parameter id='coi_cantidad_entradas'        type='double'  required='false' label='${lbl:b_cantidad_entradas}'        maxlen='20'/>
+	<parameter id='coi_cantidad_salidas'         type='double'  required='false' label='${lbl:b_cantidad_salidas}'         maxlen='20'/>
+	<parameter id='coi_saldo_final_existencia'   type='double'  required='false' label='${lbl:b_saldo_final_existencia}'   maxlen='20'/>
+	<parameter id='coi_valor_inicial'            type='double'  required='false' label='${lbl:b_valor_inicial}'            maxlen='20'/>
+  	<parameter id='coi_valor_entrada'            type='double'  required='false' label='${lbl:b_valor_entrada}'            maxlen='20'/>
+  	<parameter id='coi_valor_salida'             type='double'  required='false' label='${lbl:b_valor_salida}'             maxlen='20'/>
+  	<parameter id='coi_valor_final'              type='double'  required='false' label='${lbl:b_valor_final}'              maxlen='20'/>
+  	<parameter id='coi_costo_promedio'           type='double'  required='false' label='${lbl:b_costo_promedio}'           maxlen='20'/>
+  	<parameter id='coi_ultimo_costo'             type='double'  required='false' label='${lbl:b_ultimo_costo}'             maxlen='20'/>
+  	<parameter id='coi_costo_reposicion'         type='double'  required='false' label='${lbl:b_costo_reposicion}'         maxlen='20'/>
+  	<parameter id='coi_costo_mas_alto'           type='double'  required='false' label='${lbl:b_costo_mas_alto}'           maxlen='20'/>
+   	<parameter id='coi_costo_promedio_ponderado' type='double'  required='false' label='${lbl:b_costo_promedio_ponderado}' maxlen='20'/>
+   	<parameter id='coi_costo_promedio_ponderado_ma' type='double'  required='false' label='${lbl:b_costo_promedio_ponderado_ma}' maxlen='20'/>
+   	<parameter id='coi_precio_ma' type='double' required='false' label='${lbl:b_precio}' maxlen='20'/>
+   	<parameter id='coi_valor_inicial_ma' type='double' required='false' label='${lbl:b_valor_inicial}' maxlen='20'/>
+  	<parameter id='coi_valor_entrada_ma' type='double' required='false' label='${lbl:b_valor_entrada}' maxlen='20'/>
+  	<parameter id='coi_valor_salida_ma' type='double' required='false' label='${lbl:b_valor_salida}' maxlen='20'/>
+  	<parameter id='coi_valor_final_ma' type='double' required='false' label='${lbl:b_valor_final}' maxlen='20'/>
+  	<parameter id='coi_costo_promedio_ma' type='double' required='false' label='${lbl:b_costo_promedio}' maxlen='20'/>
+  	<parameter id='coi_ultimo_costo_ma' type='double' required='false' label='${lbl:b_ultimo_costo}' maxlen='20'/>
+  	<parameter id='coi_costo_reposicion_ma' type='double' required='false' label='${lbl:b_costo_reposicion}' maxlen='20'/>
+  	<parameter id='coi_costo_mas_alto_ma' type='double' required='false' label='${lbl:b_costo_mas_alto}' maxlen='20'/>
+   	<parameter id='coi_cantidad_reservada' type='double' required='false' label='${fld:coi_cantidad_reservada}' maxlen='20'/>
+	<parameter id='coi_cantidad_espera_recepcion' type='double' required='false' label='${fld:coi_cantidad_espera_recepcion}' maxlen='20'/>
+	
+</validator>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

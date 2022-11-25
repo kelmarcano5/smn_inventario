@@ -33,7 +33,7 @@
 		<col width="30%">
 
 		<!--campos-->
-				<tr style="display: none">
+				<tr>
 			<td>${lbl:b_office_headboard}*</td>
 			<td>
 				<input id="smn_despacho_id" name="smn_despacho_id" type="text" maxlength="10" class="numeric">
@@ -76,7 +76,7 @@
 	<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog(); parent.search();" class="button">	
 	
 	<!-- PK-->
-<input type="hidden" name="id" value="">
+<input type="hidden" id="id" name="id" value="">
 
 </form>
 
@@ -164,6 +164,7 @@
 	//actualizar registro en BD
 	function update()
 	{		
+
 			clearErrorMessages();
 			document.getElementById("grabar").disabled=true;
 			//llamada Ajax...

@@ -9,6 +9,9 @@
 <!--biblioteca generica JS/Dinamica-->
 <script type="text/javascript" src="${def:context}/action/script">
 </script>
+<script type="text/javascript" src="${def:context}/action/jquery"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
 </head>
 
@@ -55,7 +58,7 @@
 	<tr>
 		<td>${lbl:b_documento_id}</td>
 		<td>
-			<select name="smn_documento_id" id="smn_documento_id" onchange="chgCombo(smn_documento_id.options[smn_documento_id.selectedIndex].text,'smn_documento_id_name');">
+			<select name="smn_documento_id" id="smn_documento_id" class="js-example-basic-single"  onchange="chgCombo(smn_documento_id.options[smn_documento_id.selectedIndex].text,'smn_documento_id_name');">
 				<option value="">[Cualquiera]</option>
 				<smn_documento_id_rows>
 				<option value="${fld:id}">${fld:item}</option>
@@ -74,7 +77,7 @@
 	<tr>
 		<td>${lbl:b_entidad_rf}</td>
 		<td>
-			<select name="smn_entidad_rf" id="smn_entidad_rf" onchange="chgCombo(smn_entidad_rf.options[smn_entidad_rf.selectedIndex].text,'smn_entidad_rf_name');">
+			<select name="smn_entidad_rf" id="smn_entidad_rf" class="js-example-basic-single"  onchange="chgCombo(smn_entidad_rf.options[smn_entidad_rf.selectedIndex].text,'smn_entidad_rf_name');">
 				<option value="">[Cualquiera]</option>
 				<smn_entidad_rf_rows>
 				<option value="${fld:id}">${fld:item}</option>
@@ -87,7 +90,7 @@
 	<tr>
 		<td>${lbl:b_almacen_rf}*</td>
 		<td>
-			<select name="smn_almacen_rf" id="smn_almacen_rf" onchange="chgCombo(smn_almacen_rf.options[smn_almacen_rf.selectedIndex].text,'smn_almacen_rf_name');">
+			<select name="smn_almacen_rf" id="smn_almacen_rf" class="js-example-basic-single" onchange="chgCombo(smn_almacen_rf.options[smn_almacen_rf.selectedIndex].text,'smn_almacen_rf_name');">
 				<option value="">[Cualquiera]</option>
 				<smn_almacen_rf_rows>
 				<option value="${fld:id}">${fld:item}</option>
@@ -100,7 +103,7 @@
 	<tr>
 		<td>${lbl:b_clase_auxiliar_rf}*</td>
 		<td>
-			<select name="smn_clase_auxiliar_rf" id="smn_clase_auxiliar_rf" onchange="chgCombo(smn_clase_auxiliar_rf.options[smn_clase_auxiliar_rf.selectedIndex].text,'smn_clase_auxiliar_rf_name');">
+			<select name="smn_clase_auxiliar_rf" id="smn_clase_auxiliar_rf" class="js-example-basic-single" onchange="chgCombo(smn_clase_auxiliar_rf.options[smn_clase_auxiliar_rf.selectedIndex].text,'smn_clase_auxiliar_rf_name');">
 				<option value="">[Cualquiera]</option>
 				<smn_clase_auxiliar_rf_rows>
 				<option value="${fld:id}">${fld:item}</option>
@@ -113,7 +116,7 @@
 	<tr>
 		<td>${lbl:b_auxiliar_rf}*</td>
 		<td>
-			<select name="smn_auxiliar_rf" id="smn_auxiliar_rf" onchange="chgCombo(smn_auxiliar_rf.options[smn_auxiliar_rf.selectedIndex].text,'smn_auxiliar_rf_name');">
+			<select name="smn_auxiliar_rf" id="smn_auxiliar_rf" class="js-example-basic-single" onchange="chgCombo(smn_auxiliar_rf.options[smn_auxiliar_rf.selectedIndex].text,'smn_auxiliar_rf_name');">
 				<option value="">[Cualquiera]</option>
 				<smn_auxiliar_rf_rows>
 				<option value="${fld:id}">${fld:item}</option>
@@ -139,7 +142,7 @@
 	<tr>
 		<td>${lbl:b_status}</td>
 		<td>
-			<select name="des_estatus" id="des_estatus">
+			<select name="des_estatus" id="des_estatus" class="js-example-basic-single" >
 				<option value="">[Cualquiera]</option>
 				<option value="GE">${lbl:b_generada}</option>
 				<option value="TR">${lbl:b_transporte}</option>
@@ -195,6 +198,10 @@
 		showFilter();
 	// 	document.form1.des_fecha_registro_ini.onkeypress = keypressDate;
 	// document.form1.des_fecha_registro_fin.onkeypress = keypressDate;
+		
+		$(document).ready(function() {
+		    $('.js-example-basic-single').select2();
+		});
 
 		search();
 	} 
@@ -290,7 +297,7 @@
 	{
 //		//alert('Colocar su código aquí.')
 
-		var uri = "${def:context}${def:actionroot}/detail/form?id=" + id;
+		var uri = "${def:actionroot}/detail/form?id=" + id;
 		openDialog("dialog", uri, 650, 800);
 		
 	}
@@ -334,7 +341,7 @@
 	}
 
 	function notadeentrega1(id){
-			uri = "${def:context}${def:actionroot}/notadeentrega1/form?id=" + id;					
+			uri = "${def:context}${def:actionroot}/../notadeentrega1/form?id=" + id;					
 			openDialog("notadeentrega1", uri, 1000, 950);
 	}
 

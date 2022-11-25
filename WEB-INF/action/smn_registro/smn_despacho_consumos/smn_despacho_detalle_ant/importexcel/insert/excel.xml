@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='smn_despacho_cabecera_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_item_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='dde_cantidad_solicitada' type='double' required='true' maxlen='10'/>
+	<parameter id='dde_cantidad_despachada' type='double' required='true' maxlen='10'/>
+	<parameter id='dde_costo_ml' type='double' required='true' maxlen='10'/>
+	<parameter id='dde_costo_ma' type='double' required='true' maxlen='10'/>
+	<parameter id='dde_motivo' type='varchar' required='false' maxlen='200'/>
+	<parameter id='smn_usuario_aprobador_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='dde_fecha_aprobacion' type='date' required='false' maxlen='10'/>
+	<parameter id='dde_fecha_cierre' type='date' required='false' maxlen='10'/>
+	<parameter id='dde_estatus_transaccion' type='varchar' required='true' maxlen='2'/>
+
+
+
+</validator>

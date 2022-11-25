@@ -17,7 +17,7 @@
 			<colname>smn_item_rf</colname>
 			<colname>dde_cantidad_solicitada</colname>
 			<colname>dde_cantidad_despachada</colname>
-		
+			
 		</cols>
 		<table>smn_inventario.smn_despacho_detalle</table>
 		<oper>ACTUALIZAR</oper>

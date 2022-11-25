@@ -1,0 +1,3 @@
+<rows>
+dde_fecha_registro="${fld:dde_fecha_registro}"    dde_estatus_transaccion="${fld:dde_estatus_transaccion}"    dde_fecha_cierre="${fld:dde_fecha_cierre}"    dde_fecha_aprobacion="${fld:dde_fecha_aprobacion}"    dde_motivo="${fld:dde_motivo}"    dde_costo_ma="${fld:dde_costo_ma}"    dde_costo_ml="${fld:dde_costo_ml}"    dde_cantidad_despachada="${fld:dde_cantidad_despachada}"    dde_cantidad_solicitada="${fld:dde_cantidad_solicitada}"    smn_item_rf="${fld:smn_item_rf}"    smn_despacho_cabecera_id="${fld:smn_despacho_cabecera_id}"    
+</rows>

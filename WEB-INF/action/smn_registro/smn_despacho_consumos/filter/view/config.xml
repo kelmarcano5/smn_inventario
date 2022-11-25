@@ -7,7 +7,7 @@
 
 	<log>false</log>
 	
-	<set-request-attribute id="controls" value="file:/WEB-INF/action/pagecontrols/controls2.htm"/>
+	<set-request-attribute id="controls" value="file:/WEB-INF/action/pagecontrols/controls.htm"/>
 
 	<transaction>
 		<classname>dinamica.GenericTransaction</classname>

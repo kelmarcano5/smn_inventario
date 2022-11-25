@@ -4,6 +4,7 @@
 	<!-- <col width='3%'/> -->
 	<col width='3%'/>
 	<col width='3%'/>
+	<col width='3%'/>
 	<!-- <col width='7%'/> -->
 	<!-- <col width='7%'/> -->
 	<col width='7%'/>
@@ -21,7 +22,7 @@
 
 	<!--toolbar-->
 	<tr>
-		<th colspan="13" id="encabezado_tabla">
+		<th colspan="14" id="encabezado_tabla">
 			${req:controls} 
 		</th>
 	</tr>
@@ -31,6 +32,7 @@
 		<!-- <th></th> -->
 		<th>GN</th>
 		<th>NE</th>
+		<th class='sortable' onclick='sortBy("smn_despacho_id","query-smndespacho.sql")'>${lbl:b_despacho}</th>
 		<!-- <th class='sortable' onclick='sortBy("smn_modulo_rf","query-smndespacho.sql")'>${lbl:b_modulo_rf}</th> -->
 		<!-- <th class='sortable' onclick='sortBy("smn_documento_origen_id","query-smndespacho.sql")'>${lbl:b_documento_origen_id}</th> -->
 		<th class='sortable' onclick='sortBy("smn_documento_id","query-smndespacho.sql")'>${lbl:b_documento_id}</th>
@@ -56,6 +58,7 @@
 		<td><img src="${def:context}/images/file-text.png" onclick="notadeentrega1('${fld:smn_despacho_id}')" title="nota de entrega"></td> 
 		<!-- <td>${fld:smn_modulo_rf}</td> -->
 		<!-- <td>${fld:smn_documento_origen_id}</td> -->
+		<td>${fld:smn_despacho_id}</td>
 		<td>${fld:smn_documento_id}</td>
 		<td>${fld:des_numero_documento_origen}</td>
 		<!-- <td>${fld:des_numero_documento}</td> -->

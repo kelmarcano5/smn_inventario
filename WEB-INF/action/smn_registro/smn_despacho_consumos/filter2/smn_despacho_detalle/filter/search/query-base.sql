@@ -16,6 +16,7 @@ select
 	when smn_inventario.smn_despacho_detalle.dde_estatus_transaccion='RE' then '${lbl:b_rejected}'
 	when smn_inventario.smn_despacho_detalle.dde_estatus_transaccion='PD' then '${lbl:b_partially_delivered}'
 	when smn_inventario.smn_despacho_detalle.dde_estatus_transaccion='CE' then '${lbl:b_closed}'
+	when smn_inventario.smn_despacho_detalle.dde_estatus_transaccion='ER' then '${lbl:b_wait_reception}'
 	end as dde_estatus_transaccion,
 	dde_idioma,
 	dde_usuario,

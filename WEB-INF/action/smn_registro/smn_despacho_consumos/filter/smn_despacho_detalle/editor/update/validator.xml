@@ -5,6 +5,4 @@
 	<parameter id='dde_cantidad_solicitada' type='double' required='true' label='${lbl:b_requested_amount}' maxlen='10'/>
 	<parameter id='dde_cantidad_despachada' type='double' required='true' label='${lbl:b_delivered_amount}' maxlen='10'/>
 	<parameter id='id' type='integer' required='true' label='${lbl:b_office_detail}' maxlen='10'/>
-
-
 </validator>

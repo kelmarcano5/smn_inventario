@@ -34,8 +34,13 @@ from
 	left join smn_base.smn_auxiliar on smn_base.smn_auxiliar.smn_auxiliar_id=smn_inventario.smn_despacho.smn_auxiliar_rf
 	left join smn_base.smn_estructura_organizacional on smn_base.smn_estructura_organizacional.smn_estructura_organizacional_id=smn_inventario.smn_despacho.smn_unidad_organizativa_rf
 	inner join smn_base.smn_almacen on smn_base.smn_almacen.smn_almacen_id = smn_inventario.smn_despacho.smn_almacen_rf
+	INNER JOIN smn_inventario.smn_rol ON smn_inventario.smn_despacho.smn_almacen_rf=smn_inventario.smn_rol.smn_almacen_rf
+	INNER JOIN smn_base.smn_usuarios ON smn_base.smn_usuarios.smn_usuarios_id=smn_inventario.smn_rol.smn_usuarios_rf
+	INNER JOIN smn_seguridad.s_user ON smn_base.smn_usuarios.smn_user_rf=smn_seguridad.s_user.user_id
 where
 	smn_inventario.smn_despacho.smn_despacho_id is not null
-	and smn_base.smn_modulos.mod_codigo='SMN_COM'
+	and smn_base.smn_modulos.mod_codigo IN ('SMN_COM','SMN_SAL','SMN_ADM')
+	and smn_seguridad.s_user.userlogin='${def:user}'
+	AND smn_inventario.smn_rol.rol_tipo = 'AL'
 	${filter}
 ORDER BY smn_inventario.smn_despacho.des_fecha_registro DESC

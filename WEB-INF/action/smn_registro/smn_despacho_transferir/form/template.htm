@@ -1,0 +1,546 @@
+<!doctype html>
+<html>
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/select2.min.css" />
+
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+	<script type="text/javascript" src="${def:context}/action/jquery">
+	</script>
+	<script type="text/javascript" src="${def:context}/action/select2"></script>
+
+	
+
+	<!--codigo especifico de este modulo--> 
+	<script type="text/javascript">
+		//inicializacion de la pagina cuando carga
+	onload = function()
+	{ 
+		showFilter();
+	// 	document.form1.des_fecha_registro_ini.onkeypress = keypressDate;
+	// document.form1.des_fecha_registro_fin.onkeypress = keypressDate;
+		
+		$(document).ready(function() {
+		    $('.js-example-basic-single').select2();
+		});
+
+		search();
+	} 
+	
+	
+		
+	//mostrar filtro de busqueda
+	function showFilter()
+	{
+		document.getElementById("response").style.display='none';
+		setFocusOnForm("form1");
+	}
+	
+	//ejecutar consulta
+	function search()
+	{
+		if (document.form1.smn_entidades_rf.value!=0){
+			if (document.form1.smn_almacen_rf.value==0)
+				alert("Debe seleccionar el almacen");
+			else{
+				var url = "${def:actionroot}/search";
+		
+				//determina si refresca y se para en la pagina actual o en la pagina 1
+				if (currentPage > 0)
+					url = "${def:actionroot}/search?currentpage=" + currentPage;
+
+				//definir funcion goBack()
+				_goBackFn = showFilter;
+				
+				clearErrorMessages();
+
+				//llamada Ajax...
+				return ajaxCall(	httpMethod="POST", 
+									uri=url, 
+									divResponse="response", 
+									divProgress="status", 
+									formName="form1", 
+									afterResponseFn=null, 
+									onErrorFn=showFilter);
+
+			}
+		}else{
+			var url = "${def:actionroot}/search";
+		
+			//determina si refresca y se para en la pagina actual o en la pagina 1
+			if (currentPage > 0)
+				url = "${def:actionroot}/search?currentpage=" + currentPage;
+
+			//definir funcion goBack()
+			_goBackFn = showFilter;
+			
+			clearErrorMessages();
+
+			//llamada Ajax...
+			return ajaxCall(	httpMethod="POST", 
+								uri=url, 
+								divResponse="response", 
+								divProgress="status", 
+								formName="form1", 
+								afterResponseFn=null, 
+								onErrorFn=showFilter);
+		}
+			
+
+
+		
+
+	}
+
+	//mostrar una pagina del grid
+	function viewPage()
+	{
+		var url = "${def:actionroot}/view";
+		//llama a la funcion para ir a la pagina indicada 
+		gotoPage(url);
+	}		
+	
+	//retorna al estado previo que corresponde
+	//al estado actual de la pagina, cada llamada Ajax
+	//se encarga de definir cual es la funcion de goBack() que aplica
+	function goBack() 
+	{
+		_goBackFn()			
+	}
+		
+		//exportar a PDF
+		function openPDF() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/pdf?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+	
+		//exportar a excel
+		function openExcel() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/excel?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a xml
+		function openXml() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/xml/search?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//exportar a texto
+		function openTxt() {
+			var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+			var url = "${def:context}${def:actionroot}/txt/search?random=" + Math.random();
+			var w = window.open(url, null, features);
+		}
+		
+		//envio de emails
+		function openEmails() {
+			var uri = "${def:context}${def:actionroot}/email/form";					
+			openDialog("editor0", uri, 950, 600);	
+		}
+		
+		//mostrar el detalle de un registro
+		function getDetail(id)
+		{
+//			//alert('Colocar su código aquí.')
+			
+			var uri = "${def:context}${def:actionroot}/detail/form?id=" + id;
+			openDialog("dialog", uri, 650, 800);			
+		}
+		
+		//muestra un DIV+IFRAME con el formulario de CRUD
+		
+		function showEditor(id,statusCod,statusDes)
+		{
+//			//alert('Colocar su código aquí.')
+			//editor a nivel de panel iconográfico
+			if (id == 'editor')
+			{					
+				var uri = "${def:context}${def:actionroot}/editor/form";					
+				openDialog("editor1", uri, 650, 500); 					
+			}
+			else if (id == 'filter')
+			{
+				var uri = "${def:context}${def:actionroot}/filter/form";					
+				openDialog("editor2", uri, 1250, 800);		
+			} 
+			else if (id == 'filter2')
+			{
+				var uri = "${def:context}${def:actionroot}/filter2/form";					
+				openDialog("editor6", uri, 1250, 800);		
+			} 
+			else if (id == 'importexcel')
+			{
+				var uri = "${def:context}${def:actionroot}/importexcel/form";					
+				openDialog("editor3", uri, 950, 800);		
+			} 
+			else if (id == 'repgen')
+			{
+				var uri = "${def:context}${def:actionroot}/repgen/form";		
+				openDialog("editor4", uri, 950, 800);		
+			}
+			//editor a nivel de registros
+			else {				
+				var uri = "";
+				if (id!=null && id!=""){
+					if (statusCod!='GE'){
+						alert('El despacho no tiene estatus GENERADO, esta '+statusDes);
+					}else{	
+						//uri = "${def:context}${def:actionroot}/editor/form";
+						uri = "${def:context}${def:actionroot}/procesar?smn_despacho_id="+id;
+						openDialog("editor5", uri, 400, 300); 	    
+					}
+				}else{
+					//uri = "${def:context}${def:actionroot}/editor/form?id=" + id;
+					alertBox ('No se puede procesar la solicitud', "continuar", null, null);
+					
+				//openDialog("editor5", uri, 650, 400);
+				}
+			}
+			
+		}
+
+
+		function deleteRecord(id) {
+//			//alert('Colocar su código aquí.')
+			
+			alertBox('${lbl:b_delete_record_button}', '${lbl:b_delete_button}', '${lbl:b_cancel_button}', 'deleteRecordOK(' + id + ')')
+					
+		}
+		
+		//eliminar un registro
+		function deleteRecordOK(id) {
+				ajaxCall(httpMethod="GET", 
+								uri="${def:actionroot}/delete?id=" + id,
+								divResponse=null, 
+								divProgress="status", 
+								formName=null, 
+								afterResponseFn=null, 
+								onErrorFn=null);	
+		}
+
+		function relacion(id2, descripcion){
+			uri="${def:context}${def:actionroot}/smn_despacho_detalle/form?id2="+id2+"&descripcion="+descripcion;
+			//alert(uri)
+			openDialog("dialog",uri,1300,700);
+		}
+		function notadeentrega1(id){
+				uri = "${def:context}${def:actionroot}/notadeentrega1/form?id=" + id;					
+				openDialog("notadeentrega1", uri, 1000, 950);
+		}
+
+		function relacion(id2, descripcion){
+			uri="${def:context}${def:actionroot}/smn_despacho_detalle/form?id2="+id2+"&descripcion="+descripcion;
+			//alert(uri)
+			openDialog("dialog",uri,1300,700);
+		}
+
+		function notadeentrega1(id){
+				uri = "${def:context}${def:actionroot}/notadeentrega1/form?id=" + id;					
+				openDialog("notadeentrega1", uri, 1000, 950);
+		}
+
+		
+		//Transferencia de despacho
+		function transferir(id_despacho) {
+				ajaxCall(httpMethod="GET", 
+								uri="${def:actionroot}/procesar?id=" + id,
+								divResponse=null, 
+								divProgress="status", 
+								formName=null, 
+								afterResponseFn=null, 
+								onErrorFn=null);	
+		}
+		
+		function chgCombo(text,id)
+		{
+			document.getElementById(id).value = text;
+		}
+		
+		//Este codigo fue creado por SIMONE y ajustado en este crud por Kelvin Marcano
+		var geo_id1 = null;
+		function chgCombo1(text,id)
+		{		
+			document.form1.smn_sucursales_rf.disabled=false;
+			//document.form1.smn_area_id.disabled=false;
+			
+			var combo = document.getElementById('smn_entidades_rf');
+			var geo_id1 = getIDSelectedIndex(combo);
+			//geo_id1 = valueCombo.split("-").pop().trim();
+			
+			//findLocation(geo_id0, '');
+			
+			if (id!=null && id!="") 
+			{
+				return ajaxCall(	
+								httpMethod="GET", 
+								uri="${def:actionroot}/form/getsucursal?id=" + geo_id1, 
+								divResponse=null, 
+								divProgress="status", 
+								formName="form1", 
+								afterResponseFn=setElementFirstIndex('smn_sucursales_rf'), //function 'setElementFirstIndex' select first element of combo list
+								onErrorFn=null);				
+			}
+			
+		}
+
+		var geo_id2 = null;
+		function chgCombo2(text,id)
+		{		
+			document.form1.smn_almacen_rf.disabled=false;
+			
+			var combo = document.getElementById('smn_entidades_rf');
+			var geo_id2 = getIDSelectedIndex(combo);
+			//geo_id2 = valueCombo.split("-").pop().trim();
+			
+			//findLocation(geo_id0, '');
+			
+			if (id!=null && id!="") 
+			{
+				return ajaxCall(	
+								httpMethod="GET", 
+								uri="${def:actionroot}/form/getalmacen?id=" + geo_id2,
+								divResponse=null, 
+								divProgress="status", 
+								formName="form1", 
+								afterResponseFn=setElementFirstIndex('smn_almacen_rf'), //function 'setElementFirstIndex' select first element of combo list
+								onErrorFn=null);				
+			}
+			
+		}	
+		//Author     : SIMONE
+	//Description: Set selected index into combo box
+	//Return     : None
+	function setSelectedIndex(code, combo, description) 
+	{
+	    for (var i = 0; i < combo.options.length; i++) 
+	    {
+			var valueText = code;
+			if (description != null)
+			{
+				valueText = valueText + ' - ' + description;
+			}
+	        if (combo.options[i].text == valueText) 
+	        {
+	        	combo.options[i].selected = true;
+	            return;
+	        }
+	    }
+	}
+	
+		//Author     : SIMONE
+	//Description: Get text valueof selected index
+	//Return     : Text associated to index
+	function getSelectedIndex(combo) 
+	{
+	    for (var i = 0; i < combo.options.length; i++) 
+	    {
+	        if (combo.options[i].selected == true) 
+	        {
+	            return combo.options[i].text;
+	        }
+	    }
+	}
+
+	function getIDSelectedIndex(combo) 
+	{
+	    for (var i = 0; i < combo.options.length; i++) 
+	    {
+	        if (combo.options[i].selected == true) 
+	        {
+	            return combo.options[i].value;
+	        }
+	    }
+	}
+	
+
+	//Author     : SIMONE
+	//Description: Set value to combo box
+	//Parameters : code - it is code associated into each database table 
+	//             descripcion - it is description associated into each database table 
+	//             field - name combo field
+	//             id - identifier retrieved after transaction
+	//             linked - flag indicates 'true' when combos are linked and 'false' otherwise
+	//Return     : None
+	function setValueComboBox(code, description, field, linked)
+	{
+		//add value text to combo
+		addValueToCombo(code,description,field);
+
+		//get select object 
+		var combo = document.getElementById(field);
+		
+		//set element selected to field referenced
+		setSelectedIndex(code,combo, description);
+		
+		//set text value to combo field
+		var valueText = getSelectedIndex(combo);		
+		
+		//get hidden field in order to set any value
+		var combo = document.getElementById(field+'_name');
+		
+		//alert("Text: "+valueText+" - bdID: "+bdID);
+		
+		combo.text  = valueText;
+		combo.value = bdID;
+		
+		//enable linked fields
+		if (linked)
+		{
+			
+			
+			if (field == 'smn_area_id')
+			{
+				document.form1.smn_area_id.disabled = false;
+			}
+			
+			if (field == 'smn_sucursales_rf')
+			{
+				document.form1.smn_sucursales_rf.disabled = false;
+			}
+			
+		}
+	}
+	//Author     : SIMONE
+	//Description: Set first element as selected value
+	//Return     : None
+	function setElementFirstIndex(id)
+	{
+		var combo = document.getElementById(id);
+		combo.selectedIndex = 0;
+	}
+
+	//Author     : SIMONE
+	//Description: Insert new value into combo box
+	//Return     : None
+	function insertComboBox(code, combo, description) {
+		var valueText = code;
+		if (description != null)
+		{
+			valueText = valueText + ' - ' + description;
+		}
+		//alert("Insert Combo: "+valueText);
+        combo.options[combo.options.length] = new Option(valueText);
+	}
+	
+	//Author     : SIMONE
+	//Description: Add new value to combo box
+	//Return     : None
+	function addValueToCombo(code, description, field) 
+	{
+	    var combo = document.getElementById(field);	    
+	    insertComboBox(code, combo, description);
+	}
+	
+	</script>
+
+</head>
+
+<body>
+
+	<!--banner-->
+	<div class="welcome" style="padding-right:50px; margin-top: 20px;"><br>
+        <b>${lbl:b_welcome}</b> ${fld:fname} ${fld:lname} ${req:progress}
+        <div class="" style="width: 100%; border-bottom: solid 6px #1d61a0; border-radius: 30px; margin-top: 4px;">
+        </div>
+    </div>
+    <br>
+    <div class="titulo-negocios">
+        <div style="padding-top: 15px;">${lbl:b_offices_to_transfer}</div>
+    </div>
+	
+	<!--incluir el menu iconografico de SIMONE-->
+	
+	
+	<!-- <div>
+		<div class="image_left">
+			<a href="${def:httpserver}${def:context}/action/..." title="">
+				<img src="${def:context}/images/arrow_left9.png" width="30" height="30">
+			</a>
+		</div>
+		<div class="image_right">
+			<a href="${def:httpserver}${def:context}/action/..." title="">
+				<img src="${def:context}/images/arrow_right9.png" width="30" height="30">
+			</a>
+		</div>
+	</div> 
+	-->
+	<!--formulario de filtro-->
+	<form name="form1" onsubmit="return search()" style="width:650px;">
+
+	<!--titulo-->
+		<h1>${lbl:b_filter_find}</h1>
+
+		<table>
+		
+		<!--ancho de la columna de etiquetas-->
+		<col style="width:40%">
+
+		<tr>
+			<td>${lbl:b_entity}*</td>
+			<td>
+				<select class="js-example-basic-single"  name="smn_entidades_rf" id="smn_entidades_rf" onchange="chgCombo1(smn_entidades_rf.options[smn_entidades_rf.selectedIndex].text,'smn_entidades_rf_name');chgCombo2(smn_entidades_rf.options[smn_entidades_rf.selectedIndex].text,'smn_entidades_rf_name');">
+					<option value="">[Cualquiera]</option>
+					<smn_entidades_rf_rows>
+					<option value="${fld:id}">${fld:item}</option>
+	
+					</smn_entidades_rf_rows>
+				</select> 
+				<input id="smn_entidades_rf_name" name="smn_entidades_rf_name" type="hidden">
+			</td>
+		</tr>
+	
+		<tr>
+			<td>${lbl:b_subsidiary}*</td>
+			<td>
+				<select class="js-example-basic-single"  name="smn_sucursales_rf" id="smn_sucursales_rf" onchange="chgCombo(smn_sucursales_rf.options[smn_sucursales_rf.selectedIndex].text,'smn_sucursales_rf_name');">
+					<option value="">[Cualquiera]</option>
+					<smn_sucursales_rf_rows>
+					<!-- <option value="${fld:id}">${fld:item}</option> -->
+		
+					</smn_sucursales_rf_rows>
+				</select> 
+				<input id="smn_sucursales_rf_name" name="smn_sucursales_rf_name" type="hidden">
+			</td>
+		</tr>
+	
+		<tr>
+			<td>${lbl:b_store}*</td>
+			<td>
+				<select class="js-example-basic-single"  name="smn_almacen_rf" id="smn_almacen_rf" onchange="chgCombo(smn_almacen_rf.options[smn_almacen_rf.selectedIndex].text,'smn_almacen_rf_name');">
+					<option value="">[Cualquiera]</option>
+					<smn_almacen_rf_rows>
+					<!-- <option value="${fld:id}">${fld:item}</option> -->
+	
+					</smn_almacen_rf_rows>
+				</select> 
+				<input id="smn_almacen_rf_name" name="smn_almacen_rf_name" type="hidden">
+			</td>
+		</tr>
+		</table>
+
+		
+		<!--botones-->	
+		<input type="submit" value="${lbl:b_find_button}" class="button">
+		<!--<input id="grabar" type="submit" value="${lbl:b_add_button}"  onclick="showEditor()" class="button">-->
+		<!-- <input type="button" value="${lbl:b_clean_button}" class="button" onclick="clearForm('form1')">	
+		<input id="copiar" type="button" value="${lbl:b_copy_button}" onclick="getFormValuesToCopy('form1')" class="button">
+		<input id="pegar" type="button" value="${lbl:b_paste_button}" onclick="getFormValuesToPaste('form1')" class="button"> -->
+		
+	</form>
+	<br>
+	<br>
+	<!--panel de respuesta AJAX #1-->
+	<div id="response" style="display: none; width: 100%"></div>
+
+</body>
+
+</html>
