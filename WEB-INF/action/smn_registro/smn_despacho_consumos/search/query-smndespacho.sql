@@ -19,12 +19,13 @@ select
 	smn_inventario.smn_despacho.des_descripcion,
 	smn_base.smn_entidades.ent_codigo ||' - '||ent_descripcion_corta as smn_entidad_rf,
 	smn_base.smn_clase_auxiliar.cla_codigo ||' - '||cla_nombre as smn_clase_auxiliar_rf,
-	smn_base.smn_auxiliar.aux_codigo ||' - '||aux_descripcion as smn_auxiliar_rf,
+	smn_base.smn_auxiliar.aux_codigo ||' - '||smn_base.smn_auxiliar.aux_descripcion as smn_auxiliar_rf,
 	smn_base.smn_estructura_organizacional.eor_codigo ||' - '|| eor_nombre as smn_unidad_organizativa_rf,
 	smn_inventario.smn_despacho.des_fecha_solicitud,
 	smn_inventario.smn_despacho.des_fecha_despacho,
 	smn_inventario.smn_despacho.des_estatus,
 	smn_inventario.smn_despacho.des_fecha_registro,
+	solicitante.aux_codigo ||' - '|| solicitante.aux_descripcion as smn_usuario_solicitante_rf,
 	smn_base.smn_almacen.alm_codigo ||' - '|| smn_base.smn_almacen.alm_nombre as smn_almacen_rf
 from
 	smn_inventario.smn_despacho
@@ -38,6 +39,7 @@ from
 	INNER JOIN smn_inventario.smn_rol ON smn_inventario.smn_despacho.smn_almacen_rf=smn_inventario.smn_rol.smn_almacen_rf
 	INNER JOIN smn_base.smn_usuarios ON smn_base.smn_usuarios.smn_usuarios_id=smn_inventario.smn_rol.smn_usuarios_rf
 	INNER JOIN smn_seguridad.s_user ON smn_base.smn_usuarios.smn_user_rf=smn_seguridad.s_user.user_id
+	left outer join smn_base.smn_auxiliar as solicitante on solicitante.smn_auxiliar_id=smn_inventario.smn_despacho.smn_usuario_solicitante_rf
 where smn_inventario.smn_despacho.smn_despacho_id is not null
 	and smn_base.smn_modulos.mod_codigo IN ('SMN_COM','SMN_SAL','SMN_ADM')
 	and smn_seguridad.s_user.userlogin='${def:user}'
