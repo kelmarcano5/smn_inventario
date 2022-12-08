@@ -42,5 +42,6 @@ where
 	smn_inventario.smn_despacho.smn_despacho_id is not null
 	and smn_base.smn_modulos.mod_codigo IN ('SMN_COM','SMN_SAL','SMN_ADM')
 	and smn_seguridad.s_user.userlogin='${def:user}'
+	and smn_inventario.smn_despacho.des_estatus IN ('PD','SO','PE')
 	${filter}
 ORDER BY smn_inventario.smn_despacho.des_fecha_registro DESC
