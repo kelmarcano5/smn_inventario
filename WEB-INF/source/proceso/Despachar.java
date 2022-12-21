@@ -31,7 +31,7 @@ public class Despachar extends GenericTransaction{
 		
 		String sistemaOperativo = System.getProperty("os.name");
 		String file;
-		  
+		
 		if(sistemaOperativo.equals("Windows 7") || sistemaOperativo.equals("Windows 8") || sistemaOperativo.equals("Windows 10")) 
 			file =  "C:/log/logDespacho_"+fechaActual+".txt";
 		else
