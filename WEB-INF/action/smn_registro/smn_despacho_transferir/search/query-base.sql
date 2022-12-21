@@ -24,7 +24,8 @@ select
 	smn_inventario.smn_despacho.des_estatus,
 	smn_inventario.smn_despacho.des_fecha_registro,
 	smn_base.smn_almacen.alm_codigo ||' - '|| smn_base.smn_almacen.alm_nombre as smn_almacen_rf,
-	S.alm_codigo ||' - '|| S.alm_nombre as smn_almacen_solicitante
+	S.alm_codigo ||' - '|| S.alm_nombre as smn_almacen_solicitante,
+    smn_inventario.smn_caracteristica_almacen.cal_clase_almacen as clase_almacen
 
 from
 	smn_inventario.smn_despacho
@@ -35,7 +36,7 @@ from
 	left outer join smn_base.smn_auxiliar on smn_base.smn_auxiliar.smn_auxiliar_id=smn_inventario.smn_despacho.smn_auxiliar_rf
 	left outer join smn_base.smn_estructura_organizacional on smn_base.smn_estructura_organizacional.smn_estructura_organizacional_id=smn_inventario.smn_despacho.smn_unidad_organizativa_rf
 	left outer join smn_base.smn_almacen on smn_base.smn_almacen.smn_almacen_id = smn_inventario.smn_despacho.smn_almacen_rf
-	-- inner join smn_inventario.smn_caracteristica_almacen on smn_inventario.smn_caracteristica_almacen.smn_almacen_rf=smn_base.smn_almacen.smn_almacen_id
+	left join smn_inventario.smn_caracteristica_almacen on smn_inventario.smn_caracteristica_almacen.smn_almacen_rf=smn_base.smn_almacen.smn_almacen_id
 	INNER JOIN smn_inventario.smn_rol ON smn_inventario.smn_despacho.smn_almacen_rf=smn_inventario.smn_rol.smn_almacen_rf
 	INNER JOIN smn_base.smn_usuarios ON smn_base.smn_usuarios.smn_usuarios_id=smn_inventario.smn_rol.smn_usuarios_rf
 	INNER JOIN smn_seguridad.s_user ON smn_base.smn_usuarios.smn_user_rf=smn_seguridad.s_user.user_id

@@ -11680,6 +11680,14 @@
 		<value language="pt">Inventory Movement</value>
 		<value language="it">Inventory Movement</value>
 	</label>
+	<label id="b_applicant_warehouse">
+		<value language="es">Doposito solicitante</value>
+		<value language="en">Doposito solicitante</value>
+		<value language="fr">Doposito solicitante</value>
+		<value language="de">Doposito solicitante</value>
+		<value language="pt">Doposito solicitante</value>
+		<value language="it">Doposito solicitante</value>
+	</label>
 
 	
 	
