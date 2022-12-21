@@ -13,6 +13,6 @@
 	<classpathentry exported="true" kind="lib" path="WEB-INF/lib/org.apache.commons.io.jar"/>
 	<classpathentry exported="true" kind="lib" path="WEB-INF/lib/poi-3.9-20121203.jar"/>
 	<classpathentry exported="true" kind="lib" path="WEB-INF/lib/postgresql-9.4-1201.jdbc41.jar"/>
-	<classpathentry kind="lib" path="C:/tomcat7/lib/servlet-api.jar" sourcepath="E:/tomcat7/dinamica/source.zip"/>
+	<classpathentry kind="lib" path="D:/simone/tomcat7/lib/servlet-api.jar" sourcepath="E:/tomcat7/dinamica/source.zip"/>
 	<classpathentry kind="output" path="WEB-INF/classes"/>
 </classpath>
