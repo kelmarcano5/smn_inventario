@@ -31,7 +31,7 @@ public class Despachar extends GenericTransaction{
 		
 		String sistemaOperativo = System.getProperty("os.name");
 		String file;
-		  
+		
 		if(sistemaOperativo.equals("Windows 7") || sistemaOperativo.equals("Windows 8") || sistemaOperativo.equals("Windows 10")) 
 			file =  "C:/log/logDespacho_"+fechaActual+".txt";
 		else
@@ -145,6 +145,10 @@ public class Despachar extends GenericTransaction{
 					fecha_despacho=rsDespacho.getDate("des_fecha_despacho");
 				else
 					fecha_despacho=null;
+				//Estas siguientes líneas siguientes se comentaron, porque al traer la fecha null 
+				//y ejecutar la línea 613 genera un error: NullPointerException 
+				//else
+				//	fecha_despacho=null;
 				
 				double impuesto_ml;
 				
@@ -607,39 +611,50 @@ public class Despachar extends GenericTransaction{
 										return rc;
 									}
 								}else{
-									if(fecha_despacho.compareTo(fecha_movimiento)==0){
-										str = "**Modificando control de item**";
-										bw.write(str);
-										bw.flush();
-										bw.newLine();
-										String updateControlItem = getSQL(getResource("update_ControlItem.sql"), inputParams);
-										db.exec(updateControlItem);
-										str = "**Control de item modificado exitosamente**";
-										bw.write(str);
-										bw.flush();
-										bw.newLine();
-									}else{
-										inputParams.setValue("coi_fecha_movimiento",fecha_despacho);
-										str = "Insertando control de item...";
-										bw.write(str);
-										bw.flush();
-										bw.newLine();
-										String insertControlItem2 = getSQL(getResource("insert_ControlItem.sql"), inputParams);
-										Recordset insControlItem2 = db.get(insertControlItem2);
-										if(insControlItem2.getRecordCount() > 0) {
-											str = "**Control de item registrado exitosamente**";
+									if(fecha_despacho!=null){
+										if(fecha_despacho.compareTo(fecha_movimiento)==0){
+											str = "**Modificando control de item**";
+											bw.write(str);
+											bw.flush();
+											bw.newLine();
+											String updateControlItem = getSQL(getResource("update_ControlItem.sql"), inputParams);
+											db.exec(updateControlItem);
+											str = "**Control de item modificado exitosamente**";
 											bw.write(str);
 											bw.flush();
 											bw.newLine();
 										}else{
-											str = "**No inserto control de item**";
+											inputParams.setValue("coi_fecha_movimiento",fecha_despacho);
+											str = "Insertando control de item...";
 											bw.write(str);
 											bw.flush();
 											bw.newLine();
-											rc=1;
-											return rc;
+											String insertControlItem2 = getSQL(getResource("insert_ControlItem.sql"), inputParams);
+											Recordset insControlItem2 = db.get(insertControlItem2);
+											if(insControlItem2.getRecordCount() > 0) {
+												str = "**Control de item registrado exitosamente**";
+												bw.write(str);
+												bw.flush();
+												bw.newLine();
+											}else{
+												str = "**No inserto control de item**";
+												bw.write(str);
+												bw.flush();
+												bw.newLine();
+												rc=1;
+												return rc;
+											}
 										}
+									}else{
+										str = "**Fecha de despacho Nula. No inserto ni modifico control de item**";
+										bw.write(str);
+										bw.flush();
+										bw.newLine();
+										rc=1;
+										return rc;
+									
 									}
+										
 								}
 								
 								str = "< Registrando detalle... >";	
