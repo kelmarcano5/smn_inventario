@@ -38,7 +38,7 @@ VALUES
 (
 nextval('smn_inventario.seq_smn_control_item'),
 ${fld:smn_item_rf},
-${fld:coi_fecha_movimiento},
+{d '${def:date}'},
 ${fld:smn_almacen_rf},
 ${fld:coi_precio},
 ${fld:coi_saldo_inicial_existencia},

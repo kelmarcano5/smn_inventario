@@ -212,14 +212,17 @@
 	}
 	
 	function generarDespacho(id)
-	{	
+	{
+        const today = new Date();
+
 		var zona=document.getElementById('smn_zona_rf').value;
 		var ruta=document.getElementById('smn_ruta_id').value;
 		var trans=document.getElementById('smn_transporte_id').value;
+        var fechaMOv = formatDate(today, 'dd-mm-yy');
 	
 		if(id!="")
 		{
-			 var uri = "${def:context}/action/smn_registro/smn_despacho_consumos/procesar?smn_despacho_id="+id+"&smn_zona_rf="+zona+"&smn_ruta_id="+ruta+"&smn_transporte_id="+trans;
+			 var uri = "${def:context}/action/smn_registro/smn_despacho/procesar?smn_despacho_id="+id+"&smn_zona_rf="+zona+"&smn_ruta_id="+ruta+"&smn_transporte_id="+trans+"&coi_fecha_movimiento="+fechaMOv;
 			 openDialog("editor6", uri, 400, 300);    
 		}
 		else
@@ -228,6 +231,17 @@
         }
 	}
 	
+    function formatDate(date, format) {
+        const map = {
+            mm: date.getMonth() + 1,
+            dd: date.getDate(),
+            yy: date.getFullYear().toString(),
+            yyyy: date.getFullYear()
+        }
+
+        return format.replace(/mm|dd|yy|yyy/gi, matched => map[matched])
+    }
+
 </script>	
 </body>
 </html>
