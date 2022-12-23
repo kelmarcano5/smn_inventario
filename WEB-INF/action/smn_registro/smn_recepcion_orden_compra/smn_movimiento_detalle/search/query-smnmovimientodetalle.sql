@@ -70,3 +70,4 @@ WHERE
 	smn_inventario.smn_movimiento_detalle.smn_movimiento_cabecera_id=${fld:id2}
 	AND
 	smn_seguridad.s_user.userlogin = '${def:user}'
+and smn_inventario.smn_movimiento_cabecera.smn_almacen_rf = smn_inventario.smn_rol.smn_almacen_rf
