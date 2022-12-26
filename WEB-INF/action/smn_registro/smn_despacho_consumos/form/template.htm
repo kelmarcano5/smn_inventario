@@ -64,48 +64,48 @@
 		//envio de emails
 		function openEmails() {
 			var uri = "${def:context}${def:actionroot}/email/form";					
-			openDialog("editor0", uri, 950, 600);	
+			openDialog("editor0", uri, wdt, hgt);	
 		}
 		
 		//mostrar el detalle de un registro
 		function getDetail(id)
 		{
-//			//alert('Colocar su código aquí.')
+//			//alert('Colocar su cï¿½digo aquï¿½.')
 			
 			var uri = "${def:context}${def:actionroot}/detail/form?id=" + id;
-			openDialog("dialog", uri, 650, 800);			
+			openDialog("dialog", uri, wdt, hgt);			
 		}
 		
 		//muestra un DIV+IFRAME con el formulario de CRUD
 		
 		function showEditor(id)
 		{
-//			//alert('Colocar su código aquí.')
-			//editor a nivel de panel iconográfico
+//			//alert('Colocar su cï¿½digo aquï¿½.')
+			//editor a nivel de panel iconogrï¿½fico
 			if (id == 'editor')
 			{					
 				var uri = "${def:context}${def:actionroot}/editor/form";					
-				openDialog("editor1", uri, 650, 500); 					
+				openDialog("editor1", uri, wdt, hgt); 					
 			}
 			else if (id == 'filter')
 			{
 				var uri = "${def:context}${def:actionroot}/filter/form";					
-				openDialog("editor2", uri, 1250, 800);		
+				openDialog("editor2", uri, wdt, hgt);		
 			} 
 			else if (id == 'filter2')
 			{
 				var uri = "${def:context}${def:actionroot}/filter2/form";					
-				openDialog("editor6", uri, 1250, 800);		
+				openDialog("editor6", uri, wdt, hgt);		
 			} 
 			else if (id == 'importexcel')
 			{
 				var uri = "${def:context}${def:actionroot}/importexcel/form";					
-				openDialog("editor3", uri, 950, 800);		
+				openDialog("editor3", uri, wdt, hgt);		
 			} 
 			else if (id == 'repgen')
 			{
 				var uri = "${def:context}${def:actionroot}/repgen/form";		
-				openDialog("editor4", uri, 950, 800);		
+				openDialog("editor4", uri, wdt, hgt);		
 			}
 			//editor a nivel de registros
 			else {				
@@ -115,13 +115,13 @@
 				else
 					uri = "${def:context}${def:actionroot}/editor/form?id=" + id;
 					
-				openDialog("editor5", uri, 650, 400);
+				openDialog("editor5", uri, wdt, hgt);
 			}
 			
 		}
 
 		function deleteRecord(id) {
-//			//alert('Colocar su código aquí.')
+//			//alert('Colocar su cï¿½digo aquï¿½.')
 			
 			alertBox('${lbl:b_delete_record_button}', '${lbl:b_delete_button}', '${lbl:b_cancel_button}', 'deleteRecordOK(' + id + ')')
 					
@@ -141,11 +141,11 @@
 		function relacion(id2, descripcion){
 			uri="${def:context}${def:actionroot}/smn_despacho_detalle/form?id2="+id2+"&descripcion="+descripcion;
 			//alert(uri)
-			openDialog("dialog",uri,1300,700);
+			openDialog("dialog",uri,wdt,hgt);
 		}
 		function notadeentrega1(id){
 				uri = "${def:context}${def:actionroot}/notadeentrega1/form?id=" + id;					
-				openDialog("notadeentrega1", uri, 1000, 950);
+				openDialog("notadeentrega1", uri, wdt, hgt);
 		}
 		
 	</script>
