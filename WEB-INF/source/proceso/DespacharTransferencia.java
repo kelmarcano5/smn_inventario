@@ -445,7 +445,7 @@ public class DespacharTransferencia extends GenericTransaction{
 								double ultimo_costo_ma=0.0;
 								double costo_mas_alto_ma=0.0;
 								double costo_promedio_ponderado_ma=0.0;
-								Date fecha_movimiento=null;
+								Date fecha_movimiento= new Date();
 								if(rssqlCheckControl.getRecordCount() > 0) {
 									str = "< Control de item encontrado >";	
 									bw.write(str);
@@ -620,6 +620,7 @@ public class DespacharTransferencia extends GenericTransaction{
 								inputParams.setValue("coi_costo_promedio_ponderado_ma", costo_promedio_ponderado_ma);
 								inputParams.setValue("coi_cantidad_reservada", 0.0);
 								inputParams.setValue("coi_cantidad_espera_recepcion", 0.0);
+								inputParams.setValue("coi_fecha_movimiento", fecha_movimiento);
 								
 								str = "Costo promedio: " + inputParams.getString("coi_costo_promedio");
 								bw.write(str);
@@ -1084,7 +1085,7 @@ public class DespacharTransferencia extends GenericTransaction{
 		
 		}catch(Throwable e){
 			conn.rollback();
-            conn.close();
+            
 			throw e;
 		}
 		
